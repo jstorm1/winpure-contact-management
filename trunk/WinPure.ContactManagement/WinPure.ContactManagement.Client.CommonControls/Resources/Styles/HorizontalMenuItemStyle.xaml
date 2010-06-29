@@ -36,15 +36,16 @@
                                     <VisualTransition GeneratedDuration="0:0:0.2"
                                                       To="MouseOver">
                                         <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0.2"
-                                                             To="1.1"
-                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
-                                                             Storyboard.TargetName="Background" />
-                                            <DoubleAnimation Duration="0:0:0.2"
-                                                             To="1.1"
-                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
-                                                             Storyboard.TargetName="Background" />
-                                        </Storyboard>
+                                    		<DoubleAnimation Duration="0:0:0.2"
+                                    			To="1.1"
+                                    			Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
+                                    			Storyboard.TargetName="Background" />
+                                    		<DoubleAnimation Duration="0:0:0.2"
+                                    			To="1.1"
+                                    			Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
+                                    			Storyboard.TargetName="Background" />
+                                    		<DoubleAnimation Duration="0:0:0.2" To="5" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="MenuIcon"/>
+                                    	</Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="MouseOver"
                                                       GeneratedDuration="0:0:0.3">
@@ -71,6 +72,9 @@
                                             <EasingDoubleKeyFrame KeyTime="0"
                                                                   Value="1.1" />
                                         </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="MenuIcon">
+                                        	<EasingDoubleKeyFrame KeyTime="0" Value="5"/>
+                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed" />
@@ -88,12 +92,16 @@
                         	</TextBlock.Effect>
                         </TextBlock>
                         <Grid Margin="0,0,0,0.21" Background="{x:Null}">
-                            <Image Margin="0"
+                            <Image x:Name="MenuIcon" Margin="0"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    Height="35"
                                    Width="35"
-                                   Source="{TemplateBinding Image}" />
+                                   Source="{TemplateBinding Image}" Tag="{TemplateBinding IconGlowColor}" >
+                            	<Image.Effect>
+                            		<DropShadowEffect ShadowDepth="0" Color="{Binding Tag, ElementName=MenuIcon}" BlurRadius="10"/>
+                            	</Image.Effect>
+                            </Image>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>

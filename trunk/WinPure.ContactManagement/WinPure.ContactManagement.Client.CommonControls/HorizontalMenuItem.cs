@@ -13,6 +13,12 @@ namespace WinPure.ContactManagement.Client.CommonControls
     {
         #region Dependency properties
 
+        // Using a DependencyProperty as the backing store for IconGlowColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IconGlowColorProperty =
+            DependencyProperty.Register("IconGlowColor", typeof (Color), typeof (HorizontalMenuItem),
+                                        new UIPropertyMetadata(Colors.Black));
+
+
         // Using a DependencyProperty as the backing store for Image.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageProperty =
             DependencyProperty.Register("Image", typeof (ImageSource), typeof (HorizontalMenuItem), null);
@@ -26,16 +32,23 @@ namespace WinPure.ContactManagement.Client.CommonControls
         #endregion
 
         #region Constructor
-        
+
         static HorizontalMenuItem()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(HorizontalMenuItem),
-                                                     new FrameworkPropertyMetadata(typeof(HorizontalMenuItem)));
-        } 
+            DefaultStyleKeyProperty.OverrideMetadata(typeof (HorizontalMenuItem),
+                                                     new FrameworkPropertyMetadata(typeof (HorizontalMenuItem)));
+        }
 
         #endregion
 
         #region Properties
+
+        [Category("Brushes")]
+        public Color IconGlowColor
+        {
+            get { return (Color)GetValue(IconGlowColorProperty); }
+            set { SetValue(IconGlowColorProperty, value); }
+        }
 
         [Category("Common Properties")]
         public ImageSource Image

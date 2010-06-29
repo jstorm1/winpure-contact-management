@@ -24,15 +24,23 @@
             <CommonControls:HorizontalMenu.Items>
                 
                 <CommonControls:HorizontalMenuItem Text="Contacts" 
-                                                   Width="100" Image="Resources/Images/48x48/Contacts_48x48.png">
+                                                   Width="100" Image="Resources/Images/48x48/Contacts_48x48.png" IconGlowColor="#FFCA8229">
                 </CommonControls:HorizontalMenuItem>
 
                 <CommonControls:HorizontalMenuItem Text="Companies"
-                                                   Width="100" Image="Resources/Images/48x48/Companies_48x48.png">
+                                                   Width="100" Image="Resources/Images/48x48/Companies_48x48.png" IconGlowColor="#FF427EB2">
                 </CommonControls:HorizontalMenuItem>
                 
             </CommonControls:HorizontalMenu.Items>
         </CommonControls:HorizontalMenu>
+        <CommonControls:PageControl Margin="0" Width="500" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center" BorderColor="#FF393939">
+        	<CommonControls:PageControl.Background>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FF4881AE" Offset="0"/>
+        			<GradientStop Color="#FF1E4762" Offset="1"/>
+        		</LinearGradientBrush>
+        	</CommonControls:PageControl.Background>
+        </CommonControls:PageControl>
 
     </Grid>
 </Window>
