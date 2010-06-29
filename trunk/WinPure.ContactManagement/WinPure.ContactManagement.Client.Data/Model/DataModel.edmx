@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WinPure.ContactManagement.Client.Data.Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WinPureContactManagementClientDataModelStoreContainer">
+          <EntitySet Name="Company" EntityType="WinPure.ContactManagement.Client.Data.Model.Store.Company" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="WinPure.ContactManagement.Client.Data.Model.Store.Contact" store:Type="Tables" />
+          <AssociationSet Name="FK_Company_Contact" Association="WinPure.ContactManagement.Client.Data.Model.Store.FK_Company_Contact">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Industry" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
+          <Property Name="Website" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Town" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="5" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Suffix" Type="nvarchar" MaxLength="5" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyId" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_Company_Contact">
+          <End Role="Company" Type="WinPure.ContactManagement.Client.Data.Model.Store.Company" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contact" Type="WinPure.ContactManagement.Client.Data.Model.Store.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WinPure.ContactManagement.Client.Data.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="WinPure.ContactManagement.Client.Data.Model.Company" />
+          <EntitySet Name="Contacts" EntityType="WinPure.ContactManagement.Client.Data.Model.Contact" />
+          <AssociationSet Name="FK_Company_Contact" Association="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Industry" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Fax" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Address1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Address3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Town" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Postcode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contacts" Relationship="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact" FromRole="Company" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="ContactID" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Suffix" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyId" Type="Guid" />
+          <NavigationProperty Name="Company" Relationship="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact" FromRole="Contact" ToRole="Company" />
+        </EntityType>
+        <Association Name="FK_Company_Contact">
+          <End Role="Company" Type="WinPure.ContactManagement.Client.Data.Model.Company" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contact" Type="WinPure.ContactManagement.Client.Data.Model.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WinPureContactManagementClientDataModelStoreContainer" CdmEntityContainer="DataEntities">
+          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="WinPure.ContactManagement.Client.Data.Model.Company"><MappingFragment StoreEntitySet="Company">
+            <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Industry" ColumnName="Industry" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="Fax" ColumnName="Fax" />
+            <ScalarProperty Name="Website" ColumnName="Website" />
+            <ScalarProperty Name="Address1" ColumnName="Address1" />
+            <ScalarProperty Name="Address2" ColumnName="Address2" />
+            <ScalarProperty Name="Address3" ColumnName="Address3" />
+            <ScalarProperty Name="Town" ColumnName="Town" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Contacts"><EntityTypeMapping TypeName="WinPure.ContactManagement.Client.Data.Model.Contact"><MappingFragment StoreEntitySet="Contact">
+            <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+            <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+            <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DataModel">
+        <EntityTypeShape EntityType="WinPure.ContactManagement.Client.Data.Model.Company" Width="1.5" PointX="0.75" PointY="1" Height="3.7109993489583331" IsExpanded="true" />
+        <EntityTypeShape EntityType="WinPure.ContactManagement.Client.Data.Model.Contact" Width="1.5" PointX="3" PointY="1.5" Height="2.7494921874999996" IsExpanded="true" />
+        <AssociationConnector Association="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.87474609375" />
+          <ConnectorPoint PointX="3" PointY="2.87474609375" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
