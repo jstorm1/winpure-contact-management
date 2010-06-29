@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPure.ContactManagement.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPure.ContactManagement.Client.ViewModels", "WinPure.ContactManagement.Client.ViewModels\WinPure.ContactManagement.Client.ViewModels.csproj", "{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferencedAssemblies", "ReferencedAssemblies", "{C320334C-0B1F-4022-9EAE-59504902555A}"
+	ProjectSection(SolutionItems) = preProject
+		ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll = ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -41,12 +48,23 @@ Global
 		{F768494E-E29C-4653-B058-A733D730DB1F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F768494E-E29C-4653-B058-A733D730DB1F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F768494E-E29C-4653-B058-A733D730DB1F}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{093651AB-9BCC-4EE7-A544-B447D7705786} = {E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}
 		{F768494E-E29C-4653-B058-A733D730DB1F} = {E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}
+		{093651AB-9BCC-4EE7-A544-B447D7705786} = {E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}
+		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E} = {E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}
 	EndGlobalSection
 EndGlobal
