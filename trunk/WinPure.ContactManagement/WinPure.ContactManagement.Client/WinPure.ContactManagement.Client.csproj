@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HorizontalMenu">
+      <HintPath>..\ReferencedAssemblies\HorizontalMenu.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -91,6 +94,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Images\PSDs\Icons.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\128x128\Contacts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\128x128\Companies.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
