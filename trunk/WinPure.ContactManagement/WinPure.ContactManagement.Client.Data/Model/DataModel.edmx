@@ -63,7 +63,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WinPure.ContactManagement.Client.Data.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EntitiesDataContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Companies" EntityType="WinPure.ContactManagement.Client.Data.Model.Company" />
           <EntitySet Name="Contacts" EntityType="WinPure.ContactManagement.Client.Data.Model.Contact" />
           <AssociationSet Name="FK_Company_Contact" Association="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact">
@@ -123,7 +123,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WinPureContactManagementClientDataModelStoreContainer" CdmEntityContainer="DataEntities">
+        <EntityContainerMapping StorageEntityContainer="WinPureContactManagementClientDataModelStoreContainer" CdmEntityContainer="EntitiesDataContext">
           <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="WinPure.ContactManagement.Client.Data.Model.Company"><MappingFragment StoreEntitySet="Company">
             <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
             <ScalarProperty Name="Name" ColumnName="Name" />

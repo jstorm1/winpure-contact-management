@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Managers\Base\DataManagerBase.cs" />
+    <Compile Include="Managers\CompaniesManager.cs" />
+    <Compile Include="Managers\ContactsManager.cs" />
     <Compile Include="Model\DataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

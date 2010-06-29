@@ -29,32 +29,32 @@ namespace WinPure.ContactManagement.Client.Data.Model
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class DataEntities : ObjectContext
+    public partial class EntitiesDataContext : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new DataEntities object using the connection string found in the 'DataEntities' section of the application configuration file.
+        /// Initializes a new EntitiesDataContext object using the connection string found in the 'EntitiesDataContext' section of the application configuration file.
         /// </summary>
-        public DataEntities() : base("name=DataEntities", "DataEntities")
+        public EntitiesDataContext() : base("name=EntitiesDataContext", "EntitiesDataContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new DataEntities object.
+        /// Initialize a new EntitiesDataContext object.
         /// </summary>
-        public DataEntities(string connectionString) : base(connectionString, "DataEntities")
+        public EntitiesDataContext(string connectionString) : base(connectionString, "EntitiesDataContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new DataEntities object.
+        /// Initialize a new EntitiesDataContext object.
         /// </summary>
-        public DataEntities(EntityConnection connection) : base(connection, "DataEntities")
+        public EntitiesDataContext(EntityConnection connection) : base(connection, "EntitiesDataContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
