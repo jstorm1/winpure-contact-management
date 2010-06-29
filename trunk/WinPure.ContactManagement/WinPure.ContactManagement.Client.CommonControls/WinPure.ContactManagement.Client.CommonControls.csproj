@@ -2,22 +2,21 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{093651AB-9BCC-4EE7-A544-B447D7705786}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{1E399B48-BEDA-4D4E-BF89-F741DF1911E9}</ProjectGuid>
+    <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinPure.ContactManagement.Client</RootNamespace>
-    <AssemblyName>WinPure.ContactManagement.Client</AssemblyName>
+    <RootNamespace>WinPure.ContactManagement.Client.CommonControls</RootNamespace>
+    <AssemblyName>WinPure.ContactManagement.Client.CommonControls</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,8 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -51,24 +49,22 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Resources\Styles\HorizontalMenuItemStyle.xaml">
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="ShellWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\HorizontalMenuStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ShellWindow.xaml.cs">
-      <DependentUpon>ShellWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HorizontalMenu.cs" />
+    <Compile Include="HorizontalMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -91,28 +87,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\Images\PSDs\Icons.psd" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\128x128\Contacts.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\128x128\Companies.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WinPure.ContactManagement.Client.CommonControls\WinPure.ContactManagement.Client.CommonControls.csproj">
-      <Project>{1E399B48-BEDA-4D4E-BF89-F741DF1911E9}</Project>
-      <Name>WinPure.ContactManagement.Client.CommonControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinPure.ContactManagement.Client.ViewModels\WinPure.ContactManagement.Client.ViewModels.csproj">
-      <Project>{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}</Project>
-      <Name>WinPure.ContactManagement.Client.ViewModels</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\48x48\Companies_48x48.png" />
-    <Resource Include="Resources\Images\48x48\Contacts_48x48.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
