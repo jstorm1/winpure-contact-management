@@ -9,6 +9,98 @@
     		<ResourceDictionary.MergedDictionaries>
     			<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PagesSliderControlStyle.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
+    		<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+    			<Setter Property="Background" Value="Transparent"/>
+    			<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+    			<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+    			<Setter Property="Padding" Value="2,0,0,0"/>
+    			<Setter Property="Template">
+    				<Setter.Value>
+    					<ControlTemplate TargetType="{x:Type ListBoxItem}">
+    						<Border x:Name="Bd" SnapsToDevicePixels="true" CornerRadius="5" Background="#33000000" BorderBrush="#00000000" BorderThickness="2">
+    							<VisualStateManager.VisualStateGroups>
+    								<VisualStateGroup x:Name="CommonStates">
+    									<VisualStateGroup.Transitions>
+    										<VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver">
+    											<VisualTransition.GeneratedEasingFunction>
+    												<QuinticEase EasingMode="EaseIn"/>
+    											</VisualTransition.GeneratedEasingFunction>
+    											<Storyboard/>
+    										</VisualTransition>
+    										<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.4">
+    											<VisualTransition.GeneratedEasingFunction>
+    												<QuinticEase EasingMode="EaseOut"/>
+    											</VisualTransition.GeneratedEasingFunction>
+    										</VisualTransition>
+    									</VisualStateGroup.Transitions>
+    									<VisualState x:Name="Normal"/>
+    									<VisualState x:Name="MouseOver">
+    										<Storyboard>
+    											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="Bd">
+    												<EasingColorKeyFrame KeyTime="0" Value="#C0000000"/>
+    											</ColorAnimationUsingKeyFrames>
+    											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Bd">
+    												<EasingColorKeyFrame KeyTime="0" Value="#59000000"/>
+    											</ColorAnimationUsingKeyFrames>
+    										</Storyboard>
+    									</VisualState>
+    									<VisualState x:Name="Disabled"/>
+    								</VisualStateGroup>
+    								<VisualStateGroup x:Name="SelectionStates">
+    									<VisualState x:Name="Unselected"/>
+    									<VisualState x:Name="Selected">
+    										<Storyboard>
+    											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="border">
+    												<EasingColorKeyFrame KeyTime="0" Value="#E52C2C2C"/>
+    											</ColorAnimationUsingKeyFrames>
+    											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="border">
+    												<EasingColorKeyFrame KeyTime="0" Value="#D8545454"/>
+    											</ColorAnimationUsingKeyFrames>
+    										</Storyboard>
+    									</VisualState>
+    									<VisualState x:Name="SelectedUnfocused"/>
+    								</VisualStateGroup>
+    								<VisualStateGroup x:Name="FocusStates">
+    									<VisualState x:Name="Unfocused"/>
+    									<VisualState x:Name="Focused"/>
+    								</VisualStateGroup>
+    								<VisualStateGroup x:Name="ValidationStates">
+    									<VisualState x:Name="Valid"/>
+    									<VisualState x:Name="InvalidFocused"/>
+    									<VisualState x:Name="InvalidUnfocused"/>
+    								</VisualStateGroup>
+    							</VisualStateManager.VisualStateGroups>
+    							<Border x:Name="border" Opacity="0.995" CornerRadius="5">
+    								<Border.Background>
+    									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    										<GradientStop Color="#00545454" Offset="0"/>
+    										<GradientStop Offset="1" Color="#002C2C2C"/>
+    									</LinearGradientBrush>
+    								</Border.Background>
+    								<ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+    							</Border>
+    						</Border>
+    						<ControlTemplate.Triggers>
+    							<Trigger Property="IsSelected" Value="true">
+    								<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+    								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+    							</Trigger>
+    							<MultiTrigger>
+    								<MultiTrigger.Conditions>
+    									<Condition Property="IsSelected" Value="true"/>
+    									<Condition Property="Selector.IsSelectionActive" Value="false"/>
+    								</MultiTrigger.Conditions>
+    								<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+    								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+    							</MultiTrigger>
+    							<Trigger Property="IsEnabled" Value="false">
+    								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+    							</Trigger>
+    						</ControlTemplate.Triggers>
+    					</ControlTemplate>
+    				</Setter.Value>
+    			</Setter>
+    		</Style>
     	</ResourceDictionary>
          
          

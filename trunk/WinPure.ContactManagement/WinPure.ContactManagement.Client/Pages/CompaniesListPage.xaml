@@ -10,6 +10,19 @@
                             d:DesignWidth="676"
                             Text="Companies"
                             BorderColor="#FF373737">
+	<CommonControls:PageControl.Resources>
+		<DataTemplate x:Key="CompanyDataTemplate">
+			
+				<Grid  Background="{x:Null}" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" d:DesignWidth="429.5" d:DesignHeight="77.963">
+					<Grid.RowDefinitions>
+						<RowDefinition  />
+						<RowDefinition  />
+					</Grid.RowDefinitions>
+					<TextBlock HorizontalAlignment="Stretch" Margin="8,8,0,8" TextWrapping="Wrap" Text="{Binding Name}" FontFamily="Century Gothic" FontSize="16" Foreground="White" VerticalAlignment="Center"/>
+					<TextBlock HorizontalAlignment="Left" Margin="8,0,0,8" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Country}" Foreground="#34FFFFFF" FontSize="13.333" FontFamily="Century Gothic" VerticalAlignment="Center"/>
+				</Grid>
+		</DataTemplate>
+	</CommonControls:PageControl.Resources>
 
     <CommonControls:PageControl.Background>
         <LinearGradientBrush EndPoint="0.5,1"
@@ -25,18 +38,9 @@
         <ViewModels:CompaniesViewModel />
     </CommonControls:PageControl.DataContext>
 
-    <Grid>
-        <ListView HorizontalAlignment="Left"
-                  Height="247"
-                  Margin="7,30.845,0,0"
-                  VerticalAlignment="Top"
-                  Width="528" ItemsSource="{Binding Companies}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn />
-                </GridView>
-            </ListView.View>
-        </ListView>
+    <Grid Height="353" Width="658">
+    	<ListBox Margin="8,8,125,60" BorderThickness="0" Background="{x:Null}" ItemTemplate="{DynamicResource CompanyDataTemplate}" ItemsSource="{Binding Companies}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
+      
 
     </Grid>
 </CommonControls:PageControl>
