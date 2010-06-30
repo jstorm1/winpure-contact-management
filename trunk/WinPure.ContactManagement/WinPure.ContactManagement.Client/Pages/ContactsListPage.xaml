@@ -1,0 +1,16 @@
+﻿<CommonControls:PageControl x:Class="WinPure.ContactManagement.Client.Pages.ContactsListPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Text="Contacts">
+	<CommonControls:PageControl.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FFAE5301" Offset="1"/>
+			<GradientStop Color="#FFD08B39"/>
+		</LinearGradientBrush>
+	</CommonControls:PageControl.Background>
+    <Grid>
+            
+    </Grid>
+</CommonControls:PageControl>

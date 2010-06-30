@@ -1,7 +1,9 @@
 ﻿#region References
 
+using System;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 
@@ -9,10 +11,11 @@ using WinPure.ContactManagement.Client.Data.Model;
 
 namespace WinPure.ContactManagement.Client.ViewModels
 {
-    public class CompaniesViewModel : ViewModelBase
+    public class CompaniesViewModel
     {
         #region Fields
 
+        private RelayCommand _command;
         private ObservableCollection<Company> _companies;
 
         #endregion
@@ -24,7 +27,13 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// </summary>
         public CompaniesViewModel()
         {
+            _command = new RelayCommand(test);
             Companies = CompaniesManager.Current.LoadCompanies();
+        }
+
+        private void test()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -41,7 +50,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             {
                 if (_companies == value) return;
                 _companies = value;
-                RaisePropertyChanged("Companies");
+                //RaisePropertyChanged("Companies");
             }
         }
 

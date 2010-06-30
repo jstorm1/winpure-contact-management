@@ -36,7 +36,8 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// <summary>
         /// Initializes a new EntitiesDataContext object using the connection string found in the 'EntitiesDataContext' section of the application configuration file.
         /// </summary>
-        public EntitiesDataContext() : base("name=EntitiesDataContext", "EntitiesDataContext")
+        public EntitiesDataContext()
+            : base("name=EntitiesDataContext", "EntitiesDataContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -45,7 +46,8 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// <summary>
         /// Initialize a new EntitiesDataContext object.
         /// </summary>
-        public EntitiesDataContext(string connectionString) : base(connectionString, "EntitiesDataContext")
+        public EntitiesDataContext(string connectionString)
+            : base(connectionString, "EntitiesDataContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();

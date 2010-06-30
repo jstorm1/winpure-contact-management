@@ -4,6 +4,8 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/HorizontalMenuItemStyle.xaml"/>
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/HorizontalMenuStyle.xaml"/>
+		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PageControlStyle.xaml"/>
+		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PagesSliderControlStyle.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
