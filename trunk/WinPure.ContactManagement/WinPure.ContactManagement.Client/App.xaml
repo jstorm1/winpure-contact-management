@@ -9,6 +9,7 @@
     		<ResourceDictionary.MergedDictionaries>
     			<ResourceDictionary Source="Resources/Style/ListBoxStyle.xaml"/>
     			<ResourceDictionary Source="Resources/Style/VerticalScrollBarStyle.xaml"/>
+    			<ResourceDictionary Source="Pages/PageEditButtonsStyle.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
 			
     		<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
@@ -19,7 +20,7 @@
     			<Setter Property="Template">
     				<Setter.Value>
     					<ControlTemplate TargetType="{x:Type ListBoxItem}">
-    						<Border x:Name="Bd" SnapsToDevicePixels="true" CornerRadius="5" Background="#33000000" BorderBrush="#00000000" BorderThickness="2">
+    						<Border x:Name="Bd" SnapsToDevicePixels="true" CornerRadius="5" Background="#33000000" BorderBrush="#00000000" BorderThickness="2" Padding="2">
     							<VisualStateManager.VisualStateGroups>
     								<VisualStateGroup x:Name="CommonStates">
     									<VisualStateGroup.Transitions>
@@ -49,7 +50,13 @@
     									<VisualState x:Name="Disabled"/>
     								</VisualStateGroup>
     								<VisualStateGroup x:Name="SelectionStates">
-    									<VisualState x:Name="Unselected"/>
+    									<VisualState x:Name="Unselected">
+    										<Storyboard>
+    											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+    												<EasingColorKeyFrame KeyTime="0" Value="#0CFFFFFF"/>
+    											</ColorAnimationUsingKeyFrames>
+    										</Storyboard>
+    									</VisualState>
     									<VisualState x:Name="Selected">
     										<Storyboard>
     											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="border">
@@ -58,9 +65,18 @@
     											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="border">
     												<EasingColorKeyFrame KeyTime="0" Value="#D8545454"/>
     											</ColorAnimationUsingKeyFrames>
+    											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+    												<EasingColorKeyFrame KeyTime="0" Value="#3FFFFFFF"/>
+    											</ColorAnimationUsingKeyFrames>
     										</Storyboard>
     									</VisualState>
-    									<VisualState x:Name="SelectedUnfocused"/>
+    									<VisualState x:Name="SelectedUnfocused">
+    										<Storyboard>
+    											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+    												<EasingColorKeyFrame KeyTime="0" Value="#59FFFFFF"/>
+    											</ColorAnimationUsingKeyFrames>
+    										</Storyboard>
+    									</VisualState>
     								</VisualStateGroup>
     								<VisualStateGroup x:Name="FocusStates">
     									<VisualState x:Name="Unfocused"/>
@@ -72,7 +88,7 @@
     									<VisualState x:Name="InvalidUnfocused"/>
     								</VisualStateGroup>
     							</VisualStateManager.VisualStateGroups>
-    							<Border x:Name="border" Opacity="0.995" CornerRadius="5">
+    							<Border x:Name="border" Opacity="0.995" CornerRadius="5" BorderBrush="Transparent" BorderThickness="1">
     								<Border.Background>
     									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
     										<GradientStop Color="#00545454" Offset="0"/>

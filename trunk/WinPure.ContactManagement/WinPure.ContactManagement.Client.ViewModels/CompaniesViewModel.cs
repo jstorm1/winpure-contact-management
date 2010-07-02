@@ -54,7 +54,10 @@ namespace WinPure.ContactManagement.Client.ViewModels
             {
                 if (_selectedCompany == value) return;
                 _selectedCompany = value;
-                ContactsCount = _selectedCompany.Contacts.Count;
+                
+                if (_selectedCompany != null)
+                    ContactsCount = _selectedCompany.Contacts.Count;
+
                 RaisePropertyChanged("SelectedCompany");
             }
         }

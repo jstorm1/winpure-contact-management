@@ -68,6 +68,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -108,6 +109,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PageEditButtonsStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Style\ListBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +131,7 @@
     </Compile>
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
+    <Compile Include="Helpers\Converters\NullToBooleanConverter.cs" />
     <Compile Include="Pages\CompaniesListPage.xaml.cs">
       <DependentUpon>CompaniesListPage.xaml</DependentUpon>
     </Compile>
