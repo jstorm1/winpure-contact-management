@@ -7,8 +7,10 @@
          
     	<ResourceDictionary>
     		<ResourceDictionary.MergedDictionaries>
-    			<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PagesSliderControlStyle.xaml"/>
+    			<ResourceDictionary Source="Resources/Style/ListBoxStyle.xaml"/>
+    			<ResourceDictionary Source="Resources/Style/VerticalScrollBarStyle.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
+			
     		<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
     			<Setter Property="Background" Value="Transparent"/>
     			<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
@@ -81,18 +83,6 @@
     							</Border>
     						</Border>
     						<ControlTemplate.Triggers>
-    							<Trigger Property="IsSelected" Value="true">
-    								<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-    								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
-    							</Trigger>
-    							<MultiTrigger>
-    								<MultiTrigger.Conditions>
-    									<Condition Property="IsSelected" Value="true"/>
-    									<Condition Property="Selector.IsSelectionActive" Value="false"/>
-    								</MultiTrigger.Conditions>
-    								<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-    								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-    							</MultiTrigger>
     							<Trigger Property="IsEnabled" Value="false">
     								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
     							</Trigger>

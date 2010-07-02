@@ -1,26 +1,27 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Pages="clr-namespace:WinPure.ContactManagement.Client.Pages" x:Class="WinPure.ContactManagement.Client.ShellWindow"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Pages="clr-namespace:WinPure.ContactManagement.Client.Pages" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="WinPure.ContactManagement.Client.ShellWindow"
         Title="WinPure Ltd - Contact Management Application"
         Height="466"
         Width="657"
         WindowState="Maximized"
-        WindowStartupLocation="CenterScreen">
-	<Window.Background>
-		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        WindowStartupLocation="CenterScreen" Background="{DynamicResource OldWindowBackground}">
+	<Window.Resources>
+		<LinearGradientBrush x:Key="OldWindowBackground" EndPoint="0.5,1" StartPoint="0.5,0">
 			<GradientStop Color="#FF7B7B7B" Offset="1"/>
 			<GradientStop Color="#FFFEFEFA"/>
 		</LinearGradientBrush>
-	</Window.Background>
+	</Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="75" />
+        	<RowDefinition/>
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
 
         <CommonControls:HorizontalMenu Margin="0"
-                                       Grid.Row="1">
+                                       Grid.Row="2">
                 
         	<CommonControls:HorizontalMenuItem Text="Contacts" 
         		Width="100" Image="Resources/Images/48x48/Contacts_48x48.png" IconGlowColor="#FFCA8229">
@@ -57,7 +58,17 @@
         		</LinearGradientBrush>
         	</CommonControls:PageControl.Background>
         </CommonControls:PageControl>
-        <CommonControls:PagesSliderControl x:Name="pagesSliderControl" Margin="23,14,39,14"/>
+        <CommonControls:PagesSliderControl x:Name="pagesSliderControl" Margin="23,8,39,14" Grid.Row="1"/>
+        <Border BorderBrush="#FF7B7B7B" BorderThickness="0,0,0,1">
+        	<Grid Background="#72FFFFFF">
+        		<Grid Margin="0,-16,0,0" HorizontalAlignment="Center" Height="74">
+        			<Image Margin="0,0,139,0" Source="Resources/Images/Logo_75x195.png" VerticalAlignment="Center" d:LayoutOverrides="Width"/>
+        			<TextBlock HorizontalAlignment="Left" Height="24" Margin="110,0,0,0" TextWrapping="Wrap" Text="Contact Management" VerticalAlignment="Bottom" Width="224" FontFamily="Century Gothic" FontSize="16" Foreground="#FF3C7FC3"/>
+
+        		</Grid>
+        	</Grid>
+
+        </Border>
 
     </Grid>
 </Window>

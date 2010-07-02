@@ -1,22 +1,21 @@
 ﻿#region References
 
-using System;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.ViewModels.Base;
 
 #endregion
 
 namespace WinPure.ContactManagement.Client.ViewModels
 {
-    public class CompaniesViewModel
+    public class CompaniesViewModel : ViewModelBase
     {
         #region Fields
 
-        private RelayCommand _command;
         private ObservableCollection<Company> _companies;
+        private Company _selectedCompany;
+        private int _contactsCount;
 
         #endregion
 
@@ -27,13 +26,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// </summary>
         public CompaniesViewModel()
         {
-            _command = new RelayCommand(test);
             Companies = CompaniesManager.Current.LoadCompanies();
-        }
-
-        private void test()
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -50,7 +43,30 @@ namespace WinPure.ContactManagement.Client.ViewModels
             {
                 if (_companies == value) return;
                 _companies = value;
-                //RaisePropertyChanged("Companies");
+                RaisePropertyChanged("Companies");
+            }
+        }
+
+        public Company SelectedCompany
+        {
+            get { return _selectedCompany; }
+            set
+            {
+                if (_selectedCompany == value) return;
+                _selectedCompany = value;
+                ContactsCount = _selectedCompany.Contacts.Count;
+                RaisePropertyChanged("SelectedCompany");
+            }
+        }
+
+        public int ContactsCount
+        {
+            get { return _contactsCount; }
+            set
+            {
+                if (_contactsCount == value) return;
+                _contactsCount = value;
+                RaisePropertyChanged("ContactsCount");
             }
         }
 
