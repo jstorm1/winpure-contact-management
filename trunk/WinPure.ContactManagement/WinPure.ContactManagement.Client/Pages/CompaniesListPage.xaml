@@ -74,15 +74,15 @@
     		</Grid.RowDefinitions>
     		<ListBox x:Name="CompaniesList" BorderThickness="0" ItemTemplate="{DynamicResource CompanyDataTemplate}" ItemsSource="{Binding Companies}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0"  />
     		<StackPanel Margin="0" Orientation="Horizontal" Grid.Row="1" d:LayoutOverrides="Height">
-    			<Button Content="Add" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" Click="Button_Click">
+    			<Button x:Name="AddButton" Content="Add" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" Click="onAddButtonClick">
     				<i:Interaction.Triggers>
     					<i:EventTrigger EventName="Click">
     						<ei:ChangePropertyAction/>
     					</i:EventTrigger>
     				</i:Interaction.Triggers>
     			</Button>
-    			<Button Content="Edit" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"/>
-    			<Button Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"/>
+    			<Button x:Name="EditButton" Content="Edit" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick"/>
+    			<Button x:Name="DeleteButton" Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onDeleteButtonClick"/>
     		</StackPanel>
     	</Grid>
     	<Grid Grid.Column="1" Margin="8">

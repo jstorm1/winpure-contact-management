@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#region References
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WinPure.ContactManagement.Client.CommonControls;
-using WinPure.ContactManagement.Client.Pages.Modal;
+using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.Pages.Modal; 
+
+#endregion
 
 namespace WinPure.ContactManagement.Client.Pages
 {
@@ -26,14 +19,23 @@ namespace WinPure.ContactManagement.Client.Pages
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void onAddButtonClick(object sender, RoutedEventArgs e)
         {
-            //var page = new ContactsListPage();
-            //ShowModalPage(page);
-
             var dialog = new CompaniesEditor();
-            this.ModalDialog = dialog;
+            ModalDialog = dialog;
             dialog.Show();
+        }
+
+        private void onEditButtonClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CompaniesEditor((Company) CompaniesList.SelectedItem);
+            ModalDialog = dialog;
+            dialog.Show();
+        }
+
+        private void onDeleteButtonClick(object sender, RoutedEventArgs e)
+        {
+        	MessageBox.Show("Not implemented yet.");
         }
     }
 }

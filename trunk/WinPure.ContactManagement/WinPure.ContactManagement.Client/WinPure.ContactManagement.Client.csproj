@@ -74,6 +74,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferencedAssemblies\System.Windows.Interactivity.dll</HintPath>
@@ -139,6 +140,7 @@
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
     <Compile Include="Helpers\Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Helpers\DependencyObjectExtensions.cs" />
     <Compile Include="Pages\CompaniesListPage.xaml.cs">
       <DependentUpon>CompaniesListPage.xaml</DependentUpon>
     </Compile>
@@ -192,9 +194,17 @@
       <Project>{1E399B48-BEDA-4D4E-BF89-F741DF1911E9}</Project>
       <Name>WinPure.ContactManagement.Client.CommonControls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Data\WinPure.ContactManagement.Client.Data.csproj">
+      <Project>{F768494E-E29C-4653-B058-A733D730DB1F}</Project>
+      <Name>WinPure.ContactManagement.Client.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinPure.ContactManagement.Client.ViewModels\WinPure.ContactManagement.Client.ViewModels.csproj">
       <Project>{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}</Project>
       <Name>WinPure.ContactManagement.Client.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Common\WinPure.ContactManagement.Common.csproj">
+      <Project>{21538910-F17E-4603-BF54-C0A5CCECC7D6}</Project>
+      <Name>WinPure.ContactManagement.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

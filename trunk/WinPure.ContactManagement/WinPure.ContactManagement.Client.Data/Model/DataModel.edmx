@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WinPure.ContactManagement.Client.Data.Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="WinPure.ContactManagement.Client.Data.Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="WinPureContactManagementClientDataModelStoreContainer">
           <EntitySet Name="Company" EntityType="WinPure.ContactManagement.Client.Data.Model.Store.Company" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="WinPure.ContactManagement.Client.Data.Model.Store.Contact" store:Type="Tables" />
@@ -30,6 +30,7 @@
           <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Postcode" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="County" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -58,8 +59,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WinPure.ContactManagement.Client.Data.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -89,6 +89,7 @@
           <Property Name="Postcode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Contacts" Relationship="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact" FromRole="Company" ToRole="Contact" />
+          <Property Type="String" Name="County" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -125,7 +126,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="WinPureContactManagementClientDataModelStoreContainer" CdmEntityContainer="EntitiesDataContext">
           <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="WinPure.ContactManagement.Client.Data.Model.Company"><MappingFragment StoreEntitySet="Company">
-            <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+            <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Industry" ColumnName="Industry" />
             <ScalarProperty Name="Phone" ColumnName="Phone" />

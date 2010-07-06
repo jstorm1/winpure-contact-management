@@ -36,8 +36,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// <summary>
         /// Initializes a new EntitiesDataContext object using the connection string found in the 'EntitiesDataContext' section of the application configuration file.
         /// </summary>
-        public EntitiesDataContext()
-            : base("name=EntitiesDataContext", "EntitiesDataContext")
+        public EntitiesDataContext() : base("name=EntitiesDataContext", "EntitiesDataContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -46,8 +45,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// <summary>
         /// Initialize a new EntitiesDataContext object.
         /// </summary>
-        public EntitiesDataContext(string connectionString)
-            : base(connectionString, "EntitiesDataContext")
+        public EntitiesDataContext(string connectionString) : base(connectionString, "EntitiesDataContext")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -473,6 +471,30 @@ namespace WinPure.ContactManagement.Client.Data.Model
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String County
+        {
+            get
+            {
+                return _County;
+            }
+            set
+            {
+                OnCountyChanging(value);
+                ReportPropertyChanging("County");
+                _County = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("County");
+                OnCountyChanged();
+            }
+        }
+        private global::System.String _County;
+        partial void OnCountyChanging(global::System.String value);
+        partial void OnCountyChanged();
 
         #endregion
     

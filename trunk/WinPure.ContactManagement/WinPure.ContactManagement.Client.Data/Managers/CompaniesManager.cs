@@ -1,6 +1,10 @@
 ﻿#region References
 
+using System;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.Objects;
+using System.Linq;
 using WinPure.ContactManagement.Client.Data.Managers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
 
@@ -10,6 +14,8 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 {
     public class CompaniesManager : DataManagerBase
     {
+        private ObservableCollection<Company> _companiesCache;
+
         #region Singleton constructor
 
         private static CompaniesManager _instance;
@@ -31,7 +37,37 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// <returns>Companies Collection</returns>
         public ObservableCollection<Company> LoadCompanies()
         {
-            return new ObservableCollection<Company>(Context.Companies);
+            refreshCache();
+            return _companiesCache;
         }
+
+        /// <summary>
+        /// Saves changes to the database.
+        /// </summary>
+        /// <param name="company"></param>
+        public void Save(Company company)
+        {
+            if (company.CompanyId == Guid.Empty || Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null)
+            {
+                Context.Companies.AddObject(company);
+            }
+
+            Context.SaveChanges();
+
+            refreshCache();
+        }
+
+        private void refreshCache()
+        {
+            if (_companiesCache == null) _companiesCache = new ObservableCollection<Company>();
+
+            _companiesCache.Clear();
+
+            foreach (var company in Context.Companies)
+            {
+                _companiesCache.Add(company);
+            }
+        }
+
     }
 }

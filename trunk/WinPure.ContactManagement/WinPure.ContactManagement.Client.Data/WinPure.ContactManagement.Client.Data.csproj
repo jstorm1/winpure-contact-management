@@ -73,7 +73,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WinPure.ContactManagement.Common\WinPure.ContactManagement.Common.csproj">
+      <Project>{21538910-F17E-4603-BF54-C0A5CCECC7D6}</Project>
+      <Name>WinPure.ContactManagement.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

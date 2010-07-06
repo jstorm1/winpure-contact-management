@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}</ProjectGuid>
+    <ProjectGuid>{21538910-F17E-4603-BF54-C0A5CCECC7D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinPure.ContactManagement.Client.ViewModels</RootNamespace>
-    <AssemblyName>WinPure.ContactManagement.Client.ViewModels</AssemblyName>
+    <RootNamespace>WinPure.ContactManagement.Common</RootNamespace>
+    <AssemblyName>WinPure.ContactManagement.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,14 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.29166, Culture=neutral, PublicKeyToken=30359002188bf5b0, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,25 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\ViewModelBase.cs" />
-    <Compile Include="CompaniesViewModel.cs" />
-    <Compile Include="CompanyEditorViewModel.cs" />
-    <Compile Include="ContactsViewModel.cs" />
+    <Compile Include="Interfaces\Entities\ICompany.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WinPure.ContactManagement.Client.CommonControls\WinPure.ContactManagement.Client.CommonControls.csproj">
-      <Project>{1E399B48-BEDA-4D4E-BF89-F741DF1911E9}</Project>
-      <Name>WinPure.ContactManagement.Client.CommonControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinPure.ContactManagement.Client.Data\WinPure.ContactManagement.Client.Data.csproj">
-      <Project>{F768494E-E29C-4653-B058-A733D730DB1F}</Project>
-      <Name>WinPure.ContactManagement.Client.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WinPure.ContactManagement.Common\WinPure.ContactManagement.Common.csproj">
-      <Project>{21538910-F17E-4603-BF54-C0A5CCECC7D6}</Project>
-      <Name>WinPure.ContactManagement.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
