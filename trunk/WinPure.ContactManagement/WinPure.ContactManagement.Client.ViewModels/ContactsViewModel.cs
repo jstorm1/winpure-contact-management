@@ -1,9 +1,9 @@
 ﻿#region References
 
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.ViewModels.Base;
 
 #endregion
 

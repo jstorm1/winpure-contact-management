@@ -12,7 +12,7 @@
                             d:DesignHeight="430"
                             d:DesignWidth="676"
                             Text="Companies"
-                            BorderColor="#FF373737">
+                            BorderColor="#FF373737" SnapsToDevicePixels="True">
 	<CommonControls:PageControl.Resources>
         
 		<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
@@ -85,16 +85,20 @@
     			<Button x:Name="DeleteButton" Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onDeleteButtonClick"/>
     		</StackPanel>
     	</Grid>
-    	<Grid Grid.Column="1" Margin="8">
-    		<Grid.RowDefinitions>
-    			<RowDefinition Height="26"/>
-    			<RowDefinition/>
-    		</Grid.RowDefinitions>
-    		<Border Margin="8,0" VerticalAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFB7AD33">
-    			<TextBlock TextWrapping="Wrap" Text="Contacts" FontSize="18.667" VerticalAlignment="Bottom"/>
-    		</Border>
-    		<ListBox x:Name="ContactsList" Margin="8" Grid.Row="1" Background="#00000000" Style="{DynamicResource ListBoxStyle}" BorderThickness="0" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding SelectedCompany.Contacts, Mode=OneWay}" ItemTemplate="{DynamicResource CompanyContactsDataTemplate}" Visibility="{Binding ContactsCount, Converter={StaticResource ItemsCountToVisibilityConverter}, Mode=OneWay}"/>
-    		<TextBlock Grid.Row="1" TextWrapping="Wrap" Text="No Items" HorizontalAlignment="Center" FontSize="18.667" VerticalAlignment="Center" Foreground="#33FFFFFF" Visibility="{Binding ContactsCount, Converter={StaticResource ItemsCountToVisibilityOppositeConverter}, Mode=OneWay}"/>
+    	<Grid Grid.Column="1" Background="#0DFFFFFF">
+    		<Grid Margin="8">
+    			<Grid.RowDefinitions>
+    				<RowDefinition Height="26"/>
+    				<RowDefinition/>
+    			</Grid.RowDefinitions>
+    			<Border Margin="8,0" VerticalAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFB7AD33">
+    				<TextBlock TextWrapping="Wrap" Text="Contacts" FontSize="18.667" VerticalAlignment="Bottom"/>
+    			</Border>
+    			<ListBox x:Name="ContactsList" Margin="8" Grid.Row="1" Background="#00000000" Style="{DynamicResource ListBoxStyle}" BorderThickness="0" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding SelectedCompany.Contacts, Mode=OneWay}" ItemTemplate="{DynamicResource CompanyContactsDataTemplate}" Visibility="{Binding ContactsCount, Converter={StaticResource ItemsCountToVisibilityConverter}, Mode=OneWay}"/>
+    			<TextBlock Grid.Row="1" TextWrapping="Wrap" Text="No Items" HorizontalAlignment="Center" FontSize="18.667" VerticalAlignment="Center" Foreground="#72FFFFFF" Visibility="{Binding ContactsCount, Converter={StaticResource ItemsCountToVisibilityOppositeConverter}, Mode=OneWay}"/>
+    		</Grid>
+      
+
     	</Grid>
       
 
