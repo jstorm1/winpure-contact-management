@@ -1,5 +1,6 @@
 ﻿#region References
 
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,8 +14,16 @@ namespace WinPure.ContactManagement.Client.CommonControls
     [LocalizabilityAttribute(LocalizationCategory.None, Readability = Readability.Unreadable)]
     [ContentProperty("Content")]
     [TemplatePart(Name = "PART_ContentPresenter", Type = typeof (ContentPresenter))]
+    [TemplatePart(Name = "PART_ContentPresenter", Type = typeof (ContentPresenter))]
     public class PageControl : Control, IAddChild
     {
+        #region Fields
+
+        private ModalDialog _modalDialog;
+        private Canvas _modalOwner;
+
+        #endregion
+
         #region Dependecy Properties
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
@@ -66,6 +75,23 @@ namespace WinPure.ContactManagement.Client.CommonControls
             set { SetValue(BorderColorProperty, value); }
         }
 
+        public ModalDialog ModalDialog
+        {
+            get { return _modalDialog; }
+            set
+            {
+                _modalDialog = value;
+                if (_modalDialog.Visibility == Visibility.Visible)
+                {
+                    ShowModalPage(_modalDialog);
+                }
+                else
+                {
+                    _modalDialog.Opened += onModalDialogOpened;
+                }
+            }
+        }
+
         #endregion
 
         #region Implementation of IAddChild
@@ -86,6 +112,48 @@ namespace WinPure.ContactManagement.Client.CommonControls
         public void AddText(string text)
         {
             Content = new TextBox {Text = text};
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void ShowModalPage(ModalDialog dialog)
+        {
+            _modalOwner.Children.Clear();
+            _modalOwner.Children.Add(dialog);
+
+            //Sets position of modal dialog at center of _modalOwner Canvas.
+            Canvas.SetLeft(dialog, (ActualWidth - dialog.Width)/2);
+            Canvas.SetTop(dialog, (ActualHeight - dialog.Height)/2);
+
+            VisualStateManager.GoToState(this, "ShowModalDialog", true);
+            dialog.Closed += onModalDialogClosed;
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, is invoked whenever application code or 
+        /// internal processes call <see cref="M:System.Windows.FrameworkElement.ApplyTemplate"/>.
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            _modalOwner = (Canvas) GetTemplateChild("ModalDialogOwner");
+        }
+
+        #endregion
+
+        #region Events Handlers
+
+        private void onModalDialogOpened(object sender, EventArgs e)
+        {
+            ShowModalPage((ModalDialog) sender);
+        }
+
+
+        private void onModalDialogClosed(object sender, EventArgs e)
+        {
+            VisualStateManager.GoToState(this, "Normal", true);
         }
 
         #endregion

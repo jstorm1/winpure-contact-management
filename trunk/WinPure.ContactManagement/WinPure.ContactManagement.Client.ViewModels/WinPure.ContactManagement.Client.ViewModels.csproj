@@ -52,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.CommonControls\WinPure.ContactManagement.Client.CommonControls.csproj">
+      <Project>{1E399B48-BEDA-4D4E-BF89-F741DF1911E9}</Project>
+      <Name>WinPure.ContactManagement.Client.CommonControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinPure.ContactManagement.Client.Data\WinPure.ContactManagement.Client.Data.csproj">
       <Project>{F768494E-E29C-4653-B058-A733D730DB1F}</Project>
       <Name>WinPure.ContactManagement.Client.Data</Name>

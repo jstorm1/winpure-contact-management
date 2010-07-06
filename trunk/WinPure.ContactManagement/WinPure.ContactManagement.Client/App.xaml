@@ -7,9 +7,9 @@
          
     	<ResourceDictionary>
     		<ResourceDictionary.MergedDictionaries>
-    			<ResourceDictionary Source="Resources/Style/ListBoxStyle.xaml"/>
-    			<ResourceDictionary Source="Resources/Style/VerticalScrollBarStyle.xaml"/>
-    			<ResourceDictionary Source="Pages/PageEditButtonsStyle.xaml"/>
+    			<ResourceDictionary Source="Resources/Styles/ListBoxStyle.xaml"/>
+    			<ResourceDictionary Source="Resources/Styles/VerticalScrollBarStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/PageEditButtonsStyle.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
 			
     		<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">

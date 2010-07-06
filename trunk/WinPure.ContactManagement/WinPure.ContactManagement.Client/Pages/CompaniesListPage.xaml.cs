@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinPure.ContactManagement.Client.CommonControls;
+using WinPure.ContactManagement.Client.Pages.Modal;
 
 namespace WinPure.ContactManagement.Client.Pages
 {
@@ -23,6 +24,16 @@ namespace WinPure.ContactManagement.Client.Pages
         public CompaniesListPage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //var page = new ContactsListPage();
+            //ShowModalPage(page);
+
+            var dialog = new CompaniesEditor();
+            this.ModalDialog = dialog;
+            dialog.Show();
         }
     }
 }

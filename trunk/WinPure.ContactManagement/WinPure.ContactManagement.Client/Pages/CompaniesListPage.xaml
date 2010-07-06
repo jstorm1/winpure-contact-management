@@ -6,6 +6,7 @@
                             xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
                             xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels"
                             xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters"
+                            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Pages="clr-namespace:WinPure.ContactManagement.Client.Pages" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Name="pageControl"
                             x:Class="WinPure.ContactManagement.Client.Pages.CompaniesListPage"
                             mc:Ignorable="d"
                             d:DesignHeight="430"
@@ -21,6 +22,7 @@
 		<WinPure_ContactManagement_Client_Helpers_Converters:ItemsCountToVisibilityConverter x:Key="ItemsCountToVisibilityConverter"/>
         
 <!--ListBox Company DataTemplate-->
+
 		<DataTemplate x:Key="CompanyDataTemplate">
 			<Grid  Background="{x:Null}" Margin="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" d:DesignWidth="429.5" d:DesignHeight="77.963">
 				<Grid.RowDefinitions>
@@ -72,7 +74,13 @@
     		</Grid.RowDefinitions>
     		<ListBox x:Name="CompaniesList" BorderThickness="0" ItemTemplate="{DynamicResource CompanyDataTemplate}" ItemsSource="{Binding Companies}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0"  />
     		<StackPanel Margin="0" Orientation="Horizontal" Grid.Row="1" d:LayoutOverrides="Height">
-    			<Button Content="Add" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75"/>
+    			<Button Content="Add" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" Click="Button_Click">
+    				<i:Interaction.Triggers>
+    					<i:EventTrigger EventName="Click">
+    						<ei:ChangePropertyAction/>
+    					</i:EventTrigger>
+    				</i:Interaction.Triggers>
+    			</Button>
     			<Button Content="Edit" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"/>
     			<Button Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"/>
     		</StackPanel>
