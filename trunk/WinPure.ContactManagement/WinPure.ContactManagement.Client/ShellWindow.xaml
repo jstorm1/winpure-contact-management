@@ -22,6 +22,9 @@
             <GradientStop Color="#FFFEFEFA" />
         </LinearGradientBrush>
     </Window.Resources>
+	<Window.TaskbarItemInfo>
+		<TaskbarItemInfo Overlay="Resources/Images/Logo.png"/>
+	</Window.TaskbarItemInfo>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
@@ -82,7 +85,7 @@
         </CommonControls:PageControl>
         <CommonControls:PagesSliderControl x:Name="pagesSliderControl"
                                            Margin="23,8,39,14"
-                                           Grid.Row="1" />
+                                           Grid.Row="1" SnapsToDevicePixels="True" />
         <Border BorderBrush="#FF7B7B7B"
                 BorderThickness="0,0,0,1">
             <Grid Background="#72FFFFFF">
