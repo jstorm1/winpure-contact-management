@@ -137,6 +137,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\Converters\EmptyStringToVisibility.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
     <Compile Include="Helpers\Converters\NullToBooleanConverter.cs" />

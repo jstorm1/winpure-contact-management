@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
+using Transitionals.Controls;
 
 namespace WinPure.ContactManagement.Client.CommonControls
 {
@@ -14,6 +15,7 @@ namespace WinPure.ContactManagement.Client.CommonControls
         private bool _isFirstPageVisible;
         private Button _testButton;
         private RelayCommand<PageControl> _navigateCommand;
+        private TransitionElement _transitionElement;
 
         public RelayCommand<PageControl> NavigateCommand
         {
@@ -27,20 +29,22 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
         public void Navigate(PageControl page)
         {
-            if (_isFirstPageVisible)
-            {
-                if (_firstPageContentPresenter.Content == page) return;
-                _secondPageContentPresenter.Content = page;
-                VisualStateManager.GoToState(this, "ShowSecondPage", true);
-                _isFirstPageVisible = false;
-            }
-            else
-            {
-                if (_secondPageContentPresenter.Content == page) return;
-                _firstPageContentPresenter.Content = page;
-                VisualStateManager.GoToState(this, "ShowFirstPage", true);
-                _isFirstPageVisible = true;
-            }
+            _transitionElement.Content = page;
+
+            //if (_isFirstPageVisible)
+            //{
+            //    if (_firstPageContentPresenter.Content == page) return;
+            //    _secondPageContentPresenter.Content = page;
+            //    VisualStateManager.GoToState(this, "ShowSecondPage", true);
+            //    _isFirstPageVisible = false;
+            //}
+            //else
+            //{
+            //    if (_secondPageContentPresenter.Content == page) return;
+            //    _firstPageContentPresenter.Content = page;
+            //    VisualStateManager.GoToState(this, "ShowFirstPage", true);
+            //    _isFirstPageVisible = true;
+            //}
         }
 
         public override void OnApplyTemplate()
@@ -49,6 +53,8 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
             _firstPageContentPresenter = (ContentPresenter)GetTemplateChild("PART_FirstPageContent");
             _secondPageContentPresenter = (ContentPresenter)GetTemplateChild("PART_SecondPageContent");
+
+            _transitionElement = (TransitionElement)GetTemplateChild("transitionElement");
 
             _testButton = (Button)GetTemplateChild("TestButton");
             _testButton.Click += _testButton_Click;

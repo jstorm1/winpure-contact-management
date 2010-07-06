@@ -14,6 +14,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #region Fields
 
         private ObservableCollection<Contact> _contacts;
+        private Contact _selectedContact;
 
         #endregion
 
@@ -42,6 +43,17 @@ namespace WinPure.ContactManagement.Client.ViewModels
                 if (_contacts == value) return;
                 _contacts = value;
                 RaisePropertyChanged("Contacts");
+            }
+        }
+
+        public Contact SelectedContact
+        {
+            get { return _selectedContact; }
+            set
+            {
+                if (_selectedContact == value) return;
+                _selectedContact = value;
+                RaisePropertyChanged("SelectedContact");
             }
         }
 

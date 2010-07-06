@@ -44,6 +44,14 @@
           <Property Name="Suffix" Type="nvarchar" MaxLength="5" />
           <Property Name="JobTitle" Type="nvarchar" MaxLength="100" />
           <Property Name="CompanyId" Type="uniqueidentifier" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeTelephone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Website" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress1" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress2" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Company_Contact">
           <End Role="Company" Type="WinPure.ContactManagement.Client.Data.Model.Store.Company" Multiplicity="0..1">
@@ -104,6 +112,14 @@
           <Property Name="JobTitle" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="CompanyId" Type="Guid" />
           <NavigationProperty Name="Company" Relationship="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact" FromRole="Contact" ToRole="Company" />
+          <Property Type="String" Name="Telephone" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HomeTelephone" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmailAddress1" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmailAddress2" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmailAddress" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Company_Contact">
           <End Role="Company" Type="WinPure.ContactManagement.Client.Data.Model.Company" Multiplicity="0..1">
@@ -142,7 +158,15 @@
             <ScalarProperty Name="Description" ColumnName="Description" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Contacts"><EntityTypeMapping TypeName="WinPure.ContactManagement.Client.Data.Model.Contact"><MappingFragment StoreEntitySet="Contact">
-            <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+            <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="EmailAddress2" ColumnName="EmailAddress2" />
+                <ScalarProperty Name="EmailAddress1" ColumnName="EmailAddress1" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="HomeTelephone" ColumnName="HomeTelephone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
             <ScalarProperty Name="Title" ColumnName="Title" />
             <ScalarProperty Name="FirstName" ColumnName="FirstName" />
             <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />

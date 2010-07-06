@@ -67,13 +67,13 @@
     		<ColumnDefinition Width="0.6*"/>
     		<ColumnDefinition Width="0.4*"/>
     	</Grid.ColumnDefinitions>
-    	<Grid Margin="8">
+    	<Grid Margin="0">
     		<Grid.RowDefinitions>
     			<RowDefinition/>
-    			<RowDefinition Height="35"/>
+    			<RowDefinition Height="Auto" MinHeight="35"/>
     		</Grid.RowDefinitions>
     		<ListBox x:Name="CompaniesList" BorderThickness="0" ItemTemplate="{DynamicResource CompanyDataTemplate}" ItemsSource="{Binding Companies}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0"  />
-    		<StackPanel Margin="0" Orientation="Horizontal" Grid.Row="1" d:LayoutOverrides="Height">
+    		<StackPanel Margin="8" Orientation="Horizontal" Grid.Row="1" d:LayoutOverrides="Height">
     			<Button x:Name="AddButton" Content="Add" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" Click="onAddButtonClick">
     				<i:Interaction.Triggers>
     					<i:EventTrigger EventName="Click">

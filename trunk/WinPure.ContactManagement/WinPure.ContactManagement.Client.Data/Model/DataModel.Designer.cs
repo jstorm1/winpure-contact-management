@@ -743,6 +743,198 @@ namespace WinPure.ContactManagement.Client.Data.Model
         private Nullable<global::System.Guid> _CompanyId;
         partial void OnCompanyIdChanging(Nullable<global::System.Guid> value);
         partial void OnCompanyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Telephone
+        {
+            get
+            {
+                return _Telephone;
+            }
+            set
+            {
+                OnTelephoneChanging(value);
+                ReportPropertyChanging("Telephone");
+                _Telephone = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Telephone");
+                OnTelephoneChanged();
+            }
+        }
+        private global::System.String _Telephone;
+        partial void OnTelephoneChanging(global::System.String value);
+        partial void OnTelephoneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Fax
+        {
+            get
+            {
+                return _Fax;
+            }
+            set
+            {
+                OnFaxChanging(value);
+                ReportPropertyChanging("Fax");
+                _Fax = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Fax");
+                OnFaxChanged();
+            }
+        }
+        private global::System.String _Fax;
+        partial void OnFaxChanging(global::System.String value);
+        partial void OnFaxChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Mobile
+        {
+            get
+            {
+                return _Mobile;
+            }
+            set
+            {
+                OnMobileChanging(value);
+                ReportPropertyChanging("Mobile");
+                _Mobile = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Mobile");
+                OnMobileChanged();
+            }
+        }
+        private global::System.String _Mobile;
+        partial void OnMobileChanging(global::System.String value);
+        partial void OnMobileChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HomeTelephone
+        {
+            get
+            {
+                return _HomeTelephone;
+            }
+            set
+            {
+                OnHomeTelephoneChanging(value);
+                ReportPropertyChanging("HomeTelephone");
+                _HomeTelephone = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HomeTelephone");
+                OnHomeTelephoneChanged();
+            }
+        }
+        private global::System.String _HomeTelephone;
+        partial void OnHomeTelephoneChanging(global::System.String value);
+        partial void OnHomeTelephoneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Website
+        {
+            get
+            {
+                return _Website;
+            }
+            set
+            {
+                OnWebsiteChanging(value);
+                ReportPropertyChanging("Website");
+                _Website = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Website");
+                OnWebsiteChanged();
+            }
+        }
+        private global::System.String _Website;
+        partial void OnWebsiteChanging(global::System.String value);
+        partial void OnWebsiteChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EmailAddress1
+        {
+            get
+            {
+                return _EmailAddress1;
+            }
+            set
+            {
+                OnEmailAddress1Changing(value);
+                ReportPropertyChanging("EmailAddress1");
+                _EmailAddress1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("EmailAddress1");
+                OnEmailAddress1Changed();
+            }
+        }
+        private global::System.String _EmailAddress1;
+        partial void OnEmailAddress1Changing(global::System.String value);
+        partial void OnEmailAddress1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EmailAddress2
+        {
+            get
+            {
+                return _EmailAddress2;
+            }
+            set
+            {
+                OnEmailAddress2Changing(value);
+                ReportPropertyChanging("EmailAddress2");
+                _EmailAddress2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("EmailAddress2");
+                OnEmailAddress2Changed();
+            }
+        }
+        private global::System.String _EmailAddress2;
+        partial void OnEmailAddress2Changing(global::System.String value);
+        partial void OnEmailAddress2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EmailAddress
+        {
+            get
+            {
+                return _EmailAddress;
+            }
+            set
+            {
+                OnEmailAddressChanging(value);
+                ReportPropertyChanging("EmailAddress");
+                _EmailAddress = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("EmailAddress");
+                OnEmailAddressChanged();
+            }
+        }
+        private global::System.String _EmailAddress;
+        partial void OnEmailAddressChanging(global::System.String value);
+        partial void OnEmailAddressChanged();
 
         #endregion
     
