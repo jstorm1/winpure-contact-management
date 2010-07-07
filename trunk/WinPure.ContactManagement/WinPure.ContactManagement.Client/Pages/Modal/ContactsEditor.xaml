@@ -105,7 +105,7 @@
     			<TabItem x:Name="CompanyTab" Header="Company Info" FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Foreground="Black" Height="40">
     				<Grid Background="#1EFFFFFF"/>
     			</TabItem>
-    			<TabItem Header="Contacts" FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Height="40">
+    			<TabItem x:Name="ContactsTab" Header="Contacts" FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Height="40">
     				<Grid>
     					<Grid.RowDefinitions>
     						<RowDefinition Height="Auto" />

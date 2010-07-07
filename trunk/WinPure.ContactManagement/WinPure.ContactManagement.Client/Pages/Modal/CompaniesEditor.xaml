@@ -19,7 +19,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Company Name:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Company Name:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -27,7 +27,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Industry:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Industry:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Industry, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -35,7 +35,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Phone:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Phone:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Phone, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -43,7 +43,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Fax:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Fax:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Fax, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -51,7 +51,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="WebSite:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="WebSite:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Website, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -59,7 +59,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Address 1:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Address 1:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Address1, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -67,7 +67,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Address 2:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Address 2:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Address2, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -75,7 +75,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Address 3:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Address 3:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Address3, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -83,7 +83,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Town:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Town:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Town, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -91,7 +91,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="County:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="County:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.County, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -99,7 +99,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Postcode:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Postcode:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Postcode, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -107,7 +107,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Country:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Country:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Country, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -115,7 +115,7 @@
     				<ColumnDefinition Width="0.391*"/>
     				<ColumnDefinition Width="0.609*"/>
     			</Grid.ColumnDefinitions>
-    			<TextBlock TextWrapping="Wrap" Text="Description:" VerticalAlignment="Center" FontSize="16" Foreground="#CAFFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+    			<TextBlock TextWrapping="Wrap" Text="Description:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     	</StackPanel>
