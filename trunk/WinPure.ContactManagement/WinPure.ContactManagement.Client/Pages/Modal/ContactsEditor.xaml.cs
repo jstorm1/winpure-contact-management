@@ -12,25 +12,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinPure.ContactManagement.Client.CommonControls;
-using WinPure.ContactManagement.Client.Pages.Modal;
 
-namespace WinPure.ContactManagement.Client.Pages
+namespace WinPure.ContactManagement.Client.Pages.Modal
 {
     /// <summary>
-    /// Interaction logic for ContactsListPage.xaml
+    /// Interaction logic for ContactsEditor.xaml
     /// </summary>
-    public partial class ContactsListPage : PageControl
+    public partial class ContactsEditor : ModalDialog
     {
-        public ContactsListPage()
+        public ContactsEditor()
         {
             InitializeComponent();
         }
 
-        private void onAddButtonClick(object sender, RoutedEventArgs e)
+        private void onSaveButtonClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new ContactsEditor();
-            ModalDialog = dialog;
-            dialog.Show();
+        	// TODO: Add event handler implementation here.
+        }
+
+        private void onCancelButtonClick(object sender, RoutedEventArgs e)
+        {
+        	Close();
         }
     }
 }

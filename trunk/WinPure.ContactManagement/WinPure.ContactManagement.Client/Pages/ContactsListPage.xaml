@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="538" d:DesignWidth="992" Text="Contacts" BorderColor="#FF373737" SnapsToDevicePixels="True">
 	<CommonControls:PageControl.Resources>
+		<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
 		<WinPure_ContactManagement_Client_Helpers_Converters:EmptyStringToVisibility x:Key="EmptyStringToVisibility"/>
 		<DataTemplate x:Key="ContactDataTemplate">
 			<Grid d:DesignWidth="260" d:DesignHeight="93">
@@ -41,7 +42,18 @@
     		<ColumnDefinition Width="0.6*"/>
     		<ColumnDefinition Width="0.4*"/>
     	</Grid.ColumnDefinitions>
-    	<ListBox x:Name="listBox" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding Contacts}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemTemplate="{DynamicResource ContactDataTemplate}" SnapsToDevicePixels="False" Foreground="{x:Null}" BorderThickness="0" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    	<Grid>
+    		<Grid.RowDefinitions>
+    			<RowDefinition/>
+    			<RowDefinition Height="Auto" />
+    		</Grid.RowDefinitions>
+    		<ListBox x:Name="listBox" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding Contacts}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemTemplate="{DynamicResource ContactDataTemplate}" SnapsToDevicePixels="False" Foreground="{x:Null}" BorderThickness="0" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0"/>
+    		<StackPanel Grid.Row="1" Margin="8" Orientation="Horizontal">
+    			<Button x:Name="AddButton" Content="Add" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Click="onAddButtonClick"/>
+    			<Button Content="Edit" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"/>
+    			<Button Content="Delete" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"/>
+    		</StackPanel>
+    	</Grid>
     	<Grid Grid.Column="1" Background="#0CFFFFFF">
     		<Grid.RowDefinitions>
     			<RowDefinition Height="34"/>

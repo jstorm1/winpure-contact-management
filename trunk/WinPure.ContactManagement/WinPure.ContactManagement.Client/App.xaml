@@ -10,6 +10,7 @@
     			<ResourceDictionary Source="Resources/Styles/ListBoxStyle.xaml"/>
     			<ResourceDictionary Source="Resources/Styles/VerticalScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/PageEditButtonsStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TabItemStyle.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
 			
     		<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">

@@ -117,6 +117,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Modal\ContactsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\TabItemStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Styles\PageEditButtonsStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -150,6 +158,9 @@
     </Compile>
     <Compile Include="Pages\Modal\CompaniesEditor.xaml.cs">
       <DependentUpon>CompaniesEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modal\ContactsEditor.xaml.cs">
+      <DependentUpon>ContactsEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
