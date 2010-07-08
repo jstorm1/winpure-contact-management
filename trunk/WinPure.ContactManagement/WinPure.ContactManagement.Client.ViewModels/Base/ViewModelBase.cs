@@ -10,6 +10,9 @@ namespace WinPure.ContactManagement.Client.ViewModels.Base
     {
         #region Implementation of INotifyPropertyChanged
 
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion

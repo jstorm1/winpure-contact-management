@@ -4,7 +4,7 @@ using WinPure.ContactManagement.Client.Data.Model;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Data.Managers.Base
+namespace WinPure.ContactManagement.Client.Data.Managers
 {
     /// <summary>
     /// Base class for the DataManagers.

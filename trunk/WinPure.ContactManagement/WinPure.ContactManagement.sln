@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferencedAssemblies", "Ref
 	ProjectSection(SolutionItems) = preProject
 		ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll = ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll
 		ReferencedAssemblies\Microsoft.Expression.Interactions.dll = ReferencedAssemblies\Microsoft.Expression.Interactions.dll
+		ReferencedAssemblies\SearchTextBox.dll = ReferencedAssemblies\SearchTextBox.dll
 		ReferencedAssemblies\System.Windows.Interactivity.dll = ReferencedAssemblies\System.Windows.Interactivity.dll
 		ReferencedAssemblies\Transitionals.dll = ReferencedAssemblies\Transitionals.dll
 	EndProjectSection

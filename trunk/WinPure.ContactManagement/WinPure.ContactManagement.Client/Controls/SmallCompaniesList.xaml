@@ -1,0 +1,35 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels" xmlns:UIControls="clr-namespace:UIControls;assembly=SearchTextBox" x:Class="WinPure.ContactManagement.Client.Controls.SmallCompaniesList"
+             mc:Ignorable="d"
+             Height="335"
+             Width="500">
+	<UserControl.Resources>
+		<DataTemplate x:Key="CompanyDataTemplate">
+			<Grid d:DesignWidth="312" d:DesignHeight="66">
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Name, FallbackValue=Company Name}" Width="135" VerticalAlignment="Center" TextAlignment="Center" Margin="0,8"/>
+			</Grid>
+		</DataTemplate>
+	</UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModels:CompaniesViewModel />
+    </UserControl.DataContext>
+    
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="35"/>
+    		<RowDefinition/>
+    	</Grid.RowDefinitions>
+    	<ListBox Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ListBoxStyle}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding Companies}" Foreground="White" FontFamily="Century Gothic" FontSize="13.333" Grid.Row="1" ItemTemplate="{DynamicResource CompanyDataTemplate}"/>
+    	<Grid Background="#00000000">
+    		<Border HorizontalAlignment="Right" Margin="0,0,10,0" Width="200" VerticalAlignment="Center" Padding="3,2,3,1" Background="White" CornerRadius="5" Opacity="0.8">
+        
+    			<UIControls:SearchTextBox TextWrapping="Wrap" VerticalAlignment="Center" Background="White" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" LabelText="Company name" Height="22"/>
+        
+    		</Border>
+    	</Grid>
+        
+    </Grid>
+</UserControl>

@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Objects;
 using System.Linq;
-using WinPure.ContactManagement.Client.Data.Managers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
 
 #endregion
@@ -47,6 +46,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// <param name="company"></param>
         public void Save(Company company)
         {
+            if (company == null) throw new ArgumentNullException("company");
             if (company.CompanyId == Guid.Empty || Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null)
             {
                 Context.Companies.AddObject(company);

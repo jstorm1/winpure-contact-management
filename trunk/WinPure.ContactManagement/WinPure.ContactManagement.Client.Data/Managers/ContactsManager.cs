@@ -1,7 +1,6 @@
 ﻿#region References
 
 using System.Collections.ObjectModel;
-using WinPure.ContactManagement.Client.Data.Managers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
 
 #endregion
