@@ -2,8 +2,6 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Data.Objects;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Model;
 
@@ -47,7 +45,8 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         public void Save(Company company)
         {
             if (company == null) throw new ArgumentNullException("company");
-            if (company.CompanyId == Guid.Empty || Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null)
+            if (company.CompanyId == Guid.Empty ||
+                Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null)
             {
                 Context.Companies.AddObject(company);
             }
@@ -63,11 +62,10 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 
             _companiesCache.Clear();
 
-            foreach (var company in Context.Companies)
+            foreach (Company company in Context.Companies)
             {
                 _companiesCache.Add(company);
             }
         }
-
     }
 }

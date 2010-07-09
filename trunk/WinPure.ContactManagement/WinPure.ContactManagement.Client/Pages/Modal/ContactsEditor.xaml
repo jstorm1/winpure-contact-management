@@ -2,36 +2,40 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" xmlns:WinPure_ContactManagement_Client_Controls="clr-namespace:WinPure.ContactManagement.Client.Controls" x:Class="WinPure.ContactManagement.Client.Pages.Modal.ContactsEditor"
-             mc:Ignorable="d" Text="Contact" Height="468" Width="669" BorderColor="#FF3D3D3D" Background="#FFD08B39">
-	<CommonControls:ModalDialog.Resources>
-		<GridLength x:Key="DetailInfoLabelsColumnLength">150</GridLength>
-	</CommonControls:ModalDialog.Resources>
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" xmlns:WinPure_ContactManagement_Client_Controls="clr-namespace:WinPure.ContactManagement.Client.Controls" xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters" x:Class="WinPure.ContactManagement.Client.Pages.Modal.ContactsEditor"
+             mc:Ignorable="d" Text="Contact" Height="468" Width="669" BorderColor="#FF3D3D3D">
+    <CommonControls:ModalDialog.Resources>
+    	<GridLength x:Key="DetailInfoLabelsColumnLength">150</GridLength>
+    </CommonControls:ModalDialog.Resources>
+
+    <CommonControls:ModalDialog.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FFAD5200" Offset="1"/>
+			<GradientStop Color="#FFE28C28"/>
+		</LinearGradientBrush>
+	</CommonControls:ModalDialog.Background>
+    <CommonControls:ModalDialog.DataContext>
+        <ViewModels:ContactEditorViewModel />
+    </CommonControls:ModalDialog.DataContext>
+    
     <Grid>
     	<Grid.RowDefinitions>
     		<RowDefinition/>
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
-    	<Grid HorizontalAlignment="Left" Width="134.5" Grid.RowSpan="2">
-    		<Grid.Background>
-    			<RadialGradientBrush GradientOrigin="1.324,0.497" RadiusY="0.898" RadiusX="0.814">
-    				<GradientStop Color="#01FFFFFF" Offset="1"/>
-    				<GradientStop Color="#63FFFFFF"/>
-    			</RadialGradientBrush>
-    		</Grid.Background>
-    	</Grid>
+    	<Border HorizontalAlignment="Left" Grid.RowSpan="2" Width="134.5" Background="#34FFFFFF" BorderThickness="15,0,2,0" BorderBrush="#64FFFFFF"/>
     	<Grid Margin="0">
             
     		<TabControl TabStripPlacement="Left" BorderThickness="0" Background="{x:Null}" BorderBrush="{x:Null}">
     			<TabItem x:Name="GeneralTab" Header="General" FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Height="40">
-    				<Grid Background="#00000000">
+    				<Grid x:Name="GeneralGrid" Background="#00000000">
     					<Grid Background="#00000000">
     						<Grid.RowDefinitions>
     							<RowDefinition Height="Auto" />
     							<RowDefinition/>
     						</Grid.RowDefinitions>
     						<Grid Margin="0" VerticalAlignment="Top" Grid.Row="1">
-    							<StackPanel Margin="0,8,8,8" DataContext="{Binding SelectedContact}" VerticalAlignment="Center">
+    							<StackPanel Margin="0,8,8,8" DataContext="{Binding Contact}" VerticalAlignment="Center">
     								<Grid Margin="0,10,0,0">
     									<Grid.ColumnDefinitions>
     										<ColumnDefinition Width="{DynamicResource DetailInfoLabelsColumnLength}"/>
@@ -39,13 +43,13 @@
     									</Grid.ColumnDefinitions>
     									<TextBlock TextWrapping="Wrap" Text="Title:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     									<Grid Grid.Column="1" >
-    										<ComboBox Margin="5,0,0,0" Background="#CCFFFFFF" BorderBrush="White">
-    											<ComboBoxItem Content="Dr"/>
-												<ComboBoxItem Content="Miss"/>
-												<ComboBoxItem Content="Mr"/>
-												<ComboBoxItem Content="Mrs"/>
-												<ComboBoxItem Content="Ms"/>
-												<ComboBoxItem Content="Prof"/>
+                                            <ComboBox Margin="5,0,0,0" Background="#CCFFFFFF" BorderBrush="White" SelectedItem="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
+                                                <sys:String>Dr</sys:String>
+                                                <sys:String>Miss</sys:String>
+                                                <sys:String>Mr</sys:String>
+                                                <sys:String>Mrs</sys:String>
+                                                <sys:String>Ms</sys:String>
+                                                <sys:String>Prof</sys:String>
     										</ComboBox>
     									</Grid>
     								</Grid>
@@ -56,7 +60,7 @@
     									</Grid.ColumnDefinitions>
     									<TextBlock TextWrapping="Wrap" Text="First name:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     									<Grid Grid.Column="1" >
-    										<TextBox TextWrapping="Wrap" Text="{Binding FirstName}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="Black" Background="#CCFFFFFF" BorderBrush="White"/>
+    										<TextBox TextWrapping="Wrap" Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="Black" Background="#CCFFFFFF" BorderBrush="White"/>
     									</Grid>
     								</Grid>
     								<Grid Margin="0,10,0,0">
@@ -66,7 +70,7 @@
     									</Grid.ColumnDefinitions>
     									<TextBlock TextWrapping="Wrap" Text="Middle Name:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     									<Grid Grid.Column="1">
-    										<TextBox TextWrapping="Wrap" Text="{Binding MiddleName}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="Black" Background="#CCFFFFFF" BorderBrush="White"/>
+    										<TextBox TextWrapping="Wrap" Text="{Binding MiddleName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="Black" Background="#CCFFFFFF" BorderBrush="White"/>
     									</Grid>
     								</Grid>
     								<Grid Margin="0,10,0,0">
@@ -76,7 +80,7 @@
     									</Grid.ColumnDefinitions>
     									<TextBlock TextWrapping="Wrap" Text="Last Name:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     									<Grid Grid.Column="1">
-    										<TextBox TextWrapping="Wrap" Text="{Binding LastName}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="Black" Background="#CCFFFFFF" BorderBrush="White"/>
+    										<TextBox TextWrapping="Wrap" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="Black" Background="#CCFFFFFF" BorderBrush="White"/>
     									</Grid>
     								</Grid>
     								<Grid Margin="0,10,0,0">
@@ -86,12 +90,12 @@
     									</Grid.ColumnDefinitions>
     									<TextBlock TextWrapping="Wrap" Text="Suffix:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     									<Grid Grid.Column="1">
-    										<ComboBox Margin="5,0,0,0" Background="#CCFFFFFF" BorderBrush="White">
-    											<ComboBoxItem Content="I"/>
-												<ComboBoxItem Content="II"/>
-												<ComboBoxItem Content="III"/>
-												<ComboBoxItem Content="Jr"/>
-												<ComboBoxItem Content="Sn"/>			
+    										<ComboBox Margin="5,0,0,0" Background="#CCFFFFFF" BorderBrush="White" SelectedItem="{Binding Suffix, Mode=TwoWay, UpdateSourceTrigger=Explicit}">
+                                                <sys:String>I</sys:String>
+                                                <sys:String>II</sys:String>
+                                                <sys:String>III</sys:String>
+                                                <sys:String>Jr</sys:String>
+                                                <sys:String>Sn</sys:String>		
 											</ComboBox>
     									</Grid>
     								</Grid>
@@ -104,18 +108,32 @@
     				</Grid>
     			</TabItem>
     			<TabItem x:Name="CompanyTab" Header="Company Info" FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Foreground="Black" Height="40">
-    				<Grid Background="#00000000">
-    					<WinPure_ContactManagement_Client_Controls:SmallCompaniesList/>
+    				<Grid x:Name="CompanyGrid" Background="#00000000" DataContext="{Binding Contact}">
+    					<Grid.RowDefinitions>
+    						<RowDefinition Height="Auto" />
+    						<RowDefinition />
+    					</Grid.RowDefinitions>
+    					<Grid Margin="0,8" d:LayoutOverrides="Height">
+    						<Grid.ColumnDefinitions>
+    							<ColumnDefinition Width="{DynamicResource DetailInfoLabelsColumnLength}"/>
+    							<ColumnDefinition />
+    						</Grid.ColumnDefinitions>
+    						<TextBlock TextWrapping="Wrap" Text="Job Title:" HorizontalAlignment="Left" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
+    						<Grid Grid.Column="1">
+    							<TextBox TextWrapping="Wrap" Text="{Binding JobTitle, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="Black" Background="#CCFFFFFF" BorderBrush="White"/>
+    						</Grid>
+    					</Grid>
+    					<WinPure_ContactManagement_Client_Controls:SmallCompaniesList Grid.Row="1" Background="#33FFFFFF" Foreground="Black" CurrentCompany="{Binding Company, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
     				</Grid>
     			</TabItem>
     			<TabItem x:Name="ContactsTab" Header="Contacts" FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Height="40">
-    				<Grid>
+    				<Grid x:Name="ContactsGrid" DataContext="{Binding Contact}">
     					<Grid.RowDefinitions>
     						<RowDefinition Height="Auto" />
     						<RowDefinition/>
     					</Grid.RowDefinitions>
     					<Grid Margin="0" Grid.Row="1">
-    						<StackPanel Margin="0,8,8,0" DataContext="{Binding SelectedContact}" VerticalAlignment="Top" Height="286.9">
+    						<StackPanel Margin="0,8,8,0" VerticalAlignment="Top" Height="286.9">
     							<Grid Margin="0,10,0,0">
     								<Grid.ColumnDefinitions>
     									<ColumnDefinition Width="{DynamicResource DetailInfoLabelsColumnLength}"/>
@@ -123,7 +141,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Telephone:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding Telephone}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding Telephone, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -141,7 +159,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Fax:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding Fax}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding Fax, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -159,7 +177,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Mobile:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding Mobile}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding Mobile, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -177,7 +195,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Home Telephone:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding HomeTelephone}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding HomeTelephone, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -195,7 +213,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Website:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding Website}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding Website, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -213,7 +231,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Email Address 1:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding EmailAddress1}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding EmailAddress1, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -231,7 +249,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Email Address 2:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding EmailAddress2}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding EmailAddress2, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -249,7 +267,7 @@
     								</Grid.ColumnDefinitions>
     								<TextBlock TextWrapping="Wrap" Text="Email Address:" HorizontalAlignment="Right" Margin="0,0,5,0" FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
     								<Grid Grid.Column="1" >
-    									<TextBox TextWrapping="Wrap" Text="{Binding EmailAddress}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
+    									<TextBox TextWrapping="Wrap" Text="{Binding EmailAddress, Mode=TwoWay, UpdateSourceTrigger=Explicit}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000" Background="#CCFFFFFF">
     										<TextBox.BorderBrush>
     											<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
     												<GradientStop Color="#FFABADB3" Offset="0.05"/>

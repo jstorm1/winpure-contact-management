@@ -101,6 +101,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Other\ClearSearchIcon_15x15.png" />
+    <Resource Include="Resources\Images\Other\SearchIcon_15x15.png" />
     <Resource Include="Resources\Images\Logo_75x195.png" />
     <Resource Include="Resources\Images\Logo.png" />
     <None Include="..\WinPure.ContactManagement.Client.Data\App.Config">

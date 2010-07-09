@@ -16,9 +16,10 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public DataManagerBase()
+        protected DataManagerBase()
         {
-            Context = new EntitiesDataContext();
+            if (Context == null)
+                Context = new EntitiesDataContext();
         }
 
         #endregion
@@ -28,7 +29,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// <summary>
         /// Returns current context instance.
         /// </summary>
-        public EntitiesDataContext Context { get; private set; }
+        protected static EntitiesDataContext Context { get; private set; }
 
         #endregion
     }
