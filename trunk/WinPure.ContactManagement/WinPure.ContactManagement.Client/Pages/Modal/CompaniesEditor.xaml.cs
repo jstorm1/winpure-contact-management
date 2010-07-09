@@ -1,5 +1,6 @@
 ﻿#region MyRegion
 
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,7 +29,7 @@ namespace WinPure.ContactManagement.Client.Pages.Modal
             InitializeComponent();
 
             if (company == null)
-                company = new Company();
+                company = new Company{CompanyId = Guid.NewGuid(), Name = "", Country = ""};
 
             CurrentCompany = company;
         }
