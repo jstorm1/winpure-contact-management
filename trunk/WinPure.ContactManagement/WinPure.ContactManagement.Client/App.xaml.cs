@@ -21,7 +21,7 @@ namespace WinPure.ContactManagement.Client
         {
             base.OnStartup(e);
 
-            //SyncServiceManager.Current.RunService();
+            SyncServiceManager.Current.RunService();
         }
     }
 }
