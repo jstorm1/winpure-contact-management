@@ -67,6 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\WinPure.ContactManagement.Client\App.Config">
+      <Link>App.Config</Link>
+    </None>
     <Compile Include="Managers\Base\DataManagerBase.cs" />
     <Compile Include="Managers\CompaniesManager.cs" />
     <Compile Include="Managers\ContactsManager.cs" />
@@ -120,11 +123,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

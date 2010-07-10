@@ -22,7 +22,7 @@
             <GradientStop Color="#FFFEFEFA" />
         </LinearGradientBrush>
     </Window.Resources>
-    <Grid>
+    <Grid Background="{x:Null}">
         <Grid.RowDefinitions>
             <RowDefinition Height="75" />
             <RowDefinition />
@@ -81,7 +81,7 @@
             </CommonControls:PageControl.Background>
         </CommonControls:PageControl>
         <CommonControls:PagesSliderControl x:Name="pagesSliderControl"
-                                           Margin="23,8,39,14"
+                                           Margin="20,8,20,14"
                                            Grid.Row="1" />
         <Border BorderBrush="#FF7B7B7B"
                 BorderThickness="0,0,0,1">

@@ -80,6 +80,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Discovery" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferencedAssemblies\System.Windows.Interactivity.dll</HintPath>
@@ -105,9 +108,6 @@
     <Resource Include="Resources\Images\Other\SearchIcon_15x15.png" />
     <Resource Include="Resources\Images\Logo_75x195.png" />
     <Resource Include="Resources\Images\Logo.png" />
-    <None Include="..\WinPure.ContactManagement.Client.Data\App.Config">
-      <Link>App.Config</Link>
-    </None>
     <Content Include="..\WinPure.ContactManagement.Client.Data\Data.sdf">
       <Link>Data.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -203,6 +203,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -227,6 +230,10 @@
     <ProjectReference Include="..\WinPure.ContactManagement.Client.Data\WinPure.ContactManagement.Client.Data.csproj">
       <Project>{F768494E-E29C-4653-B058-A733D730DB1F}</Project>
       <Name>WinPure.ContactManagement.Client.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Services.Managers\WinPure.ContactManagement.Client.Services.Managers.csproj">
+      <Project>{B3E17F7A-F87B-41F3-BF6A-29C17B41B150}</Project>
+      <Name>WinPure.ContactManagement.Client.Services.Managers</Name>
     </ProjectReference>
     <ProjectReference Include="..\WinPure.ContactManagement.Client.ViewModels\WinPure.ContactManagement.Client.ViewModels.csproj">
       <Project>{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}</Project>
@@ -268,7 +275,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

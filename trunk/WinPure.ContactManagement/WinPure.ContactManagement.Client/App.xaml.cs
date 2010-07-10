@@ -4,7 +4,10 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.ServiceModel;
+using System.ServiceModel.Discovery;
 using System.Windows;
+using WinPure.ContactManagement.Client.Services;
 
 namespace WinPure.ContactManagement.Client
 {
@@ -17,12 +20,28 @@ namespace WinPure.ContactManagement.Client
         {
             base.OnStartup(e);
 
-            AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);
-        }
+            SyncServiceManager.Current.RunService();
+            SyncServiceManager.Current.GetAdderessesOfService();
 
-        private Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            return System.Reflection.Assembly.ReflectionOnlyLoad(args.Name);
+
+            //DiscoveryClient discoverclient = new DiscoveryClient(new UdpDiscoveryEndpoint());
+            //FindResponse response = discoverclient.Find(new FindCriteria(typeof(ISyncService)));
+
+            //var str = "";
+            //foreach (var endpoint in response.Endpoints)
+            //{
+            //    str += endpoint.Address + "\n";
+            //}
+
+            //MessageBox.Show(str);
+
+            //EndpointAddress address = response.Endpoints[0].Address;
+            
+            
+            //SyncServiceClient client = new SyncServiceClient(new WSHttpBinding(), address);
+            //string str= client.GetMessage("Hello WCF 4 ");
+           // MessageBox.Show(str);
+
         }
     }
 }
