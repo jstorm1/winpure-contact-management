@@ -67,8 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\WinPure.ContactManagement.Client\App.Config">
-      <Link>App.Config</Link>
+    <None Include="..\WinPure.ContactManagement.Client\app.Config">
+      <Link>app.Config</Link>
     </None>
     <Compile Include="Managers\Base\DataManagerBase.cs" />
     <Compile Include="Managers\CompaniesManager.cs" />

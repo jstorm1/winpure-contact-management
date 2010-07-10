@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Discovery;
+using System.Threading;
 using WinPure.ContactManagement.Common.Interfaces.SyncService;
 
 #endregion
@@ -13,7 +14,8 @@ namespace WinPure.ContactManagement.Client.Services
 {
     public class SyncServiceManager
     {
-        private ServiceHost _hoster;
+        
+        private readonly ServiceHost _hoster;
 
         #region Singleton Constructor
 
@@ -21,9 +23,13 @@ namespace WinPure.ContactManagement.Client.Services
 
         private SyncServiceManager()
         {
-            _hoster = new ServiceHost(typeof (SyncService), new Uri("http://localhost:8000/WinPure/SyncService/"));
+            string machineName = System.Net.Dns.GetHostName();
+            _hoster = new ServiceHost(typeof (SyncService), new Uri(string.Format("http://{0}:8000/WinPure/SyncService/",machineName)));
         }
 
+        /// <summary>
+        /// Returns current instance.
+        /// </summary>
         public static SyncServiceManager Current
         {
             get { return _instance ?? (_instance = new SyncServiceManager()); }
@@ -32,6 +38,12 @@ namespace WinPure.ContactManagement.Client.Services
         #endregion
 
         public void RunService()
+        {
+            var t = new Thread(runService);
+            t.Start();
+        }
+
+        private void runService()
         {
             _hoster.Open();
         }

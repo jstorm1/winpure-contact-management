@@ -104,6 +104,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\SyncService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SyncService\configuration.svcinfo" />
+    <None Include="Service References\SyncService\configuration91.svcinfo" />
+    <None Include="Service References\SyncService\item.disco" />
     <Resource Include="Resources\Images\Other\ClearSearchIcon_15x15.png" />
     <Resource Include="Resources\Images\Other\SearchIcon_15x15.png" />
     <Resource Include="Resources\Images\Logo_75x195.png" />
@@ -180,6 +187,11 @@
     <Compile Include="Pages\Modal\ContactsEditor.xaml.cs">
       <DependentUpon>ContactsEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service References\SyncService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -203,7 +215,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config">
+    <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -214,6 +226,13 @@
     <None Include="Resources\Images\PSDs\Icons.psd" />
     <None Include="Resources\Images\PSDs\Icons_48x48.psd" />
     <None Include="Resources\Images\PSDs\Logo.psd" />
+    <None Include="Service References\SyncService\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyncService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SyncService\SyncService.wsdl" />
     <None Include="WinPure.ContactManagement.Client_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SyncService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

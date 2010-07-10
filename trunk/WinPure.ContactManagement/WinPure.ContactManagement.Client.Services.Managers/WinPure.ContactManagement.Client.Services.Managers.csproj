@@ -46,11 +46,6 @@
     <Compile Include="SyncServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\WinPure.ContactManagement.Client\App.config">
-      <Link>App.config</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WinPure.ContactManagement.Client.Services\WinPure.ContactManagement.Client.Services.csproj">
       <Project>{C6367F24-6D84-4581-A0E3-864F58BC5C36}</Project>
       <Name>WinPure.ContactManagement.Client.Services</Name>
