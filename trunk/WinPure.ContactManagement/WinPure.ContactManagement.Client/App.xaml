@@ -108,6 +108,24 @@
     				</Setter.Value>
     			</Setter>
     		</Style>
+    		<RadialGradientBrush x:Key="PageBackgroundGradient" GradientOrigin="0.94,-0.15" RadiusY="1.077" Center="0.517,-0.265" RadiusX="0.897">
+    			<RadialGradientBrush.RelativeTransform>
+    				<TransformGroup>
+    					<ScaleTransform CenterY="-0.265" CenterX="0.517" ScaleY="1" ScaleX="1"/>
+    					<SkewTransform AngleY="49" AngleX="-7" CenterY="-0.265" CenterX="0.517"/>
+    					<RotateTransform Angle="-253.754" CenterY="-0.265" CenterX="0.517"/>
+    					<TranslateTransform X="-0.068" Y="0.598"/>
+    				</TransformGroup>
+    			</RadialGradientBrush.RelativeTransform>
+    			<GradientStop Color="#01FFFFFF"/>
+    			<GradientStop Color="#08FFFFFF" Offset="0.953"/>
+    			<GradientStop Color="#01FFFFFF" Offset="0.791"/>
+    			<GradientStop Color="#01FFFFFF" Offset="0.997"/>
+    			<GradientStop Color="#18FFFFFF" Offset="0.788"/>
+    			<GradientStop Color="#01FEFEFE" Offset="0.791"/>
+    			<GradientStop Color="#01FFFFFF" Offset="0.519"/>
+    			<GradientStop Color="#06FFFFFF" Offset="0.519"/>
+    		</RadialGradientBrush>
     	</ResourceDictionary>
          
          

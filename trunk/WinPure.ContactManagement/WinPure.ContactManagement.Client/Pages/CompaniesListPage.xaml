@@ -62,7 +62,7 @@
         <ViewModels:CompaniesViewModel />
     </CommonControls:PageControl.DataContext>
 
-    <Grid>
+    <Grid Background="{DynamicResource PageBackgroundGradient}">
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="0.6*"/>
     		<ColumnDefinition Width="0.4*"/>
