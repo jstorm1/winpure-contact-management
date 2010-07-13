@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferencedAssemblies", "Ref
 		ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll = ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll
 		ReferencedAssemblies\Microsoft.Expression.Interactions.dll = ReferencedAssemblies\Microsoft.Expression.Interactions.dll
 		ReferencedAssemblies\SearchTextBox.dll = ReferencedAssemblies\SearchTextBox.dll
+		ReferencedAssemblies\System.Data.SqlServerCe.dll = ReferencedAssemblies\System.Data.SqlServerCe.dll
 		ReferencedAssemblies\System.Windows.Interactivity.dll = ReferencedAssemblies\System.Windows.Interactivity.dll
 		ReferencedAssemblies\Transitionals.dll = ReferencedAssemblies\Transitionals.dll
 	EndProjectSection
@@ -27,6 +28,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPure.ContactManagement.Client.Services.Managers", "WinPure.ContactManagement.Client.Services.Managers\WinPure.ContactManagement.Client.Services.Managers.csproj", "{B3E17F7A-F87B-41F3-BF6A-29C17B41B150}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPure.ContactManagement.Client.Services", "WinPure.ContactManagement.Client.Services\WinPure.ContactManagement.Client.Services.csproj", "{C6367F24-6D84-4581-A0E3-864F58BC5C36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyncFramework", "SyncFramework", "{01D42FB1-5A4C-4CAE-9FF2-DA481FF4D08E}"
+	ProjectSection(SolutionItems) = preProject
+		ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.dll = ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.dll
+		ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServerCe.dll = ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServerCe.dll
+		ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.dll = ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsFirewall", "WindowsFirewall", "{2CEE052C-7AB8-49FF-9234-4460DCFC81D4}"
+	ProjectSection(SolutionItems) = preProject
+		ReferencedAssemblies\WindowsFirewall\Interop.NATUPNPLib.dll = ReferencedAssemblies\WindowsFirewall\Interop.NATUPNPLib.dll
+		ReferencedAssemblies\WindowsFirewall\Interop.NETCONLib.dll = ReferencedAssemblies\WindowsFirewall\Interop.NETCONLib.dll
+		ReferencedAssemblies\WindowsFirewall\Interop.NetFwTypeLib.dll = ReferencedAssemblies\WindowsFirewall\Interop.NetFwTypeLib.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -121,6 +136,8 @@ Global
 		{093651AB-9BCC-4EE7-A544-B447D7705786} = {E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}
 		{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E} = {E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}
 		{1E399B48-BEDA-4D4E-BF89-F741DF1911E9} = {E5EDFE09-3EC8-4CF9-BCEE-4D9D3109AE15}
+		{01D42FB1-5A4C-4CAE-9FF2-DA481FF4D08E} = {C320334C-0B1F-4022-9EAE-59504902555A}
+		{2CEE052C-7AB8-49FF-9234-4460DCFC81D4} = {C320334C-0B1F-4022-9EAE-59504902555A}
 		{B3E17F7A-F87B-41F3-BF6A-29C17B41B150} = {1A2E20DD-A6E5-405B-93BB-1DBE63754022}
 		{C6367F24-6D84-4581-A0E3-864F58BC5C36} = {1A2E20DD-A6E5-405B-93BB-1DBE63754022}
 	EndGlobalSection

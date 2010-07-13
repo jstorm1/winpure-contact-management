@@ -29,7 +29,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// <summary>
         /// Returns current context instance.
         /// </summary>
-        protected static EntitiesDataContext Context { get; private set; }
+        public static EntitiesDataContext Context { get; private set; }
 
         #endregion
     }

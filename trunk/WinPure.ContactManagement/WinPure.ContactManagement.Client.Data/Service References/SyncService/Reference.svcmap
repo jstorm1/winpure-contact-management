@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2bf4c13d-c838-4d7b-8c85-ba83b38a97bb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0cce7d1c-fc33-4764-bc01-7efe8b50eb52" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,10 +21,11 @@
     <MetadataSource Address="http://X-a-K-e-P-PC:8000/WinPure/SyncService/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="239dd572-3b0c-4e93-9b87-4f543d0e4092" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?xsd=xsd0" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="13ee4558-a740-47e6-8551-5506de067132" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?xsd=xsd1" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="f12e3c96-f15e-4ad5-85f0-079cebecc5bd" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?disco" />
-    <MetadataFile FileName="SyncService.wsdl" MetadataType="Wsdl" ID="78623040-924d-48c9-a790-8817900f3045" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="5baa83db-c30b-458c-8492-f350772a73d7" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?xsd=xsd1" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="a758c82a-2246-4f2f-9652-38b4df51243c" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="be73315a-4085-489f-80d5-e6e6d44c6c89" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="11b22745-3a8c-4367-af94-752e4999870e" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?disco" />
+    <MetadataFile FileName="SyncService.wsdl" MetadataType="Wsdl" ID="3f883fb0-873a-4286-91ba-a59eb267a140" SourceId="1" SourceUrl="http://x-a-k-e-p-pc:8000/WinPure/SyncService/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

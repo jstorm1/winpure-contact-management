@@ -1,8 +1,16 @@
-﻿using System.Linq;
+﻿#region References
+
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.ServiceModel;
 using System.Windows;
+using WinPure.ContactManagement.Client.Data.Synchronization;
 using WinPure.ContactManagement.Client.Services;
-using WinPure.ContactManagement.Client.SyncService;
+using WinPure.ContactManagement.Common;
+using WinPure.ContactManagement.Common.SyncServiceHelpers;
+
+#endregion
 
 namespace WinPure.ContactManagement.Client
 {
@@ -16,24 +24,19 @@ namespace WinPure.ContactManagement.Client
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var a = SyncServiceManager.Current.GetAdderessesOfService();
+            IEnumerable<EndpointAddress> a = SyncServiceManager.Current.GetAdderessesOfService();
             string str = "SyncService instances in Network:\n";
-            foreach (var endpointAddress in a)
+            foreach (EndpointAddress endpointAddress in a)
             {
                 str += endpointAddress + "\n";
             }
             MessageBox.Show(str);
 
-            var binding = new WSHttpBinding();
-            binding.Security.Mode = SecurityMode.None;
-
-            var client = new SyncServiceClient(binding, a.FirstOrDefault());
-            var s = client.State;
-             str = client.GetMessage("Hello WCF 4 ");
-
-            MessageBox.Show(str);
+            SynchronizationManager.Synchronize(a.FirstOrDefault());
         }
+
+      
     }
 }

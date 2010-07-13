@@ -2,10 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Discovery;
 using System.Threading;
+using NetFwTypeLib;
+using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Interfaces.SyncService;
 
 #endregion
@@ -39,6 +42,8 @@ namespace WinPure.ContactManagement.Client.Services
 
         public void RunService()
         {
+            addExceptionToTheWindowsFirewall();
+
             var t = new Thread(runService);
             t.Start();
         }
@@ -53,6 +58,24 @@ namespace WinPure.ContactManagement.Client.Services
             var discoverclient = new DiscoveryClient(new UdpDiscoveryEndpoint());
             FindResponse response = discoverclient.Find(new FindCriteria(typeof(ISyncService)));
             return response.Endpoints.Select(e => e.Address);
+        }
+
+        private static void addExceptionToTheWindowsFirewall()
+        {
+            var firewallManager = new WindowsFirewallManager();
+            firewallManager.Initialize();
+            
+            bool isFirewallEnabled = false;
+            firewallManager.IsWindowsFirewallOn(ref isFirewallEnabled);
+
+            bool firewallExceptionNotAllowed = false;
+            firewallManager.IsExceptionNotAllowed(ref firewallExceptionNotAllowed);
+
+            if (isFirewallEnabled && !firewallExceptionNotAllowed)
+            {
+                firewallManager.AddPort(8000, NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_TCP, "WinPure Ltd. SyncService Port.");
+            }
+            firewallManager.Uninitialize();
         }
     }
 }

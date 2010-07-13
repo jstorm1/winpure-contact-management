@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
+using WinPure.ContactManagement.Common;
 
 #endregion
 
@@ -13,7 +14,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         #region Fields
 
-        private ObservableCollection<Contact> _contacts;
+        private SynchronisedObservableCollection<Contact> _contacts;
         private Contact _selectedContact;
 
         #endregion
@@ -35,7 +36,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// <summary>
         /// Collection of Contacts.
         /// </summary>
-        public ObservableCollection<Contact> Contacts
+        public SynchronisedObservableCollection<Contact> Contacts
         {
             get { return _contacts; }
             set
