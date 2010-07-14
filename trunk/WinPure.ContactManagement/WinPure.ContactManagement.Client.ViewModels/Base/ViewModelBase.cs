@@ -1,30 +1,13 @@
 ﻿#region References
 
-using System.ComponentModel;
+using WinPure.ContactManagement.Common;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
 namespace WinPure.ContactManagement.Client.ViewModels.Base
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : PropertyChangedBase
     {
-        #region Implementation of INotifyPropertyChanged
-
-        /// <summary>
-        /// Occurs when a property value changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this,
-                        new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

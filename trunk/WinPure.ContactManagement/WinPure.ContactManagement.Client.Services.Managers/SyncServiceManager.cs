@@ -10,6 +10,7 @@ using System.Threading;
 using NetFwTypeLib;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Interfaces.SyncService;
+using WinPure.ContactManagement.Common.Utils;
 
 #endregion
 
@@ -53,10 +54,14 @@ namespace WinPure.ContactManagement.Client.Services
             _hoster.Open();
         }
 
-        public IEnumerable<EndpointAddress> GetAdderessesOfService()
+        public IEnumerable<EndpointAddress> GetAddressesOfService()
         {
             var discoverclient = new DiscoveryClient(new UdpDiscoveryEndpoint());
+            
             FindResponse response = discoverclient.Find(new FindCriteria(typeof(ISyncService)));
+            
+            discoverclient.Close();
+            
             return response.Endpoints.Select(e => e.Address);
         }
 
@@ -76,6 +81,11 @@ namespace WinPure.ContactManagement.Client.Services
                 firewallManager.AddPort(8000, NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_TCP, "WinPure Ltd. SyncService Port.");
             }
             firewallManager.Uninitialize();
+        }
+
+        ~SyncServiceManager()
+        {
+            _hoster.Close();
         }
     }
 }

@@ -75,10 +75,11 @@
     <Compile Include="Interfaces\Entities\ICompany.cs" />
     <Compile Include="Interfaces\SyncService\ISyncService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SynchronizedObservableCollection.cs" />
+    <Compile Include="Helpers\PropertyChangedBase.cs" />
+    <Compile Include="Helpers\SynchronizedObservableCollection.cs" />
     <Compile Include="SyncServiceHelpers\ScopeHelper.cs" />
     <Compile Include="SyncServiceHelpers\StreamWithProgress.cs" />
-    <Compile Include="WindowsFirewallManager.cs" />
+    <Compile Include="Utils\WindowsFirewallManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

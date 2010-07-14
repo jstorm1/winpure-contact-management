@@ -26,7 +26,7 @@ namespace WinPure.ContactManagement.Client
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<EndpointAddress> a = SyncServiceManager.Current.GetAdderessesOfService();
+            IEnumerable<EndpointAddress> a = SyncServiceManager.Current.GetAddressesOfService();
             string str = "SyncService instances in Network:\n";
             foreach (EndpointAddress endpointAddress in a)
             {

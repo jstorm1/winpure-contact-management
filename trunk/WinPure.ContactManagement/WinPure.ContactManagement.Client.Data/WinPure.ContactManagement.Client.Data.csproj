@@ -86,6 +86,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domains\PeerInfo.cs" />
     <Compile Include="Service References\SyncService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,6 +129,10 @@
     <None Include="Service References\SyncService\item.disco" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Services.Managers\WinPure.ContactManagement.Client.Services.Managers.csproj">
+      <Project>{B3E17F7A-F87B-41F3-BF6A-29C17B41B150}</Project>
+      <Name>WinPure.ContactManagement.Client.Services.Managers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinPure.ContactManagement.Client.Services\WinPure.ContactManagement.Client.Services.csproj">
       <Project>{C6367F24-6D84-4581-A0E3-864F58BC5C36}</Project>
       <Name>WinPure.ContactManagement.Client.Services</Name>
@@ -176,6 +181,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SyncService\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

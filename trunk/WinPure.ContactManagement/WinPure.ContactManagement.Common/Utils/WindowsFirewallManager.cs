@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using NetFwTypeLib;
 
-namespace WinPure.ContactManagement.Common
+namespace WinPure.ContactManagement.Common.Utils
 {
     public class WindowsFirewallManager
     {

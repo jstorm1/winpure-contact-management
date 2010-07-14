@@ -1,5 +1,7 @@
 ﻿#region References
 
+using System;
+using System.Collections.Generic;
 using System.Data.SqlServerCe;
 using System.IO;
 using System.ServiceModel;
@@ -7,74 +9,90 @@ using Microsoft.Synchronization;
 using Microsoft.Synchronization.Data.SqlServerCe;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.SyncService;
+using WinPure.ContactManagement.Client.Services;
 using WinPure.ContactManagement.Common;
-using WinPure.ContactManagement.Common.SyncServiceHelpers; 
+using WinPure.ContactManagement.Common.SyncServiceHelpers;
 
 #endregion
 
 namespace WinPure.ContactManagement.Client.Data.Synchronization
 {
-    public static class SynchronizationManager
+    public class SynchronizationManager
     {
-        public static SyncServiceClient ServiceProxy(EndpointAddress address)
+        public static IEnumerable<EndpointAddress> GetAddressesOfSyncService()
         {
-            var binding = new BasicHttpBinding
-            {
-                Security = { Mode = BasicHttpSecurityMode.None },
-                MaxReceivedMessageSize = 10067108864,
-                MessageEncoding = WSMessageEncoding.Mtom,
-                TransferMode = TransferMode.Streamed
-            };
-
-            return new SyncServiceClient(binding, address);
+            return SyncServiceManager.Current.GetAddressesOfService();
         }
 
         public static void Synchronize(EndpointAddress remoteAddress)
         {
-            var serviceClient = ServiceProxy(remoteAddress);
+            SyncServiceClient serviceClient = ServiceProxy(remoteAddress);
 
             downloadDatabase(serviceClient);
 
-            var localDbConnection = new SqlCeConnection(Constants.LocalConnectionString);
-            var remoteDbConnection = new SqlCeConnection(Constants.RemoteConnectionString);
+            using (var localDbConnection = new SqlCeConnection(Constants.LocalConnectionString))
+            {
+                using (var remoteDbConnection = new SqlCeConnection(Constants.RemoteConnectionString))
+                {
+                    var syncOrchestrator = new SyncOrchestrator
+                                               {
+                                                   Direction = SyncDirectionOrder.DownloadAndUpload,
+                                                   RemoteProvider =
+                                                       new SqlCeSyncProvider("SyncScope", remoteDbConnection),
+                                                   LocalProvider = new SqlCeSyncProvider("SyncScope", localDbConnection)
+                                               };
 
-            var syncOrchestrator = new SyncOrchestrator
-                                       {
-                                           Direction = SyncDirectionOrder.DownloadAndUpload,
-                                           RemoteProvider = new SqlCeSyncProvider("SyncScope", remoteDbConnection),
-                                           LocalProvider = new SqlCeSyncProvider("SyncScope", localDbConnection)
-                                       };
+                    syncOrchestrator.Synchronize();
 
-            syncOrchestrator.Synchronize();
-
-            localDbConnection.Close();
-
-            uploadDatabase(serviceClient);
+                    uploadDatabase(serviceClient);
+                }
+            }
 
             ContactsManager.Current.RefreshCache();
         }
 
+        #region Service Methods
+
+        public static SyncServiceClient ServiceProxy(EndpointAddress address)
+        {
+            var binding = new BasicHttpBinding
+                              {
+                                  Security = { Mode = BasicHttpSecurityMode.None },
+                                  MaxReceivedMessageSize = 10067108864,
+                                  MessageEncoding = WSMessageEncoding.Mtom,
+                                  TransferMode = TransferMode.Streamed
+                              };
+
+            return new SyncServiceClient(binding, address);
+        }
+
         private static void uploadDatabase(SyncServiceClient serviceClient)
         {
-            string dbPath = Path.Combine(Constants.GetCurrentDirectoryPath, Constants.DOWNLOAD_FOLDER, Constants.REMOTE_DB_NAME);
+            string dbPath = Path.Combine(Constants.GetCurrentDirectoryPath, Constants.DOWNLOAD_FOLDER,
+                                         Constants.REMOTE_DB_NAME);
 
             // get some info about the input file
             var fileInfo = new FileInfo(dbPath);
 
-
-            // open input stream
-            using (var stream = new FileStream(dbPath, FileMode.Open, FileAccess.Read))
+            FileStream stream = null;
+            try
             {
+                // open input stream
+                stream = new FileStream(dbPath, FileMode.Open, FileAccess.Read);
+
                 using (var uploadStreamWithProgress = new StreamWithProgress(stream))
                 {
+                    stream = null;
                     uploadStreamWithProgress.ProgressChanged += uploadStreamWithProgress_ProgressChanged;
 
                     // upload file
                     serviceClient.UploadFile(fileInfo.Name, fileInfo.Length, uploadStreamWithProgress);
-
-                    // close service client
-                    serviceClient.Close();
                 }
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Dispose();
             }
         }
 
@@ -110,19 +128,19 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
                     // report progress from time to time
                     //progressBar1.Value = (int)(writeStream.Position * 100 / length);
                 } while (true);
-
-                writeStream.Close();
             }
 
             // close service client
             inputStream.Dispose();
-           // serviceClient.Close();
+            // serviceClient.Close();
         }
 
         private static void uploadStreamWithProgress_ProgressChanged(object sender,
-                                                              StreamWithProgress.ProgressChangedEventArgs e)
+                                                                     StreamWithProgress.ProgressChangedEventArgs e)
         {
             //throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

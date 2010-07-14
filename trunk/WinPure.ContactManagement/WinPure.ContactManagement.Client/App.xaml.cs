@@ -1,6 +1,7 @@
 ﻿#region References 
 
 using System.Windows;
+using System.Windows.Threading;
 using WinPure.ContactManagement.Client.Services;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.SyncServiceHelpers;
@@ -17,7 +18,7 @@ namespace WinPure.ContactManagement.Client
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            DispatcherUnhandledException += new System.Windows.Threading.DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
 
             //Prepare db for synchronization.
             if (!ScopeHelper.CheckScope(Constants.LocalConnectionString))
@@ -27,10 +28,10 @@ namespace WinPure.ContactManagement.Client
             
             base.OnStartup(e);
 
-            //SyncServiceManager.Current.RunService();
+            SyncServiceManager.Current.RunService();
         }
 
-        void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show(e.Exception.Message);
         }
