@@ -61,7 +61,20 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </CommonControls:HorizontalMenuItem>
-
+            <CommonControls:HorizontalMenuItem Text="Synchronize"
+                                               Width="100"
+                                               Image="Resources/Images/48x48/Sync_48x48.png"
+                                               IconGlowColor="#FF4FD647">
+              <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding NavigateCommand, ElementName=pagesSliderControl, Mode=OneWay}">
+                            <i:InvokeCommandAction.CommandParameter>
+                                <Pages:SynchronizationPage />
+                            </i:InvokeCommandAction.CommandParameter>
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            												   </CommonControls:HorizontalMenuItem>
         </CommonControls:HorizontalMenu>
         <CommonControls:PageControl Margin="0"
                                     Width="500"

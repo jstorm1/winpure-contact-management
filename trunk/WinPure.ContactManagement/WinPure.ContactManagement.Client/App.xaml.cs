@@ -27,7 +27,7 @@ namespace WinPure.ContactManagement.Client
             
             base.OnStartup(e);
 
-            SyncServiceManager.Current.RunService();
+            //SyncServiceManager.Current.RunService();
         }
 
         void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

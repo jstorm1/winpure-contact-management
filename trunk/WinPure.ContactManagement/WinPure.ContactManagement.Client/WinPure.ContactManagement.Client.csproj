@@ -131,6 +131,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\48x48\Sync_48x48.png" />
+    <Resource Include="Resources\Images\128x128\Sync.png" />
     <Resource Include="Resources\Images\Other\ClearSearchIcon_15x15.png" />
     <Resource Include="Resources\Images\Other\SearchIcon_15x15.png" />
     <Resource Include="Resources\Images\Logo_75x195.png" />
@@ -160,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Modal\ContactsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SynchronizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +212,9 @@
     </Compile>
     <Compile Include="Pages\Modal\ContactsEditor.xaml.cs">
       <DependentUpon>ContactsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SynchronizationPage.xaml.cs">
+      <DependentUpon>SynchronizationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
