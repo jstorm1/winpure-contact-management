@@ -201,7 +201,6 @@
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
     <Compile Include="Helpers\Converters\NullToBooleanConverter.cs" />
-    <Compile Include="Helpers\DependencyObjectExtensions.cs" />
     <Compile Include="Pages\CompaniesListPage.xaml.cs">
       <DependentUpon>CompaniesListPage.xaml</DependentUpon>
     </Compile>

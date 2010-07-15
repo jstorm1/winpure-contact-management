@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Helpers
+namespace WinPure.ContactManagement.Common.Helpers
 {
     public static class DependencyObjectExtensions
     {

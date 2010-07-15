@@ -7,6 +7,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Discovery;
 using System.Threading;
+using System.Windows;
 using NetFwTypeLib;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Interfaces.SyncService;
@@ -43,7 +44,14 @@ namespace WinPure.ContactManagement.Client.Services
 
         public void RunService()
         {
-            addExceptionToTheWindowsFirewall();
+            try
+            {
+                addExceptionToTheWindowsFirewall();
+            }
+            finally
+            {
+                
+            }
 
             var t = new Thread(runService);
             t.Start();

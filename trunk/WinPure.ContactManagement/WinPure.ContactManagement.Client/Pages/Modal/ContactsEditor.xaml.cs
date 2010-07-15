@@ -7,7 +7,7 @@ using System.Windows.Controls.Primitives;
 using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Controls;
 using WinPure.ContactManagement.Client.Data.Model;
-using WinPure.ContactManagement.Client.Helpers;
+using WinPure.ContactManagement.Common.Helpers;
 using WinPure.ContactManagement.Client.ViewModels;
 
 #endregion

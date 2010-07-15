@@ -56,6 +56,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -63,6 +65,7 @@
       <HintPath>..\ReferencedAssemblies\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -72,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Helpers\DependencyObjectExtensions.cs" />
     <Compile Include="Interfaces\Entities\ICompany.cs" />
     <Compile Include="Interfaces\SyncService\ISyncService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

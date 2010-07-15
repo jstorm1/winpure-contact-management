@@ -8,6 +8,7 @@ using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Helpers;
 using WinPure.ContactManagement.Client.ViewModels;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
