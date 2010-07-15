@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlServerCe;
 using System.IO;
 using System.ServiceModel;
+using System.Windows;
 using Microsoft.Synchronization;
 using Microsoft.Synchronization.Data.SqlServerCe;
 using WinPure.ContactManagement.Client.Data.Managers;
@@ -89,6 +90,10 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
                     serviceClient.UploadFile(fileInfo.Name, fileInfo.Length, uploadStreamWithProgress);
                 }
             }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             finally
             {
                 if (stream != null)

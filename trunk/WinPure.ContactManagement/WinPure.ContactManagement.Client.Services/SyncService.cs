@@ -2,6 +2,7 @@
 
 using System;
 using System.IO;
+using System.Windows;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Interfaces.SyncService; 
 
@@ -71,7 +72,7 @@ namespace WinPure.ContactManagement.Client.Services
                 DatabaseChanged.BeginInvoke(null, null, Test, null);
             }
         }
-
+        
         private void Test(IAsyncResult ar)
         {
             DatabaseChanged.EndInvoke(ar);
