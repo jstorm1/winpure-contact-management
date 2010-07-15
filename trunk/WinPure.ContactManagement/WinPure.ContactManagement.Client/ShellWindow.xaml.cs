@@ -24,19 +24,5 @@ namespace WinPure.ContactManagement.Client
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            IEnumerable<EndpointAddress> a = SyncServiceManager.Current.GetAddressesOfService();
-            string str = "SyncService instances in Network:\n";
-            foreach (EndpointAddress endpointAddress in a)
-            {
-                str += endpointAddress + "\n";
-            }
-            MessageBox.Show(str);
-
-            SynchronizationManager.Synchronize(a.FirstOrDefault());
-        }
-
-      
     }
 }

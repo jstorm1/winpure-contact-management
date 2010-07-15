@@ -43,6 +43,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsFirewall", "WindowsF
 		ReferencedAssemblies\WindowsFirewall\Interop.NetFwTypeLib.dll = ReferencedAssemblies\WindowsFirewall\Interop.NetFwTypeLib.dll
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prerequsites", "Prerequsites", "{03D575C2-DE25-459E-8675-9C1754D03B66}"
+	ProjectSection(SolutionItems) = preProject
+		Prerequsites\SyncSDK-v2.0-x86-ENU.msi = Prerequsites\SyncSDK-v2.0-x86-ENU.msi
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
