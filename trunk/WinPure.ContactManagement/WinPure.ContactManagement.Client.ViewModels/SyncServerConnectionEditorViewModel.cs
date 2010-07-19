@@ -15,7 +15,7 @@ using WinPure.ContactManagement.Common.Helpers;
 
 namespace WinPure.ContactManagement.Client.ViewModels
 {
-    public class SyncServerConnectionEditorViewModel : PropertyChangedBase
+    public class SyncServerConnectionEditorViewModel : PropertyChangedBase, IDisposable
     {
         #region Fields
 
@@ -133,7 +133,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         public RelayCommand SaveCommand
         {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(Save)); }
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(Save,canSave)); }
         }
 
         public RelayCommand CancelCommand
@@ -149,6 +149,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #endregion
 
         #region Methods
+        
+        private bool canSave()
+        {
+            Connection.Validate();
+            return !Connection.HasErrors;
+        }
 
         private void Cancel()
         {
@@ -209,20 +215,22 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private void LoadServersAsync()
         {
-            var serverLoader = new BackgroundWorker();
-            serverLoader.DoWork += ((sender, e) => e.Result = _smoTasks.SqlServers.OrderBy(r => r).ToArray());
+            using (var serverLoader = new BackgroundWorker())
+            {
+                serverLoader.DoWork += ((sender, e) => e.Result = _smoTasks.SqlServers.OrderBy(r => r).ToArray());
 
-            serverLoader.RunWorkerCompleted += ((sender, e) =>
-                                                    {
-                                                        // _servers.AddRange((string[]) e.Result);
-                                                        foreach (string server in (string[]) e.Result)
+                serverLoader.RunWorkerCompleted += ((sender, e) =>
                                                         {
-                                                            _servers.Add(server);
-                                                        }
-                                                        ServersLoading = false;
-                                                    });
+                                                            // _servers.AddRange((string[]) e.Result);
+                                                            foreach (string server in (string[]) e.Result)
+                                                            {
+                                                                _servers.Add(server);
+                                                            }
+                                                            ServersLoading = false;
+                                                        });
 
-            serverLoader.RunWorkerAsync();
+                serverLoader.RunWorkerAsync();
+            }
         }
 
         private void Save()
@@ -230,6 +238,30 @@ namespace WinPure.ContactManagement.Client.ViewModels
             _connection.ConnectionString = _connectionString.ToString();
 
             SyncServerConnectionsManager.Current.Save(_connection);
+        }
+
+        #endregion
+
+        #region Dispose methods
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <filterpriority>2</filterpriority>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool cleanUpManaged)
+        {
+            if (cleanUpManaged)
+            {
+                GC.SuppressFinalize(this);
+                return;
+            }
+
+            _dbLoader.Dispose();
         }
 
         #endregion

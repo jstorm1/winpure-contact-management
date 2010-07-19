@@ -96,6 +96,7 @@
       <HintPath>..\ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServerCe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="SearchTextBox">
       <HintPath>..\ReferencedAssemblies\SearchTextBox.dll</HintPath>
     </Reference>

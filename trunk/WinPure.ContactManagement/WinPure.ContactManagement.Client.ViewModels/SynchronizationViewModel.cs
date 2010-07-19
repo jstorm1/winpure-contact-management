@@ -249,6 +249,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
             _getEndpointsBackgroundWorker.Dispose();
             _synchronizationWorker.Dispose();
+            _sqlSynchronizationWorker.Dispose();
         }
 
         #endregion

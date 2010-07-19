@@ -12,8 +12,19 @@
                 <ResourceDictionary Source="Resources/Styles/PageEditButtonsStyle.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/TabItemStyle.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
-			
-    		<Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+
+            <Style TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError"
+                             Value="true">
+                        <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={RelativeSource Self},
+                                Path=(Validation.Errors)[0].ErrorContent}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+                <Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
     			<Setter Property="Background" Value="Transparent"/>
     			<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
     			<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>

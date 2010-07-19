@@ -116,6 +116,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Synchronization\SynchronizationManager.cs" />
+    <Compile Include="Validators\SyncServerConnection.cs" />
     <None Include="..\WinPure.ContactManagement.Client\app.Config">
       <Link>app.Config</Link>
     </None>
