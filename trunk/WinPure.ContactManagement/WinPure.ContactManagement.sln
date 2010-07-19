@@ -13,6 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferencedAssemblies", "Ref
 	ProjectSection(SolutionItems) = preProject
 		ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll = ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll
 		ReferencedAssemblies\Microsoft.Expression.Interactions.dll = ReferencedAssemblies\Microsoft.Expression.Interactions.dll
+		ReferencedAssemblies\Microsoft.SqlServer.ConnectionInfo.dll = ReferencedAssemblies\Microsoft.SqlServer.ConnectionInfo.dll
+		ReferencedAssemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll = ReferencedAssemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+		ReferencedAssemblies\Microsoft.SqlServer.Smo.dll = ReferencedAssemblies\Microsoft.SqlServer.Smo.dll
 		ReferencedAssemblies\SearchTextBox.dll = ReferencedAssemblies\SearchTextBox.dll
 		ReferencedAssemblies\System.Data.SqlServerCe.dll = ReferencedAssemblies\System.Data.SqlServerCe.dll
 		ReferencedAssemblies\System.Windows.Interactivity.dll = ReferencedAssemblies\System.Windows.Interactivity.dll
@@ -32,6 +35,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SyncFramework", "SyncFramework", "{01D42FB1-5A4C-4CAE-9FF2-DA481FF4D08E}"
 	ProjectSection(SolutionItems) = preProject
 		ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.dll = ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.dll
+		ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServer.dll = ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServer.dll
 		ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServerCe.dll = ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServerCe.dll
 		ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.dll = ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.dll
 	EndProjectSection
@@ -46,6 +50,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prerequsites", "Prerequsites", "{03D575C2-DE25-459E-8675-9C1754D03B66}"
 	ProjectSection(SolutionItems) = preProject
 		Prerequsites\SyncSDK-v2.0-x86-ENU.msi = Prerequsites\SyncSDK-v2.0-x86-ENU.msi
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseScripts", "DatabaseScripts", "{D4DB3947-F39E-4B8E-A23A-E29BDFC94522}"
+	ProjectSection(SolutionItems) = preProject
+		DatabaseScripts\DatabaseSchema.sqlce = DatabaseScripts\DatabaseSchema.sqlce
 	EndProjectSection
 EndProject
 Global

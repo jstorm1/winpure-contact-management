@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using WinPure.ContactManagement.Common.Helpers;
+using WinPure.ContactManagement.Common.Interfaces.Windows;
 
 namespace WinPure.ContactManagement.Client.CommonControls
 {
@@ -16,8 +17,6 @@ namespace WinPure.ContactManagement.Client.CommonControls
         public static readonly DependencyProperty IsSystemModalProperty = 
     DependencyProperty.Register("IsSystemModal", typeof(bool), typeof(ProgressControl), new UIPropertyMetadata(false));
 
-        private static Grid _mainWindowFrontGrid;
-
         static ProgressControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof (ProgressControl),
@@ -26,28 +25,19 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
         public ProgressControl()
         {
-            _mainWindowFrontGrid = ((DependencyObject)Application.Current.MainWindow.Content).GetChildObjects<Grid>("FrontGrid").FirstOrDefault();
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);
 
-            if (e.Property.Name != "IsVisible" || !IsSystemModal || _mainWindowFrontGrid == null) return;
-            
-            var visibility = (Visibility)e.NewValue;
-                
-            if(visibility == Visibility.Visible)
-            {
-                ((Grid) Parent).Children.Remove(this);
+            var shellWindow = Application.Current.MainWindow as IShellWindow;
 
-                _mainWindowFrontGrid.Children.Clear();
-                _mainWindowFrontGrid.Children.Add(this);
-            }
-            else
-            {
-                _mainWindowFrontGrid.Children.Clear();
-            }
+            if (e.Property.Name != "IsVisible" || !IsSystemModal || shellWindow == null) return;
+            
+            var visibility = Visibility;
+                
+            shellWindow.ModalContent = visibility == Visibility.Visible ? this : null;
         }
 
 

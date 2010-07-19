@@ -52,6 +52,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Synchronization.Data.SqlServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Synchronization.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferencedAssemblies\SyncFramework\Microsoft.Synchronization.Data.SqlServerCe.dll</HintPath>
@@ -78,6 +82,7 @@
     <Compile Include="Helpers\DependencyObjectExtensions.cs" />
     <Compile Include="Interfaces\Entities\ICompany.cs" />
     <Compile Include="Interfaces\SyncService\ISyncService.cs" />
+    <Compile Include="Interfaces\Windows\IShellWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\PropertyChangedBase.cs" />
     <Compile Include="Helpers\SynchronizedObservableCollection.cs" />

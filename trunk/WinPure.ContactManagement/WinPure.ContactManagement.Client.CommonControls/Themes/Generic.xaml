@@ -6,6 +6,7 @@
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/HorizontalMenuStyle.xaml"/>
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PageControlStyle.xaml"/>
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PagesSliderControlStyle.xaml"/>
+		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/ProgressControlStyle.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

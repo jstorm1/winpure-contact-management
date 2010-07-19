@@ -7,6 +7,8 @@ using System.ComponentModel;
 using System.ServiceModel;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Domains;
+using WinPure.ContactManagement.Client.Data.Managers;
+using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Data.Synchronization;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common;
@@ -21,12 +23,16 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private readonly BackgroundWorker _getEndpointsBackgroundWorker;
         private readonly BackgroundWorker _synchronizationWorker;
+        private readonly BackgroundWorker _sqlSynchronizationWorker;
         private string _busyMessage;
         private bool _isBusy;
         private SynchronisedObservableCollection<PeerInfo> _peersInfo;
         private RelayCommand _refreshPeersCommand;
-        private RelayCommand _synchronizeCommand;
         private PeerInfo _selectedPeerInfo;
+        private SyncServerConnection _selectedSyncServerConnection;
+        private ObservableCollection<SyncServerConnection> _syncServerConnections;
+        private RelayCommand _synchronizeCommand;
+        private RelayCommand _sqlSynchronizeCommand;
 
         #endregion
 
@@ -45,7 +51,13 @@ namespace WinPure.ContactManagement.Client.ViewModels
             _synchronizationWorker.DoWork += onSynchronizationDoWork;
             _synchronizationWorker.RunWorkerCompleted += onSynchronizationCompleted;
 
+            _sqlSynchronizationWorker = new BackgroundWorker();
+            _sqlSynchronizationWorker.DoWork += onSqlSynchronizationDoWork;
+            _sqlSynchronizationWorker.RunWorkerCompleted += onSqlSynchronizationCompleted;
+
             refreshPeersInfo();
+
+            SyncServerConnections = SyncServerConnectionsManager.Current.LoadSyncServiceConnections();
         }
 
         #endregion
@@ -106,7 +118,39 @@ namespace WinPure.ContactManagement.Client.ViewModels
             get { return _synchronizeCommand ?? (_synchronizeCommand = new RelayCommand(synchronize, canSynchronize)); }
         }
 
+        public ObservableCollection<SyncServerConnection> SyncServerConnections
+        {
+            get { return _syncServerConnections; }
+            set
+            {
+                if (_syncServerConnections == value) return;
+                _syncServerConnections = value;
+                RaisePropertyChanged("SyncServerConnections");
+            }
+        }
+
+        public SyncServerConnection SelectedSyncServerConnection
+        {
+            get { return _selectedSyncServerConnection; }
+            set
+            {
+                if (_selectedSyncServerConnection == value) return;
+                _selectedSyncServerConnection = value;
+                RaisePropertyChanged("SelectedSyncServerConnection");
+            }
+        }
+
+        public RelayCommand SqlSynchronizeCommand
+        {
+            get { return _sqlSynchronizeCommand ?? (_sqlSynchronizeCommand = new RelayCommand(sqlSynchronize, canSqlSynchronize)); }
+        }
+
         #endregion
+
+        private bool canSqlSynchronize()
+        {
+            return SelectedSyncServerConnection != null;
+        }
 
         private bool canSynchronize()
         {
@@ -118,6 +162,24 @@ namespace WinPure.ContactManagement.Client.ViewModels
             IsBusy = true;
             BusyMessage = "Searching...";
             _getEndpointsBackgroundWorker.RunWorkerAsync();
+        }
+
+        private void sqlSynchronize()
+        {
+            IsBusy = true;
+            BusyMessage = "Synchronization...";
+            _sqlSynchronizationWorker.RunWorkerAsync();
+        }
+
+
+        private void onSqlSynchronizationCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            SynchronizationManager.Synchronize(SelectedSyncServerConnection.ConnectionString);
+        }
+
+        private void onSqlSynchronizationDoWork(object sender, DoWorkEventArgs e)
+        {
+            IsBusy = false;
         }
 
         private void synchronize()

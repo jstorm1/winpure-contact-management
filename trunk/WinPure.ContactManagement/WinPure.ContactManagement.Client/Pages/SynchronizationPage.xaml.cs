@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinPure.ContactManagement.Client.CommonControls;
+using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.Pages.Modal;
 
 namespace WinPure.ContactManagement.Client.Pages
 {
@@ -23,6 +25,20 @@ namespace WinPure.ContactManagement.Client.Pages
         public SynchronizationPage()
         {
             InitializeComponent();
+        }
+
+        private void onAddButtonClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new  SyncServerConnectionEditor();
+            ModalDialog = dialog;
+            dialog.Show();
+        }
+
+        private void onEditButtonClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	var dialog = new  SyncServerConnectionEditor((SyncServerConnection) SyncServersList.SelectedItem);
+            ModalDialog = dialog;
+            dialog.Show();
         }
     }
 }

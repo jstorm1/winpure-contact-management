@@ -101,6 +101,22 @@ namespace WinPure.ContactManagement.Client.Data.Model
             }
         }
         private ObjectSet<Contact> _Contacts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SyncServerConnection> SyncServerConnections
+        {
+            get
+            {
+                if ((_SyncServerConnections == null))
+                {
+                    _SyncServerConnections = base.CreateObjectSet<SyncServerConnection>("SyncServerConnections");
+                }
+                return _SyncServerConnections;
+            }
+        }
+        private ObjectSet<SyncServerConnection> _SyncServerConnections;
 
         #endregion
         #region AddTo Methods
@@ -119,6 +135,14 @@ namespace WinPure.ContactManagement.Client.Data.Model
         public void AddToContacts(Contact contact)
         {
             base.AddObject("Contacts", contact);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SyncServerConnections EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSyncServerConnections(SyncServerConnection syncServerConnection)
+        {
+            base.AddObject("SyncServerConnections", syncServerConnection);
         }
 
         #endregion
@@ -979,6 +1003,113 @@ namespace WinPure.ContactManagement.Client.Data.Model
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="WinPure.ContactManagement.Client.Data.Model", Name="SyncServerConnection")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SyncServerConnection : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SyncServerConnection object.
+        /// </summary>
+        /// <param name="syncServerConnectionId">Initial value of the SyncServerConnectionId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="connectionString">Initial value of the ConnectionString property.</param>
+        public static SyncServerConnection CreateSyncServerConnection(global::System.Guid syncServerConnectionId, global::System.String name, global::System.String connectionString)
+        {
+            SyncServerConnection syncServerConnection = new SyncServerConnection();
+            syncServerConnection.SyncServerConnectionId = syncServerConnectionId;
+            syncServerConnection.Name = name;
+            syncServerConnection.ConnectionString = connectionString;
+            return syncServerConnection;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid SyncServerConnectionId
+        {
+            get
+            {
+                return _SyncServerConnectionId;
+            }
+            set
+            {
+                if (_SyncServerConnectionId != value)
+                {
+                    OnSyncServerConnectionIdChanging(value);
+                    ReportPropertyChanging("SyncServerConnectionId");
+                    _SyncServerConnectionId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SyncServerConnectionId");
+                    OnSyncServerConnectionIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _SyncServerConnectionId;
+        partial void OnSyncServerConnectionIdChanging(global::System.Guid value);
+        partial void OnSyncServerConnectionIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ConnectionString
+        {
+            get
+            {
+                return _ConnectionString;
+            }
+            set
+            {
+                OnConnectionStringChanging(value);
+                ReportPropertyChanging("ConnectionString");
+                _ConnectionString = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ConnectionString");
+                OnConnectionStringChanged();
+            }
+        }
+        private global::System.String _ConnectionString;
+        partial void OnConnectionStringChanging(global::System.String value);
+        partial void OnConnectionStringChanged();
+
+        #endregion
+    
     }
 
     #endregion

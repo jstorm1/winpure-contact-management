@@ -145,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\LoadingCircle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\SmallCompaniesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Modal\ContactsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Modal\SyncServerConnectionEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +201,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\LoadingCircle.xaml.cs">
+      <DependentUpon>LoadingCircle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SmallCompaniesList.xaml.cs">
       <DependentUpon>SmallCompaniesList.xaml</DependentUpon>
     </Compile>
@@ -212,6 +223,9 @@
     </Compile>
     <Compile Include="Pages\Modal\ContactsEditor.xaml.cs">
       <DependentUpon>ContactsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modal\SyncServerConnectionEditor.xaml.cs">
+      <DependentUpon>SyncServerConnectionEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SynchronizationPage.xaml.cs">
       <DependentUpon>SynchronizationPage.xaml</DependentUpon>

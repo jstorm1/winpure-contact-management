@@ -2,11 +2,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data.SqlServerCe;
 using System.IO;
 using System.ServiceModel;
 using System.Windows;
 using Microsoft.Synchronization;
+using Microsoft.Synchronization.Data.SqlServer;
 using Microsoft.Synchronization.Data.SqlServerCe;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.SyncService;
@@ -23,6 +25,32 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
         public static IEnumerable<EndpointAddress> GetAddressesOfSyncService()
         {
             return SyncServiceManager.Current.GetAddressesOfService();
+        }
+
+        public static void Synchronize(string sqlConnectionString)
+        {
+            bool isScopeExists = ScopeHelper.CheckScope(sqlConnectionString, true);
+
+            if (!isScopeExists)
+                ScopeHelper.CreateScope(sqlConnectionString, true);
+
+            using (var localDbConnection = new SqlCeConnection(Constants.LocalConnectionString))
+            {
+                using (var remoteDbConnection = new SqlConnection(sqlConnectionString))
+                {
+                    var syncOrchestrator = new SyncOrchestrator
+                                               {
+                                                   Direction = SyncDirectionOrder.DownloadAndUpload,
+                                                   RemoteProvider =
+                                                       new SqlSyncProvider("SyncScope", remoteDbConnection),
+                                                   LocalProvider = new SqlCeSyncProvider("SyncScope", localDbConnection)
+                                               };
+
+                    syncOrchestrator.Synchronize();
+                }
+            }
+
+            ContactsManager.Current.RefreshCache();
         }
 
         public static void Synchronize(EndpointAddress remoteAddress)
@@ -58,7 +86,7 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
         {
             var binding = new BasicHttpBinding
                               {
-                                  Security = { Mode = BasicHttpSecurityMode.None },
+                                  Security = {Mode = BasicHttpSecurityMode.None},
                                   MaxReceivedMessageSize = 10067108864,
                                   MessageEncoding = WSMessageEncoding.Mtom,
                                   TransferMode = TransferMode.Streamed
@@ -90,10 +118,10 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
                     serviceClient.UploadFile(fileInfo.Name, fileInfo.Length, uploadStreamWithProgress);
                 }
             }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             finally
             {
                 if (stream != null)

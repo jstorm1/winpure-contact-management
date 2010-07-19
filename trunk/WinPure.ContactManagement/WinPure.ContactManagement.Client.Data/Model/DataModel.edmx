@@ -8,6 +8,7 @@
         <EntityContainer Name="WinPureContactManagementClientDataModelStoreContainer">
           <EntitySet Name="Company" EntityType="WinPure.ContactManagement.Client.Data.Model.Store.Company" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="WinPure.ContactManagement.Client.Data.Model.Store.Contact" store:Type="Tables" />
+          <EntitySet Name="SyncServerConnection" EntityType="WinPure.ContactManagement.Client.Data.Model.Store.SyncServerConnection" store:Type="Tables" />
           <AssociationSet Name="FK_Company_Contact" Association="WinPure.ContactManagement.Client.Data.Model.Store.FK_Company_Contact">
             <End Role="Company" EntitySet="Company" />
             <End Role="Contact" EntitySet="Contact" />
@@ -53,6 +54,14 @@
           <Property Name="EmailAddress2" Type="nvarchar" MaxLength="100" />
           <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="SyncServerConnection">
+          <Key>
+            <PropertyRef Name="SyncServerConnectionId" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ConnectionString" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="SyncServerConnectionId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Company_Contact">
           <End Role="Company" Type="WinPure.ContactManagement.Client.Data.Model.Store.Company" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -78,6 +87,7 @@
             <End Role="Company" EntitySet="Companies" />
             <End Role="Contact" EntitySet="Contacts" />
           </AssociationSet>
+          <EntitySet Name="SyncServerConnections" EntityType="WinPure.ContactManagement.Client.Data.Model.SyncServerConnection" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -135,6 +145,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SyncServerConnection">
+          <Key>
+            <PropertyRef Name="SyncServerConnectionId" />
+          </Key>
+          <Property Type="Guid" Name="SyncServerConnectionId" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ConnectionString" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -175,6 +193,15 @@
             <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
             <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SyncServerConnections">
+            <EntityTypeMapping TypeName="WinPure.ContactManagement.Client.Data.Model.SyncServerConnection">
+              <MappingFragment StoreEntitySet="SyncServerConnection">
+                <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SyncServerConnectionId" ColumnName="SyncServerConnectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -202,6 +229,7 @@
           <ConnectorPoint PointX="2.25" PointY="2.87474609375" />
           <ConnectorPoint PointX="3" PointY="2.87474609375" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="WinPure.ContactManagement.Client.Data.Model.SyncServerConnection" Width="2.75" PointX="5.375" PointY="0.75" Height="1.5956835937499996" />
       </Diagram>
     </Diagrams>
   </Designer>
