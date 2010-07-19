@@ -5,17 +5,19 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Domains;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
 namespace WinPure.ContactManagement.Client.ViewModels
 {
-    public class SyncServerConnectionEditorViewModel : PropertyChangedBase, IDisposable
+    public class SyncServerConnectionEditorViewModel : ViewModelBase, IDisposable
     {
         #region Fields
 
@@ -152,8 +154,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
         
         private bool canSave()
         {
+            //Check for Design mode.
+            if (IsDesignMode) return false;
+
             Connection.Validate();
-            return !Connection.HasErrors;
+
+            return !Connection.HasErrors && ConnectionString.IsValid();
         }
 
         private void Cancel()

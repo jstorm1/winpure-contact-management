@@ -55,7 +55,7 @@
 					x:Name="SqlServerName"
 					IsEditable="True"
 					ItemsSource="{Binding Servers}"
-					Text="{Binding ConnectionString.Server, UpdateSourceTrigger=LostFocus}" FontSize="16" Background="#CCFFFFFF" >
+					Text="{Binding ConnectionString.Server, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True}" FontSize="16" Background="#CCFFFFFF" >
 					<ComboBox.BorderBrush>
 						<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
 							<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -84,7 +84,7 @@
 					x:Name="SqlDatabaseName"
 					IsEditable="True"
 					ItemsSource="{Binding Databases}"
-					Text="{Binding ConnectionString.Database, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Background="#CCFFFFFF" >
+					Text="{Binding ConnectionString.Database, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="16" Background="#CCFFFFFF" >
 					<ComboBox.BorderBrush>
 						<LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
 							<GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -144,7 +144,7 @@
 						<TextBox Grid.Column="1"
 							Grid.Row="0"
 							Margin="8"
-							Text="{Binding ConnectionString.UserName, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Background="#CCFFFFFF" BorderBrush="White" />
+							Text="{Binding ConnectionString.UserName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="16" Background="#CCFFFFFF" BorderBrush="White" />
 						<TextBlock Text="Password: "
 							Grid.Column="0"
 							Grid.Row="1"
@@ -153,7 +153,7 @@
 						<TextBox Grid.Column="1"
 							Grid.Row="1"
 							Margin="8"
-							Text="{Binding ConnectionString.Password, UpdateSourceTrigger=PropertyChanged}" FontSize="16" Background="#CCFFFFFF" BorderBrush="White" />
+							Text="{Binding ConnectionString.Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="16" Background="#CCFFFFFF" BorderBrush="White" />
 					</Grid>
 				</StackPanel>
 				<Border Margin="8,8,0,8" VerticalAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFB7AD33" HorizontalAlignment="Left" Width="148.567">

@@ -110,13 +110,15 @@
     <Compile Include="Domains\SmoTasks.cs" />
     <Compile Include="Domains\SqlConnectionString.cs" />
     <Compile Include="Managers\SyncServerConnectionsManager.cs" />
+    <Compile Include="Model\Validators\Company.cs" />
     <Compile Include="Service References\SyncService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Synchronization\SynchronizationManager.cs" />
-    <Compile Include="Validators\SyncServerConnection.cs" />
+    <Compile Include="Model\Validators\SyncServerConnection.cs" />
+    <Compile Include="Model\Validators\Base\EntityValidatorBase.cs" />
     <None Include="..\WinPure.ContactManagement.Client\app.Config">
       <Link>app.Config</Link>
     </None>

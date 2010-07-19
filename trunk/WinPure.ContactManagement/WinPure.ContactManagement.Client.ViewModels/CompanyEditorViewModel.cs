@@ -1,5 +1,6 @@
 ﻿#region References
 
+using System;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
@@ -16,7 +17,15 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         public RelayCommand SaveCommand
         {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save)); }
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save, canSave)); }
+        }
+
+        private bool canSave()
+        {
+            if (IsDesignMode) return false;
+
+            _company.Validate();
+            return !_company.HasErrors;
         }
 
         public Company Company

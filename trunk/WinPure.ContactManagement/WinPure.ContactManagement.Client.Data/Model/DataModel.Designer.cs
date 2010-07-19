@@ -159,7 +159,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
     [EdmEntityTypeAttribute(NamespaceName="WinPure.ContactManagement.Client.Data.Model", Name="Company")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Company : EntityObject
+    public partial class Company 
     {
         #region Factory Method
     
@@ -1011,7 +1011,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
     [EdmEntityTypeAttribute(NamespaceName="WinPure.ContactManagement.Client.Data.Model", Name="SyncServerConnection")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class SyncServerConnection : EntityObject
+    public partial class SyncServerConnection 
     {
         #region Factory Method
     

@@ -1,13 +1,14 @@
 ﻿#region References
 
 using System.Collections.Generic;
-using System.ComponentModel; 
+using System.ComponentModel;
+using System.Data.Objects.DataClasses;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Data.Model
+namespace WinPure.ContactManagement.Client.Data.Model.Validators.Base
 {
-    public partial class SyncServerConnection : IDataErrorInfo
+    public abstract class EntityValidatorBase :EntityObject, IDataErrorInfo
     {
         #region Errors Collection
 
@@ -18,7 +19,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
             get { return _validationErrors.Count > 0; }
         }
 
-        private void addError(string columnName, string message)
+        protected void AddError(string columnName, string message)
         {
             if (!_validationErrors.ContainsKey(columnName))
             {
@@ -26,7 +27,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
             }
         }
 
-        private void removeError(string columnName)
+        protected void RemoveError(string columnName)
         {
             if (_validationErrors.ContainsKey(columnName))
             {
@@ -36,22 +37,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
 
         #endregion
 
-        partial void OnNameChanged()
-        {
-            if (string.IsNullOrEmpty(_Name))
-            {
-                addError("Name", "Please enter connection name.");
-            }
-            else
-            {
-                removeError("Name");
-            }
-        }
-
-        public void Validate()
-        {
-            OnNameChanged();
-        }
+        public abstract void Validate();
 
         #region Implementation of IDataErrorInfo
 
@@ -75,7 +61,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// </returns>
         public string Error
         {
-            get { return _validationErrors.Count > 0 ? "Sync Server Connection is invalid." : null; }
+            get { return _validationErrors.Count > 0 ? "Object is invalid." : null; }
         }
 
         #endregion
