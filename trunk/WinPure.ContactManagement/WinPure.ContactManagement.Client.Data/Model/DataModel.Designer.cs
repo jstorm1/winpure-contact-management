@@ -555,7 +555,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
     [EdmEntityTypeAttribute(NamespaceName="WinPure.ContactManagement.Client.Data.Model", Name="Contact")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Contact : EntityObject
+    public partial class Contact 
     {
         #region Factory Method
     
