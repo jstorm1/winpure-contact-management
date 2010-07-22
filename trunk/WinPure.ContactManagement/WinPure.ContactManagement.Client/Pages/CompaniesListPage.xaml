@@ -82,7 +82,7 @@
     				</i:Interaction.Triggers>
     			</Button>
     			<Button x:Name="EditButton" Content="Edit" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick"/>
-    			<Button x:Name="DeleteButton" Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onDeleteButtonClick"/>
+    			<Button x:Name="DeleteButton" Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Command="{Binding DeleteCommand, Mode=OneWay}"/>
     		</StackPanel>
     	</Grid>
     	<Grid Grid.Column="1" Background="#0DFFFFFF">

@@ -51,6 +51,7 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
             }
 
             ContactsManager.Current.RefreshCache();
+            CompaniesManager.Current.RefreshCache();
         }
 
         public static void Synchronize(EndpointAddress remoteAddress)
@@ -78,6 +79,7 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
             }
 
             ContactsManager.Current.RefreshCache();
+            CompaniesManager.Current.RefreshCache();
         }
 
         #region Service Methods

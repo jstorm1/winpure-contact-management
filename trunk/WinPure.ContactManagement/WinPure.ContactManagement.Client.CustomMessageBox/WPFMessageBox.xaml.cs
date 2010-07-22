@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using BlogsPrajeesh.BlogSpot.WPFControls;
 
 namespace WinPure.ContactManagement.Client.CustomMessageBox
 {

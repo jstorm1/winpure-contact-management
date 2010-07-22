@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Common;
 
 #endregion
 
@@ -12,7 +13,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 {
     public class CompaniesManager : DataManagerBase
     {
-        private ObservableCollection<Company> _companiesCache;
+        private SynchronisedObservableCollection<Company> _companiesCache;
 
         #region Singleton constructor
 
@@ -20,6 +21,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 
         private CompaniesManager()
         {
+            Services.SyncService.DatabaseChanged += onSyncServiceDatabaseChanged;
         }
 
         public static CompaniesManager Current
@@ -33,9 +35,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// Method for loading companies collection from database.
         /// </summary>
         /// <returns>Companies Collection</returns>
-        public ObservableCollection<Company> LoadCompanies()
+        public SynchronisedObservableCollection<Company> LoadCompanies()
         {
-            refreshCache();
+            RefreshCache();
             return _companiesCache;
         }
 
@@ -46,8 +48,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         public void Revert(Company company)
         {
             if (company == null) throw new ArgumentNullException("company");
-            if (company.CompanyId == Guid.Empty || Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null) return;
-            
+            if (company.CompanyId == Guid.Empty ||
+                Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null) return;
+
             Context.Refresh(RefreshMode.StoreWins, company);
         }
 
@@ -66,14 +69,28 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 
             Context.SaveChanges();
 
-            refreshCache();
+            RefreshCache();
         }
 
-        
-
-        private void refreshCache()
+        /// <summary>
+        /// Method for deleting company from database.
+        /// </summary>
+        /// <param name="company">Company which will be deleted.</param>
+        public void Delete(Company company)
         {
-            if (_companiesCache == null) _companiesCache = new ObservableCollection<Company>();
+            if (company == null) throw new ArgumentNullException("company");
+
+            if (company.CompanyId == Guid.Empty ||
+                Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null) return;
+
+            Context.DeleteObject(company);
+            Context.SaveChanges();
+            RefreshCache();
+        }
+
+        public void RefreshCache()
+        {
+            if (_companiesCache == null) _companiesCache = new SynchronisedObservableCollection<Company>(new ObservableCollection<Company>());
 
             _companiesCache.Clear();
 
@@ -81,6 +98,11 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             {
                 _companiesCache.Add(company);
             }
+        }
+
+        private void onSyncServiceDatabaseChanged(object sender, EventArgs e)
+        {
+            RefreshCache();
         }
     }
 }

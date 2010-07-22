@@ -27,9 +27,9 @@
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" 
                     HorizontalAlignment="Right" Margin="0 0 5 0">            
             <Button Content="_Yes" Visibility="{Binding YesNoVisibility}" Command="{Binding YesCommand}" Margin="5 5 5 5" Height="24" Width="80" />
-            <Button Content="_No" Visibility="{Binding YesNoVisibility}" Command="{Binding NoCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+            <Button Content="_No" Visibility="{Binding YesNoVisibility}" Command="{Binding NoCommand}" Margin="5 5 5 5" Height="24" Width="80" IsDefault="True" />
             <Button Content="_Cancel" Visibility="{Binding CancelVisibility}" Command="{Binding CancelCommand}" Margin="5 5 5 5" Height="24" Width="80" />
-            <Button Content="O_K" Visibility="{Binding OkVisibility}" Command="{Binding OkCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+            <Button Content="O_K" Visibility="{Binding OkVisibility}" Command="{Binding OkCommand}" Margin="5 5 5 5" Height="24" Width="80" IsDefault="True" />
             <Button Content="_Close" Visibility="{Binding CloseVisibility}" Command="{Binding CloseCommand}" Margin="5 5 5 5" Height="24" Width="80" />
         </StackPanel>
     </Grid>

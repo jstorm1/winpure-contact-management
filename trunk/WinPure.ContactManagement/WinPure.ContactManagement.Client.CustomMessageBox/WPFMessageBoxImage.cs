@@ -1,4 +1,4 @@
-﻿namespace BlogsPrajeesh.BlogSpot.WPFControls
+﻿namespace WinPure.ContactManagement.Client.CustomMessageBox
 {
     public enum WPFMessageBoxImage
     {

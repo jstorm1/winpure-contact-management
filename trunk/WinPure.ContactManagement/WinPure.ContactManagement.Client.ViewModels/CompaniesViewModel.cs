@@ -6,9 +6,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
+using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
+using WinPure.ContactManagement.Common;
 
 #endregion
 
@@ -18,11 +20,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         #region Fields
 
-        private ObservableCollection<Company> _companies;
+        private SynchronisedObservableCollection<Company> _companies;
+        private RelayCommand _deleteCommand;
         private int _contactsCount;
         private RelayCommand<string> _searchCommand;
         private Company _selectedCompany;
-        private ObservableCollection<Company> _originalCompaniesCollection;
+        private SynchronisedObservableCollection<Company> _originalCompaniesCollection;
 
         #endregion
 
@@ -46,7 +49,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// <summary>
         /// Collection of Companies.
         /// </summary>
-        public ObservableCollection<Company> Companies
+        public SynchronisedObservableCollection<Company> Companies
         {
             get { return _companies; }
             set
@@ -88,16 +91,37 @@ namespace WinPure.ContactManagement.Client.ViewModels
             get { return _searchCommand ?? (_searchCommand = new RelayCommand<string>(search)); }
         }
 
+        public RelayCommand DeleteCommand
+        {
+            get
+            {
+                if (_deleteCommand == null)
+                    _deleteCommand = new RelayCommand(delete);
+                return _deleteCommand;
+            }
+        }
+
         #endregion
 
         #region Methods
-        
+
+        private void delete()
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show("Delete Company",
+                                                            "Are you sure you want to delete this Company?",
+                                                            WPFMessageBoxButtons.YesNo,
+                                                            WPFMessageBoxImage.Question);
+            if (result == WPFMessageBoxResult.No) return;
+
+            CompaniesManager.Current.Delete(_selectedCompany);
+        }
+
         private void search(string companyName)
         {
             if (companyName != "")
             {
                 if (_originalCompaniesCollection == null) _originalCompaniesCollection = Companies;
-                Companies = new ObservableCollection<Company>(Companies.Where(c => c.Name.ToUpper().Contains(companyName.ToUpper())));
+                Companies = new SynchronisedObservableCollection<Company>(new ObservableCollection<Company>( Companies.Where(c => c.Name.ToUpper().Contains(companyName.ToUpper()))));
             }
             else
             {

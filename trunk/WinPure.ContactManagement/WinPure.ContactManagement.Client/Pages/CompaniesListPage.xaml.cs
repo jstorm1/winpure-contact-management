@@ -32,10 +32,5 @@ namespace WinPure.ContactManagement.Client.Pages
             ModalDialog = dialog;
             dialog.Show();
         }
-
-        private void onDeleteButtonClick(object sender, RoutedEventArgs e)
-        {
-        	MessageBox.Show("Not implemented yet.");
-        }
     }
 }

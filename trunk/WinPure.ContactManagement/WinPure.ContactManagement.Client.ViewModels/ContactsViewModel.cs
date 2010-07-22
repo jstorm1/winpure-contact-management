@@ -1,6 +1,5 @@
 ﻿#region References
 
-using BlogsPrajeesh.BlogSpot.WPFControls;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Managers;

@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BlogsPrajeesh.BlogSpot.WPFControls;
 using WinPure.ContactManagement.Client.CustomMessageBox.Commands;
 
 namespace WinPure.ContactManagement.Client.CustomMessageBox

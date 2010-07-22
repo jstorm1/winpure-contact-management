@@ -67,15 +67,11 @@ namespace WinPure.ContactManagement.Client.Services
 
                 writeStream.Close();
             }
+
             if (DatabaseChanged != null)
             {
-                DatabaseChanged.BeginInvoke(null, null, Test, null);
+                DatabaseChanged.Invoke(null, null);
             }
-        }
-        
-        private void Test(IAsyncResult ar)
-        {
-            DatabaseChanged.EndInvoke(ar);
         }
 
         #endregion
