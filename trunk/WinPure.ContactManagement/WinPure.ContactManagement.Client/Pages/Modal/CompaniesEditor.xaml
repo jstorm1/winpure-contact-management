@@ -120,6 +120,6 @@
     		</Grid>
     	</StackPanel>
     	<Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="0,0,112,0" Width="100" FontSize="16" Click="onSaveButtonClick" Command="{Binding SaveCommand, Mode=OneWay}" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35"/>
-    	<Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,8,0" Width="100" FontSize="16" Click="onCancelButtonClick" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35"/>
+    	<Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,8,0" Width="100" FontSize="16" Click="onCancelButtonClick" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35" Command="{Binding CancelCommand, Mode=OneWay}"/>
     </Grid>
 </CommonControls:ModalDialog>
