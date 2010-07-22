@@ -16,6 +16,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private Contact _contact;
         private RelayCommand _saveCommand;
+        private RelayCommand _cancelCommand;
 
         #endregion
 
@@ -37,9 +38,24 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        public RelayCommand CancelCommand
+        {
+            get
+            {
+                if (_cancelCommand == null)
+                    _cancelCommand = new RelayCommand(cancel);
+                return _cancelCommand;
+            }
+        }
+
         #endregion
 
         #region Methods
+
+        private void cancel()
+        {
+            ContactsManager.Current.Revert(_contact);
+        }
 
         private bool canSave()
         {
