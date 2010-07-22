@@ -269,7 +269,6 @@
     <None Include="Resources\Images\PSDs\Icons.psd" />
     <None Include="Resources\Images\PSDs\Icons_48x48.psd" />
     <None Include="Resources\Images\PSDs\Logo.psd" />
-    <None Include="WinPure.ContactManagement.Client_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\128x128\Contacts.png" />
