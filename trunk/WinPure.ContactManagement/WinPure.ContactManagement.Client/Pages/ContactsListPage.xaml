@@ -47,7 +47,7 @@
     			<RowDefinition/>
     			<RowDefinition Height="Auto" />
     		</Grid.RowDefinitions>
-    		<ListBox x:Name="ContactsList" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding Contacts}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemTemplate="{DynamicResource ContactDataTemplate}" SnapsToDevicePixels="False" Foreground="{x:Null}" BorderThickness="0" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0"/>
+    		<ListBox x:Name="ContactsList" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding Contacts}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemTemplate="{DynamicResource ContactDataTemplate}" SnapsToDevicePixels="False" Foreground="{x:Null}" BorderThickness="0" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0" Background="{x:Null}" MouseDoubleClick="onContactsListMouseDoubleClick"/>
     		<StackPanel Grid.Row="1" Margin="8" Orientation="Horizontal">
     			<Button x:Name="AddButton" Content="Add" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Click="onAddButtonClick"/>
     			<Button x:Name="EditButton" Content="Edit" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick"/>

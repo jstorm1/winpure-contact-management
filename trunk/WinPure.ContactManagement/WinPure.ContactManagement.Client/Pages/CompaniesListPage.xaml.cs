@@ -1,9 +1,10 @@
 ﻿#region References
 
 using System.Windows;
+using System.Windows.Input;
 using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
-using WinPure.ContactManagement.Client.Pages.Modal; 
+using WinPure.ContactManagement.Client.Pages.Modal;
 
 #endregion
 
@@ -28,6 +29,16 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onEditButtonClick(object sender, RoutedEventArgs e)
         {
+            if (CompaniesList.SelectedItem == null) return;
+            var dialog = new CompaniesEditor((Company) CompaniesList.SelectedItem);
+            ModalDialog = dialog;
+            dialog.Show();
+        }
+
+        private void onCompaniesListMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (CompaniesList.SelectedItem == null || e.ChangedButton != MouseButton.Left) return;
+
             var dialog = new CompaniesEditor((Company) CompaniesList.SelectedItem);
             ModalDialog = dialog;
             dialog.Show();

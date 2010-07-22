@@ -17,16 +17,6 @@
         						<ElasticEase EasingMode="EaseOut"/>
         					</VisualTransition.GeneratedEasingFunction>
         					<Storyboard>
-        						<DoubleAnimation Duration="0:0:0.2" To="0.8" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="PageBackGrid">
-        							<DoubleAnimation.EasingFunction>
-        								<ElasticEase EasingMode="EaseOut"/>
-        							</DoubleAnimation.EasingFunction>
-        						</DoubleAnimation>
-        						<DoubleAnimation Duration="0:0:0.2" To="0.8" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="PageBackGrid">
-        							<DoubleAnimation.EasingFunction>
-        								<ElasticEase EasingMode="EaseOut"/>
-        							</DoubleAnimation.EasingFunction>
-        						</DoubleAnimation>
         						<DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="ModalDialogOwner">
         							<DoubleAnimation.EasingFunction>
         								<ElasticEase EasingMode="EaseOut"/>
@@ -44,16 +34,6 @@
         						<ElasticEase EasingMode="EaseOut"/>
         					</VisualTransition.GeneratedEasingFunction>
         					<Storyboard>
-        						<DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="PageBackGrid">
-        							<DoubleAnimation.EasingFunction>
-        								<ElasticEase EasingMode="EaseOut"/>
-        							</DoubleAnimation.EasingFunction>
-        						</DoubleAnimation>
-        						<DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="PageBackGrid">
-        							<DoubleAnimation.EasingFunction>
-        								<ElasticEase EasingMode="EaseOut"/>
-        							</DoubleAnimation.EasingFunction>
-        						</DoubleAnimation>
         						<DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="ModalDialogOwner">
         							<DoubleAnimation.EasingFunction>
         								<ElasticEase EasingMode="EaseOut"/>
@@ -70,12 +50,6 @@
         			<VisualState x:Name="Normal"/>
         			<VisualState x:Name="ShowModalDialog">
         				<Storyboard>
-        					<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="PageBackGrid">
-        						<EasingDoubleKeyFrame KeyTime="0" Value="0.8"/>
-        					</DoubleAnimationUsingKeyFrames>
-        					<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="PageBackGrid">
-        						<EasingDoubleKeyFrame KeyTime="0" Value="0.8"/>
-        					</DoubleAnimationUsingKeyFrames>
         					<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PageBackGrid">
         						<EasingDoubleKeyFrame KeyTime="0" Value="0.795"/>
         					</DoubleAnimationUsingKeyFrames>

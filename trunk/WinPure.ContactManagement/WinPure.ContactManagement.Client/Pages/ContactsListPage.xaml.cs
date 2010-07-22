@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Pages.Modal;
@@ -25,6 +26,15 @@ namespace WinPure.ContactManagement.Client.Pages
         private void onEditButtonClick(object sender, RoutedEventArgs e)
         {
             var dialog = new ContactsEditor((Contact) ContactsList.SelectedItem);
+            ModalDialog = dialog;
+            dialog.Show();
+        }
+
+        private void onContactsListMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+			if (ContactsList.SelectedItem == null || e.ChangedButton != MouseButton.Left) return;
+			
+        	var dialog = new ContactsEditor((Contact) ContactsList.SelectedItem);
             ModalDialog = dialog;
             dialog.Show();
         }
