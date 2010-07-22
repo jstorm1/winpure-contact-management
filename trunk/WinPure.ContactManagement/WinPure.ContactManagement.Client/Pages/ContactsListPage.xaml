@@ -51,7 +51,7 @@
     		<StackPanel Grid.Row="1" Margin="8" Orientation="Horizontal">
     			<Button x:Name="AddButton" Content="Add" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Click="onAddButtonClick"/>
     			<Button x:Name="EditButton" Content="Edit" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick"/>
-    			<Button Content="Delete" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}"/>
+    			<Button Content="Delete" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Command="{Binding DeleteCommand, Mode=OneWay}"/>
     		</StackPanel>
     	</Grid>
     	<Grid Grid.Column="1" Background="#0CFFFFFF">
