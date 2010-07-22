@@ -82,6 +82,21 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             Context.Refresh(RefreshMode.StoreWins, contact);
         }
 
+        /// <summary>
+        /// Removes contact from database.
+        /// </summary>
+        /// <param name="contact">Contact which will be removed.</param>
+        public void Delete(Contact contact)
+        {
+            if (contact == null) throw new ArgumentNullException("contact");
+            if (contact.ContactID == Guid.Empty ||
+                Context.Contacts.Where(c => c.ContactID == contact.ContactID).FirstOrDefault() == null) return;
+            
+            Context.DeleteObject(contact);
+            Context.SaveChanges();
+            RefreshCache();
+        }
+
         public void RefreshCache()
         {
             Context.Refresh(RefreshMode.StoreWins, Context.Contacts);

@@ -1,6 +1,5 @@
 ﻿#region References
 
-using System;
 using BlogsPrajeesh.BlogSpot.WPFControls;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
@@ -73,8 +72,13 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private void delete()
         {
-            WPFMessageBox.Show("Delete Contact", "Are you sure you want to delete this Contact?",WPFMessageBoxButtons.YesNo,
-                               WPFMessageBoxImage.Question);
+            WPFMessageBoxResult result = WPFMessageBox.Show("Delete Contact",
+                                                            "Are you sure you want to delete this Contact?",
+                                                            WPFMessageBoxButtons.YesNo,
+                                                            WPFMessageBoxImage.Question);
+            if (result == WPFMessageBoxResult.No) return;
+
+            ContactsManager.Current.Delete(_selectedContact);
         }
 
         #endregion
