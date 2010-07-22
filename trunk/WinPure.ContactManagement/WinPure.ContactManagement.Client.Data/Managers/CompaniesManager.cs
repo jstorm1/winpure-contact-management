@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Objects;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Model;
 
@@ -39,6 +40,18 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         }
 
         /// <summary>
+        /// Method which discards changes in Company, and loads Company state from database.
+        /// </summary>
+        /// <param name="company">Company which will be reverted.</param>
+        public void Revert(Company company)
+        {
+            if (company == null) throw new ArgumentNullException("company");
+            if (company.CompanyId == Guid.Empty) return;
+            
+            Context.Refresh(RefreshMode.StoreWins, company);
+        }
+
+        /// <summary>
         /// Saves changes to the database.
         /// </summary>
         /// <param name="company"></param>
@@ -55,6 +68,8 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 
             refreshCache();
         }
+
+        
 
         private void refreshCache()
         {

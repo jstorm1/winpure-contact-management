@@ -5,13 +5,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Domains;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
-using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
@@ -22,18 +20,18 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #region Fields
 
         private static ObservableCollection<string> _servers;
-        private static readonly object ServersLock = new object();
+        private static readonly object _serversLock = new object();
         private readonly SqlConnectionString _connectionString;
 
         private readonly ObservableCollection<string> _databases = new ObservableCollection<string>();
         private readonly BackgroundWorker _dbLoader = new BackgroundWorker();
         private readonly ISmoTasks _smoTasks;
+        private RelayCommand _cancelCommand;
+        private SyncServerConnection _connection;
         private string _header = "Sql Configuration";
         private string _lastServer;
-        private bool _serversLoading;
-        private SyncServerConnection _connection;
         private RelayCommand _saveCommand;
-        private RelayCommand _cancelCommand;
+        private bool _serversLoading;
 
         #endregion
 
@@ -59,10 +57,10 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
             _connectionString.PropertyChanged += (sender, e) => RaisePropertyChanged("ConnectionString");
 
-            _dbLoader.DoWork += DbLoaderDoWork;
-            _dbLoader.RunWorkerCompleted += DbLoaderRunWorkerCompleted;
+            _dbLoader.DoWork += dbLoaderDoWork;
+            _dbLoader.RunWorkerCompleted += dbLoaderRunWorkerCompleted;
 
-            _connectionString.PropertyChanged += ConnectionStringPropertyChanged;
+            _connectionString.PropertyChanged += connectionStringPropertyChanged;
         }
 
         #endregion
@@ -73,13 +71,13 @@ namespace WinPure.ContactManagement.Client.ViewModels
         {
             get
             {
-                lock (ServersLock)
+                lock (_serversLock)
                 {
                     if (_servers == null)
                     {
                         _servers = new ObservableCollection<string>();
                         ServersLoading = true;
-                        LoadServersAsync();
+                        loadServersAsync();
                     }
                 }
 
@@ -135,23 +133,18 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         public RelayCommand SaveCommand
         {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(Save,canSave)); }
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save, canSave)); }
         }
 
         public RelayCommand CancelCommand
         {
-            get
-            {
-                if (_cancelCommand == null)
-                    _cancelCommand = new RelayCommand(Cancel);
-                return _cancelCommand;
-            }
+            get { return _cancelCommand ?? (_cancelCommand = new RelayCommand(cancel)); }
         }
 
         #endregion
 
         #region Methods
-        
+
         private bool canSave()
         {
             //Check for Design mode.
@@ -162,12 +155,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
             return !Connection.HasErrors && ConnectionString.IsValid();
         }
 
-        private void Cancel()
+        private void cancel()
         {
-            SyncServerConnectionsManager.Current.Revert(_connection);
+            SyncServerConnectionsManager.Revert(_connection);
         }
 
-        private void ConnectionStringPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void connectionStringPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != "Server" || _dbLoader.IsBusy) return;
 
@@ -177,7 +170,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         }
 
 
-        private void DbLoaderDoWork(object sender, DoWorkEventArgs e)
+        private void dbLoaderDoWork(object sender, DoWorkEventArgs e)
         {
             var connString = e.Argument as SqlConnectionString;
 
@@ -192,7 +185,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             e.Result = _smoTasks.GetDatabases(_connectionString);
         }
 
-        private void DbLoaderRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void dbLoaderRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error == null)
             {
@@ -219,7 +212,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             RaisePropertyChanged("DatabasesLoading");
         }
 
-        private void LoadServersAsync()
+        private void loadServersAsync()
         {
             using (var serverLoader = new BackgroundWorker())
             {
@@ -239,7 +232,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
-        private void Save()
+        private void save()
         {
             _connection.ConnectionString = _connectionString.ToString();
 

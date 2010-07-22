@@ -110,10 +110,10 @@
 				Width="93" Visibility="Collapsed" />
             <Transitionals_Controls:TransitionElement x:Name="transitionElement" HorizontalAlignment="Stretch"
                                                       VerticalAlignment="Stretch" Content=" ">
-                <Transitionals_Controls:TransitionElement.Transition>
-                    <transt:RotateTransition Angle="0" Duration="00:00:00.3000000" FieldOfView="40" Direction="Down" Contained="True"/>
+             <!--   <Transitionals_Controls:TransitionElement.Transition> -->
+                   <!-- <transt:RotateTransition Angle="0" Duration="00:00:00.3000000" FieldOfView="40" Direction="Down" Contained="True"/> -->
                     <!--<transt:FadeAndGrowTransition />-->
-                </Transitionals_Controls:TransitionElement.Transition>
+             <!--   </Transitionals_Controls:TransitionElement.Transition> -->
             </Transitionals_Controls:TransitionElement>
         </Grid>
 	</ControlTemplate>

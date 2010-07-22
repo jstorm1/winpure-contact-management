@@ -50,7 +50,11 @@ namespace WinPure.ContactManagement.Client.Data.Model.Validators.Base
         /// <param name="columnName">The name of the property whose error message to get. </param>
         public string this[string columnName]
         {
-            get { return _validationErrors.Count > 0 ? _validationErrors[columnName] : null; }
+            get {
+                return !_validationErrors.ContainsKey(columnName)
+                           ? null
+                           : (_validationErrors.Count > 0 ? _validationErrors[columnName] : null);
+            }
         }
 
         /// <summary>

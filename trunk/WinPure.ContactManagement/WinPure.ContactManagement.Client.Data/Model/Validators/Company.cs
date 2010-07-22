@@ -20,11 +20,24 @@ namespace WinPure.ContactManagement.Client.Data.Model
             }
         }
 
+        partial void OnCountryChanged()
+        {
+            if (string.IsNullOrEmpty(_Country))
+            {
+                AddError("Country", "Country can't be empty.");
+            }
+            else
+            {
+                RemoveError("Country");
+            }
+        }
+
         #region Overrides of ValidatorBase
 
         public override void Validate()
         {
             OnNameChanged();
+            OnCountryChanged();
         }
 
         #endregion

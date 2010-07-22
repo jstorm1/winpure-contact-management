@@ -14,6 +14,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         private Company _company;
         private RelayCommand _saveCommand;
+        private RelayCommand _cancelCommand;
 
         public RelayCommand SaveCommand
         {
@@ -37,6 +38,16 @@ namespace WinPure.ContactManagement.Client.ViewModels
                 _company = value;
                 RaisePropertyChanged("Company");
             }
+        }
+
+        public RelayCommand CancelCommand
+        {
+            get { return _cancelCommand ?? (_cancelCommand = new RelayCommand(cancel)); }
+        }
+
+        private void cancel()
+        {
+            CompaniesManager.Current.Revert(_company);
         }
 
         private void save()
