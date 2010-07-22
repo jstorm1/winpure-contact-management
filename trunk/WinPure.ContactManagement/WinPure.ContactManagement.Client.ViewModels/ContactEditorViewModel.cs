@@ -1,6 +1,6 @@
 ﻿#region References
 
-using System.Collections.ObjectModel;
+using System;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
@@ -13,14 +13,17 @@ namespace WinPure.ContactManagement.Client.ViewModels
     public class ContactEditorViewModel : ViewModelBase
     {
         #region Fields
+
         private Contact _contact;
         private RelayCommand _saveCommand;
+
         #endregion
 
         #region Properties
+
         public RelayCommand SaveCommand
         {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(Save)); }
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save, canSave)); }
         }
 
         public Contact Contact
@@ -37,10 +40,20 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #endregion
 
         #region Methods
-        public void Save()
+
+        private bool canSave()
+        {
+            if (IsDesignMode) return false;
+
+            _contact.Validate();
+            return !_contact.HasErrors;
+        }
+
+        private void save()
         {
             if (Contact != null) ContactsManager.Current.Save(Contact);
-        } 
+        }
+
         #endregion
     }
 }

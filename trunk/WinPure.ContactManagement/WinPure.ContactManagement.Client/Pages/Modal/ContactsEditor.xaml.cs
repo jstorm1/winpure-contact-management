@@ -29,7 +29,7 @@ namespace WinPure.ContactManagement.Client.Pages.Modal
             InitializeComponent();
 
             if (contact == null)
-                contact = new Contact {ContactID = Guid.NewGuid()};
+                contact = new Contact {ContactID = Guid.NewGuid(), FirstName = "", LastName = ""};
 
             CurrentContact = contact;
         }

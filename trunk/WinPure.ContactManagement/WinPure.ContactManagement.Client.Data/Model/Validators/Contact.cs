@@ -24,11 +24,24 @@ namespace WinPure.ContactManagement.Client.Data.Model
             }
         }
 
+        partial void OnLastNameChanged()
+        {
+            if (string.IsNullOrEmpty(_LastName))
+            {
+                AddError("LastName", "Last Name can't be empty.");
+            }
+            else
+            {
+                RemoveError("LastName");
+            }
+        }
+
         #region Overrides of EntityValidatorBase
 
         public override void Validate()
         {
             OnFirstNameChanged();
+            OnLastNameChanged();
         }
 
         #endregion
