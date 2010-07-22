@@ -93,12 +93,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         public RelayCommand DeleteCommand
         {
-            get
-            {
-                if (_deleteCommand == null)
-                    _deleteCommand = new RelayCommand(delete);
-                return _deleteCommand;
-            }
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
         }
 
         #endregion

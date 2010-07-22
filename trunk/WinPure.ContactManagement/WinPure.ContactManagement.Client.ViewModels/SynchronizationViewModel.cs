@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ServiceModel;
 using GalaSoft.MvvmLight.Command;
+using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Domains;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
@@ -22,17 +23,19 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #region Fields
 
         private readonly BackgroundWorker _getEndpointsBackgroundWorker;
-        private readonly BackgroundWorker _synchronizationWorker;
         private readonly BackgroundWorker _sqlSynchronizationWorker;
+        private readonly BackgroundWorker _synchronizationWorker;
         private string _busyMessage;
+        private RelayCommand _deleteCommand;
         private bool _isBusy;
         private SynchronisedObservableCollection<PeerInfo> _peersInfo;
         private RelayCommand _refreshPeersCommand;
         private PeerInfo _selectedPeerInfo;
         private SyncServerConnection _selectedSyncServerConnection;
+        private int _sqlConnectionsCount;
+        private RelayCommand _sqlSynchronizeCommand;
         private ObservableCollection<SyncServerConnection> _syncServerConnections;
         private RelayCommand _synchronizeCommand;
-        private RelayCommand _sqlSynchronizeCommand;
 
         #endregion
 
@@ -126,6 +129,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
                 if (_syncServerConnections == value) return;
                 _syncServerConnections = value;
                 RaisePropertyChanged("SyncServerConnections");
+
+                if (_syncServerConnections != null)
+                {
+                    _syncServerConnections.CollectionChanged +=
+                        delegate { RaisePropertyChanged("SqlConnectionsCount"); };
+                }
             }
         }
 
@@ -142,10 +151,41 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         public RelayCommand SqlSynchronizeCommand
         {
-            get { return _sqlSynchronizeCommand ?? (_sqlSynchronizeCommand = new RelayCommand(sqlSynchronize, canSqlSynchronize)); }
+            get
+            {
+                return _sqlSynchronizeCommand ??
+                       (_sqlSynchronizeCommand = new RelayCommand(sqlSynchronize, canSqlSynchronize));
+            }
+        }
+
+        public RelayCommand DeleteCommand
+        {
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
+        }
+
+        public int SqlConnectionsCount
+        {
+            get { return _sqlConnectionsCount; }
+            set
+            {
+                if (_sqlConnectionsCount == value) return;
+                _sqlConnectionsCount = value;
+                RaisePropertyChanged("SqlConnectionsCount");
+            }
         }
 
         #endregion
+
+        private void delete()
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show("Delete Connection",
+                                                            "Are you sure you want to delete this Connection?",
+                                                            WPFMessageBoxButtons.YesNo,
+                                                            WPFMessageBoxImage.Question);
+            if (result == WPFMessageBoxResult.No) return;
+
+            SyncServerConnectionsManager.Current.Delete(_selectedSyncServerConnection);
+        }
 
         private bool canSqlSynchronize()
         {
@@ -174,12 +214,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private void onSqlSynchronizationCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            SynchronizationManager.Synchronize(SelectedSyncServerConnection.ConnectionString);
+            IsBusy = false;
         }
 
         private void onSqlSynchronizationDoWork(object sender, DoWorkEventArgs e)
         {
-            IsBusy = false;
+            SynchronizationManager.Synchronize(SelectedSyncServerConnection.ConnectionString);
         }
 
         private void synchronize()

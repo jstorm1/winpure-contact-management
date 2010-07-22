@@ -4,23 +4,22 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Linq;
-using WinPure.ContactManagement.Client.Data.Model; 
+using WinPure.ContactManagement.Client.Data.Model;
 
 #endregion
 
 namespace WinPure.ContactManagement.Client.Data.Managers
 {
-    public class SyncServerConnectionsManager:DataManagerBase
+    public class SyncServerConnectionsManager : DataManagerBase
     {
         private ObservableCollection<SyncServerConnection> _syncServerConnectionsCache;
-        
+
         #region Singleton Constructor
-        
+
         private static SyncServerConnectionsManager _instance;
 
         private SyncServerConnectionsManager()
         {
-
         }
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         public static SyncServerConnectionsManager Current
         {
             get { return _instance ?? (_instance = new SyncServerConnectionsManager()); }
-        } 
+        }
 
         #endregion
 
@@ -50,7 +49,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         public void Save(SyncServerConnection connection)
         {
             if (connection == null) throw new ArgumentNullException("connection");
-            if (connection.SyncServerConnectionId == Guid.Empty|| Context.SyncServerConnections.Where(c => c.SyncServerConnectionId == connection.SyncServerConnectionId).FirstOrDefault() == null)
+            if (connection.SyncServerConnectionId == Guid.Empty ||
+                Context.SyncServerConnections.Where(c => c.SyncServerConnectionId == connection.SyncServerConnectionId).
+                    FirstOrDefault() == null)
             {
                 if (connection.SyncServerConnectionId == Guid.Empty)
                     connection.SyncServerConnectionId = Guid.NewGuid();
@@ -75,6 +76,22 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             Context.Refresh(RefreshMode.StoreWins, connection);
         }
 
+        /// <summary>
+        /// Deleting <see cref="SyncServerConnection"/> from database.
+        /// </summary>
+        /// <param name="connection"><see cref="SyncServerConnection"/> which will be deleted.</param>
+        public void Delete(SyncServerConnection connection)
+        {
+            if (connection == null) throw new ArgumentNullException("connection");
+            if (connection.SyncServerConnectionId == Guid.Empty ||
+                Context.SyncServerConnections.Where(c => c.SyncServerConnectionId == connection.SyncServerConnectionId).
+                    FirstOrDefault() == null) return;
+
+            Context.DeleteObject(connection);
+            Context.SaveChanges();
+            refreshCache();
+        }
+
         private void refreshCache()
         {
             Context.Refresh(RefreshMode.StoreWins, Context.SyncServerConnections);
@@ -84,7 +101,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 
             _syncServerConnectionsCache.Clear();
 
-            foreach (var connection in Context.SyncServerConnections)
+            foreach (SyncServerConnection connection in Context.SyncServerConnections)
             {
                 _syncServerConnectionsCache.Add(connection);
             }

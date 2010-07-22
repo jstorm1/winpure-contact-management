@@ -7,6 +7,7 @@
              d:DesignHeight="472" d:DesignWidth="917" Text="Synchronization" BorderColor="#FF373737">
 
     <CommonControls:PageControl.Resources>
+    	<WinPure_ContactManagement_Client_Helpers_Converters:ItemsCountToVisibilityConverter x:Key="ItemsCountToVisibilityConverter"/>
     	<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
     	<WinPure_ContactManagement_Client_Helpers_Converters:BooleanToVisibilityOppositeConverter x:Key="BooleanToVisibilityOppositeConverter"/>
         <ControlTemplate x:Key="loadingAnimation">
@@ -79,6 +80,7 @@
         		<TextBlock Margin="8" TextWrapping="Wrap" Text="{Binding Name}" FontFamily="Century Gothic" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
         	</Grid>
         </DataTemplate>
+    	<WinPure_ContactManagement_Client_Helpers_Converters:ItemsCountToVisibilityOppositeConverter x:Key="ItemsCountToVisibilityOppositeConverter"/>
     </CommonControls:PageControl.Resources>
     
 	<CommonControls:PageControl.Background>
@@ -115,17 +117,18 @@
     			<RowDefinition Height="Auto" MinHeight="53.872"/>
     		</Grid.RowDefinitions>
     		<Border Margin="8" VerticalAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FF828790" Background="Transparent">
-    			<TextBlock TextWrapping="Wrap" Text="Sync Server" FontSize="18.667" VerticalAlignment="Bottom"/>
+    			<TextBlock TextWrapping="Wrap" Text="Sync Servers" FontSize="18.667" VerticalAlignment="Bottom"/>
     		</Border>
     		<ListBox x:Name="SyncServersList" Margin="0,8,0,0" Grid.Row="1" Style="{DynamicResource ListBoxStyle}" BorderThickness="0" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding SyncServerConnections}" ItemTemplate="{DynamicResource SyncServerDataTemplate}" SelectedItem="{Binding SelectedSyncServerConnection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
     		<StackPanel Grid.Row="2" Margin="8" Orientation="Horizontal">
     			<Button x:Name="AddButton" Content="Add" HorizontalAlignment="Left" Height="35" Margin="0" Width="75" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle1}" FontFamily="Century Gothic" FontSize="16" Foreground="White" Cursor="Hand" Click="onAddButtonClick"/>
     			<Button x:Name="EditButton" Content="Edit" HorizontalAlignment="Left" Height="35" Margin="0" Width="75" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle1}" FontFamily="Century Gothic" FontSize="16" Foreground="White" Cursor="Hand" Click="onEditButtonClick" IsEnabled="{Binding SelectedSyncServerConnection, Converter={StaticResource NullToBooleanConverter}}"/>
-    			<Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Height="35" Margin="0" Width="75" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle1}" FontFamily="Century Gothic" FontSize="16" Foreground="White" Cursor="Hand" IsEnabled="False"/>
-    			<Button x:Name="DeleteButton_Copy" Content="Synchronize" HorizontalAlignment="Left" Height="35" Margin="8,0,0,0" Width="100" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle1}" FontFamily="Century Gothic" FontSize="16" Foreground="White" Cursor="Hand" IsEnabled="{Binding SelectedSyncServerConnection, Converter={StaticResource NullToBooleanConverter}, Mode=TwoWay}" Command="{Binding SqlSynchronizeCommand, Mode=OneWay}"/>
+    			<Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Height="35" Margin="0" Width="75" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle1}" FontFamily="Century Gothic" FontSize="16" Foreground="White" Cursor="Hand" IsEnabled="{Binding SelectedSyncServerConnection, Converter={StaticResource NullToBooleanConverter}}" Command="{Binding DeleteCommand, Mode=OneWay}"/>
+    			<Button x:Name="SqlSyncButton" Content="Synchronize" HorizontalAlignment="Left" Height="35" Margin="8,0,0,0" Width="100" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle1}" FontFamily="Century Gothic" FontSize="16" Foreground="White" Cursor="Hand" IsEnabled="{Binding SelectedSyncServerConnection, Converter={StaticResource NullToBooleanConverter}, Mode=TwoWay}" Command="{Binding SqlSynchronizeCommand, Mode=OneWay}"/>
     		</StackPanel>
+    		<TextBlock Grid.Row="1" TextWrapping="Wrap" Text="No Items" HorizontalAlignment="Center" FontSize="18.667" VerticalAlignment="Center" Foreground="#72FFFFFF" Visibility="Collapsed"/>
     	</Grid>
-    	<Grid Background="#26FFFFFF" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityOppositeConverter}, Mode=OneWay}" Grid.ColumnSpan="2">
+    	<Grid Background="#26FFFFFF" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityOppositeConverter}, Mode=OneWay}" Grid.ColumnSpan="2" d:IsHidden="True">
     		<CommonControls:ProgressControl Text="{Binding BusyMessage}" IsSystemModal="True"/>
     	</Grid>
             
