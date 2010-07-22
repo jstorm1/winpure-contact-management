@@ -1,14 +1,9 @@
 ﻿#region References
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Data.Objects;
 using System.Linq;
-using System.Windows.Threading;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Common;
 
@@ -75,6 +70,18 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             RefreshCache();
         }
 
+        /// <summary>
+        /// Method which discards changes in Contact, and loads Contact state from database.
+        /// </summary>
+        /// <param name="contact">Contact which will be reverted.</param>
+        public void Revert(Contact contact)
+        {
+            if (contact == null) throw new ArgumentNullException("contact");
+            if (contact.CompanyId == Guid.Empty) return;
+
+            Context.Refresh(RefreshMode.StoreWins, contact);
+        }
+
         public void RefreshCache()
         {
             Context.Refresh(RefreshMode.StoreWins, Context.Contacts);
@@ -90,6 +97,4 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             }
         }
     }
-
- 
 }
