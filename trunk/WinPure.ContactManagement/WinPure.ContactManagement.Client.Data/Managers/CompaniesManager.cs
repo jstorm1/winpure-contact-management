@@ -46,7 +46,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         public void Revert(Company company)
         {
             if (company == null) throw new ArgumentNullException("company");
-            if (company.CompanyId == Guid.Empty) return;
+            if (company.CompanyId == Guid.Empty || Context.Companies.Where(c => c.CompanyId == company.CompanyId).FirstOrDefault() == null) return;
             
             Context.Refresh(RefreshMode.StoreWins, company);
         }

@@ -157,7 +157,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private void cancel()
         {
-            SyncServerConnectionsManager.Revert(_connection);
+            SyncServerConnectionsManager.Current.Revert(_connection);
         }
 
         private void connectionStringPropertyChanged(object sender, PropertyChangedEventArgs e)

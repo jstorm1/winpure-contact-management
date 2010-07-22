@@ -67,7 +67,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// Method which discards changes in Connection, and loads Connection state from database.
         /// </summary>
         /// <param name="connection">Connection which will be reverted.</param>
-        public static void Revert(SyncServerConnection connection)
+        public void Revert(SyncServerConnection connection)
         {
             if (connection == null) throw new ArgumentNullException("connection");
             if (connection.SyncServerConnectionId == Guid.Empty) return;

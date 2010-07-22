@@ -1,6 +1,9 @@
 ﻿#region References
 
-using System.Collections.ObjectModel;
+using System;
+using BlogsPrajeesh.BlogSpot.WPFControls;
+using GalaSoft.MvvmLight.Command;
+using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
@@ -15,6 +18,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #region Fields
 
         private SynchronisedObservableCollection<Contact> _contacts;
+        private RelayCommand _deleteCommand;
         private Contact _selectedContact;
 
         #endregion
@@ -56,6 +60,21 @@ namespace WinPure.ContactManagement.Client.ViewModels
                 _selectedContact = value;
                 RaisePropertyChanged("SelectedContact");
             }
+        }
+
+        public RelayCommand DeleteCommand
+        {
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void delete()
+        {
+            WPFMessageBox.Show("Delete Contact", "Are you sure you want to delete this Contact?",WPFMessageBoxButtons.YesNo,
+                               WPFMessageBoxImage.Question);
         }
 
         #endregion

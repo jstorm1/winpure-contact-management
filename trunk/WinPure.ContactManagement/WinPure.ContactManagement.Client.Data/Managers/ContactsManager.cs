@@ -77,7 +77,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         public void Revert(Contact contact)
         {
             if (contact == null) throw new ArgumentNullException("contact");
-            if (contact.CompanyId == Guid.Empty) return;
+            if (contact.CompanyId == Guid.Empty || Context.Contacts.Where(c => c.ContactID == contact.ContactID).FirstOrDefault() == null) return;
 
             Context.Refresh(RefreshMode.StoreWins, contact);
         }
