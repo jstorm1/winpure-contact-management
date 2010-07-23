@@ -2,12 +2,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Discovery;
 using System.Threading;
-using System.Windows;
 using NetFwTypeLib;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Interfaces.SyncService;
@@ -19,7 +17,6 @@ namespace WinPure.ContactManagement.Client.Services
 {
     public class SyncServiceManager
     {
-        
         private readonly ServiceHost _hoster;
 
         #region Singleton Constructor
@@ -28,8 +25,7 @@ namespace WinPure.ContactManagement.Client.Services
 
         private SyncServiceManager()
         {
-            string machineName = System.Net.Dns.GetHostName();
-            _hoster = new ServiceHost(typeof (SyncService), new Uri(string.Format("http://{0}:8000/WinPure/SyncService/",machineName)));
+            _hoster = new ServiceHost(typeof (SyncService), new Uri(Constants.LocalSyncServiceEndpointAddress));
         }
 
         /// <summary>
@@ -50,7 +46,6 @@ namespace WinPure.ContactManagement.Client.Services
             }
             finally
             {
-                
             }
 
             var t = new Thread(runService);
@@ -65,19 +60,21 @@ namespace WinPure.ContactManagement.Client.Services
         public IEnumerable<EndpointAddress> GetAddressesOfService()
         {
             var discoverclient = new DiscoveryClient(new UdpDiscoveryEndpoint());
-            
-            FindResponse response = discoverclient.Find(new FindCriteria(typeof(ISyncService)));
-            
+
+            FindResponse response = discoverclient.Find(new FindCriteria(typeof (ISyncService)));
+
             discoverclient.Close();
-            
-            return response.Endpoints.Select(e => e.Address);
+
+            return
+                response.Endpoints.Where(e => e.Address.ToString().ToUpper() != Constants.LocalSyncServiceEndpointAddress.ToUpper()).Select(
+                    e => e.Address);
         }
 
         private static void addExceptionToTheWindowsFirewall()
         {
             var firewallManager = new WindowsFirewallManager();
             firewallManager.Initialize();
-            
+
             bool isFirewallEnabled = false;
             firewallManager.IsWindowsFirewallOn(ref isFirewallEnabled);
 
@@ -86,7 +83,8 @@ namespace WinPure.ContactManagement.Client.Services
 
             if (isFirewallEnabled && !firewallExceptionNotAllowed)
             {
-                firewallManager.AddPort(8000, NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_TCP, "WinPure Ltd. SyncService Port.");
+                firewallManager.AddPort(8000, NET_FW_IP_PROTOCOL_.NET_FW_IP_PROTOCOL_TCP,
+                                        "WinPure Ltd. SyncService Port.");
             }
             firewallManager.Uninitialize();
         }
