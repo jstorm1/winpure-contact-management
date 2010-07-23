@@ -80,7 +80,6 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Helpers\DependencyObjectExtensions.cs" />
-    <Compile Include="Interfaces\Entities\ICompany.cs" />
     <Compile Include="Interfaces\SyncService\ISyncService.cs" />
     <Compile Include="Interfaces\Windows\IShellWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

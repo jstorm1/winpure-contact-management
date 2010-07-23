@@ -13,6 +13,7 @@ using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Data.Synchronization;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
@@ -28,7 +29,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private string _busyMessage;
         private RelayCommand _deleteCommand;
         private bool _isBusy;
-        private SynchronisedObservableCollection<PeerInfo> _peersInfo;
+        private SynchronizedObservableCollection<PeerInfo> _peersInfo;
         private RelayCommand _refreshPeersCommand;
         private PeerInfo _selectedPeerInfo;
         private SyncServerConnection _selectedSyncServerConnection;
@@ -89,7 +90,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
-        public SynchronisedObservableCollection<PeerInfo> PeersInfo
+        public SynchronizedObservableCollection<PeerInfo> PeersInfo
         {
             get { return _peersInfo; }
             set
@@ -235,7 +236,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
             if (PeersInfo == null)
                 PeersInfo =
-                    new SynchronisedObservableCollection<PeerInfo>(new ObservableCollection<PeerInfo>());
+                    new SynchronizedObservableCollection<PeerInfo>(new ObservableCollection<PeerInfo>());
 
             PeersInfo.Clear();
 

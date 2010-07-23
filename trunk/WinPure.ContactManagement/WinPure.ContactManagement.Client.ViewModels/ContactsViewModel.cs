@@ -6,6 +6,7 @@ using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
@@ -15,7 +16,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         #region Fields
 
-        private SynchronisedObservableCollection<Contact> _contacts;
+        private SynchronizedObservableCollection<Contact> _contacts;
         private RelayCommand _deleteCommand;
         private Contact _selectedContact;
 
@@ -38,7 +39,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// <summary>
         /// Collection of Contacts.
         /// </summary>
-        public SynchronisedObservableCollection<Contact> Contacts
+        public SynchronizedObservableCollection<Contact> Contacts
         {
             get { return _contacts; }
             set

@@ -13,6 +13,7 @@ using Microsoft.Synchronization.Data.SqlServerCe;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.SyncService;
 using WinPure.ContactManagement.Client.Services;
+using WinPure.ContactManagement.Client.Services.Managers;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.SyncServiceHelpers;
 
@@ -24,7 +25,7 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
     {
         public static IEnumerable<EndpointAddress> GetAddressesOfSyncService()
         {
-            return SyncServiceManager.Current.GetAddressesOfService();
+            return SyncServiceManager.GetAddressesOfService();
         }
 
         public static void Synchronize(string sqlConnectionString)

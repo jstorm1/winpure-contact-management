@@ -13,11 +13,18 @@ using WinPure.ContactManagement.Common.Utils;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Services
+namespace WinPure.ContactManagement.Client.Services.Managers
 {
+    /// <summary>
+    /// Manager for the synchronization service.
+    /// </summary>
     public class SyncServiceManager
     {
+        #region Fields
+
         private readonly ServiceHost _hoster;
+
+        #endregion 
 
         #region Singleton Constructor
 
@@ -38,6 +45,11 @@ namespace WinPure.ContactManagement.Client.Services
 
         #endregion
 
+        #region Methods
+
+        /// <summary>
+        /// Start Sync Service.
+        /// </summary>
         public void RunService()
         {
             try
@@ -46,28 +58,32 @@ namespace WinPure.ContactManagement.Client.Services
             }
             finally
             {
+                var t = new Thread(runService);
+                t.Start();
             }
+        }
 
-            var t = new Thread(runService);
-            t.Start();
+
+        /// <summary>
+        /// Returns list of addresses of sync service in network.
+        /// </summary>
+        /// <returns>List of addresses.</returns>
+        public static IEnumerable<EndpointAddress> GetAddressesOfService()
+        {
+            var discoverclient = new DiscoveryClient(new UdpDiscoveryEndpoint());
+
+            FindResponse response = discoverclient.Find(new FindCriteria(typeof (ISyncService)));
+            discoverclient.Close();
+
+            return
+                response.Endpoints.Where(e => e.Address.ToString().ToUpper() 
+                                            != Constants.LocalSyncServiceEndpointAddress.ToUpper())
+                                  .Select(e => e.Address);
         }
 
         private void runService()
         {
             _hoster.Open();
-        }
-
-        public IEnumerable<EndpointAddress> GetAddressesOfService()
-        {
-            var discoverclient = new DiscoveryClient(new UdpDiscoveryEndpoint());
-
-            FindResponse response = discoverclient.Find(new FindCriteria(typeof (ISyncService)));
-
-            discoverclient.Close();
-
-            return
-                response.Endpoints.Where(e => e.Address.ToString().ToUpper() != Constants.LocalSyncServiceEndpointAddress.ToUpper()).Select(
-                    e => e.Address);
         }
 
         private static void addExceptionToTheWindowsFirewall()
@@ -89,9 +105,18 @@ namespace WinPure.ContactManagement.Client.Services
             firewallManager.Uninitialize();
         }
 
+        #endregion
+
+        #region Destructor
+
+        /// <summary>
+        /// Default Destructor.
+        /// </summary>
         ~SyncServiceManager()
         {
             _hoster.Close();
         }
+
+        #endregion
     }
 }

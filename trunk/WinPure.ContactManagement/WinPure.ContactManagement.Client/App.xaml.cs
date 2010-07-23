@@ -3,6 +3,7 @@
 using System.Windows;
 using System.Windows.Threading;
 using WinPure.ContactManagement.Client.Services;
+using WinPure.ContactManagement.Client.Services.Managers;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.SyncServiceHelpers;
 

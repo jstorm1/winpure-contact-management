@@ -7,6 +7,7 @@ using System.Linq;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Data.Model.Extensions;
 using WinPure.ContactManagement.Common;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
@@ -14,7 +15,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 {
     public class CompaniesManager : DataManagerBase
     {
-        private SynchronisedObservableCollection<Company> _companiesCache;
+        private SynchronizedObservableCollection<Company> _companiesCache;
 
         #region Singleton constructor
 
@@ -36,7 +37,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// Method for loading companies collection from database.
         /// </summary>
         /// <returns>Companies Collection</returns>
-        public SynchronisedObservableCollection<Company> LoadCompanies()
+        public SynchronizedObservableCollection<Company> LoadCompanies()
         {
             RefreshCache();
             return _companiesCache;
@@ -94,7 +95,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// </summary>
         public void RefreshCache()
         {
-            if (_companiesCache == null) _companiesCache = new SynchronisedObservableCollection<Company>(new ObservableCollection<Company>());
+            if (_companiesCache == null) _companiesCache = new SynchronizedObservableCollection<Company>(new ObservableCollection<Company>());
 
             _companiesCache.Clear();
 

@@ -13,6 +13,8 @@ namespace WinPure.ContactManagement.Common.Helpers
 {
     public static class DependencyObjectExtensions
     {
+        #region Extension Methods
+
         // walk up the visual tree to find objects of type T
         public static IEnumerable<T> GetChildObjects<T>(this DependencyObject obj)
         {
@@ -60,6 +62,10 @@ namespace WinPure.ContactManagement.Common.Helpers
             updateSources(bindingExpressions);
         }
 
+        #endregion
+
+        #region Methods
+
         private static void updateSources(IEnumerable<BindingExpression> bindingExpressions)
         {
             foreach (BindingExpression bindingExpression in bindingExpressions)
@@ -67,5 +73,7 @@ namespace WinPure.ContactManagement.Common.Helpers
                 bindingExpression.UpdateSource();
             }
         }
+
+        #endregion
     }
 }

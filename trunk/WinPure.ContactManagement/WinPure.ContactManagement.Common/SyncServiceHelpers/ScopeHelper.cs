@@ -11,18 +11,32 @@ using Microsoft.Synchronization.Data.SqlServerCe;
 
 namespace WinPure.ContactManagement.Common.SyncServiceHelpers
 {
+    /// <summary>
+    /// Class which allows to check and create scopes.
+    /// </summary>
     public static class ScopeHelper
     {
         #region Check Scope
 
+        /// <summary>
+        /// Method which will check scope in database.
+        /// </summary>
+        /// <param name="connectionString">Connection string to database which will be checked.</param>
+        /// <param name="isSqlServer">
+        /// If true then connection string will connect with SQL Server database.
+        /// If false then connection string will connect with SQL CE database.
+        /// </param>
+        /// <returns>
+        /// If false then scope for that database doesn't exists,
+        /// </returns>
         public static bool CheckScope(string connectionString, bool isSqlServer = false)
         {
             return isSqlServer
-                       ? CheckScope(new SqlConnection(connectionString))
-                       : CheckScope(new SqlCeConnection(connectionString));
+                       ? checkScope(new SqlConnection(connectionString))
+                       : checkScope(new SqlCeConnection(connectionString));
         }
 
-        private static bool CheckScope(SqlConnection connection)
+        private static bool checkScope(SqlConnection connection)
         {
             try
             {
@@ -39,7 +53,7 @@ namespace WinPure.ContactManagement.Common.SyncServiceHelpers
             return true;
         }
 
-        private static bool CheckScope(SqlCeConnection connection)
+        private static bool checkScope(SqlCeConnection connection)
         {
             try
             {
@@ -61,19 +75,27 @@ namespace WinPure.ContactManagement.Common.SyncServiceHelpers
 
         #region Create Scope
 
+        /// <summary>
+        /// Method which will create scope in database.
+        /// </summary>
+        /// <param name="connectionString">Connection string to database which will contain new scope.</param>
+        /// <param name="isSqlServer">
+        /// If true then connection string will connect with SQL Server database.
+        /// If false then connection string will connect with SQL CE database.
+        /// </param>
         public static void CreateScope(string connectionString, bool isSqlServer = false)
         {
             if (!isSqlServer)
             {
-                CreateScope(new SqlCeConnection(connectionString));
+                createScope(new SqlCeConnection(connectionString));
             }
             else
             {
-                CreateScope(new SqlConnection(connectionString));
+                createScope(new SqlConnection(connectionString));
             }
         }
 
-        private static void CreateScope(SqlConnection connection)
+        private static void createScope(SqlConnection connection)
         {
             var scopeDesc = new DbSyncScopeDescription("SyncScope");
 
@@ -100,7 +122,7 @@ namespace WinPure.ContactManagement.Common.SyncServiceHelpers
             connection.Close();
         }
 
-        private static void CreateScope(SqlCeConnection connection)
+        private static void createScope(SqlCeConnection connection)
         {
             var scopeDesc = new DbSyncScopeDescription("SyncScope");
 

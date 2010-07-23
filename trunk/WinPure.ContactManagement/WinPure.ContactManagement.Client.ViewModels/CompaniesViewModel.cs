@@ -11,6 +11,7 @@ using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
@@ -20,12 +21,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         #region Fields
 
-        private SynchronisedObservableCollection<Company> _companies;
+        private SynchronizedObservableCollection<Company> _companies;
         private RelayCommand _deleteCommand;
         private int _contactsCount;
         private RelayCommand<string> _searchCommand;
         private Company _selectedCompany;
-        private SynchronisedObservableCollection<Company> _originalCompaniesCollection;
+        private SynchronizedObservableCollection<Company> _originalCompaniesCollection;
 
         #endregion
 
@@ -49,7 +50,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// <summary>
         /// Collection of Companies.
         /// </summary>
-        public SynchronisedObservableCollection<Company> Companies
+        public SynchronizedObservableCollection<Company> Companies
         {
             get { return _companies; }
             set
@@ -116,7 +117,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             if (companyName != "")
             {
                 if (_originalCompaniesCollection == null) _originalCompaniesCollection = Companies;
-                Companies = new SynchronisedObservableCollection<Company>(new ObservableCollection<Company>( Companies.Where(c => c.Name.ToUpper().Contains(companyName.ToUpper()))));
+                Companies = new SynchronizedObservableCollection<Company>(new ObservableCollection<Company>( Companies.Where(c => c.Name.ToUpper().Contains(companyName.ToUpper()))));
             }
             else
             {

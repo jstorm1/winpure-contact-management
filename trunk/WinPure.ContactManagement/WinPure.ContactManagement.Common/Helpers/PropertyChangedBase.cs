@@ -1,7 +1,14 @@
-﻿using System.ComponentModel;
+﻿#region References
+
+using System.ComponentModel;
+
+#endregion
 
 namespace WinPure.ContactManagement.Common.Helpers
 {
+    /// <summary>
+    /// Base class for classes which needs to call PropertyChanged event.
+    /// </summary>
     public class PropertyChangedBase : INotifyPropertyChanged
     {
         #region Implementation of INotifyPropertyChanged
@@ -13,6 +20,10 @@ namespace WinPure.ContactManagement.Common.Helpers
 
         #endregion
 
+        /// <summary>
+        /// Method which invokes <see cref="PropertyChanged"/> event.
+        /// </summary>
+        /// <param name="propertyName">Property Name</param>
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

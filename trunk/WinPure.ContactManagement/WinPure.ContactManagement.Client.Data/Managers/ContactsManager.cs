@@ -6,6 +6,7 @@ using System.Data.Objects;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Common;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
@@ -16,7 +17,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
     /// </summary>
     public class ContactsManager : DataManagerBase
     {
-        private SynchronisedObservableCollection<Contact> _contactsCache;
+        private SynchronizedObservableCollection<Contact> _contactsCache;
 
         #region Singleton constructor
 
@@ -46,7 +47,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// Method for loading contacts collection from database.
         /// </summary>
         /// <returns>Contacts collection</returns>
-        public SynchronisedObservableCollection<Contact> LoadContacts()
+        public SynchronizedObservableCollection<Contact> LoadContacts()
         {
             RefreshCache();
             return _contactsCache;
@@ -102,7 +103,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             Context.Refresh(RefreshMode.StoreWins, Context.Contacts);
 
             if (_contactsCache == null)
-                _contactsCache = new SynchronisedObservableCollection<Contact>(new ObservableCollection<Contact>());
+                _contactsCache = new SynchronizedObservableCollection<Contact>(new ObservableCollection<Contact>());
 
             _contactsCache.Clear();
 
