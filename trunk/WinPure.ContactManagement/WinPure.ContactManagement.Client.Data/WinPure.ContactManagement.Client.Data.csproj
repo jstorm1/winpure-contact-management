@@ -110,6 +110,7 @@
     <Compile Include="Domains\SmoTasks.cs" />
     <Compile Include="Domains\SqlConnectionString.cs" />
     <Compile Include="Managers\SyncServerConnectionsManager.cs" />
+    <Compile Include="Model\Extensions\CompanyExtension.cs" />
     <Compile Include="Model\Validators\Company.cs" />
     <Compile Include="Model\Validators\Contact.cs" />
     <Compile Include="Service References\SyncService\Reference.cs">

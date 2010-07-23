@@ -1,8 +1,13 @@
-﻿<CommonControls:ModalDialog x:Class="WinPure.ContactManagement.Client.Pages.Modal.CompaniesEditor"
+﻿<CommonControls:ModalDialog
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels" mc:Ignorable="d" Height="620" Width="507" Background="#FF4881AE" Text="Company" BorderColor="#FF3D3D3D">
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels" xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters" x:Class="WinPure.ContactManagement.Client.Pages.Modal.CompaniesEditor"
+             mc:Ignorable="d" Height="620" Width="507" Background="#FF4881AE" Text="Company" BorderColor="#FF3D3D3D">
+
+	<CommonControls:ModalDialog.Resources>
+		<WinPure_ContactManagement_Client_Helpers_Converters:BooleanToVisibilityOppositeConverter x:Key="BooleanToVisibilityOppositeConverter"/>
+	</CommonControls:ModalDialog.Resources>
 
     <CommonControls:ModalDialog.DataContext>
         <ViewModels:CompanyEditorViewModel />
@@ -16,11 +21,13 @@
     	<StackPanel Margin="0">
     		<Grid Height="32" Margin="5,5,5,0">
     			<Grid.ColumnDefinitions>
-    				<ColumnDefinition Width="0.391*"/>
-    				<ColumnDefinition Width="0.609*"/>
+    				<ColumnDefinition Width="188.853"/>
+    				<ColumnDefinition/>
+    				<ColumnDefinition Width="Auto"/>
     			</Grid.ColumnDefinitions>
     			<TextBlock TextWrapping="Wrap" Text="Company Name:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0"/>
+    			<TextBlock Grid.Column="2" TextWrapping="Wrap" Text="Already Exists" FontSize="12" VerticalAlignment="Center" Foreground="#FFFFF13A" Margin="5,0,0,0" Visibility="{Binding IsCompanyNameUnique, Converter={StaticResource BooleanToVisibilityOppositeConverter}, Mode=OneWay}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
     			<Grid.ColumnDefinitions>

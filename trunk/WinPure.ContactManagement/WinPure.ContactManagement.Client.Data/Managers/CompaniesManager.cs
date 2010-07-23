@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.Data.Model.Extensions;
 using WinPure.ContactManagement.Common;
 
 #endregion
@@ -88,6 +89,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             RefreshCache();
         }
 
+        /// <summary>
+        /// Method for refreshing local Companies cache.
+        /// </summary>
         public void RefreshCache()
         {
             if (_companiesCache == null) _companiesCache = new SynchronisedObservableCollection<Company>(new ObservableCollection<Company>());
@@ -98,6 +102,20 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             {
                 _companiesCache.Add(company);
             }
+        }
+
+        /// <summary>
+        /// Method which will check company name in collection of already saved Companies, to find same. 
+        /// I.e. Company name must be unique value, if not you will get false value as result.
+        /// </summary>
+        /// <param name="company">Company which will be checked.</param>
+        /// <returns>
+        /// false - Company name is not Unique.
+        /// true - Company name is unique.
+        /// </returns>
+        public bool CheckCompanyNameForUnique(Company company)
+        {
+            return !company.IsCompanyNameUnique(Context);
         }
 
         private void onSyncServiceDatabaseChanged(object sender, EventArgs e)
