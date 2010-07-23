@@ -4,7 +4,6 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Controls;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Common.Helpers;
@@ -17,7 +16,7 @@ namespace WinPure.ContactManagement.Client.Pages.Modal
     /// <summary>
     /// Interaction logic for ContactsEditor.xaml
     /// </summary>
-    public partial class ContactsEditor : ModalDialog
+    public partial class ContactsEditor
     {
         // Using a DependencyProperty as the backing store for CurrentContact.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CurrentContactProperty =

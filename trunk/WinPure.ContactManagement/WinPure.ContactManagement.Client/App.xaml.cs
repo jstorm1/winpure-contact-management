@@ -19,7 +19,7 @@ namespace WinPure.ContactManagement.Client
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            DispatcherUnhandledException += onDispatcherUnhandledException;
 
             //Prepare db for synchronization.
             if (!ScopeHelper.CheckScope(Constants.LocalConnectionString))
@@ -32,7 +32,7 @@ namespace WinPure.ContactManagement.Client
             SyncServiceManager.Current.RunService();
         }
 
-        void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        static void onDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show(e.Exception.Message);
         }

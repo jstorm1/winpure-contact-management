@@ -1,7 +1,6 @@
 ﻿#region References 
 
 using System.Windows;
-using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Domains;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels;
@@ -13,7 +12,7 @@ namespace WinPure.ContactManagement.Client.Pages.Modal
     /// <summary>
     /// Interaction logic for SyncServerConnectionEditor.xaml
     /// </summary>
-    public partial class SyncServerConnectionEditor : ModalDialog
+    public partial class SyncServerConnectionEditor
     {
         private readonly SyncServerConnection _syncServerConnection;
 

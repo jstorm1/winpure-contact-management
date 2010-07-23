@@ -2,7 +2,6 @@
 
 using System.Windows;
 using System.Windows.Controls;
-using WinPure.ContactManagement.Common.Interfaces.Windows; 
 
 #endregion
 
@@ -49,18 +48,5 @@ namespace WinPure.ContactManagement.Client.CommonControls
         } 
 
         #endregion
-
-        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
-        {
-            base.OnPropertyChanged(e);
-
-            var shellWindow = Application.Current.MainWindow as IShellWindow;
-
-            if (e.Property.Name != "IsVisible" || !IsSystemModal || shellWindow == null) return;
-
-            Visibility visibility = Visibility;
-
-            shellWindow.ModalContent = visibility == Visibility.Visible ? this : null;
-        }
     }
 }

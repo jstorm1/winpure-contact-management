@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region References
+
+using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
 
+#endregion
+
 namespace WinPure.ContactManagement.Client.Helpers.Converters
 {
-    public class BooleanToVisibilityOppositeConverter:IValueConverter
+    public class BooleanToVisibilityOppositeConverter : IValueConverter
     {
+        #region IValueConverter Members
+
         /// <summary>
         /// Converts a value. 
         /// </summary>
@@ -33,5 +36,7 @@ namespace WinPure.ContactManagement.Client.Helpers.Converters
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

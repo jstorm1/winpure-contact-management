@@ -2,7 +2,6 @@
 
 using System.Windows;
 using System.Windows.Input;
-using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Pages.Modal;
 
@@ -13,7 +12,7 @@ namespace WinPure.ContactManagement.Client.Pages
     /// <summary>
     /// Interaction logic for CompaniesListPage.xaml
     /// </summary>
-    public partial class CompaniesListPage : PageControl
+    public partial class CompaniesListPage
     {
         public CompaniesListPage()
         {

@@ -4,9 +4,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
-using WinPure.ContactManagement.Client.Helpers;
 using WinPure.ContactManagement.Client.ViewModels;
 using WinPure.ContactManagement.Common.Helpers;
 
@@ -17,7 +15,7 @@ namespace WinPure.ContactManagement.Client.Pages.Modal
     /// <summary>
     /// Interaction logic for CompaniesEditor.xaml
     /// </summary>
-    public partial class CompaniesEditor : ModalDialog
+    public partial class CompaniesEditor
     {
         // Using a DependencyProperty as the backing store for Company.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CurrentCompanyProperty =
