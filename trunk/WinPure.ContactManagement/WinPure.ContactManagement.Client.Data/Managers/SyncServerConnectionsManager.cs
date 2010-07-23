@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Linq;
+using WinPure.ContactManagement.Client.Data.Managers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
 
 #endregion

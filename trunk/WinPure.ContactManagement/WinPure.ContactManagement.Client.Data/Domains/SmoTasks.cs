@@ -1,10 +1,14 @@
-﻿using System;
+﻿#region References
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.SqlServer.Management.Common;
-using Microsoft.SqlServer.Management.Smo;
+using Microsoft.SqlServer.Management.Smo; 
+
+#endregion
 
 namespace WinPure.ContactManagement.Client.Data.Domains
 {

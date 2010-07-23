@@ -12,7 +12,6 @@ using Microsoft.Synchronization.Data.SqlServer;
 using Microsoft.Synchronization.Data.SqlServerCe;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.SyncService;
-using WinPure.ContactManagement.Client.Services;
 using WinPure.ContactManagement.Client.Services.Managers;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.SyncServiceHelpers;
@@ -36,19 +35,17 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
                 ScopeHelper.CreateScope(sqlConnectionString, true);
 
             using (var localDbConnection = new SqlCeConnection(Constants.LocalConnectionString))
+            using (var remoteDbConnection = new SqlConnection(sqlConnectionString))
             {
-                using (var remoteDbConnection = new SqlConnection(sqlConnectionString))
-                {
-                    var syncOrchestrator = new SyncOrchestrator
-                                               {
-                                                   Direction = SyncDirectionOrder.DownloadAndUpload,
-                                                   RemoteProvider =
-                                                       new SqlSyncProvider("SyncScope", remoteDbConnection),
-                                                   LocalProvider = new SqlCeSyncProvider("SyncScope", localDbConnection)
-                                               };
+                var syncOrchestrator = new SyncOrchestrator
+                                           {
+                                               Direction = SyncDirectionOrder.DownloadAndUpload,
+                                               RemoteProvider =
+                                                   new SqlSyncProvider("SyncScope", remoteDbConnection),
+                                               LocalProvider = new SqlCeSyncProvider("SyncScope", localDbConnection)
+                                           };
 
-                    syncOrchestrator.Synchronize();
-                }
+                syncOrchestrator.Synchronize();
             }
 
             ContactsManager.Current.RefreshCache();
@@ -57,7 +54,7 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
 
         public static void Synchronize(EndpointAddress remoteAddress)
         {
-            SyncServiceClient serviceClient = ServiceProxy(remoteAddress);
+            SyncServiceClient serviceClient = serviceProxy(remoteAddress);
 
             downloadDatabase(serviceClient);
 
@@ -85,7 +82,7 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
 
         #region Service Methods
 
-        public static SyncServiceClient ServiceProxy(EndpointAddress address)
+        private static SyncServiceClient serviceProxy(EndpointAddress address)
         {
             var binding = new BasicHttpBinding
                               {
@@ -115,7 +112,7 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
                 using (var uploadStreamWithProgress = new StreamWithProgress(stream))
                 {
                     stream = null;
-                    uploadStreamWithProgress.ProgressChanged += uploadStreamWithProgress_ProgressChanged;
+                    uploadStreamWithProgress.ProgressChanged += onUploadStreamWithProgressProgressChanged;
 
                     // upload file
                     serviceClient.UploadFile(fileInfo.Name, fileInfo.Length, uploadStreamWithProgress);
@@ -171,8 +168,8 @@ namespace WinPure.ContactManagement.Client.Data.Synchronization
             // serviceClient.Close();
         }
 
-        private static void uploadStreamWithProgress_ProgressChanged(object sender,
-                                                                     StreamWithProgress.ProgressChangedEventArgs e)
+        private static void onUploadStreamWithProgressProgressChanged(object sender,
+                                                                      StreamWithProgress.ProgressChangedEventArgs e)
         {
             //throw new NotImplementedException();
         }
