@@ -289,8 +289,8 @@
             
     	</Grid>
     	<StackPanel Orientation="Horizontal" Grid.Row="1" d:LayoutOverrides="Width" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,8,8,8">
-    		<Button x:Name="SaveButton" Content="Save" FontSize="16" Click="onSaveButtonClick" Command="{Binding SaveCommand, Mode=OneWay}" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" VerticalAlignment="Center" Height="35" Width="100" d:LayoutOverrides="Width"/>
-    		<Button x:Name="CancelButton" Content="Cancel" Width="100" FontSize="16" Click="onCancelButtonClick" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" VerticalAlignment="Center" Height="35" Command="{Binding CancelCommand, Mode=OneWay}"/>
+    		<Button x:Name="SaveButton" Content="Save" FontSize="16" Click="onSaveButtonClick" Command="{Binding SaveCommand, Mode=OneWay}" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" VerticalAlignment="Center" Height="35" Width="100" d:LayoutOverrides="Width" IsDefault="True"/>
+    		<Button x:Name="CancelButton" Content="Cancel" Width="100" FontSize="16" Click="onCancelButtonClick" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" VerticalAlignment="Center" Height="35" Command="{Binding CancelCommand, Mode=OneWay}" IsCancel="True"/>
     	</StackPanel>
     </Grid>
 </CommonControls:ModalDialog>

@@ -3,6 +3,11 @@
                     xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls">
 
     <Style TargetType="CommonControls:HorizontalMenuItem">
+    	<Style.Triggers>
+    		<Trigger Property="IsFocused" Value="True">
+    			<Setter Property="Background" Value="Black"/>
+    		</Trigger>
+    	</Style.Triggers>
         <Setter Property="Foreground"
                 Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="HorizontalContentAlignment"

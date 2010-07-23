@@ -21,6 +21,7 @@ namespace WinPure.ContactManagement.Client.Controls
         {
             InitializeComponent();
 
+
             Loaded += onSmallCompaniesListLoaded;
         }
 

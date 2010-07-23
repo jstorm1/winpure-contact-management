@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels" xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters" x:Class="WinPure.ContactManagement.Client.Pages.Modal.CompaniesEditor"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels" xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters" x:Name="modalDialog" x:Class="WinPure.ContactManagement.Client.Pages.Modal.CompaniesEditor"
              mc:Ignorable="d" Height="620" Width="507" Background="#FF4881AE" Text="Company" BorderColor="#FF3D3D3D">
 
 	<CommonControls:ModalDialog.Resources>
@@ -26,7 +26,7 @@
     				<ColumnDefinition Width="Auto"/>
     			</Grid.ColumnDefinitions>
     			<TextBlock TextWrapping="Wrap" Text="Company Name:" VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0"/>
+    			<TextBox x:Name="textBox" Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0"/>
     			<TextBlock Grid.Column="2" TextWrapping="Wrap" Text="Already Exists" FontSize="12" VerticalAlignment="Center" Foreground="#FFFFF13A" Margin="5,0,0,0" Visibility="{Binding IsCompanyNameUnique, Converter={StaticResource BooleanToVisibilityOppositeConverter}, Mode=OneWay}"/>
     		</Grid>
     		<Grid Height="32" Margin="5,5,5,0">
@@ -126,7 +126,7 @@
     			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
     		</Grid>
     	</StackPanel>
-    	<Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="0,0,112,0" Width="100" FontSize="16" Click="onSaveButtonClick" Command="{Binding SaveCommand, Mode=OneWay}" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35"/>
-    	<Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,8,0" Width="100" FontSize="16" Click="onCancelButtonClick" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35" Command="{Binding CancelCommand, Mode=OneWay}"/>
+    	<Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="0,0,112,0" Width="100" FontSize="16" Click="onSaveButtonClick" Command="{Binding SaveCommand, Mode=OneWay}" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35" IsDefault="True"/>
+    	<Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,8,0" Width="100" FontSize="16" Click="onCancelButtonClick" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35" Command="{Binding CancelCommand, Mode=OneWay}" IsCancel="True"/>
     </Grid>
 </CommonControls:ModalDialog>

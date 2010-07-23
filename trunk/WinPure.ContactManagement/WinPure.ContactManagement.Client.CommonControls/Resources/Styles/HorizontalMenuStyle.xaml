@@ -59,27 +59,6 @@
 
                     <!--Triggers-->
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected"
-                                 Value="true">
-                            <Setter Property="Background"
-                                    TargetName="Border"
-                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                            <Setter Property="Foreground"
-                                    Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected"
-                                           Value="true" />
-                                <Condition Property="Selector.IsSelectionActive"
-                                           Value="false" />
-                            </MultiTrigger.Conditions>
-                            <Setter Property="Background"
-                                    TargetName="Border"
-                                    Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                            <Setter Property="Foreground"
-                                    Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                        </MultiTrigger>
                         <Trigger Property="IsEnabled"
                                  Value="false">
                             <Setter Property="Foreground"
