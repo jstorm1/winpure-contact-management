@@ -12,7 +12,6 @@ using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Data.Synchronization;
 using WinPure.ContactManagement.Client.ViewModels.Base;
-using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
@@ -117,11 +116,6 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
-        public RelayCommand SynchronizeCommand
-        {
-            get { return _synchronizeCommand ?? (_synchronizeCommand = new RelayCommand(synchronize, canSynchronize)); }
-        }
-
         public ObservableCollection<SyncServerConnection> SyncServerConnections
         {
             get { return _syncServerConnections; }
@@ -150,6 +144,24 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        public int SqlConnectionsCount
+        {
+            get { return _sqlConnectionsCount; }
+            set
+            {
+                if (_sqlConnectionsCount == value) return;
+                _sqlConnectionsCount = value;
+                RaisePropertyChanged("SqlConnectionsCount");
+            }
+        }
+
+        #region Commands
+        
+        public RelayCommand SynchronizeCommand
+        {
+            get { return _synchronizeCommand ?? (_synchronizeCommand = new RelayCommand(synchronize, canSynchronize)); }
+        }
+
         public RelayCommand SqlSynchronizeCommand
         {
             get
@@ -164,18 +176,11 @@ namespace WinPure.ContactManagement.Client.ViewModels
             get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
         }
 
-        public int SqlConnectionsCount
-        {
-            get { return _sqlConnectionsCount; }
-            set
-            {
-                if (_sqlConnectionsCount == value) return;
-                _sqlConnectionsCount = value;
-                RaisePropertyChanged("SqlConnectionsCount");
-            }
-        }
+        #endregion
 
         #endregion
+
+        #region Mehods
 
         private void delete()
         {
@@ -240,7 +245,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
             PeersInfo.Clear();
 
-            foreach (EndpointAddress endpointAddress in (IEnumerable<EndpointAddress>) addresses)
+            foreach (EndpointAddress endpointAddress in (IEnumerable<EndpointAddress>)addresses)
             {
                 var peerInfo = new PeerInfo
                                    {
@@ -267,7 +272,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private void onSynchronizationDoWork(object sender, DoWorkEventArgs e)
         {
             SynchronizationManager.Synchronize(SelectedPeerInfo.Address);
-        }
+        } 
+
+        #endregion
 
         #region Dispose methods
 

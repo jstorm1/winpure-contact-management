@@ -1,6 +1,5 @@
 ﻿#region References
 
-using System;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
@@ -14,18 +13,13 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         #region Fields
 
+        private RelayCommand _cancelCommand;
         private Contact _contact;
         private RelayCommand _saveCommand;
-        private RelayCommand _cancelCommand;
 
         #endregion
 
         #region Properties
-
-        public RelayCommand SaveCommand
-        {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save, canSave)); }
-        }
 
         public Contact Contact
         {
@@ -38,15 +32,20 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        #region Commands
+
+        public RelayCommand SaveCommand
+
+        {
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save, canSave)); }
+        }
+
         public RelayCommand CancelCommand
         {
-            get
-            {
-                if (_cancelCommand == null)
-                    _cancelCommand = new RelayCommand(cancel);
-                return _cancelCommand;
-            }
+            get { return _cancelCommand ?? (_cancelCommand = new RelayCommand(cancel)); }
         }
+
+        #endregion
 
         #endregion
 

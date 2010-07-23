@@ -11,14 +11,15 @@ namespace WinPure.ContactManagement.Client.ViewModels
 {
     public class CompanyEditorViewModel : ViewModelBase
     {
+        #region Fields
+        
         private RelayCommand _cancelCommand;
         private Company _company;
-        private RelayCommand _saveCommand;
+        private RelayCommand _saveCommand; 
 
-        public RelayCommand SaveCommand
-        {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save, canSave)); }
-        }
+        #endregion
+
+        #region Properties
 
         public bool IsCompanyNameUnique
         {
@@ -38,10 +39,23 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        #region Commands
+
+        public RelayCommand SaveCommand
+        {
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(save, canSave)); }
+        }
+
         public RelayCommand CancelCommand
         {
             get { return _cancelCommand ?? (_cancelCommand = new RelayCommand(cancel)); }
         }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         private bool canSave()
         {
@@ -59,6 +73,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private void save()
         {
             if (Company != null) CompaniesManager.Current.Save(Company);
-        }
+        } 
+
+        #endregion
     }
 }

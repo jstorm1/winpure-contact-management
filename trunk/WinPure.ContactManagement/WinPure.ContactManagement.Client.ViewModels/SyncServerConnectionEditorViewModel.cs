@@ -22,7 +22,6 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private static ObservableCollection<string> _servers;
         private static readonly object _serversLock = new object();
         private readonly SqlConnectionString _connectionString;
-
         private readonly ObservableCollection<string> _databases = new ObservableCollection<string>();
         private readonly BackgroundWorker _dbLoader = new BackgroundWorker();
         private readonly ISmoTasks _smoTasks;

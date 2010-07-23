@@ -1,6 +1,5 @@
 ﻿#region References
 
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -10,23 +9,25 @@ using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
-using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
 namespace WinPure.ContactManagement.Client.ViewModels
 {
+    /// <summary>
+    /// View Model which manages companies.
+    /// </summary>
     public class CompaniesViewModel : ViewModelBase
     {
         #region Fields
 
         private SynchronizedObservableCollection<Company> _companies;
-        private RelayCommand _deleteCommand;
         private int _contactsCount;
+        private RelayCommand _deleteCommand;
+        private SynchronizedObservableCollection<Company> _originalCompaniesCollection;
         private RelayCommand<string> _searchCommand;
         private Company _selectedCompany;
-        private SynchronizedObservableCollection<Company> _originalCompaniesCollection;
 
         #endregion
 
@@ -39,7 +40,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         {
             //Check for Design mode.
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) return;
-            
+
             Companies = CompaniesManager.Current.LoadCompanies();
         }
 
@@ -87,6 +88,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        #region Commands
+
         public RelayCommand<string> SearchCommand
         {
             get { return _searchCommand ?? (_searchCommand = new RelayCommand<string>(search)); }
@@ -96,6 +99,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
         {
             get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
         }
+
+        #endregion
 
         #endregion
 
@@ -117,14 +122,17 @@ namespace WinPure.ContactManagement.Client.ViewModels
             if (companyName != "")
             {
                 if (_originalCompaniesCollection == null) _originalCompaniesCollection = Companies;
-                Companies = new SynchronizedObservableCollection<Company>(new ObservableCollection<Company>( Companies.Where(c => c.Name.ToUpper().Contains(companyName.ToUpper()))));
+                Companies =
+                    new SynchronizedObservableCollection<Company>(
+                        new ObservableCollection<Company>(
+                            Companies.Where(c => c.Name.ToUpper().Contains(companyName.ToUpper()))));
             }
             else
             {
                 Companies = _originalCompaniesCollection;
                 _originalCompaniesCollection = null;
             }
-        } 
+        }
 
         #endregion
     }
