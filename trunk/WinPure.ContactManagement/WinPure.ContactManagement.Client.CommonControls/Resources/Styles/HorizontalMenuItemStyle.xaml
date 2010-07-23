@@ -33,31 +33,6 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition GeneratedDuration="0:0:0.2"
-                                                      To="MouseOver">
-                                        <Storyboard>
-                                    		<DoubleAnimation Duration="0:0:0.2"
-                                    			To="1.1"
-                                    			Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
-                                    			Storyboard.TargetName="Background" />
-                                    		<DoubleAnimation Duration="0:0:0.2"
-                                    			To="1.1"
-                                    			Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
-                                    			Storyboard.TargetName="Background" />
-                                    		<DoubleAnimation Duration="0:0:0.2" To="5" Storyboard.TargetProperty="(UIElement.Effect).(DropShadowEffect.BlurRadius)" Storyboard.TargetName="MenuIcon"/>
-                                    	</Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition From="MouseOver"
-                                                      GeneratedDuration="0:0:0.3">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0.3"
-                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
-                                                             Storyboard.TargetName="Background" />
-                                            <DoubleAnimation Duration="0:0:0.3"
-                                                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)"
-                                                             Storyboard.TargetName="Background" />
-                                        </Storyboard>
-                                    </VisualTransition>
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="MouseOver">
