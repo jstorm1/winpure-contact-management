@@ -3,118 +3,23 @@
                     xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:Transitionals_Controls="clr-namespace:Transitionals.Controls;assembly=Transitionals" xmlns:transt="clr-namespace:Transitionals.Transitions;assembly=Transitionals" mc:Ignorable="d">
+                    xmlns:Transitionals_Controls="clr-namespace:Transitionals.Controls;assembly=Transitionals"
+                    mc:Ignorable="d">
 
     <!--Control Template-->
 	<ControlTemplate x:Key="PagesSliderControlControlTemplate"
 		TargetType="{x:Type CommonControls:PagesSliderControl}">
 		<Grid d:DesignWidth="469"
 			d:DesignHeight="349">
-			<VisualStateManager.VisualStateGroups>
-				<VisualStateGroup x:Name="VisualStateGroup">
-					<!--<VisualStateGroup.Transitions>
-						<VisualTransition GeneratedDuration="0:0:0.2">
-							<ei:ExtendedVisualStateManager.TransitionEffect>
-								<ee:FadeTransitionEffect/>
-							</ei:ExtendedVisualStateManager.TransitionEffect>
-						</VisualTransition>
-					</VisualStateGroup.Transitions>-->
-					<VisualState x:Name="ShowFirstPage">
-						<Storyboard>
-							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-								Storyboard.TargetName="SecondPage">
-								<EasingDoubleKeyFrame KeyTime="0"
-									Value="0" />
-							</DoubleAnimationUsingKeyFrames>
-							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-								Storyboard.TargetName="FirstPage">
-								<EasingDoubleKeyFrame KeyTime="0"
-									Value="1" />
-							</DoubleAnimationUsingKeyFrames>
-							<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Transitionals_Controls:TransitionElement.Content)" Storyboard.TargetName="transitionElement">
-								<DiscreteObjectKeyFrame KeyTime="0" Value="&quot;aaaaa&quot;"/>
-							</ObjectAnimationUsingKeyFrames>
-						</Storyboard>
-					</VisualState>
-					<VisualState x:Name="ShowSecondPage">
-						<Storyboard>
-							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-								Storyboard.TargetName="FirstPage">
-								<EasingDoubleKeyFrame KeyTime="0"
-									Value="0" />
-							</DoubleAnimationUsingKeyFrames>
-							<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"
-								Storyboard.TargetName="SecondPage">
-								<EasingDoubleKeyFrame KeyTime="0"
-									Value="1" />
-							</DoubleAnimationUsingKeyFrames>
-							<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Transitionals_Controls:TransitionElement.Content)" Storyboard.TargetName="transitionElement">
-								<DiscreteObjectKeyFrame KeyTime="0" Value="bbbbbb"/>
-							</ObjectAnimationUsingKeyFrames>
-						</Storyboard>
-					</VisualState>
-				</VisualStateGroup>
-			</VisualStateManager.VisualStateGroups>
-			<VisualStateManager.CustomVisualStateManager>
-				<ei:ExtendedVisualStateManager/>
-			</VisualStateManager.CustomVisualStateManager>
-			<Canvas x:Name="canvas"
-				HorizontalAlignment="Stretch" Visibility="Collapsed">
-				<Grid x:Name="FirstPage"
-					Height="{Binding ActualHeight, ElementName=canvas, Mode=OneWay}"
-					Canvas.Left="0"
-					Canvas.Top="0"
-					Width="{Binding ActualWidth, ElementName=canvas, Mode=OneWay}"
-					Background="#FFB85F5F"
-					RenderTransformOrigin="0.5,0.5"
-					Opacity="0">
-					<Grid.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform />
-							<SkewTransform />
-							<RotateTransform />
-							<TranslateTransform />
-						</TransformGroup>
-					</Grid.RenderTransform>
-					<ContentPresenter x:Name="PART_FirstPageContent"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch" />
-				</Grid>
-				<Grid x:Name="SecondPage"
-					Height="{Binding ActualHeight, ElementName=canvas, Mode=OneWay}"
-					Canvas.Left="0"
-					Canvas.Top="0"
-					Width="{Binding ActualWidth, ElementName=canvas, Mode=OneWay}"
-					Background="#FF8192DE"
-					RenderTransformOrigin="0.5,0.5"
-					Opacity="0">
-					<Grid.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform />
-							<SkewTransform />
-							<RotateTransform />
-							<TranslateTransform />
-						</TransformGroup>
-					</Grid.RenderTransform>
-					<ContentPresenter x:Name="PART_SecondPageContent"
-						HorizontalAlignment="Stretch"
-						VerticalAlignment="Stretch" />
-				</Grid>
-			</Canvas>
-			<Button x:Name="TestButton"
-				Content="Button"
-				HorizontalAlignment="Left"
-				Height="25"
-				Margin="8,4,0,0"
-				VerticalAlignment="Top"
-				Width="93" Visibility="Collapsed" />
-            <Transitionals_Controls:TransitionElement x:Name="transitionElement" HorizontalAlignment="Stretch"
+            
+            <Transitionals_Controls:TransitionElement x:Name="PART_TransitionElement" HorizontalAlignment="Stretch"
                                                       VerticalAlignment="Stretch" Content=" ">
              <!--   <Transitionals_Controls:TransitionElement.Transition> -->
                    <!-- <transt:RotateTransition Angle="0" Duration="00:00:00.3000000" FieldOfView="40" Direction="Down" Contained="True"/> -->
                     <!--<transt:FadeAndGrowTransition />-->
              <!--   </Transitionals_Controls:TransitionElement.Transition> -->
             </Transitionals_Controls:TransitionElement>
+            
         </Grid>
 	</ControlTemplate>
 

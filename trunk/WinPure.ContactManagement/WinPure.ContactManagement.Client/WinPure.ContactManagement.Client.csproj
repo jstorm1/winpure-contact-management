@@ -76,6 +76,9 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WinPure.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Effects" />
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -133,6 +136,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="WinPure.ico" />
     <Resource Include="Resources\Images\48x48\Sync_48x48.png" />
     <Resource Include="Resources\Images\128x128\Sync.png" />
     <Resource Include="Resources\Images\Other\ClearSearchIcon_15x15.png" />

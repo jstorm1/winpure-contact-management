@@ -1,87 +1,58 @@
-﻿using System;
+﻿#region References
+
 using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Command;
-using Transitionals.Controls;
+using Transitionals.Controls; 
+
+#endregion
 
 namespace WinPure.ContactManagement.Client.CommonControls
 {
-    [TemplatePart(Name = "PART_FirstPageContent", Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = "PART_SecondPageContent", Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = "PART_TransitionElement", Type = typeof(TransitionElement))]
     public class PagesSliderControl : Control
     {
-        private ContentPresenter _firstPageContentPresenter;
-        private ContentPresenter _secondPageContentPresenter;
-        private bool _isFirstPageVisible;
-        private Button _testButton;
+        #region Fields
+        
         private RelayCommand<PageControl> _navigateCommand;
-        private TransitionElement _transitionElement;
+        private TransitionElement _transitionElement; 
 
-        public RelayCommand<PageControl> NavigateCommand
-        {
-            get
-            {
-                if (_navigateCommand == null)
-                    _navigateCommand = new RelayCommand<PageControl>(Navigate);
-                return _navigateCommand;
-            }
-        }
-
-        public void Navigate(PageControl page)
-        {
-            _transitionElement.Content = page;
-
-            //if (_isFirstPageVisible)
-            //{
-            //    if (_firstPageContentPresenter.Content == page) return;
-            //    _secondPageContentPresenter.Content = page;
-            //    VisualStateManager.GoToState(this, "ShowSecondPage", true);
-            //    _isFirstPageVisible = false;
-            //}
-            //else
-            //{
-            //    if (_secondPageContentPresenter.Content == page) return;
-            //    _firstPageContentPresenter.Content = page;
-            //    VisualStateManager.GoToState(this, "ShowFirstPage", true);
-            //    _isFirstPageVisible = true;
-            //}
-        }
-
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            _firstPageContentPresenter = (ContentPresenter)GetTemplateChild("PART_FirstPageContent");
-            _secondPageContentPresenter = (ContentPresenter)GetTemplateChild("PART_SecondPageContent");
-
-            _transitionElement = (TransitionElement)GetTemplateChild("transitionElement");
-
-            _testButton = (Button)GetTemplateChild("TestButton");
-            _testButton.Click += _testButton_Click;
-        }
-
-        private void _testButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (_isFirstPageVisible)
-            {
-                VisualStateManager.GoToState(this, "ShowSecondPage", true);
-                _isFirstPageVisible = false;
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, "ShowFirstPage", true);
-                _isFirstPageVisible = true;
-            }
-        }
+        #endregion
 
         #region Constructor
 
         static PagesSliderControl()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(PagesSliderControl),
-                                                     new FrameworkPropertyMetadata(typeof(PagesSliderControl)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof (PagesSliderControl),
+                                                     new FrameworkPropertyMetadata(typeof (PagesSliderControl)));
         }
 
+        #endregion
+
+        #region Commands
+        
+        public RelayCommand<PageControl> NavigateCommand
+        {
+            get { return _navigateCommand ?? (_navigateCommand = new RelayCommand<PageControl>(navigate)); }
+        } 
+
+        #endregion
+
+        #region Methods
+        private void navigate(PageControl page)
+        {
+            _transitionElement.Content = page;
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, is invoked whenever application code or internal processes call <see cref="M:System.Windows.FrameworkElement.ApplyTemplate"/>.
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            _transitionElement = (TransitionElement)GetTemplateChild("PART_TransitionElement");
+        }
         #endregion
     }
 }

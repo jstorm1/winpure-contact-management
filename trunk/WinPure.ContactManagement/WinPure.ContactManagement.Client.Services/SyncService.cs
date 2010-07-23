@@ -12,6 +12,9 @@ namespace WinPure.ContactManagement.Client.Services
 {
     public class SyncService : ISyncService
     {
+        /// <summary>
+        /// Occurs when database is uploaded.
+        /// </summary>
         public static event EventHandler DatabaseChanged;
 
         #region ISyncService Members
@@ -42,12 +45,9 @@ namespace WinPure.ContactManagement.Client.Services
 
         public void UploadFile(RemoteFileInfo request)
         {
-            // create output folder, if does not exist
-           //if (!Directory.Exists("Upload")) Directory.CreateDirectory("Upload");
 
             // kill target file, if already exists
             string filePath = Path.Combine(Constants.GetCurrentDirectoryPath, Constants.DB_NAME);
-           //string filePath = Path.Combine("Upload", Constants.DB_NAME);
             if (File.Exists(filePath)) File.Delete(filePath);
 
             const int chunkSize = 2048;
