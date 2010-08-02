@@ -96,6 +96,8 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         /// </summary>
         public void RefreshCache()
         {
+            Context.Refresh(RefreshMode.StoreWins, Context.Companies);
+
             if (_companiesCache == null) _companiesCache = new SynchronizedObservableCollection<Company>(new ObservableCollection<Company>());
 
             _companiesCache.Clear();
