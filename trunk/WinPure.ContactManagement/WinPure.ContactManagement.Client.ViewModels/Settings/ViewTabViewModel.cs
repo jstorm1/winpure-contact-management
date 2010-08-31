@@ -3,6 +3,8 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
+using System.Windows;
+using GalaSoft.MvvmLight.Command;
 using Transitionals;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 
@@ -19,6 +21,9 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         private Transition _selectedTransition;
         private string _selectedTypeName;
         private bool _contentSwitcher;
+        private RelayCommand _swapCellsCommand;
+        private RelayCommand _saveCommand;
+        private RelayCommand _cancelCommand;
 
         #endregion
 
@@ -60,7 +65,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
                 
                 ActivateTransition(_selectedType);
                 SelectedTypeName = _selectedType.Name;
-                ContentSwitcher = !ContentSwitcher;
+                SwapCells();
             }
         }
 
@@ -103,9 +108,39 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
             }
         }
 
+        public RelayCommand SwapCellsCommand
+        {
+            get { return _swapCellsCommand ?? (_swapCellsCommand = new RelayCommand(SwapCells)); }
+        }
+
+        public RelayCommand SaveCommand
+        {
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(Save)); }
+        }
+
+        public RelayCommand CancelCommand
+        {
+            get { return _cancelCommand ?? (_cancelCommand = new RelayCommand(Cancel)); }
+        }
+
         #endregion
 
         #region Methods
+
+        private void Save()
+        {
+            MessageBox.Show("Not Implemented");
+        }
+
+        private void Cancel()
+        {
+            MessageBox.Show("Not Implemented");
+        }
+
+        private void SwapCells()
+        {
+            ContentSwitcher = !ContentSwitcher;
+        }
 
         /// <summary>
         /// Loads the transitions found in the specified assembly.
@@ -155,9 +190,6 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
             var transition = (Transition)Activator.CreateInstance(transitionType);
 
             SelectedTransition = transition;
-
-            // Swap cells to show transition
-            //SwapCell();
         }
 
         #endregion
