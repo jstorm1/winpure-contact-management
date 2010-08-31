@@ -136,6 +136,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\48x48\Settings_48x48.png" />
     <Resource Include="Resources\WinPure.ico" />
     <Resource Include="Resources\Images\48x48\Sync_48x48.png" />
     <Resource Include="Resources\Images\128x128\Sync.png" />
@@ -159,6 +160,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\TransitionsSamples\FirstPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TransitionsSamples\SecondPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CompaniesListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -176,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Modal\SyncServerConnectionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,7 +226,14 @@
     <Compile Include="Controls\SmallCompaniesList.xaml.cs">
       <DependentUpon>SmallCompaniesList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TransitionsSamples\FirstPage.xaml.cs">
+      <DependentUpon>FirstPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TransitionsSamples\SecondPage.xaml.cs">
+      <DependentUpon>SecondPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Converters\BooleanToVisibilityOppositeConverter.cs" />
+    <Compile Include="Helpers\Converters\ContentSwicherConverter.cs" />
     <Compile Include="Helpers\Converters\EmptyStringToVisibility.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
@@ -232,6 +252,9 @@
     </Compile>
     <Compile Include="Pages\Modal\SyncServerConnectionEditor.xaml.cs">
       <DependentUpon>SyncServerConnectionEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SynchronizationPage.xaml.cs">
       <DependentUpon>SynchronizationPage.xaml</DependentUpon>

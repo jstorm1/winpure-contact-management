@@ -75,6 +75,20 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             												   </CommonControls:HorizontalMenuItem>
+		<CommonControls:HorizontalMenuItem Text="Settings"
+                                               Width="100"
+                                               Image="Resources/Images/48x48/Settings_48x48.png"
+                                               IconGlowColor="Red">
+		              <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding NavigateCommand, ElementName=pagesSliderControl, Mode=OneWay}">
+                            <i:InvokeCommandAction.CommandParameter>
+                                <Pages:SettingsPage />
+                            </i:InvokeCommandAction.CommandParameter>
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+		</CommonControls:HorizontalMenuItem>
         </CommonControls:HorizontalMenu>
         <CommonControls:PageControl Margin="0"
                                     Width="500"
