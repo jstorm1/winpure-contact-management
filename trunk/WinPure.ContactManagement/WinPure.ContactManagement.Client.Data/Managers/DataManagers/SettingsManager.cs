@@ -6,7 +6,6 @@ using System.Data.Objects;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
-using WinPure.ContactManagement.Common;
 
 #endregion
 
@@ -47,6 +46,22 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             if (_settingsCache == null) return;
 
             Context.SaveChanges();
+            RefreshCache();
+        }
+
+        public void Save(Setting setting)
+        {
+            if (setting == null) throw new ArgumentNullException("setting");
+            if (setting.SettingId == Guid.Empty || Context.Settings.Where(s => s.SettingId == setting.SettingId).FirstOrDefault() == null)
+            {
+                if (setting.SettingId == Guid.Empty)
+                    setting.SettingId = Guid.NewGuid();
+
+                Context.AddToSettings(setting);
+            }
+
+            Context.SaveChanges();
+
             RefreshCache();
         }
 

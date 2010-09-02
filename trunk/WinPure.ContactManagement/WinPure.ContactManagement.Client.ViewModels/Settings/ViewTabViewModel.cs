@@ -30,8 +30,17 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
         public ViewTabViewModel()
         {
+            if (TransitionsManager.Current.CurrentTransition != null)
+            {
+                SelectedType = TransitionsManager.Current.CurrentTransition.GetType();
+            }
+
             TransitionsManager.Current.CurrentTransitionChanged +=
-                delegate { SelectedTransition = TransitionsManager.Current.CurrentTransition; };
+                delegate
+                    {
+                        if (TransitionsManager.Current.CurrentTransition != null)
+                            SelectedType = TransitionsManager.Current.CurrentTransition.GetType();
+                    };
         }
 
         #endregion
@@ -64,7 +73,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
                 SelectedTransition = TransitionsManager.Current.GetTransition(_selectedType);
                 SelectedTypeName = _selectedType.Name;
-                SwapCells();
+                swapCells();
             }
         }
 
@@ -109,7 +118,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
         public RelayCommand SwapCellsCommand
         {
-            get { return _swapCellsCommand ?? (_swapCellsCommand = new RelayCommand(SwapCells)); }
+            get { return _swapCellsCommand ?? (_swapCellsCommand = new RelayCommand(swapCells)); }
         }
 
         public RelayCommand SaveCommand
@@ -129,7 +138,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         private void Save()
         {
             TransitionsManager.Current.ActivateTransition(SelectedType);
-            MessageBox.Show("Not Implemented");
+            TransitionsManager.Current.SaveSettings();
         }
 
         private void Cancel()
@@ -137,7 +146,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
             MessageBox.Show("Not Implemented");
         }
 
-        private void SwapCells()
+        private void swapCells()
         {
             ContentSwitcher = !ContentSwitcher;
         }

@@ -16,6 +16,8 @@ namespace WinPure.ContactManagement.Client
         {
             InitializeComponent();
 
+            pagesSliderControl.Transition = TransitionsManager.Current.CurrentTransition;
+
             TransitionsManager.Current.CurrentTransitionChanged += delegate
                                                                        {
                                                                            pagesSliderControl.Transition =

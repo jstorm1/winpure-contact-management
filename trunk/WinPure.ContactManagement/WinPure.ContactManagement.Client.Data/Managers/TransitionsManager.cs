@@ -68,7 +68,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 
         public ObservableCollection<Type> TransitionTypes
         {
-            get { return _transitionTypes; }
+            get { return _transitionTypes; } 
         }
 
         #endregion
@@ -83,7 +83,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
             if (transitionAssemblyName == null)
             {
                 SettingsManager.Current.AddSetting(SettingsConstants.TRANSITION_ASSEMBLY_NAME, null);
-                loadTransitionSettings();
+               transitionAssemblyName = loadTransitionSettings();
             }
 
             return transitionAssemblyName;
@@ -147,6 +147,19 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         public Transition GetTransition(Type transitionType)
         {
             return (Transition) Activator.CreateInstance(transitionType);
+        }
+
+        public void SaveSettings()
+        {
+            if (_transitionSetting == null)
+            {
+                SettingsManager.Current.AddSetting(SettingsConstants.TRANSITION_ASSEMBLY_NAME, CurrentTransition.GetType().AssemblyQualifiedName);
+                return;
+            }
+
+
+            _transitionSetting.Value = CurrentTransition.GetType().AssemblyQualifiedName;
+            SettingsManager.Current.Save(_transitionSetting);
         }
 
         #endregion
