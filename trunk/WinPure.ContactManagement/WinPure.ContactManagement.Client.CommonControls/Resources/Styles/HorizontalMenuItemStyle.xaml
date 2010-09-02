@@ -38,7 +38,9 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
-                                </VisualStateGroup.Transitions>
+                            		<VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                            		<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.5"/>
+                            	</VisualStateGroup.Transitions>
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
@@ -66,7 +68,7 @@
                                           Margin="1,0,1,1"
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Text="{TemplateBinding Text}" FontFamily="Century Gothic" FontSize="14.667" Grid.Row="1" Foreground="White" >
+                                          Text="{TemplateBinding Text}" FontFamily="Century Gothic" FontSize="{TemplateBinding FontSize}" Grid.Row="1" Foreground="White" >
                         	<TextBlock.Effect>
                         		<DropShadowEffect ShadowDepth="0" BlurRadius="7"/>
                         	</TextBlock.Effect>
@@ -75,8 +77,8 @@
                             <Image x:Name="MenuIcon" Margin="0"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   Height="35"
-                                   Width="35"
+                                   Height="{TemplateBinding ImageHeight}"
+                                   Width="{TemplateBinding ImageWidth}"
                                    Source="{TemplateBinding Image}" Tag="{TemplateBinding IconGlowColor}" >
                             	<Image.Effect>
                             		<DropShadowEffect ShadowDepth="0" Color="{Binding Tag, ElementName=MenuIcon}" BlurRadius="10"/>
@@ -95,5 +97,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="FontSize" Value="14.667"/>
     </Style>
 </ResourceDictionary>

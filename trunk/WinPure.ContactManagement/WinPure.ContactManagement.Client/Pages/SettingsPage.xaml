@@ -9,7 +9,7 @@
                             xmlns:Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters"  
                             d:DesignHeight="597" 
                             mc:Ignorable="d" 
-                            d:DesignWidth="926" 
+                            d:DesignWidth="1058" 
                             BorderColor="#FF373737" 
                             Text="Settings">
 
@@ -25,6 +25,10 @@
                            Margin="8" FontSize="16" FontFamily="Century Gothic" Foreground="White"/>
             </Grid>
         </DataTemplate>
+        <LinearGradientBrush x:Key="TabGridBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+        	<GradientStop Offset="0"/>
+        	<GradientStop Color="#12FFFFFF" Offset="1"/>
+        </LinearGradientBrush>
     </CommonControls:PageControl.Resources>
 
     <!--Page Background-->
@@ -50,18 +54,11 @@
                     <Settings:ViewTabViewModel/>
                 </TabItem.DataContext>
                 
-                <Grid x:Name="ViewTabGrid">
+                <Grid x:Name="ViewTabGrid" Background="{DynamicResource TabGridBackground}">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Offset="0"/>
-                            <GradientStop Color="#12FFFFFF" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
                     
                     <!--Transitions-->
                     <Grid x:Name="TrasitionsGrid" Margin="0">
@@ -108,28 +105,64 @@
 
                     <!--Back Text-->
                     <TextBlock x:Name="ViewTabBackText" TextWrapping="Wrap" Text="View" FontSize="96" 
-                               TextAlignment="Right" Foreground="#0CFFFFFF" Margin="8,-53.705,0,-22" Grid.Row="1" d:LayoutOverrides="Height" HorizontalAlignment="Left"/>
+                               TextAlignment="Right" Margin="8,-53.705,0,-22" Grid.Row="1" d:LayoutOverrides="Height" HorizontalAlignment="Left">
+                    	<TextBlock.Foreground>
+                    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    			<GradientStop Color="#05FFFFFF" Offset="0"/>
+                    			<GradientStop Color="#26FFFFFF" Offset="1"/>
+                    		</LinearGradientBrush>
+                    	</TextBlock.Foreground>
+                    </TextBlock>
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Language" Margin="0" Width="200" Height="40" Style="{DynamicResource TabItemStyle}" FontSize="21.333" Foreground="White">
+            <TabItem x:Name="BannerLogoTabItem" Header="Banner Logo" Style="{DynamicResource TabItemStyle}" Height="40" Width="200" Margin="0" FontSize="21.333" Foreground="White">
             	<Grid>
+            		<Grid.Background>
+            			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            				<GradientStop Offset="0"/>
+            				<GradientStop Color="#11FFFFFF" Offset="1"/>
+            			</LinearGradientBrush>
+            		</Grid.Background>
+            		<TextBlock Text="Banner Logo" FontSize="96" VerticalAlignment="Bottom" Margin="0,0,7,0" Grid.Row="1">
+            			<TextBlock.Foreground>
+            				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            					<GradientStop Offset="0" Color="#05FFFFFF"/>
+            					<GradientStop Color="#26FFFFFF" Offset="1"/>
+            				</LinearGradientBrush>
+            			</TextBlock.Foreground>
+            		</TextBlock>
+            	</Grid>
+            </TabItem>
+            <TabItem x:Name="LanguageTabItem" Header="Language" Margin="0" Width="200" Height="40" Style="{DynamicResource TabItemStyle}" FontSize="21.333" Foreground="White">
+            	<Grid x:Name="LanguagesGrid" Background="{DynamicResource TabGridBackground}">
+            		<Grid x:Name="BackGradientGrid" Height="131" VerticalAlignment="Top">
+            			<Grid.Background>
+            				<RadialGradientBrush RadiusY="0.737" Center="0.498,1.001" GradientOrigin="0.498,1.001">
+            					<GradientStop Offset="1"/>
+            					<GradientStop Color="#BCFFFFFF"/>
+            				</RadialGradientBrush>
+            			</Grid.Background>
+            		</Grid>
+            		<TextBlock x:Name="LanguageBackText" Text="Language" FontSize="96" VerticalAlignment="Bottom" Margin="0">
+            			<TextBlock.Foreground>
+            				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            					<GradientStop Color="#05FFFFFF" Offset="0"/>
+            					<GradientStop Color="#26FFFFFF" Offset="1"/>
+            				</LinearGradientBrush>
+            			</TextBlock.Foreground>
+            		</TextBlock>
+            		<CommonControls:HorizontalMenu x:Name="LanguagesList" Height="165" Margin="8,65,8,0" VerticalAlignment="Top">
+            			<CommonControls:HorizontalMenuItem x:Name="LangEnglish" Content="" Text="English" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/uk_150x100.png" Height="150" Width="200" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+            			<CommonControls:HorizontalMenuItem x:Name="LangFrench" Text="French" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/france_150x100.png" Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+            			<CommonControls:HorizontalMenuItem x:Name="LangSpanish" Text="Spanish" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/spain_150x100.png" Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+            			<CommonControls:HorizontalMenuItem x:Name="LangItalian" Text="Italian" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/italy_150x100.png" Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+            		</CommonControls:HorizontalMenu>
             		        	
 				</Grid>         
 			</TabItem>
             
             <!--Language Tab-->
-            <TabItem Header="Other" Style="{DynamicResource TabItemStyle}" Height="40" Width="200" Margin="0" FontSize="21.333" Foreground="White">
-                <Grid>
-                    <Grid.Background>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Offset="0"/>
-                            <GradientStop Color="#11FFFFFF" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <TextBlock Text="Other" FontSize="96" TextAlignment="Right" VerticalAlignment="Bottom" Foreground="#19FFFFFF" Margin="8,0,7,-22"/>
-                </Grid>
-            </TabItem>
         </TabControl>
     </Grid>
 </CommonControls:PageControl>

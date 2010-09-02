@@ -29,6 +29,14 @@ namespace WinPure.ContactManagement.Client.CommonControls
             DependencyProperty.RegisterAttached("Text", typeof (string), typeof (HorizontalMenuItem),
                                                 new UIPropertyMetadata("Menu Item"));
 
+        // Using a DependencyProperty as the backing store for ImageWidth.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImageWidthProperty =
+            DependencyProperty.Register("ImageWidth", typeof(double), typeof(HorizontalMenuItem), new PropertyMetadata(35.0));
+
+        // Using a DependencyProperty as the backing store for ImageHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImageHeightProperty =
+            DependencyProperty.Register("ImageHeight", typeof(double), typeof(HorizontalMenuItem), new PropertyMetadata(35.0));
+
         #endregion
 
         #region Constructor
@@ -42,6 +50,20 @@ namespace WinPure.ContactManagement.Client.CommonControls
         #endregion
 
         #region Properties
+
+        [Category("Common Properties")]
+        public double ImageHeight
+        {
+            get { return (double)GetValue(ImageHeightProperty); }
+            set { SetValue(ImageHeightProperty, value); }
+        }
+
+        [Category("Common Properties")]
+        public double ImageWidth
+        {
+            get { return (double)GetValue(ImageWidthProperty); }
+            set { SetValue(ImageWidthProperty, value); }
+        }
 
         [Category("Brushes")]
         public Color IconGlowColor
