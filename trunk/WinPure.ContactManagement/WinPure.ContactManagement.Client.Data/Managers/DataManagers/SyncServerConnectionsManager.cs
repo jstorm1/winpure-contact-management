@@ -4,12 +4,12 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Linq;
-using WinPure.ContactManagement.Client.Data.Managers.Base;
+using WinPure.ContactManagement.Client.Data.Managers.DataManagers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Data.Managers
+namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 {
     public class SyncServerConnectionsManager : DataManagerBase
     {

@@ -2,10 +2,10 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Reflection;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using Transitionals;
+using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 
 #endregion
@@ -16,14 +16,13 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
     {
         #region Fields
 
-        private readonly ObservableCollection<Type> _transitionTypes = new ObservableCollection<Type>();
-        private Type _selectedType;
-        private Transition _selectedTransition;
-        private string _selectedTypeName;
-        private bool _contentSwitcher;
-        private RelayCommand _swapCellsCommand;
-        private RelayCommand _saveCommand;
         private RelayCommand _cancelCommand;
+        private bool _contentSwitcher;
+        private RelayCommand _saveCommand;
+        private Transition _selectedTransition;
+        private Type _selectedType;
+        private string _selectedTypeName;
+        private RelayCommand _swapCellsCommand;
 
         #endregion
 
@@ -31,8 +30,8 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
         public ViewTabViewModel()
         {
-            // Load transitions
-            LoadStockTransitions();
+            TransitionsManager.Current.CurrentTransitionChanged +=
+                delegate { SelectedTransition = TransitionsManager.Current.CurrentTransition; };
         }
 
         #endregion
@@ -47,11 +46,11 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         /// </value>
         public ObservableCollection<Type> TransitionTypes
         {
-            get { return _transitionTypes; }
+            get { return TransitionsManager.Current.TransitionTypes; }
         }
 
         /// <summary>
-        /// Gets or Sets Curretlly selected transition type.
+        /// Gets or Sets Currently selected transition type.
         /// </summary>
         public Type SelectedType
         {
@@ -60,17 +59,17 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
             {
                 if (_selectedType == value) return;
                 _selectedType = value;
-                
+
                 RaisePropertyChanged("SelectedType");
-                
-                ActivateTransition(_selectedType);
+
+                SelectedTransition = TransitionsManager.Current.GetTransition(_selectedType);
                 SelectedTypeName = _selectedType.Name;
                 SwapCells();
             }
         }
 
         /// <summary>
-        /// Gets Curretlly selected transition type.
+        /// Gets Currently selected transition type.
         /// </summary>
         public Transition SelectedTransition
         {
@@ -94,7 +93,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         }
 
         /// <summary>
-        /// If false then Fisrt page must be visible,
+        /// If false then First page must be visible,
         /// if true then second page must be visible.
         /// </summary>
         public bool ContentSwitcher
@@ -129,6 +128,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
         private void Save()
         {
+            TransitionsManager.Current.ActivateTransition(SelectedType);
             MessageBox.Show("Not Implemented");
         }
 
@@ -140,56 +140,6 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         private void SwapCells()
         {
             ContentSwitcher = !ContentSwitcher;
-        }
-
-        /// <summary>
-        /// Loads the transitions found in the specified assembly.
-        /// </summary>
-        /// <param name="assembly">
-        /// The assembly to search for transitions in.
-        /// </param>
-        private void LoadTransitions(Assembly assembly)
-        {
-            foreach (Type type in assembly.GetTypes())
-            {
-                // Must not already exist
-                if (_transitionTypes.Contains(type))
-                {
-                    continue;
-                }
-
-                // Must not be abstract.
-                if ((typeof (Transition).IsAssignableFrom(type)) && (!type.IsAbstract))
-                {
-                    _transitionTypes.Add(type);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Loads the transitions that are part of the framework.
-        /// </summary>
-        private void LoadStockTransitions()
-        {
-            LoadTransitions(Assembly.GetAssembly(typeof (Transition)));
-        }
-
-
-        /// <summary>
-        /// Activates a transition and displays it.
-        /// </summary>
-        /// <param name="transitionType">
-        /// The type of transition to activate.
-        /// </param>
-        private void ActivateTransition(Type transitionType)
-        {
-            // If no type, ignore
-            if (transitionType == null) return;
-
-            // Create the instance
-            var transition = (Transition)Activator.CreateInstance(transitionType);
-
-            SelectedTransition = transition;
         }
 
         #endregion

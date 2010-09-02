@@ -117,6 +117,22 @@ namespace WinPure.ContactManagement.Client.Data.Model
             }
         }
         private ObjectSet<SyncServerConnection> _SyncServerConnections;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Setting> Settings
+        {
+            get
+            {
+                if ((_Settings == null))
+                {
+                    _Settings = base.CreateObjectSet<Setting>("Settings");
+                }
+                return _Settings;
+            }
+        }
+        private ObjectSet<Setting> _Settings;
 
         #endregion
         #region AddTo Methods
@@ -143,6 +159,14 @@ namespace WinPure.ContactManagement.Client.Data.Model
         public void AddToSyncServerConnections(SyncServerConnection syncServerConnection)
         {
             base.AddObject("SyncServerConnections", syncServerConnection);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Settings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSettings(Setting setting)
+        {
+            base.AddObject("Settings", setting);
         }
 
         #endregion
@@ -563,10 +587,14 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// Create a new Contact object.
         /// </summary>
         /// <param name="contactID">Initial value of the ContactID property.</param>
-        public static Contact CreateContact(global::System.Guid contactID)
+        /// <param name="firstName">Initial value of the FirstName property.</param>
+        /// <param name="lastName">Initial value of the LastName property.</param>
+        public static Contact CreateContact(global::System.Guid contactID, global::System.String firstName, global::System.String lastName)
         {
             Contact contact = new Contact();
             contact.ContactID = contactID;
+            contact.FirstName = firstName;
+            contact.LastName = lastName;
             return contact;
         }
 
@@ -627,7 +655,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String FirstName
         {
@@ -639,7 +667,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
             {
                 OnFirstNameChanging(value);
                 ReportPropertyChanging("FirstName");
-                _FirstName = StructuralObject.SetValidValue(value, true);
+                _FirstName = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("FirstName");
                 OnFirstNameChanged();
             }
@@ -675,7 +703,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String LastName
         {
@@ -687,7 +715,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
             {
                 OnLastNameChanging(value);
                 ReportPropertyChanging("LastName");
-                _LastName = StructuralObject.SetValidValue(value, true);
+                _LastName = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("LastName");
                 OnLastNameChanged();
             }
@@ -1003,6 +1031,111 @@ namespace WinPure.ContactManagement.Client.Data.Model
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="WinPure.ContactManagement.Client.Data.Model", Name="Setting")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Setting : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Setting object.
+        /// </summary>
+        /// <param name="settingId">Initial value of the SettingId property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Setting CreateSetting(global::System.Guid settingId, global::System.String name)
+        {
+            Setting setting = new Setting();
+            setting.SettingId = settingId;
+            setting.Name = name;
+            return setting;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid SettingId
+        {
+            get
+            {
+                return _SettingId;
+            }
+            set
+            {
+                if (_SettingId != value)
+                {
+                    OnSettingIdChanging(value);
+                    ReportPropertyChanging("SettingId");
+                    _SettingId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SettingId");
+                    OnSettingIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _SettingId;
+        partial void OnSettingIdChanging(global::System.Guid value);
+        partial void OnSettingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Value
+        {
+            get
+            {
+                return _Value;
+            }
+            set
+            {
+                OnValueChanging(value);
+                ReportPropertyChanging("Value");
+                _Value = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Value");
+                OnValueChanged();
+            }
+        }
+        private global::System.String _Value;
+        partial void OnValueChanging(global::System.String value);
+        partial void OnValueChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

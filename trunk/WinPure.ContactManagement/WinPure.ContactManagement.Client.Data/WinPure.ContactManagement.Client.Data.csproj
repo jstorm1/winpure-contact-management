@@ -102,6 +102,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Transitionals">
+      <HintPath>..\ReferencedAssemblies\Transitionals.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +112,9 @@
     <Compile Include="Domains\PeerInfo.cs" />
     <Compile Include="Domains\SmoTasks.cs" />
     <Compile Include="Domains\SqlConnectionString.cs" />
-    <Compile Include="Managers\SyncServerConnectionsManager.cs" />
+    <Compile Include="Managers\DataManagers\SettingsManager.cs" />
+    <Compile Include="Managers\DataManagers\SyncServerConnectionsManager.cs" />
+    <Compile Include="Managers\TransitionsManager.cs" />
     <Compile Include="Model\Extensions\CompanyExtension.cs" />
     <Compile Include="Model\Validators\Company.cs" />
     <Compile Include="Model\Validators\Contact.cs" />
@@ -124,9 +129,9 @@
     <None Include="..\WinPure.ContactManagement.Client\app.Config">
       <Link>app.Config</Link>
     </None>
-    <Compile Include="Managers\Base\DataManagerBase.cs" />
-    <Compile Include="Managers\CompaniesManager.cs" />
-    <Compile Include="Managers\ContactsManager.cs" />
+    <Compile Include="Managers\DataManagers\Base\DataManagerBase.cs" />
+    <Compile Include="Managers\DataManagers\CompaniesManager.cs" />
+    <Compile Include="Managers\DataManagers\ContactsManager.cs" />
     <Compile Include="Model\DataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -8,6 +8,7 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Domains;
 using WinPure.ContactManagement.Client.Data.Managers;
+using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 

@@ -1,6 +1,7 @@
 ﻿#region References
 
 using System.Windows;
+using WinPure.ContactManagement.Client.Data.Managers;
 
 #endregion
 
@@ -14,6 +15,13 @@ namespace WinPure.ContactManagement.Client
         public ShellWindow()
         {
             InitializeComponent();
+
+            TransitionsManager.Current.CurrentTransitionChanged += delegate
+                                                                       {
+                                                                           pagesSliderControl.Transition =
+                                                                               TransitionsManager.Current.
+                                                                                   CurrentTransition;
+                                                                       };
         }
     }
 }

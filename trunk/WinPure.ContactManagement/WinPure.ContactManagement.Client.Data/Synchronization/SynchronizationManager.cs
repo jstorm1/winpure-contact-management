@@ -11,6 +11,7 @@ using Microsoft.Synchronization;
 using Microsoft.Synchronization.Data.SqlServer;
 using Microsoft.Synchronization.Data.SqlServerCe;
 using WinPure.ContactManagement.Client.Data.Managers;
+using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.SyncService;
 using WinPure.ContactManagement.Client.Services.Managers;
 using WinPure.ContactManagement.Common;

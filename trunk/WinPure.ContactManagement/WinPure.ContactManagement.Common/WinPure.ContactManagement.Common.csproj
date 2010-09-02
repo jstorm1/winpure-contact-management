@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\PropertyChangedBase.cs" />
     <Compile Include="Helpers\SynchronizedObservableCollection.cs" />
+    <Compile Include="SettingsConstants.cs" />
     <Compile Include="SyncServiceHelpers\ScopeHelper.cs" />
     <Compile Include="SyncServiceHelpers\StreamWithProgress.cs" />
     <Compile Include="Utils\WindowsFirewallManager.cs" />

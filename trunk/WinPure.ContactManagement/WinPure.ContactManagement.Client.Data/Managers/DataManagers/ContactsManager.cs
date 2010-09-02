@@ -4,14 +4,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Linq;
-using WinPure.ContactManagement.Client.Data.Managers.Base;
+using WinPure.ContactManagement.Client.Data.Managers.DataManagers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
-using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Data.Managers
+namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 {
     /// <summary>
     /// Class for managing operations between contact entities and database.
