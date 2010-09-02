@@ -13,7 +13,7 @@
 			d:DesignHeight="349">
             
             <Transitionals_Controls:TransitionElement x:Name="PART_TransitionElement" HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Stretch" Content=" ">
+                                                      VerticalAlignment="Stretch" Content=" " Transition="{TemplateBinding Transition}">
              <!--   <Transitionals_Controls:TransitionElement.Transition> -->
                    <!-- <transt:RotateTransition Angle="0" Duration="00:00:00.3000000" FieldOfView="40" Direction="Down" Contained="True"/> -->
                     <!--<transt:FadeAndGrowTransition />-->
