@@ -107,9 +107,16 @@
                 </LinearGradientBrush>
             </CommonControls:PageControl.Background>
         </CommonControls:PageControl>
-        <CommonControls:PagesSliderControl x:Name="pagesSliderControl"
-                                           Margin="20,8,20,14"
-                                           Grid.Row="1" />
+		<Grid Grid.Row="1" >
+			<Grid.Background>
+				<RadialGradientBrush Center="0.499,0.008" GradientOrigin="0.499,0.008" RadiusY="0.935">
+					<GradientStop Offset="1"/>
+					<GradientStop Color="#7FFFFFFF"/>
+				</RadialGradientBrush>
+			</Grid.Background>
+	        <CommonControls:PagesSliderControl x:Name="pagesSliderControl"
+	                                           Margin="20,8,20,14"/>
+		</Grid>
         <Border BorderBrush="#FF7B7B7B"
                 BorderThickness="0,0,0,1">
             <Grid Background="#72FFFFFF">

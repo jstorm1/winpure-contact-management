@@ -93,7 +93,7 @@
                         		BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding TransitionTypes}" 
                         		HorizontalAlignment="Left" Width="300" ItemTemplate="{DynamicResource TransitionsListDataTemplate}" 
                         		Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True" Margin="0,0,0,50"/>
-                        	<Grid Grid.Column="1">
+                        	<Grid Grid.Column="1" Background="#19FFFFFF">
                         		<Grid.RowDefinitions>
                         			<RowDefinition/>
                         			<RowDefinition Height="35.112"/>
