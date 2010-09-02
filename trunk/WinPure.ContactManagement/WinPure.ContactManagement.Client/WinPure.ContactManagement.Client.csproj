@@ -136,6 +136,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Flags\france_150x100.png" />
+    <Resource Include="Resources\Images\Flags\italy_150x100.png" />
+    <Resource Include="Resources\Images\Flags\spain_150x100.png" />
+    <Resource Include="Resources\Images\Flags\uk_150x100.png" />
     <Resource Include="Resources\Images\48x48\Settings_48x48.png" />
     <Resource Include="Resources\WinPure.ico" />
     <Resource Include="Resources\Images\48x48\Sync_48x48.png" />
@@ -293,6 +297,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Images\PSDs\Flags.psd" />
     <None Include="Resources\Images\PSDs\Icons.psd" />
     <None Include="Resources\Images\PSDs\Icons_48x48.psd" />
     <None Include="Resources\Images\PSDs\Logo.psd" />
