@@ -46,7 +46,7 @@
     <Grid x:Name="LayoutRoot" Background="#00000000">
         
         <!--Page Gradient Overlay-->
-        <Grid x:Name="PageGradientOverlay" Background="{DynamicResource PageBackgroundGradient}"/>
+        <Grid x:Name="PageGradientOverlay" Background="{DynamicResource PageBackgroundGradient}" Opacity="0.695"/>
         
         <TabControl x:Name="SettingsTabControl" FontSize="16" TabStripPlacement="Left" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0">
             
@@ -93,7 +93,13 @@
                         		BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding TransitionTypes}" 
                         		HorizontalAlignment="Left" Width="300" ItemTemplate="{DynamicResource TransitionsListDataTemplate}" 
                         		Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True" Margin="0,0,0,50"/>
-                        	<Grid Grid.Column="1" Background="#19FFFFFF">
+                        	<Grid Grid.Column="1">
+                        		<Grid.Background>
+                        			<RadialGradientBrush Center="0.505,0.985" GradientOrigin="0.505,0.985">
+                        				<GradientStop Offset="1"/>
+                        				<GradientStop Color="#4CFFFFFF"/>
+                        			</RadialGradientBrush>
+                        		</Grid.Background>
                         		<Grid.RowDefinitions>
                         			<RowDefinition/>
                         			<RowDefinition Height="35.112"/>
