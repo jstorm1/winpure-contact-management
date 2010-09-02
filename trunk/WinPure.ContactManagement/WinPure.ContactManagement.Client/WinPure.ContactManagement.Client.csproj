@@ -136,6 +136,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Logo_Header_450x80.png" />
     <Resource Include="Resources\Images\Flags\france_150x100.png" />
     <Resource Include="Resources\Images\Flags\italy_150x100.png" />
     <Resource Include="Resources\Images\Flags\spain_150x100.png" />

@@ -113,25 +113,12 @@
         <Border BorderBrush="#FF7B7B7B"
                 BorderThickness="0,0,0,1">
             <Grid Background="#72FFFFFF">
-                <Grid Margin="0,-16,0,0"
-                      HorizontalAlignment="Center"
-                      Height="74">
-                    <Image Margin="0,0,139,0"
-                           Source="Resources/Images/Logo_75x195.png"
-                           VerticalAlignment="Center"
-                           d:LayoutOverrides="Width" />
-                    <TextBlock HorizontalAlignment="Left"
-                               Height="24"
-                               Margin="110,0,0,0"
-                               TextWrapping="Wrap"
-                               Text="Contact Management"
-                               VerticalAlignment="Bottom"
-                               Width="224"
-                               FontFamily="Century Gothic"
-                               FontSize="16"
-                               Foreground="#FF3C7FC3" />
 
-                </Grid>
+                    <Image Margin="0"
+                           Source="Resources/Images/Logo_Header_450x80.png"
+                           VerticalAlignment="Center" Width="450" Height="80" HorizontalAlignment="Center" Stretch="None" />
+
+               
             </Grid>
 
         </Border>
