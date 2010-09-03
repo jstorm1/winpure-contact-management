@@ -31,11 +31,13 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
         // Using a DependencyProperty as the backing store for ImageWidth.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageWidthProperty =
-            DependencyProperty.Register("ImageWidth", typeof(double), typeof(HorizontalMenuItem), new PropertyMetadata(35.0));
+            DependencyProperty.Register("ImageWidth", typeof (double), typeof (HorizontalMenuItem),
+                                        new PropertyMetadata(35.0));
 
         // Using a DependencyProperty as the backing store for ImageHeight.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageHeightProperty =
-            DependencyProperty.Register("ImageHeight", typeof(double), typeof(HorizontalMenuItem), new PropertyMetadata(35.0));
+            DependencyProperty.Register("ImageHeight", typeof (double), typeof (HorizontalMenuItem),
+                                        new PropertyMetadata(35.0));
 
         #endregion
 
@@ -54,21 +56,21 @@ namespace WinPure.ContactManagement.Client.CommonControls
         [Category("Common Properties")]
         public double ImageHeight
         {
-            get { return (double)GetValue(ImageHeightProperty); }
+            get { return (double) GetValue(ImageHeightProperty); }
             set { SetValue(ImageHeightProperty, value); }
         }
 
         [Category("Common Properties")]
         public double ImageWidth
         {
-            get { return (double)GetValue(ImageWidthProperty); }
+            get { return (double) GetValue(ImageWidthProperty); }
             set { SetValue(ImageWidthProperty, value); }
         }
 
         [Category("Brushes")]
         public Color IconGlowColor
         {
-            get { return (Color)GetValue(IconGlowColorProperty); }
+            get { return (Color) GetValue(IconGlowColorProperty); }
             set { SetValue(IconGlowColorProperty, value); }
         }
 
