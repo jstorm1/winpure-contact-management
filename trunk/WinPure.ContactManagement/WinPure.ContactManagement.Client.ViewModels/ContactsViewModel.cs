@@ -1,5 +1,6 @@
 ﻿#region References
 
+using System;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Managers;
@@ -19,6 +20,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private SynchronizedObservableCollection<Contact> _contacts;
         private RelayCommand _deleteCommand;
         private Contact _selectedContact;
+        private string _searchText;
+        private SynchronizedObservableCollection<Contact> _originalContactsCollection;
+        private RelayCommand _searchCommand;
 
         #endregion
 
@@ -66,9 +70,46 @@ namespace WinPure.ContactManagement.Client.ViewModels
             get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
         }
 
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText == value) return;
+                _searchText = value;
+                RaisePropertyChanged("SearchText");
+            }
+        }
+
+        public RelayCommand SearchCommand
+        {
+            get { return _searchCommand ?? (_searchCommand = new RelayCommand(search)); }
+        }
+
         #endregion
 
         #region Methods
+
+        private void search()
+        {
+            search(SearchText);
+        }
+
+        private void search(string contactName)
+        {
+            if (!string.IsNullOrEmpty(contactName))
+            {
+                if (_originalContactsCollection == null) _originalContactsCollection = Contacts;
+
+                Contacts = ContactsManager.Current.SearchByFullName(contactName);
+            }
+            else
+            {
+                if (_originalContactsCollection == null) return;
+                Contacts = _originalContactsCollection;
+                _originalContactsCollection = null;
+            }
+        }
 
         private void delete()
         {

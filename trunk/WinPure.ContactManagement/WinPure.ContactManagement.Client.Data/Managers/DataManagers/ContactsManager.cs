@@ -3,9 +3,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
+using System.Data.SqlServerCe;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
@@ -43,6 +45,33 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             RefreshCache();
         }
 
+        public  SynchronizedObservableCollection<Contact> SearchByFullName(string pattern)
+        {
+            const string fields = "[Title] + ' ' + [FirstName] + ' ' + [LastName] + ' ' + [Suffix]";
+            return Search(fields, pattern,
+                "SELECT *, {1} As FullName FROM {0} WHERE {1} LIKE @pattern OR {1} LIKE @filter OR {1}=@pattern");
+        }
+
+        public SynchronizedObservableCollection<Contact> Search(string propertyOrFieldName, string pattern,
+                                                                string query = null)
+        {
+            query = string.Format(string.IsNullOrEmpty(query) ? Constants.SEARCH_QUERY_PATTERN : query, "Contact", propertyOrFieldName);
+
+            ObjectResult<Contact> result = Context.ExecuteStoreQuery<Contact>(query,
+                                                                              new SqlCeParameter
+                                                                                  {
+                                                                                      ParameterName = "pattern",
+                                                                                      Value = pattern
+                                                                                  },
+                                                                              new SqlCeParameter
+                                                                                  {
+                                                                                      ParameterName = "filter",
+                                                                                      Value = "%" + pattern + "%"
+                                                                                  });
+            var resultCollection = new ObservableCollection<Contact>(result);
+            return new SynchronizedObservableCollection<Contact>(resultCollection);
+        }
+
         /// <summary>
         /// Method for loading contacts collection from database.
         /// </summary>
@@ -78,7 +107,8 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         public void Revert(Contact contact)
         {
             if (contact == null) throw new ArgumentNullException("contact");
-            if (contact.CompanyId == Guid.Empty || Context.Contacts.Where(c => c.ContactID == contact.ContactID).FirstOrDefault() == null) return;
+            if (contact.CompanyId == Guid.Empty ||
+                Context.Contacts.Where(c => c.ContactID == contact.ContactID).FirstOrDefault() == null) return;
 
             Context.Refresh(RefreshMode.StoreWins, contact);
         }
@@ -92,7 +122,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             if (contact == null) throw new ArgumentNullException("contact");
             if (contact.ContactID == Guid.Empty ||
                 Context.Contacts.Where(c => c.ContactID == contact.ContactID).FirstOrDefault() == null) return;
-            
+
             Context.DeleteObject(contact);
             Context.SaveChanges();
             RefreshCache();

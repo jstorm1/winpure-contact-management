@@ -1,5 +1,6 @@
 ﻿#region References
 
+using System;
 using System.Windows;
 using System.Windows.Input;
 using WinPure.ContactManagement.Client.Data.Model;
@@ -23,6 +24,7 @@ namespace WinPure.ContactManagement.Client.Pages
         {
             var dialog = new ContactsEditor();
             ModalDialog = dialog;
+            dialog.Closed += onEditDialogClosed;
             dialog.Show();
         }
 
@@ -30,6 +32,7 @@ namespace WinPure.ContactManagement.Client.Pages
         {
             var dialog = new ContactsEditor((Contact) ContactsList.SelectedItem);
             ModalDialog = dialog;
+            dialog.Closed += onEditDialogClosed;
             dialog.Show();
         }
 
@@ -39,7 +42,13 @@ namespace WinPure.ContactManagement.Client.Pages
 
             var dialog = new ContactsEditor((Contact) ContactsList.SelectedItem);
             ModalDialog = dialog;
+            dialog.Closed += onEditDialogClosed;
             dialog.Show();
+        }
+
+        private void onEditDialogClosed(object sender, EventArgs e)
+        {
+            SearchBox.Text = "";
         }
     }
 }

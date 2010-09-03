@@ -168,11 +168,11 @@
         <UIControls:SearchTextBox x:Name="searchTextBox" TextWrapping="Wrap" VerticalAlignment="Center" 
                                   Background="{x:Null}" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" 
                                   LabelText="Company name" Height="22" Style="{DynamicResource SearchTextBoxStyle}" LabelTextColor="Gray" 
-                                  Foreground="#FFC5C5C5" CaretBrush="White">
+                                  Foreground="#FFC5C5C5" CaretBrush="White" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
           
           <i:Interaction.Triggers>
             <i:EventTrigger EventName="Search">
-              <i:InvokeCommandAction Command="{Binding SearchCommand, Mode=OneWay}" CommandParameter="{Binding Text, ElementName=searchTextBox}"/>
+              <i:InvokeCommandAction Command="{Binding SearchCommand, Mode=OneWay}"/>
             </i:EventTrigger>
           </i:Interaction.Triggers>
           

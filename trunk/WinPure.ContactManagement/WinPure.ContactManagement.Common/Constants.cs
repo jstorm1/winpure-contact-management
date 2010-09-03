@@ -31,7 +31,7 @@ namespace WinPure.ContactManagement.Common
         public const string DOWNLOAD_FOLDER = "Downloads";
 
         public const string SEARCH_QUERY_PATTERN =
-            "SELECT * FROM {0} WHERE {1} LIKE @pattern OR Name LIKE @filter OR Name=@pattern";
+            "SELECT * FROM {0} WHERE {1} LIKE @pattern OR {1} LIKE @filter OR {1}=@pattern";
 
         #endregion
 

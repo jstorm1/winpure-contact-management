@@ -165,9 +165,15 @@
     			<Button x:Name="EditButton" Content="Edit" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick" IsDefault="True"/>
     			<Button Content="Delete" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Command="{Binding DeleteCommand, Mode=OneWay}"/>
     		</StackPanel>
-    		<Border Margin="8,0,0,0" VerticalAlignment="Center" Padding="3,2,3,1" Background="#FF333333" CornerRadius="5" Opacity="0.8" HorizontalAlignment="Left" Width="350">
+    		<Border x:Name="SearchBoxBorder" Margin="8,0,0,0" VerticalAlignment="Center" Padding="3,2,3,1" Background="#FF333333" CornerRadius="5" Opacity="0.8" HorizontalAlignment="Left" Width="350">
         
-    			<UIControls:SearchTextBox x:Name="searchTextBox" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" LabelText="Search" Height="22" Style="{DynamicResource SearchTextBoxStyle}" LabelTextColor="Gray" Foreground="#FFC5C5C5" CaretBrush="White"/>
+    			<UIControls:SearchTextBox x:Name="SearchBox" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" LabelText="Search" Height="22" Style="{DynamicResource SearchTextBoxStyle}" LabelTextColor="Gray" Foreground="#FFC5C5C5" CaretBrush="White" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+    				<i:Interaction.Triggers>
+    					<i:EventTrigger EventName="Search">
+    						<i:InvokeCommandAction Command="{Binding SearchCommand, Mode=OneWay}"/>
+    					</i:EventTrigger>
+    				</i:Interaction.Triggers>
+    			</UIControls:SearchTextBox>
         
     		</Border>
     	</Grid>

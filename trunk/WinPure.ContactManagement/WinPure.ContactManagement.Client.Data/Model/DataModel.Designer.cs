@@ -648,7 +648,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
                 OnTitleChanged();
             }
         }
-        private global::System.String _Title;
+        private global::System.String _Title = "";
         partial void OnTitleChanging(global::System.String value);
         partial void OnTitleChanged();
     
@@ -744,7 +744,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
                 OnSuffixChanged();
             }
         }
-        private global::System.String _Suffix;
+        private global::System.String _Suffix = "";
         partial void OnSuffixChanging(global::System.String value);
         partial void OnSuffixChanged();
     

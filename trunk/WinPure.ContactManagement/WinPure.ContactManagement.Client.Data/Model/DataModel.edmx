@@ -124,11 +124,11 @@
             <PropertyRef Name="ContactID" />
           </Key>
           <Property Name="ContactID" Type="Guid" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="5" Unicode="true" FixedLength="false" DefaultValue="" />
           <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="MiddleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
-          <Property Name="Suffix" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Suffix" Type="String" MaxLength="5" Unicode="true" FixedLength="false" DefaultValue="" />
           <Property Name="JobTitle" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="CompanyId" Type="Guid" />
           <NavigationProperty Name="Company" Relationship="WinPure.ContactManagement.Client.Data.Model.FK_Company_Contact" FromRole="Contact" ToRole="Company" />
