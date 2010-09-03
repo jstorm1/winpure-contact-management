@@ -1,12 +1,9 @@
 ﻿#region References
 
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
-using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.ViewModels.Base;
@@ -27,7 +24,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private int _contactsCount;
         private RelayCommand _deleteCommand;
         private SynchronizedObservableCollection<Company> _originalCompaniesCollection;
-        private RelayCommand<string> _searchCommand;
+        private RelayCommand _searchCommand;
+        private string _searchText;
         private Company _selectedCompany;
 
         #endregion
@@ -39,9 +37,10 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// </summary>
         public CompaniesViewModel()
         {
-            //Check for Design mode.
+            //Check for the Design mode.
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) return;
 
+            //Load Companies List From database.
             Companies = CompaniesManager.Current.LoadCompanies();
         }
 
@@ -63,6 +62,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        /// <summary>
+        /// Currently selected Company.
+        /// </summary>
         public Company SelectedCompany
         {
             get { return _selectedCompany; }
@@ -71,6 +73,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
                 if (_selectedCompany == value) return;
                 _selectedCompany = value;
 
+                //Sets Contacts count.
                 if (_selectedCompany != null)
                     ContactsCount = _selectedCompany.Contacts.Count;
 
@@ -78,6 +81,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        /// <summary>
+        /// Count of contacts which are related to the <see cref="SelectedCompany"/>.
+        /// </summary>
         public int ContactsCount
         {
             get { return _contactsCount; }
@@ -89,13 +95,30 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
-        #region Commands
-
-        public RelayCommand<string> SearchCommand
+        public string SearchText
         {
-            get { return _searchCommand ?? (_searchCommand = new RelayCommand<string>(search)); }
+            get { return _searchText; }
+            set
+            {
+                if (_searchText == value) return;
+                _searchText = value;
+                RaisePropertyChanged("SearchText");
+            }
         }
 
+        #region Commands
+
+        /// <summary>
+        /// Search Company Command.
+        /// </summary>
+        public RelayCommand SearchCommand
+        {
+            get { return _searchCommand ?? (_searchCommand = new RelayCommand(search)); }
+        }
+
+        /// <summary>
+        /// Delete Company Command.
+        /// </summary>
         public RelayCommand DeleteCommand
         {
             get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
@@ -107,6 +130,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Delete Selected Company.
+        /// </summary>
         private void delete()
         {
             WPFMessageBoxResult result = WPFMessageBox.Show("Delete Company",
@@ -118,18 +144,26 @@ namespace WinPure.ContactManagement.Client.ViewModels
             CompaniesManager.Current.Delete(_selectedCompany);
         }
 
+        private void search()
+        {
+            search(SearchText);
+        }
+
+        /// <summary>
+        /// Search Company by name.
+        /// </summary>
+        /// <param name="companyName">Company Name</param>
         private void search(string companyName)
         {
-            if (companyName != "")
+            if (!string.IsNullOrEmpty(companyName))
             {
                 if (_originalCompaniesCollection == null) _originalCompaniesCollection = Companies;
-                Companies =
-                    new SynchronizedObservableCollection<Company>(
-                        new ObservableCollection<Company>(
-                            Companies.Where(c => c.Name.ToUpper().Contains(companyName.ToUpper()))));
+
+                Companies = CompaniesManager.Current.Search("Name", companyName);
             }
             else
             {
+                if (_originalCompaniesCollection == null) return;
                 Companies = _originalCompaniesCollection;
                 _originalCompaniesCollection = null;
             }

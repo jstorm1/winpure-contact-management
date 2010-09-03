@@ -3,10 +3,12 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
+using System.Data.SqlServerCe;
 using System.Linq;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers.Base;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Data.Model.Extensions;
+using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
@@ -32,6 +34,32 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         }
 
         #endregion
+
+        /// <summary>
+        /// Search Companies.
+        /// </summary>
+        /// <param name="propertyOrFieldName">Field in which will result will be found.</param>
+        /// <param name="pattern">Search Patter - text with wildcards which will be found.</param>
+        /// <returns>Result of search - Collection of Companies.</returns>
+        public SynchronizedObservableCollection<Company> Search(string propertyOrFieldName, string pattern)
+        {
+            string query =
+                string.Format(Constants.SEARCH_QUERY_PATTERN, "Company", propertyOrFieldName);
+
+            ObjectResult<Company> result = Context.ExecuteStoreQuery<Company>(query,
+                                                                              new SqlCeParameter
+                                                                                  {
+                                                                                      ParameterName = "pattern",
+                                                                                      Value = pattern
+                                                                                  },
+                                                                              new SqlCeParameter
+                                                                                  {
+                                                                                      ParameterName = "filter",
+                                                                                      Value = pattern + "%"
+                                                                                  });
+            var resultCollection = new ObservableCollection<Company>(result);
+            return new SynchronizedObservableCollection<Company>(resultCollection);
+        }
 
         /// <summary>
         /// Method for loading companies collection from database.
@@ -97,7 +125,8 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         {
             Context.Refresh(RefreshMode.StoreWins, Context.Companies);
 
-            if (_companiesCache == null) _companiesCache = new SynchronizedObservableCollection<Company>(new ObservableCollection<Company>());
+            if (_companiesCache == null)
+                _companiesCache = new SynchronizedObservableCollection<Company>(new ObservableCollection<Company>());
 
             _companiesCache.Clear();
 

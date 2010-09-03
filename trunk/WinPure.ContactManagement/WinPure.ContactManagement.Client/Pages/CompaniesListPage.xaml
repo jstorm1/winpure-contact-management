@@ -174,19 +174,19 @@
         <ViewModels:CompaniesViewModel />
     </CommonControls:PageControl.DataContext>
 
-    <Grid Background="{DynamicResource PageBackgroundGradient}">
+    <Grid x:Name="LayoutRoot" Background="{DynamicResource PageBackgroundGradient}">
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="0.6*"/>
     		<ColumnDefinition Width="0.4*"/>
     	</Grid.ColumnDefinitions>
-    	<Grid Margin="0">
+    	<Grid x:Name="CompanieListGrid" Margin="0">
     		<Grid.RowDefinitions>
     			<RowDefinition Height="40"/>
     			<RowDefinition/>
     			<RowDefinition Height="Auto" MinHeight="35"/>
     		</Grid.RowDefinitions>
     		<ListBox x:Name="CompaniesList" BorderThickness="0" ItemTemplate="{DynamicResource CompanyDataTemplate}" ItemsSource="{Binding Companies}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0" MouseDoubleClick="onCompaniesListMouseDoubleClick" Background="{x:Null}" Grid.Row="1"  />
-    		<StackPanel Margin="8" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height">
+    		<StackPanel x:Name="ActionButtonsPanel" Margin="8" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height">
     			<Button x:Name="AddButton" Content="Add" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" Click="onAddButtonClick">
     				<i:Interaction.Triggers>
     					<i:EventTrigger EventName="Click">
@@ -197,23 +197,29 @@
     			<Button x:Name="EditButton" Content="Edit" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick" IsDefault="True"/>
     			<Button x:Name="DeleteButton" Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Command="{Binding DeleteCommand, Mode=OneWay}"/>
     		</StackPanel>
-    		<Border Margin="8,0,0,0" VerticalAlignment="Center" Padding="3,2,3,1" Background="#FF333333" CornerRadius="5" Opacity="0.8" HorizontalAlignment="Left" Width="350">
+    		<Border x:Name="SearchBoxBorder" Margin="8,0,0,0" VerticalAlignment="Center" Padding="3,2,3,1" Background="#FF333333" CornerRadius="5" Opacity="0.8" HorizontalAlignment="Left" Width="350">
         
-    			<UIControls:SearchTextBox x:Name="searchTextBox" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" LabelText="Search" Height="22" Style="{DynamicResource SearchTextBoxStyle}" LabelTextColor="Gray" Foreground="#FFC5C5C5" CaretBrush="White"/>
+    			<UIControls:SearchTextBox x:Name="SearchBox" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" LabelText="Search" Height="22" Style="{DynamicResource SearchTextBoxStyle}" LabelTextColor="Gray" Foreground="#FFC5C5C5" CaretBrush="White" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+    				<i:Interaction.Triggers>
+    					<i:EventTrigger EventName="Search">
+    						<i:InvokeCommandAction Command="{Binding SearchCommand, Mode=OneWay}"/>
+    					</i:EventTrigger>
+    				</i:Interaction.Triggers>
+    			</UIControls:SearchTextBox>
         
     		</Border>
     	</Grid>
-    	<Grid Grid.Column="1" Background="#0DFFFFFF">
+    	<Grid x:Name="CompanyContactsGrid" Grid.Column="1" Background="#0DFFFFFF">
     		<Grid Margin="8">
     			<Grid.RowDefinitions>
     				<RowDefinition Height="26"/>
     				<RowDefinition/>
     			</Grid.RowDefinitions>
-    			<Border Margin="8,0" VerticalAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFB7AD33">
+    			<Border x:Name="ContactsHeader" Margin="8,0" VerticalAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="#FFB7AD33">
     				<TextBlock TextWrapping="Wrap" Text="Contacts" FontSize="18.667" VerticalAlignment="Bottom"/>
     			</Border>
     			<ListBox x:Name="ContactsList" Margin="8" Grid.Row="1" Background="#00000000" Style="{DynamicResource ListBoxStyle}" BorderThickness="0" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemsSource="{Binding SelectedCompany.Contacts, Mode=OneWay}" ItemTemplate="{DynamicResource CompanyContactsDataTemplate}" Visibility="{Binding ContactsCount, Converter={StaticResource ItemsCountToVisibilityConverter}, Mode=OneWay}"/>
-    			<TextBlock Grid.Row="1" TextWrapping="Wrap" Text="No Items" HorizontalAlignment="Center" FontSize="18.667" VerticalAlignment="Center" Foreground="#72FFFFFF" Visibility="{Binding ContactsCount, Converter={StaticResource ItemsCountToVisibilityOppositeConverter}, Mode=OneWay}"/>
+    			<TextBlock x:Name="NoItemsLabel" Grid.Row="1" TextWrapping="Wrap" Text="No Items" HorizontalAlignment="Center" FontSize="18.667" VerticalAlignment="Center" Foreground="#72FFFFFF" Visibility="{Binding ContactsCount, Converter={StaticResource ItemsCountToVisibilityOppositeConverter}, Mode=OneWay}"/>
     		</Grid>
       
 
