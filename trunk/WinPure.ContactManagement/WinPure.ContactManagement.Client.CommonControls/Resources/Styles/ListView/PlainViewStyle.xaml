@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:Views="clr-namespace:WinPure.ContactManagement.Client.CommonControls.ListView.Views">
+
+  <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type Views:PlainView}, ResourceId=PlainViewStyle}"
+         TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
+    <Setter Property="HorizontalContentAlignment"
+          Value="Center"/>
+    <Setter Property="ItemContainerStyle"
+            Value="{Binding (ListView.View).ItemContainerStyle,
+            RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="ItemTemplate"
+            Value="{Binding (ListView.View).ItemTemplate,
+            RelativeSource={RelativeSource Self}}"/>
+    
+    <Setter Property="ItemsPanel">
+      <Setter.Value>
+        <ItemsPanelTemplate>
+          
+          <WrapPanel Width="{Binding (FrameworkElement.ActualWidth),
+                     RelativeSource={RelativeSource 
+                                     AncestorType=ScrollContentPresenter}}"
+                     ItemWidth="{Binding (ListView.View).ItemWidth,
+                     RelativeSource={RelativeSource AncestorType=ListView}}"
+                     MinWidth="{Binding ItemWidth,
+                     RelativeSource={RelativeSource Self}}"
+                     ItemHeight="{Binding (ListView.View).ItemHeight,
+                     RelativeSource={RelativeSource AncestorType=ListView}}">
+          </WrapPanel>
+          
+        </ItemsPanelTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>
