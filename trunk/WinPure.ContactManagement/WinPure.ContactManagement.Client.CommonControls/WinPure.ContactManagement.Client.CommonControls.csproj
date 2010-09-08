@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="HorizontalMenu.cs" />
     <Compile Include="HorizontalMenuItem.cs" />
+    <Compile Include="ListView\Views\DetailsView.cs" />
     <Compile Include="ModalDialog.cs" />
     <Compile Include="PageControl.cs" />
     <Compile Include="PagesSliderControl.cs" />

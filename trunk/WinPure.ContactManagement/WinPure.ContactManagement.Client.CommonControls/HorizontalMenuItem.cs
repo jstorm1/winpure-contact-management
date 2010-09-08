@@ -16,18 +16,16 @@ namespace WinPure.ContactManagement.Client.CommonControls
         // Using a DependencyProperty as the backing store for IconGlowColor.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconGlowColorProperty =
             DependencyProperty.Register("IconGlowColor", typeof (Color), typeof (HorizontalMenuItem),
-                                        new UIPropertyMetadata(Colors.Black));
-
+                                        new PropertyMetadata(Colors.Black));
 
         // Using a DependencyProperty as the backing store for Image.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageProperty =
             DependencyProperty.Register("Image", typeof (ImageSource), typeof (HorizontalMenuItem), null);
 
-
         // Using a DependencyProperty as the backing store for Content.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.RegisterAttached("Text", typeof (string), typeof (HorizontalMenuItem),
-                                                new UIPropertyMetadata("Menu Item"));
+                                                new PropertyMetadata("Menu Item"));
 
         // Using a DependencyProperty as the backing store for ImageWidth.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageWidthProperty =
