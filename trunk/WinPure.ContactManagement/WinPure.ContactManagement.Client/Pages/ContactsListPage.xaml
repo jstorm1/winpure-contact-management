@@ -7,163 +7,136 @@
              xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels" 
              xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters" 
              xmlns:UIControls="clr-namespace:UIControls;assembly=SearchTextBox" 
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-             xmlns:ListView="clr-namespace:WinPure.ContactManagement.Client.CommonControls.ListView;assembly=WinPure.ContactManagement.Client.CommonControls"  
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              x:Class="WinPure.ContactManagement.Client.Pages.ContactsListPage"
              mc:Ignorable="d" 
              d:DesignHeight="538" d:DesignWidth="992" Text="Contacts" BorderColor="#FF373737" SnapsToDevicePixels="True">
 	<CommonControls:PageControl.Resources>
 
-		<DataTemplate x:Key="ContactDataTemplate">
-			<Grid d:DesignWidth="260" d:DesignHeight="93">
-				
-        <Grid.RowDefinitions>
-					<RowDefinition />
-					<RowDefinition />
-				</Grid.RowDefinitions>
-        
-				<StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
-					<TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="{Binding FirstName, FallbackValue=FirstName}" VerticalAlignment="Bottom" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
-					<TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding LastName, FallbackValue=LastName}" VerticalAlignment="Bottom" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
-				</StackPanel>
-				<StackPanel Margin="0,8" Grid.Row="1" Orientation="Horizontal">
-					<TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="{Binding JobTitle, FallbackValue=JobTitle}" VerticalAlignment="Center" Foreground="#33FFFFFF" FontFamily="Century Gothic" FontSize="13.333"/>
-				</StackPanel>
-			</Grid>
-		</DataTemplate>
-    
-		<DataTemplate x:Key="ContactSmallDataTemplate">
-			<Grid d:DesignWidth="260" d:DesignHeight="93">
-				<Grid.RowDefinitions>
-					<RowDefinition />
-				</Grid.RowDefinitions>
-				<StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
-					<TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="{Binding FirstName, FallbackValue=FirstName}" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
-					<TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding LastName, FallbackValue=LastName}" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
-				</StackPanel>
-			</Grid>
-		</DataTemplate>
 
-    <ListView:PlainView x:Key="PlainView" ItemTemplate="{StaticResource ContactSmallDataTemplate}" ItemWidth="300" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
-    <GridView x:Key="GridView">
-    	<GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}"/>
-    </GridView>
-    <ListView:DefaultView x:Key="DefaultView" ItemTemplate="{StaticResource ContactDataTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
     
-		<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
-		<WinPure_ContactManagement_Client_Helpers_Converters:EmptyStringToVisibility x:Key="EmptyStringToVisibility"/>
-		<GridLength x:Key="DetailInfoLabelsColumnLength">150</GridLength>
-		<Style x:Key="SearchTextBoxStyle" TargetType="{x:Type UIControls:SearchTextBox}">
-			<Setter Property="Background" Value="White"/>
-			<Setter Property="BorderBrush">
-				<Setter.Value>
-					<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-						<GradientStop Color="#FFABADB3" Offset="0.05"/>
-						<GradientStop Color="#FFE2E3EA" Offset="0.07"/>
-						<GradientStop Color="#FFE3E9EF" Offset="1"/>
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Foreground" Value="Black"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="SnapsToDevicePixels" Value="True"/>
-			<Setter Property="LabelText" Value="Search"/>
-			<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-			<Setter Property="LabelTextColor" Value="Gray"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type UIControls:SearchTextBox}">
-						<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-							<Grid x:Name="LayoutGrid">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="*"/>
-									<ColumnDefinition Width="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}"/>
-								</Grid.ColumnDefinitions>
-								<ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" Margin="2"/>
-								<Label x:Name="LabelText" Content="{Binding LabelText, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="0" Foreground="{Binding LabelTextColor, RelativeSource={RelativeSource TemplatedParent}}" FontStyle="Italic" Margin="2" Padding="2,0,0,0" Cursor="IBeam"/>
-								<Border x:Name="PART_SearchIconBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF323232">
-									<Image x:Name="SearchIcon" HorizontalAlignment="Center" Height="15" Stretch="None" VerticalAlignment="Center" Width="15">
-										<Image.Source>
-											<ImageSource>/WinPure.ContactManagement.Client;component/Resources/Images/Other/SearchIcon_15x15.png</ImageSource>
-										</Image.Source>
-									</Image>
-								</Border>
-							</Grid>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsMouseOver" Value="True">
-								<Setter Property="BorderBrush">
-									<Setter.Value>
-										<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-											<GradientStop Color="#FF5C97C1" Offset="0.05"/>
-											<GradientStop Color="#FFB9D7EB" Offset="0.07"/>
-											<GradientStop Color="#FFC7E2F1" Offset="1"/>
-										</LinearGradientBrush>
-									</Setter.Value>
-								</Setter>
-							</Trigger>
-							<Trigger Property="IsKeyboardFocusWithin" Value="True">
-								<Setter Property="BorderBrush">
-									<Setter.Value>
-										<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-											<GradientStop Color="#FF5C97C1" Offset="0.05"/>
-											<GradientStop Color="#FFB9D7EB" Offset="0.07"/>
-											<GradientStop Color="#FFC7E2F1" Offset="1"/>
-										</LinearGradientBrush>
-									</Setter.Value>
-								</Setter>
-							</Trigger>
-							<Trigger Property="HasText" Value="True">
-								<Setter Property="Visibility" TargetName="LabelText" Value="Hidden"/>
-							</Trigger>
-							<MultiTrigger>
-								<MultiTrigger.Conditions>
-									<Condition Property="HasText" Value="True"/>
-									<Condition Property="SearchMode" Value="Instant"/>
-								</MultiTrigger.Conditions>
-								<Setter Property="Source" TargetName="SearchIcon">
-									<Setter.Value>
-										<BitmapImage UriSource="/WinPure.ContactManagement.Client;component/Resources/Images/Other/ClearSearchIcon_15x15.png"/>
-									</Setter.Value>
-								</Setter>
-							</MultiTrigger>
-							<MultiTrigger>
-								<MultiTrigger.Conditions>
-									<Condition Property="IsMouseOver" SourceName="PART_SearchIconBorder" Value="True"/>
-									<Condition Property="HasText" Value="True"/>
-								</MultiTrigger.Conditions>
-								<Setter Property="BorderBrush" TargetName="PART_SearchIconBorder">
-									<Setter.Value>
-										<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-											<GradientStop Color="White" Offset="0"/>
-											<GradientStop Color="#FFE5F4FC" Offset="1"/>
-										</LinearGradientBrush>
-									</Setter.Value>
-								</Setter>
-								<Setter Property="Background" TargetName="PART_SearchIconBorder" Value="#19FFFFFF"/>
-							</MultiTrigger>
-							<MultiTrigger>
-								<MultiTrigger.Conditions>
-									<Condition Property="IsMouseOver" SourceName="PART_SearchIconBorder" Value="True"/>
-									<Condition Property="IsMouseLeftButtonDown" Value="True"/>
-									<Condition Property="HasText" Value="True"/>
-								</MultiTrigger.Conditions>
-								<Setter Property="Padding" TargetName="PART_SearchIconBorder" Value="2,0,0,0"/>
-								<Setter Property="BorderBrush" TargetName="PART_SearchIconBorder">
-									<Setter.Value>
-										<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-											<GradientStop Color="White" Offset="0"/>
-											<GradientStop Color="#FFE5F4FC" Offset="1"/>
-										</LinearGradientBrush>
-									</Setter.Value>
-								</Setter>
-								<Setter Property="Background" TargetName="PART_SearchIconBorder" Value="#26FFFFFF"/>
-							</MultiTrigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="ContactsListViewStyles.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+
+
+    
+			<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+			<WinPure_ContactManagement_Client_Helpers_Converters:EmptyStringToVisibility x:Key="EmptyStringToVisibility"/>
+			<GridLength x:Key="DetailInfoLabelsColumnLength">150</GridLength>
+			<Style x:Key="SearchTextBoxStyle" TargetType="{x:Type UIControls:SearchTextBox}">
+				<Setter Property="Background" Value="White"/>
+				<Setter Property="BorderBrush">
+					<Setter.Value>
+						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+							<GradientStop Color="#FFABADB3" Offset="0.05"/>
+							<GradientStop Color="#FFE2E3EA" Offset="0.07"/>
+							<GradientStop Color="#FFE3E9EF" Offset="1"/>
+						</LinearGradientBrush>
+					</Setter.Value>
+				</Setter>
+				<Setter Property="Foreground" Value="Black"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="SnapsToDevicePixels" Value="True"/>
+				<Setter Property="LabelText" Value="Search"/>
+				<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+				<Setter Property="LabelTextColor" Value="Gray"/>
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type UIControls:SearchTextBox}">
+							<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+								<Grid x:Name="LayoutGrid">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*"/>
+										<ColumnDefinition Width="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}"/>
+									</Grid.ColumnDefinitions>
+									<ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" Margin="2"/>
+									<Label x:Name="LabelText" Content="{Binding LabelText, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="0" Foreground="{Binding LabelTextColor, RelativeSource={RelativeSource TemplatedParent}}" FontStyle="Italic" Margin="2" Padding="2,0,0,0" Cursor="IBeam"/>
+									<Border x:Name="PART_SearchIconBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF323232">
+										<Image x:Name="SearchIcon" HorizontalAlignment="Center" Height="15" Stretch="None" VerticalAlignment="Center" Width="15">
+											<Image.Source>
+												<ImageSource>/WinPure.ContactManagement.Client;component/Resources/Images/Other/SearchIcon_15x15.png</ImageSource>
+											</Image.Source>
+										</Image>
+									</Border>
+								</Grid>
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="BorderBrush">
+										<Setter.Value>
+											<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+												<GradientStop Color="#FF5C97C1" Offset="0.05"/>
+												<GradientStop Color="#FFB9D7EB" Offset="0.07"/>
+												<GradientStop Color="#FFC7E2F1" Offset="1"/>
+											</LinearGradientBrush>
+										</Setter.Value>
+									</Setter>
+								</Trigger>
+								<Trigger Property="IsKeyboardFocusWithin" Value="True">
+									<Setter Property="BorderBrush">
+										<Setter.Value>
+											<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+												<GradientStop Color="#FF5C97C1" Offset="0.05"/>
+												<GradientStop Color="#FFB9D7EB" Offset="0.07"/>
+												<GradientStop Color="#FFC7E2F1" Offset="1"/>
+											</LinearGradientBrush>
+										</Setter.Value>
+									</Setter>
+								</Trigger>
+								<Trigger Property="HasText" Value="True">
+									<Setter Property="Visibility" TargetName="LabelText" Value="Hidden"/>
+								</Trigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="HasText" Value="True"/>
+										<Condition Property="SearchMode" Value="Instant"/>
+									</MultiTrigger.Conditions>
+									<Setter Property="Source" TargetName="SearchIcon">
+										<Setter.Value>
+											<BitmapImage UriSource="/WinPure.ContactManagement.Client;component/Resources/Images/Other/ClearSearchIcon_15x15.png"/>
+										</Setter.Value>
+									</Setter>
+								</MultiTrigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsMouseOver" SourceName="PART_SearchIconBorder" Value="True"/>
+										<Condition Property="HasText" Value="True"/>
+									</MultiTrigger.Conditions>
+									<Setter Property="BorderBrush" TargetName="PART_SearchIconBorder">
+										<Setter.Value>
+											<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+												<GradientStop Color="White" Offset="0"/>
+												<GradientStop Color="#FFE5F4FC" Offset="1"/>
+											</LinearGradientBrush>
+										</Setter.Value>
+									</Setter>
+									<Setter Property="Background" TargetName="PART_SearchIconBorder" Value="#19FFFFFF"/>
+								</MultiTrigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsMouseOver" SourceName="PART_SearchIconBorder" Value="True"/>
+										<Condition Property="IsMouseLeftButtonDown" Value="True"/>
+										<Condition Property="HasText" Value="True"/>
+									</MultiTrigger.Conditions>
+									<Setter Property="Padding" TargetName="PART_SearchIconBorder" Value="2,0,0,0"/>
+									<Setter Property="BorderBrush" TargetName="PART_SearchIconBorder">
+										<Setter.Value>
+											<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+												<GradientStop Color="White" Offset="0"/>
+												<GradientStop Color="#FFE5F4FC" Offset="1"/>
+											</LinearGradientBrush>
+										</Setter.Value>
+									</Setter>
+									<Setter Property="Background" TargetName="PART_SearchIconBorder" Value="#26FFFFFF"/>
+								</MultiTrigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</ResourceDictionary>
 	</CommonControls:PageControl.Resources>
 	
     <CommonControls:PageControl.Background>
@@ -188,7 +161,7 @@
     			<RowDefinition/>
     			<RowDefinition Height="Auto" />
     		</Grid.RowDefinitions>
-    		<ListBox x:Name="ContactsList" Style="{DynamicResource ListBoxStyle}" ItemsSource="{Binding Contacts}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ItemTemplate="{DynamicResource ContactDataTemplate}" SnapsToDevicePixels="False" Foreground="{x:Null}" BorderThickness="0" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" MouseDoubleClick="onContactsListMouseDoubleClick" Grid.Row="1" Visibility="Collapsed"/>
+    		<ListView x:Name="ContactsListView" Margin="8,6.845,8,1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="#7FFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ItemsSource="{Binding Contacts}" BorderBrush="White" FontSize="13.333" Grid.Row="1" MouseDoubleClick="onContactsListViewMouseDoubleClick" />
     		<StackPanel Grid.Row="2" Margin="8" Orientation="Horizontal">
     			<Button x:Name="AddButton" Content="Add" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Click="onAddButtonClick"/>
     			<Button x:Name="EditButton" Content="Edit" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick" IsDefault="True"/>
@@ -349,8 +322,6 @@
     			<TextBlock TextWrapping="Wrap" Text="Contact Details" FontSize="18.667" VerticalAlignment="Bottom"/>
     		</Border>
     	</Grid>
-    	
-      <ListView x:Name="listView" Margin="8,46.845,8,52" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ItemsSource="{Binding Contacts}" BorderBrush="{x:Null}" />
       <Border HorizontalAlignment="Right" Height="30" Margin="0,8,8,0" VerticalAlignment="Top" Width="115" CornerRadius="5" Background="#33FFFFFF" BorderBrush="#CCFFFFFF" BorderThickness="0.5" d:LayoutOverrides="VerticalMargin">
       	<Grid>
       		<Grid.ColumnDefinitions>
@@ -358,9 +329,9 @@
       			<ColumnDefinition />
       			<ColumnDefinition />
       		</Grid.ColumnDefinitions>
-      		<CommonControls:ImageRadioButton x:Name="DefaultViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Unchecked_36x36.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onDefaultViewButtonChecked"/>
-      		<CommonControls:ImageRadioButton x:Name="ListViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Unchecked_36x36.png" Grid.Column="1" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="onListViewButtonChecked"/>
-      		<CommonControls:ImageRadioButton x:Name="GridViewButton" Content="ImageRadioButton" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Unchecked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_MouseOver_36x36.png" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Checked_36x36.png" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onGridViewButtonChecked"/>
+      		<CommonControls:ImageRadioButton x:Name="DefaultViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Unchecked_36x36.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onDefaultViewButtonChecked" Cursor="Hand"/>
+      		<CommonControls:ImageRadioButton x:Name="ListViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Unchecked_36x36.png" Grid.Column="1" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="onListViewButtonChecked" Cursor="Hand"/>
+      		<CommonControls:ImageRadioButton x:Name="GridViewButton" Content="ImageRadioButton" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Unchecked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_MouseOver_36x36.png" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Checked_36x36.png" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onGridViewButtonChecked" Cursor="Hand"/>
             
       	</Grid>
             

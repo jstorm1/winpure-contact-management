@@ -101,4 +101,5 @@
 				ViewportSize="{TemplateBinding ViewportWidth}"/>
 		</Grid>
 	</ControlTemplate>
+	
 </ResourceDictionary>

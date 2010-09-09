@@ -19,6 +19,10 @@ namespace WinPure.ContactManagement.Client.Pages
         public ContactsListPage()
         {
             InitializeComponent();
+            Loaded += delegate
+                          {
+                              DefaultViewButton.IsChecked = true;
+                          };
         }
 
         private void onAddButtonClick(object sender, RoutedEventArgs e)
@@ -31,17 +35,7 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onEditButtonClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new ContactsEditor((Contact) ContactsList.SelectedItem);
-            ModalDialog = dialog;
-            dialog.Closed += onEditDialogClosed;
-            dialog.Show();
-        }
-
-        private void onContactsListMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (ContactsList.SelectedItem == null || e.ChangedButton != MouseButton.Left) return;
-
-            var dialog = new ContactsEditor((Contact) ContactsList.SelectedItem);
+            var dialog = new ContactsEditor((Contact)ContactsListView.SelectedItem);
             ModalDialog = dialog;
             dialog.Closed += onEditDialogClosed;
             dialog.Show();
@@ -54,17 +48,29 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onDefaultViewButtonChecked(object sender, RoutedEventArgs e)
         {
-            listView.View = listView.FindResource("DefaultView") as ViewBase;
+            ContactsListView.View = ContactsListView.FindResource("DefaultView") as ViewBase;
         }
 
         private void onListViewButtonChecked(object sender, RoutedEventArgs e)
         {
-            listView.View = listView.FindResource("PlainView") as ViewBase;
+
+            ContactsListView.View = ContactsListView.FindResource("PlainView") as ViewBase;
+
         }
 
         private void onGridViewButtonChecked(object sender, RoutedEventArgs e)
         {
-            listView.View = listView.FindResource("GridView") as ViewBase;
+            ContactsListView.View = ContactsListView.FindResource("GridView") as ViewBase;
+        }
+
+        private void onContactsListViewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ContactsListView.SelectedItem == null || e.ChangedButton != MouseButton.Left) return;
+
+            var dialog = new ContactsEditor((Contact)ContactsListView.SelectedItem);
+            ModalDialog = dialog;
+            dialog.Closed += onEditDialogClosed;
+            dialog.Show();
         }
     }
 }

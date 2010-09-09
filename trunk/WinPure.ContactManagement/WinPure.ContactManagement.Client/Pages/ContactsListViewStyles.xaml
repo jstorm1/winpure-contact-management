@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ListView="clr-namespace:WinPure.ContactManagement.Client.CommonControls.ListView;assembly=WinPure.ContactManagement.Client.CommonControls">
+  <DataTemplate x:Key="ContactDataTemplate">
+
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+
+      <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+        <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="{Binding FirstName, FallbackValue=FirstName}" VerticalAlignment="Bottom" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding LastName, FallbackValue=LastName}" VerticalAlignment="Bottom" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
+      </StackPanel>
+      <StackPanel Margin="0,8" Grid.Row="1" Orientation="Horizontal">
+        <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="{Binding JobTitle, FallbackValue=JobTitle}" VerticalAlignment="Center" Foreground="#33FFFFFF" FontFamily="Century Gothic" FontSize="13.333"/>
+      </StackPanel>
+    </Grid>
+  </DataTemplate>
+
+  <DataTemplate x:Key="ContactSmallDataTemplate">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4">
+        <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="{Binding FirstName, FallbackValue=FirstName}" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="{Binding LastName, FallbackValue=LastName}" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="18.667" Foreground="White"/>
+      </StackPanel>
+    </Grid>
+  </DataTemplate>
+
+
+  <!--<Style TargetType="GridViewColumnHeader">
+  	<Setter Property="Background" Value="{x:Null}"/>
+  	<Setter Property="BorderBrush" Value="{x:Null}"/>
+  	<Setter Property="Foreground" Value="White"/>
+  	<Setter Property="FontFamily" Value="Century Gothic"/>
+  	<Setter Property="FontSize" Value="13.333"/>
+  </Style>-->
+
+
+  <ListView:PlainView x:Key="PlainView" ItemTemplate="{StaticResource ContactSmallDataTemplate}" ItemWidth="300" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
+  <GridView x:Key="GridView">
+    <GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}" CellTemplate="{DynamicResource ContactSmallDataTemplate}"/>
+  </GridView>
+  <ListView:DefaultView x:Key="DefaultView" ItemTemplate="{StaticResource ContactDataTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
+</ResourceDictionary>
