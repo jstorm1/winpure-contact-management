@@ -136,6 +136,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\36x36\GridViewIcon_Checked_36x36.png" />
+    <Resource Include="Resources\Images\36x36\GridViewIcon_MouseOver_36x36.png" />
+    <Resource Include="Resources\Images\36x36\GridViewIcon_Unchecked_36x36.png" />
+    <Resource Include="Resources\Images\36x36\ListViewIcon_Checked_36x36.png" />
+    <Resource Include="Resources\Images\36x36\ListViewIcon_MouseOver_36x36.png" />
+    <Resource Include="Resources\Images\36x36\ListViewIcon_Unchecked_36x36.png" />
+    <Resource Include="Resources\Images\36x36\DefaultViewIcon_Checked_36x36.png" />
+    <Resource Include="Resources\Images\36x36\DefaultViewIcon_MouseOver_36x36.png" />
+    <Resource Include="Resources\Images\36x36\DefaultViewIcon_Unchecked_36x36.png" />
     <Resource Include="Resources\Images\Logo_Header_450x80.png" />
     <Resource Include="Resources\Images\Flags\france_150x100.png" />
     <Resource Include="Resources\Images\Flags\italy_150x100.png" />
@@ -298,10 +307,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Images\PSDs\DefaultViewIcon.psd" />
     <None Include="Resources\Images\PSDs\Flags.psd" />
     <None Include="Resources\Images\PSDs\Icons.psd" />
     <None Include="Resources\Images\PSDs\Icons_48x48.psd" />
     <None Include="Resources\Images\PSDs\Logo.psd" />
+    <None Include="Resources\Images\PSDs\Logo_Header.psd" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\128x128\Contacts.png" />

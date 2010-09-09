@@ -52,24 +52,19 @@ namespace WinPure.ContactManagement.Client.Pages
             SearchBox.Text = "";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            listView.View = listView.FindResource("GridView") as ViewBase;
-            //listView.ItemContainerStyle = null;
-            //listView.ItemTemplate = null;
-        }
-
-        private void Button2_Click(object sender, RoutedEventArgs e)
-        {
-        	listView.View = listView.FindResource("PlainView") as ViewBase;
-            //listView.ItemTemplate = null;
-            //listView.ItemContainerStyle = listView.FindResource("ListBoxItemStyle") as Style;
-        }
-
-        private void Button3_Click(object sender, RoutedEventArgs e)
+        private void onDefaultViewButtonChecked(object sender, RoutedEventArgs e)
         {
             listView.View = listView.FindResource("DefaultView") as ViewBase;
-            //listView.ItemTemplate = listView.FindResource("ContactDataTemplate") as DataTemplate;
+        }
+
+        private void onListViewButtonChecked(object sender, RoutedEventArgs e)
+        {
+            listView.View = listView.FindResource("PlainView") as ViewBase;
+        }
+
+        private void onGridViewButtonChecked(object sender, RoutedEventArgs e)
+        {
+            listView.View = listView.FindResource("GridView") as ViewBase;
         }
     }
 }
