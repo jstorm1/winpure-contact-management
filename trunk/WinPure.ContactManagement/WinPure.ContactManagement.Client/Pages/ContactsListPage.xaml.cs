@@ -2,6 +2,7 @@
 
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Pages.Modal;
@@ -49,6 +50,26 @@ namespace WinPure.ContactManagement.Client.Pages
         private void onEditDialogClosed(object sender, EventArgs e)
         {
             SearchBox.Text = "";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            listView.View = listView.FindResource("GridView") as ViewBase;
+            //listView.ItemContainerStyle = null;
+            //listView.ItemTemplate = null;
+        }
+
+        private void Button2_Click(object sender, RoutedEventArgs e)
+        {
+        	listView.View = listView.FindResource("PlainView") as ViewBase;
+            //listView.ItemTemplate = null;
+            //listView.ItemContainerStyle = listView.FindResource("ListBoxItemStyle") as Style;
+        }
+
+        private void Button3_Click(object sender, RoutedEventArgs e)
+        {
+            listView.View = listView.FindResource("DefaultView") as ViewBase;
+            //listView.ItemTemplate = listView.FindResource("ContactDataTemplate") as DataTemplate;
         }
     }
 }

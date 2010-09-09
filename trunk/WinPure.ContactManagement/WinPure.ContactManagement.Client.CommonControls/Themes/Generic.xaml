@@ -7,6 +7,8 @@
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PageControlStyle.xaml"/>
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/PagesSliderControlStyle.xaml"/>
 		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/ProgressControlStyle.xaml"/>
+		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/ListView/PlainViewStyle.xaml"/>
+		<ResourceDictionary Source="/WinPure.ContactManagement.Client.CommonControls;component/Resources/Styles/ListView/DefaultView.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>

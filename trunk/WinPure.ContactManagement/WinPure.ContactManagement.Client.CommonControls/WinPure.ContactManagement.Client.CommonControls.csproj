@@ -76,6 +76,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Styles\ListView\DefaultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\ListView\PlainViewStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,7 +104,8 @@
   <ItemGroup>
     <Compile Include="HorizontalMenu.cs" />
     <Compile Include="HorizontalMenuItem.cs" />
-    <Compile Include="ListView\Views\PlainView.cs" />
+    <Compile Include="ListView\DefaultView.cs" />
+    <Compile Include="ListView\PlainView.cs" />
     <Compile Include="ModalDialog.cs" />
     <Compile Include="PageControl.cs" />
     <Compile Include="PagesSliderControl.cs" />
