@@ -76,6 +76,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Styles\ImageRadioButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\ListView\DefaultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,7 @@
   <ItemGroup>
     <Compile Include="HorizontalMenu.cs" />
     <Compile Include="HorizontalMenuItem.cs" />
+    <Compile Include="ImageRadioButton.cs" />
     <Compile Include="ListView\DefaultView.cs" />
     <Compile Include="ListView\PlainView.cs" />
     <Compile Include="ModalDialog.cs" />

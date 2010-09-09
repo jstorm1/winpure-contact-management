@@ -350,10 +350,13 @@
     		</Border>
     	</Grid>
     	
-      <ListView x:Name="listView" ItemsSource="{Binding Contacts}" Margin="8,46.845,8,52" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" />
+      <ListView x:Name="listView" Margin="8,46.845,8,52" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" />
       <Button Content="Button" HorizontalAlignment="Right" Height="34.845" Margin="0,8,154.8,0" VerticalAlignment="Top" Width="49" Click="Button_Click"/>
       <Button Content="Button" HorizontalAlignment="Right" Height="34.845" Margin="0,8,101.8,0" VerticalAlignment="Top" Width="49" Click="Button2_Click"/>
       <Button Content="Button" HorizontalAlignment="Right" Height="34.845" Margin="0,8,48.8,0" VerticalAlignment="Top" Width="49" Click="Button3_Click"/>
+    	<CommonControls:ImageRadioButton Content="ImageRadioButton" Height="60" Margin="248.4,0,270.4,0" VerticalAlignment="Top" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/128x128/Companies.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/48x48/Contacts_48x48.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/48x48/Settings_48x48.png"/>
+      <CommonControls:ImageRadioButton Content="ImageRadioButton" Height="60" Margin="0,0,216.4,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="68" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/france_150x100.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/italy_150x100.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/uk_150x100.png"/>
+      <CommonControls:ImageRadioButton Content="ImageRadioButton" Height="60" Margin="160.4,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="68"/>
             
     </Grid>
 </CommonControls:PageControl>
