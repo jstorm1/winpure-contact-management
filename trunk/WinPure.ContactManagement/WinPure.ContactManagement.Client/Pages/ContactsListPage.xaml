@@ -161,7 +161,7 @@
     			<RowDefinition/>
     			<RowDefinition Height="Auto" />
     		</Grid.RowDefinitions>
-    		<ListView x:Name="ContactsListView" Margin="8,6.845,8,1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="#7FFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ItemsSource="{Binding Contacts}" BorderBrush="White" FontSize="13.333" Grid.Row="1" MouseDoubleClick="onContactsListViewMouseDoubleClick" />
+    		<ListView x:Name="ContactsListView" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="#7FFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ItemsSource="{Binding Contacts}" BorderBrush="White" FontSize="13.333" Grid.Row="1" MouseDoubleClick="onContactsListViewMouseDoubleClick" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     		<StackPanel Grid.Row="2" Margin="8" Orientation="Horizontal">
     			<Button x:Name="AddButton" Content="Add" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Click="onAddButtonClick"/>
     			<Button x:Name="EditButton" Content="Edit" Margin="0" Width="75" Height="35" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick" IsDefault="True"/>
@@ -322,7 +322,7 @@
     			<TextBlock TextWrapping="Wrap" Text="Contact Details" FontSize="18.667" VerticalAlignment="Bottom"/>
     		</Border>
     	</Grid>
-      <Border HorizontalAlignment="Right" Height="30" Margin="0,8,8,0" VerticalAlignment="Top" Width="115" CornerRadius="5" Background="#33FFFFFF" BorderBrush="#CCFFFFFF" BorderThickness="0.5" d:LayoutOverrides="VerticalMargin">
+      <Border HorizontalAlignment="Right" Height="30" Margin="0,8,4,0" VerticalAlignment="Top" Width="115" CornerRadius="5" Background="#33FFFFFF" BorderBrush="#CCFFFFFF" BorderThickness="0.5">
       	<Grid>
       		<Grid.ColumnDefinitions>
       			<ColumnDefinition />

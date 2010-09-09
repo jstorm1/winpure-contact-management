@@ -40,7 +40,6 @@
     											<VisualTransition.GeneratedEasingFunction>
     												<QuinticEase EasingMode="EaseIn"/>
     											</VisualTransition.GeneratedEasingFunction>
-    											<Storyboard/>
     										</VisualTransition>
     										<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.4">
     											<VisualTransition.GeneratedEasingFunction>

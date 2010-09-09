@@ -2,6 +2,7 @@
 
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Pages.Modal;
@@ -18,6 +19,10 @@ namespace WinPure.ContactManagement.Client.Pages
         public CompaniesListPage()
         {
             InitializeComponent();
+            Loaded += delegate
+            {
+                DefaultViewButton.IsChecked = true;
+            };
         }
 
         private void onAddButtonClick(object sender, RoutedEventArgs e)
@@ -50,6 +55,21 @@ namespace WinPure.ContactManagement.Client.Pages
         private void onEditDialogClosed(object sender, EventArgs e)
         {
             SearchBox.Text = "";
+        }
+
+        private void onDefaultViewButtonChecked(object sender, RoutedEventArgs e)
+        {
+            CompaniesListView.View = CompaniesListView.FindResource("DefaultView") as ViewBase;
+        }
+
+        private void onListViewButtonChecked(object sender, RoutedEventArgs e)
+        {
+            CompaniesListView.View = CompaniesListView.FindResource("PlainView") as ViewBase;
+        }
+
+        private void onGridViewButtonChecked(object sender, RoutedEventArgs e)
+        {
+            CompaniesListView.View = CompaniesListView.FindResource("GridView") as ViewBase;
         }
     }
 }

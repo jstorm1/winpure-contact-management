@@ -42,7 +42,7 @@
 
   <ListView:PlainView x:Key="PlainView" ItemTemplate="{StaticResource ContactSmallDataTemplate}" ItemWidth="300" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
   <GridView x:Key="GridView">
-    <GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}" CellTemplate="{DynamicResource ContactSmallDataTemplate}"/>
+    <GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}"/>
   </GridView>
   <ListView:DefaultView x:Key="DefaultView" ItemTemplate="{StaticResource ContactDataTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
 </ResourceDictionary>
