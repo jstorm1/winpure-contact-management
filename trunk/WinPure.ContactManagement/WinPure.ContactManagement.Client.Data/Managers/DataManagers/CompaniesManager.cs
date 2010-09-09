@@ -1,6 +1,7 @@
 ﻿#region References
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Data.SqlServerCe;
@@ -118,6 +119,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             RefreshCache();
         }
 
+        private static IEnumerable<Company> orderCompaniesByField(string fieldName)
+        {
+            if (fieldName == null) return Context.Companies;
+            return
+                Context.Companies.AsQueryable().Provider.CreateQuery<Company>(Context.Companies.OrderByProperty(
+                    fieldName, null));
+        }
+
         /// <summary>
         /// Method for refreshing local Companies cache.
         /// </summary>
@@ -130,7 +139,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
             _companiesCache.Clear();
 
-            foreach (Company company in Context.Companies)
+            foreach (Company company in orderCompaniesByField("Name"))
             {
                 _companiesCache.Add(company);
             }

@@ -1,6 +1,7 @@
 ﻿#region References
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Data.SqlServerCe;
@@ -45,17 +46,18 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             RefreshCache();
         }
 
-        public  SynchronizedObservableCollection<Contact> SearchByFullName(string pattern)
+        public SynchronizedObservableCollection<Contact> SearchByFullName(string pattern)
         {
             const string fields = "[Title] + ' ' + [FirstName] + ' ' + [LastName] + ' ' + [Suffix]";
             return Search(fields, pattern,
-                "SELECT *, {1} As FullName FROM {0} WHERE {1} LIKE @pattern OR {1} LIKE @filter OR {1}=@pattern");
+                          "SELECT *, {1} As FullName FROM {0} WHERE {1} LIKE @pattern OR {1} LIKE @filter OR {1}=@pattern");
         }
 
         public SynchronizedObservableCollection<Contact> Search(string propertyOrFieldName, string pattern,
                                                                 string query = null)
         {
-            query = string.Format(string.IsNullOrEmpty(query) ? Constants.SEARCH_QUERY_PATTERN : query, "Contact", propertyOrFieldName);
+            query = string.Format(string.IsNullOrEmpty(query) ? Constants.SEARCH_QUERY_PATTERN : query, "Contact",
+                                  propertyOrFieldName);
 
             ObjectResult<Contact> result = Context.ExecuteStoreQuery<Contact>(query,
                                                                               new SqlCeParameter
@@ -128,6 +130,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             RefreshCache();
         }
 
+        private static IEnumerable<Contact> orderContactsByField(string fieldName)
+        {
+            if (fieldName == null) return Context.Contacts;
+            return
+                Context.Contacts.AsQueryable().Provider.CreateQuery<Contact>(Context.Contacts.OrderByProperty(
+                    fieldName, null));
+        }
+
         public void RefreshCache()
         {
             Context.Refresh(RefreshMode.StoreWins, Context.Contacts);
@@ -137,7 +147,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
             _contactsCache.Clear();
 
-            foreach (Contact contact in Context.Contacts)
+            foreach (Contact contact in orderContactsByField("FirstName"))
             {
                 _contactsCache.Add(contact);
             }
