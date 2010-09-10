@@ -149,9 +149,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #region Methods
 
 
-        private void changeCompaniesOrder(string value)
+        private void changeCompaniesOrder(string fieldName)
         {
-             CompaniesManager.Current.RefreshCache(value);
+             CompaniesManager.Current.RefreshCache(fieldName);
         }
 
         /// <summary>

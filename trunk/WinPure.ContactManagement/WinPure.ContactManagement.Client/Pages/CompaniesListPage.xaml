@@ -160,7 +160,7 @@
 
     <Grid x:Name="LayoutRoot" Background="{DynamicResource PageBackgroundGradient}">
     	<Grid.RowDefinitions>
-    		<RowDefinition Height="34.845"/>
+    		<RowDefinition Height="35"/>
     		<RowDefinition/>
     	</Grid.RowDefinitions>
     	<Grid.ColumnDefinitions>

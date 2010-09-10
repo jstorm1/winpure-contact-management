@@ -23,6 +23,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private string _searchText;
         private SynchronizedObservableCollection<Contact> _originalContactsCollection;
         private RelayCommand _searchCommand;
+        private string _sortByField;
 
         #endregion
 
@@ -34,6 +35,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
         public ContactsViewModel()
         {
             Contacts = ContactsManager.Current.LoadContacts();
+
+            SortByField = ContactsManager.Current.OrderByField;
         }
 
         #endregion
@@ -86,9 +89,25 @@ namespace WinPure.ContactManagement.Client.ViewModels
             get { return _searchCommand ?? (_searchCommand = new RelayCommand(search)); }
         }
 
+        public string SortByField
+        {
+            get { return _sortByField; }
+            set
+            {
+                _sortByField = value;
+                RaisePropertyChanged("SortByField");
+                changeContactsOrder(value);
+            }
+        }
+
         #endregion
 
         #region Methods
+
+        private void changeContactsOrder(string fieldname)
+        {
+            ContactsManager.Current.RefreshCache(fieldname);
+        }
 
         private void search()
         {

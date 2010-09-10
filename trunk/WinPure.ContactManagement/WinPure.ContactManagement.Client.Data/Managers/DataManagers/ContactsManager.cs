@@ -25,6 +25,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         #region Singleton constructor
 
         private static ContactsManager _instance;
+        private string _orderByField = "LastName";
 
         private ContactsManager()
         {
@@ -41,9 +42,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
         #endregion
 
+        public string OrderByField
+        {
+            get { return _orderByField; }
+        }
+
         private void onSyncServiceDatabaseChanged(object sender, EventArgs e)
         {
-            RefreshCache();
+            RefreshCache(OrderByField);
         }
 
         public SynchronizedObservableCollection<Contact> SearchByFullName(string pattern)
@@ -80,7 +86,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         /// <returns>Contacts collection</returns>
         public SynchronizedObservableCollection<Contact> LoadContacts()
         {
-            RefreshCache();
+            RefreshCache(OrderByField);
             return _contactsCache;
         }
 
@@ -99,7 +105,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             }
             Context.SaveChanges();
 
-            RefreshCache();
+            RefreshCache(OrderByField);
         }
 
         /// <summary>
@@ -127,7 +133,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
             Context.DeleteObject(contact);
             Context.SaveChanges();
-            RefreshCache();
+            RefreshCache(OrderByField);
         }
 
         private static IEnumerable<Contact> orderContactsByField(string fieldName)
@@ -138,8 +144,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
                     fieldName, null));
         }
 
-        public void RefreshCache()
+        public void RefreshCache(string fieldName = null)
         {
+            _orderByField = fieldName;
             Context.Refresh(RefreshMode.StoreWins, Context.Contacts);
 
             if (_contactsCache == null)
@@ -147,7 +154,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
             _contactsCache.Clear();
 
-            foreach (Contact contact in orderContactsByField("FirstName"))
+            foreach (Contact contact in orderContactsByField(fieldName))
             {
                 _contactsCache.Add(contact);
             }
