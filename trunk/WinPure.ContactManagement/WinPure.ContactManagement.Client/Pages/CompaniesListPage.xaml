@@ -6,7 +6,7 @@
                             xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
                             xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels"
                             xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters"
-                            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Pages="clr-namespace:WinPure.ContactManagement.Client.Pages" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:UIControls="clr-namespace:UIControls;assembly=SearchTextBox" x:Name="pageControl"
+                            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Pages="clr-namespace:WinPure.ContactManagement.Client.Pages" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:UIControls="clr-namespace:UIControls;assembly=SearchTextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Name="pageControl"
                             x:Class="WinPure.ContactManagement.Client.Pages.CompaniesListPage"
                             mc:Ignorable="d"
                             d:DesignHeight="430"
@@ -159,16 +159,59 @@
     </CommonControls:PageControl.DataContext>
 
     <Grid x:Name="LayoutRoot" Background="{DynamicResource PageBackgroundGradient}">
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="34.845"/>
+    		<RowDefinition/>
+    	</Grid.RowDefinitions>
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="0.6*"/>
     		<ColumnDefinition Width="0.4*"/>
     	</Grid.ColumnDefinitions>
-    	<Grid x:Name="CompanieListGrid" Margin="0">
+		<Grid Grid.ColumnSpan="2" Background="#FF99AEBC">
+	    	<Border x:Name="SearchBoxBorder" Margin="74,0,0,0" Padding="3,2,3,1" Background="#FF333333" CornerRadius="5" Opacity="0.8" d:LayoutOverrides="Height" HorizontalAlignment="Left" Width="350" VerticalAlignment="Center">
+	        
+	    		<UIControls:SearchTextBox x:Name="SearchBox" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" LabelText="Company Name" Height="22" Style="{DynamicResource SearchTextBoxStyle}" LabelTextColor="Gray" Foreground="#FFC5C5C5" CaretBrush="White" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+	    			<i:Interaction.Triggers>
+	    				<i:EventTrigger EventName="Search">
+	    					<i:InvokeCommandAction Command="{Binding SearchCommand, Mode=OneWay}"/>
+	    				</i:EventTrigger>
+	    			</i:Interaction.Triggers>
+	    		</UIControls:SearchTextBox>
+	        
+	    	</Border>
+	    	<TextBlock HorizontalAlignment="Left" Margin="8,8,0,8" TextWrapping="Wrap" Text="Search:" FontSize="16"/>
+		</Grid>
+    	<Grid x:Name="CompanieListGrid" Margin="0" Grid.Row="1">
     		<Grid.RowDefinitions>
     			<RowDefinition Height="40"/>
     			<RowDefinition/>
     			<RowDefinition Height="Auto" MinHeight="35"/>
     		</Grid.RowDefinitions>
+    		<TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" Text="Sort by:" FontSize="13.333" VerticalAlignment="Center"/>
+    		<ComboBox Margin="61.5,0,0,0" Background="#CCFFFFFF" BorderBrush="White" FontSize="13.333" VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" SelectedIndex="0" SelectedItem="{Binding SortByField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+          <sys:String>Name</sys:String>
+          <sys:String>Industry</sys:String>
+          <sys:String>Country</sys:String>
+          <sys:String>Town</sys:String>
+			  </ComboBox>
+      
+
+    		<Border HorizontalAlignment="Right" Margin="0" Width="115" CornerRadius="5" Background="#33FFFFFF" BorderBrush="#CCFFFFFF" BorderThickness="0.5">
+    			<Grid Margin="0">
+    				<Grid.ColumnDefinitions>
+    					<ColumnDefinition />
+    					<ColumnDefinition />
+    					<ColumnDefinition />
+    				</Grid.ColumnDefinitions>
+    				<CommonControls:ImageRadioButton x:Name="DefaultViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Unchecked_36x36.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onDefaultViewButtonChecked" Cursor="Hand"/>
+    				<CommonControls:ImageRadioButton x:Name="ListViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Unchecked_36x36.png" Grid.Column="1" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="onListViewButtonChecked" Cursor="Hand"/>
+    				<CommonControls:ImageRadioButton x:Name="GridViewButton" Content="ImageRadioButton" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Unchecked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_MouseOver_36x36.png" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Checked_36x36.png" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onGridViewButtonChecked" Cursor="Hand"/>
+            
+    			</Grid>
+            
+    		</Border>
+      
+
     		<ListBox x:Name="CompaniesList" BorderThickness="0" ItemTemplate="{DynamicResource CompanyDataTemplate}" ItemsSource="{Binding Companies}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0" MouseDoubleClick="onCompaniesListMouseDoubleClick" Background="{x:Null}" Grid.Row="1" Visibility="Collapsed"  />
     		<StackPanel x:Name="ActionButtonsPanel" Margin="8" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height">
     			<Button x:Name="AddButton" Content="Add" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" Click="onAddButtonClick">
@@ -181,22 +224,9 @@
     			<Button x:Name="EditButton" Content="Edit" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Click="onEditButtonClick" IsDefault="True"/>
     			<Button x:Name="DeleteButton" Content="Delete" Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Height="35" Width="75" IsEnabled="{Binding SelectedCompany, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" Command="{Binding DeleteCommand, Mode=OneWay}"/>
     		</StackPanel>
-    		<Border x:Name="SearchBoxBorder" Margin="8,0,0,0" VerticalAlignment="Center" Padding="3,2,3,1" Background="#FF333333" CornerRadius="5" Opacity="0.8" HorizontalAlignment="Left" Width="350">
-        
-    			<UIControls:SearchTextBox x:Name="SearchBox" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" FontFamily="Century Gothic" FontSize="13.333" BorderThickness="0" LabelText="Search" Height="22" Style="{DynamicResource SearchTextBoxStyle}" LabelTextColor="Gray" Foreground="#FFC5C5C5" CaretBrush="White" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-    				<i:Interaction.Triggers>
-    					<i:EventTrigger EventName="Search">
-    						<i:InvokeCommandAction Command="{Binding SearchCommand, Mode=OneWay}"/>
-    					</i:EventTrigger>
-    				</i:Interaction.Triggers>
-    			</UIControls:SearchTextBox>
-        
-    		</Border>
-    		<ListView x:Name="CompaniesListView" Grid.Row="1" BorderBrush="White" Foreground="Black" Background="#7FFFFFFF" ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="13.333">
-    			
-    		</ListView>
+    		<ListView x:Name="CompaniesListView" Grid.Row="1" BorderBrush="White" Foreground="Black" Background="#7FFFFFFF" ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="13.333"/>
     	</Grid>
-    	<Grid x:Name="CompanyContactsGrid" Grid.Column="1" Background="#0DFFFFFF">
+    	<Grid x:Name="CompanyContactsGrid" Grid.Column="1" Background="#0DFFFFFF" Grid.Row="1">
     		<Grid Margin="8">
     			<Grid.RowDefinitions>
     				<RowDefinition Height="26"/>
@@ -211,20 +241,6 @@
       
 
     	</Grid>
-    	<Border HorizontalAlignment="Right" Height="30" Margin="0,8,4,0" VerticalAlignment="Top" Width="115" CornerRadius="5" Background="#33FFFFFF" BorderBrush="#CCFFFFFF" BorderThickness="0.5" d:LayoutOverrides="VerticalMargin">
-    		<Grid>
-    			<Grid.ColumnDefinitions>
-    				<ColumnDefinition />
-    				<ColumnDefinition />
-    				<ColumnDefinition />
-    			</Grid.ColumnDefinitions>
-    			<CommonControls:ImageRadioButton x:Name="DefaultViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/DefaultViewIcon_Unchecked_36x36.png" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onDefaultViewButtonChecked" Cursor="Hand"/>
-    			<CommonControls:ImageRadioButton x:Name="ListViewButton" Content="ImageRadioButton" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Checked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_MouseOver_36x36.png" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/ListViewIcon_Unchecked_36x36.png" Grid.Column="1" Width="24" Height="24" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="onListViewButtonChecked" Cursor="Hand"/>
-    			<CommonControls:ImageRadioButton x:Name="GridViewButton" Content="ImageRadioButton" UncheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Unchecked_36x36.png" MouseOverImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_MouseOver_36x36.png" CheckedImage="/WinPure.ContactManagement.Client;component/Resources/Images/36x36/GridViewIcon_Checked_36x36.png" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="24" Height="24" Checked="onGridViewButtonChecked" Cursor="Hand"/>
-            
-    		</Grid>
-            
-    	</Border>
       
 
     </Grid>

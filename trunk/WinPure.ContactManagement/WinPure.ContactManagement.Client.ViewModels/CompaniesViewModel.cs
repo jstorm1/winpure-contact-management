@@ -1,6 +1,9 @@
 ﻿#region References
 
+using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
@@ -20,6 +23,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         #region Fields
 
+        private string _sortByField;
         private SynchronizedObservableCollection<Company> _companies;
         private int _contactsCount;
         private RelayCommand _deleteCommand;
@@ -42,6 +46,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
             //Load Companies List From database.
             Companies = CompaniesManager.Current.LoadCompanies();
+
+            SortByField = CompaniesManager.Current.OrderByField;
         }
 
         #endregion
@@ -106,6 +112,18 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
+        public string SortByField
+        {
+            get { return _sortByField; }
+            set
+            {
+                _sortByField = value;
+                RaisePropertyChanged("SortByField");
+                changeCompaniesOrder(value);
+            }
+        }
+
+
         #region Commands
 
         /// <summary>
@@ -129,6 +147,12 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #endregion
 
         #region Methods
+
+
+        private void changeCompaniesOrder(string value)
+        {
+             CompaniesManager.Current.RefreshCache(value);
+        }
 
         /// <summary>
         /// Delete Selected Company.

@@ -19,6 +19,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
     public class CompaniesManager : DataManagerBase
     {
         private SynchronizedObservableCollection<Company> _companiesCache;
+        private string _orderByField = "Name";
 
         #region Singleton constructor
 
@@ -35,6 +36,11 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         }
 
         #endregion
+
+        public string OrderByField
+        {
+            get { return _orderByField; }
+        }
 
         /// <summary>
         /// Search Companies.
@@ -68,7 +74,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         /// <returns>Companies Collection</returns>
         public SynchronizedObservableCollection<Company> LoadCompanies()
         {
-            RefreshCache();
+            RefreshCache(OrderByField);
             return _companiesCache;
         }
 
@@ -100,7 +106,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
             Context.SaveChanges();
 
-            RefreshCache();
+            RefreshCache(OrderByField);
         }
 
         /// <summary>
@@ -116,7 +122,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
             Context.DeleteObject(company);
             Context.SaveChanges();
-            RefreshCache();
+            RefreshCache(OrderByField);
         }
 
         private static IEnumerable<Company> orderCompaniesByField(string fieldName)
@@ -130,8 +136,10 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         /// <summary>
         /// Method for refreshing local Companies cache.
         /// </summary>
-        public void RefreshCache()
+        public void RefreshCache(string orderByField = null)
         {
+            _orderByField = orderByField;
+
             Context.Refresh(RefreshMode.StoreWins, Context.Companies);
 
             if (_companiesCache == null)
@@ -139,7 +147,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
             _companiesCache.Clear();
 
-            foreach (Company company in orderCompaniesByField("Name"))
+            foreach (Company company in orderCompaniesByField(orderByField))
             {
                 _companiesCache.Add(company);
             }
@@ -161,7 +169,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
 
         private void onSyncServiceDatabaseChanged(object sender, EventArgs e)
         {
-            RefreshCache();
+            RefreshCache(OrderByField);
         }
     }
 }
