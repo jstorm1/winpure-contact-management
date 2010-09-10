@@ -262,6 +262,7 @@
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
     <Compile Include="Helpers\Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Helpers\XmlLanguageDictionary.cs" />
     <Compile Include="Pages\CompaniesListPage.xaml.cs">
       <DependentUpon>CompaniesListPage.xaml</DependentUpon>
     </Compile>
@@ -338,6 +339,10 @@
     <ProjectReference Include="..\WinPure.ContactManagement.Client.Data\WinPure.ContactManagement.Client.Data.csproj">
       <Project>{F768494E-E29C-4653-B058-A733D730DB1F}</Project>
       <Name>WinPure.ContactManagement.Client.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Localization\WinPure.ContactManagement.Client.Localization.csproj">
+      <Project>{4BDC1BBD-F360-46D4-BF0B-31EFE0AD8862}</Project>
+      <Name>WinPure.ContactManagement.Client.Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\WinPure.ContactManagement.Client.Services.Managers\WinPure.ContactManagement.Client.Services.Managers.csproj">
       <Project>{B3E17F7A-F87B-41F3-BF6A-29C17B41B150}</Project>
