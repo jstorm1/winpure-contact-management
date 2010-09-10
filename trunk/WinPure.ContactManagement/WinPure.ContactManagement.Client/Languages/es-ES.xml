@@ -3,11 +3,11 @@
 
 
   <!--Shell Window-->
-  <Value Id="ShellWindow"  Title="WinPure Ltd - Contact Management Application"/>
+  <Value Id="ShellWindow"  Title="WinPure Ltd - Póngase en contacto con Aplicación de dirección"/>
           <!--MainMenu-->
-          <Value Id="MainMenu.ContactsButton" Text="Contacts" />
-          <Value Id="MainMenu.CompaniesButton" Text="Companies" />
-          <Value Id="MainMenu.SynchronizeButton" Text="Synchronize" />
-          <Value Id="MainMenu.SettingsButton" Text="Settings" />
+          <Value Id="MainMenu.ContactsButton" Text="Contactos" Width="150"/>
+          <Value Id="MainMenu.CompaniesButton" Text="Compañías" Width="150"/>
+          <Value Id="MainMenu.SynchronizeButton" Text="Sincronizar" Width="150"/>
+          <Value Id="MainMenu.SettingsButton" Text="Configuraciones" Width="150"/>
   
 </Dictionary>

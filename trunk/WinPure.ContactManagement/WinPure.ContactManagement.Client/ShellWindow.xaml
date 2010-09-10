@@ -86,9 +86,9 @@
       <CommonControls:HorizontalMenuItem x:Name="ContactsButton"
                                          
     		loc:Translate.Uid="MainMenu.ContactsButton"
-    		Text="{loc:Translate Contacts}"
+    		Text="{loc:Translate Contacts}"                                         
+    		Width="{loc:Translate 100}"
                                          
-    		Width="100"
     		Image="Resources/Images/48x48/Contacts_48x48.png"
     		IconGlowColor="#FFCA8229">
 
@@ -111,8 +111,8 @@
                                          
     		loc:Translate.Uid="MainMenu.CompaniesButton"
     		Text="{loc:Translate Companies}"
-                                         
-    		Width="100"
+    		Width="{loc:Translate 100}"
+           
     		Image="Resources/Images/48x48/Companies_48x48.png"
     		IconGlowColor="#FF427EB2">
         <i:Interaction.Triggers>
@@ -134,8 +134,8 @@
                                          
     		loc:Translate.Uid="MainMenu.SynchronizeButton"
     		Text="{loc:Translate Synchronize}"
-                                         
-    		Width="100"
+    		Width="{loc:Translate 100}"
+           
     		Image="Resources/Images/48x48/Sync_48x48.png"
     		IconGlowColor="#FF4FD647">
 
@@ -158,8 +158,8 @@
                                          
     		loc:Translate.Uid="MainMenu.SettingsButton"
     		Text="{loc:Translate Settings}"
-                                                 
-    		Width="100"
+    		Width="{loc:Translate 100}"
+           
     		Image="Resources/Images/48x48/Settings_48x48.png"
     		IconGlowColor="Red">
 
