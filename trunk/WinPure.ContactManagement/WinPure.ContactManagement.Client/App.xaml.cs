@@ -1,8 +1,10 @@
 ﻿#region References 
 
+using System.Globalization;
 using System.Windows;
 using System.Windows.Threading;
-using WinPure.ContactManagement.Client.Services;
+using WinPure.ContactManagement.Client.Helpers;
+using WinPure.ContactManagement.Client.Localization;
 using WinPure.ContactManagement.Client.Services.Managers;
 using WinPure.ContactManagement.Common;
 using WinPure.ContactManagement.Common.SyncServiceHelpers;
@@ -14,10 +16,33 @@ namespace WinPure.ContactManagement.Client
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Application.Startup"/> event.
+        /// </summary>
+        /// <param name="e">A <see cref="T:System.Windows.StartupEventArgs"/> that contains the event data.</param>
         protected override void OnStartup(StartupEventArgs e)
         {
+
+            LanguageDictionary.RegisterDictionary(
+            CultureInfo.GetCultureInfo("en-US"),
+            new XmlLanguageDictionary("Languages/en-US.xml"));
+
+            LanguageDictionary.RegisterDictionary(
+                CultureInfo.GetCultureInfo("es-ES"),
+                new XmlLanguageDictionary("Languages/es-ES.xml"));
+
+            LanguageDictionary.RegisterDictionary(
+                CultureInfo.GetCultureInfo("fr-FR"),
+                new XmlLanguageDictionary("Languages/fr-FR.xml"));
+
+            LanguageDictionary.RegisterDictionary(
+                CultureInfo.GetCultureInfo("it-IT"),
+                new XmlLanguageDictionary("Languages/it-IT.xml"));
+
+            LanguageContext.Current.Culture = CultureInfo.GetCultureInfo("en-US");	
+
 
             DispatcherUnhandledException += onDispatcherUnhandledException;
 
