@@ -12,15 +12,18 @@ namespace WinPure.ContactManagement.Client
     /// </summary>
     public partial class ShellWindow : Window
     {
+        /// <summary>
+        /// Default Constructor.
+        /// </summary>
         public ShellWindow()
         {
             InitializeComponent();
 
-            pagesSliderControl.Transition = TransitionsManager.Current.CurrentTransition;
+            PagesSliderControl.Transition = TransitionsManager.Current.CurrentTransition;
 
             TransitionsManager.Current.CurrentTransitionChanged += delegate
                                                                        {
-                                                                           pagesSliderControl.Transition =
+                                                                           PagesSliderControl.Transition =
                                                                                TransitionsManager.Current.
                                                                                    CurrentTransition;
                                                                        };
