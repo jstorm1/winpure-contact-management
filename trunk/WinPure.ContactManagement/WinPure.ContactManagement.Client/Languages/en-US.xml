@@ -18,6 +18,8 @@
   
   
   
+  
+  
   <!--Shell Window-->
   <Value Id="ShellWindow"  Title="WinPure Ltd - Contact Management Application"/>
           <!--MainMenu-->
@@ -64,5 +66,17 @@
   
           <!--Contacts Header-->
           <Value Id="Contacts.Header" Text="Contacts"/>
+  
+  
+  
+  <!--Synchronization Page-->
+  <Value Id="SynchronizationPage" Text="Synchronization"/>
+          <!--Action Buttons-->
+          <Value Id="RefreshButton" Content="Refresh"/>
+          <Value Id="SyncButton" Content="Synchronize"/>
+          
+          <!--Sync Servers Header-->
+          <Value Id="SyncServers.Header" Text="Sync Servers"/>
+  
   
 </Dictionary>
