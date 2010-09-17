@@ -147,6 +147,7 @@
     </Content>
     <Content Include="Languages\en-US.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Resource Include="Resources\Images\36x36\GridViewIcon_Checked_36x36.png" />
     <Resource Include="Resources\Images\36x36\GridViewIcon_MouseOver_36x36.png" />

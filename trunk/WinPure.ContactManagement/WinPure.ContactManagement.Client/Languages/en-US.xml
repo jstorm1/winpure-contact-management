@@ -1,6 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Dictionary EnglishName="English" CultureName="English" Culture="en-US">
   
+  <!--General-->
+          <!--Search-->
+          <Value Id="Search.SearchLabel" Text="Search:"/>
+          
+          <!--Sort-->
+          <Value Id="Sort.SortLabel" Text="Sort by:"/>
+          
+          <!--Edit Buttons-->
+          <Value Id="EditButtons.AddButton" Content="Add"/>
+          <Value Id="EditButtons.EditButton" Content="Edit"/>
+          <Value Id="EditButtons.DeleteButton" Content="Delete"/>
+  
+          <!--No Items Label-->
+          <Value Id="NoItems" Text="No Items"/>
+  
+  
   
   <!--Shell Window-->
   <Value Id="ShellWindow"  Title="WinPure Ltd - Contact Management Application"/>
@@ -9,5 +25,44 @@
           <Value Id="MainMenu.CompaniesButton" Text="Companies" />
           <Value Id="MainMenu.SynchronizeButton" Text="Synchronize" />
           <Value Id="MainMenu.SettingsButton" Text="Settings" />
+  
+  
+  
+  <!--Contacts List Page-->
+  <Value Id="ContactsListPage" Text="Contacts"/>
+          <!--Search-->         
+          <Value Id="Search.SearchTextBoxContacts" LabelText="Full Name"/>
+  
+          <!--Sort-->
+          
+          <!--Details Header-->
+          <Value Id="Details.Header" Text="Contact Details"/>
+  
+          <!--Details-->
+          <Value Id="Details.FirstName" Text="First Name:"/>
+          <Value Id="Details.MiddleName" Text="Middle Name:"/>
+          <Value Id="Details.LastName" Text="Last Name:"/>
+          <Value Id="Details.JobTitle" Text="Job Title:"/>
+          <Value Id="Details.Company" Text="Company:"/>
+          <Value Id="Details.Telephone" Text="Telephone:"/>
+          <Value Id="Details.Fax" Text="Fax:"/>
+          <Value Id="Details.Mobile" Text="Mobile:"/>
+          <Value Id="Details.HomeTelephone" Text="Home Telephone:"/>
+          <Value Id="Details.Website" Text="Website:"/>
+          <Value Id="Details.EmailAddress1" Text="Email Address 1:"/>
+          <Value Id="Details.EmailAddress2" Text="Email Address 2:"/>
+          <Value Id="Details.EmailAddress" Text="Email Address:"/>
+  
+  
+  
+  <!--Companies List Page-->
+  <Value Id="CompaniesListPage" Text="Companies"/>
+          <!--Search-->
+          <Value Id="Search.SearchTextBoxCompanies" LabelText="Company Name"/>
+
+          <!--Sort-->
+  
+          <!--Contacts Header-->
+          <Value Id="Contacts.Header" Text="Contacts"/>
   
 </Dictionary>
