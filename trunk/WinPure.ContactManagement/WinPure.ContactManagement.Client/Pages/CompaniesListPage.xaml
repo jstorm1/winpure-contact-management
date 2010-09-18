@@ -221,7 +221,13 @@
       
 
     		<StackPanel x:Name="Sort" HorizontalAlignment="Left" Margin="8,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
-    			<TextBlock x:Name="SortLabel" TextWrapping="Wrap" Text="Sort by:" FontSize="13.333" VerticalAlignment="Center" Margin="0,0,8,0"/>
+    			<TextBlock x:Name="SortLabel" TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Sort.SortLabel"
+                     Text="{loc:Translate Sort by:}"
+                     
+                     FontSize="13.333" 
+                     VerticalAlignment="Center" Margin="0,0,8,0"/>
     			<ComboBox Background="#CCFFFFFF" BorderBrush="White" FontSize="13.333" VerticalAlignment="Center" Width="150" SelectedIndex="0" SelectedItem="{Binding SortByField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
     				<sys:String>Name</sys:String>
     				<sys:String>Industry</sys:String>

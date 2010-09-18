@@ -199,7 +199,12 @@
     					<WinPure_ContactManagement_Client_Controls:SmallCompaniesList Grid.Row="1" Background="#33FFFFFF" Foreground="Black" CurrentCompany="{Binding Company, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
     				</Grid>
     			</TabItem>
-    			<TabItem x:Name="ContactsTab" Header="Contacts" FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Height="40">
+    			<TabItem x:Name="ContactsTab"
+                   
+                   loc:Translate.Uid="ContactsTab"
+                   Header="{loc:Translate Contacts}" 
+                   
+                   FontSize="16" Style="{DynamicResource TabItemStyle}" Margin="0" Height="40">
     				<Grid x:Name="ContactsGrid" DataContext="{Binding Contact}">
     					<Grid.RowDefinitions>
     						<RowDefinition Height="Auto" />
@@ -418,7 +423,12 @@
     						</StackPanel>
     					</Grid>
     					<Border x:Name="ContactsTabHeader" Margin="8,0" VerticalAlignment="Bottom" BorderThickness="0,0,0,1" BorderBrush="#4B000000">
-    						<TextBlock TextWrapping="Wrap" Text="Contact Information" FontSize="18.667" VerticalAlignment="Bottom" Foreground="White"/>
+    						<TextBlock TextWrapping="Wrap"
+                           
+                           loc:Translate.Uid="ContactsTab.Header"
+                           Text="{loc:Translate Contact Information}" 
+                           
+                           FontSize="18.667" VerticalAlignment="Bottom" Foreground="White"/>
     					</Border>
     				</Grid>
     			</TabItem>
