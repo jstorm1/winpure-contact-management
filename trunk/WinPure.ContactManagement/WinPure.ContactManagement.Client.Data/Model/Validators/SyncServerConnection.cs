@@ -1,6 +1,7 @@
 ﻿#region References
 
 using WinPure.ContactManagement.Client.Data.Model.Validators.Base;
+using WinPure.ContactManagement.Client.Localization;
 
 #endregion
 
@@ -12,7 +13,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         {
             if (string.IsNullOrEmpty(_Name))
             {
-                AddError("Name", "Please enter connection name.");
+                AddError("Name", LanguageDictionary.CurrentDictionary.Translate<string>("Validation.ConnectionName", "Message"));
             }
             else
             {

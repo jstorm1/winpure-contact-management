@@ -21,6 +21,14 @@
           <Value Id="ActionButtons.CancelButton" Content="Cancel"/>
           <Value Id="ActionButtons.BrowseButton" Content="Browse"/>
 
+          <!--Validation Errors-->
+          <Value Id="Validation.DefaultMessage" Message="Object is invalid."/>
+          <Value Id="Validation.CompanyName" Message="Company name can't be empty."/>
+          <Value Id="Validation.Country" Message="Country can't be empty."/>
+          <Value Id="Validation.FirstName" Message="First Name can't be empty."/>
+          <Value Id="Validation.LastName" Message="Last Name can't be empty."/>
+          <Value Id="Validation.ConnectionName" Message="Please enter connection name."/>
+  
 
 
   <!--Contact Details-->
@@ -72,6 +80,10 @@
           <!--Details Header-->
           <Value Id="Details.Header" Text="Contact Details"/>
   
+          <!--Messages-->
+          <Value Id="Messages.DeleteContact" Title="Delete Contact"
+                 Message="Are you sure you want to delete this Contact?"/>
+  
   
   
   <!--Companies List Page-->
@@ -83,6 +95,10 @@
   
           <!--Contacts Header-->
           <Value Id="Contacts.Header" Text="Contacts"/>
+
+          <!--Messages-->
+          <Value Id="Messages.DeleteCompany" Title="Delete Company"
+                 Message="Are you sure you want to delete this Company?"/>
   
   
   
@@ -94,6 +110,14 @@
           
           <!--Sync Servers Header-->
           <Value Id="SyncServers.Header" Text="Sync Servers"/>
+
+          <!--Messages-->
+          <Value Id="Messages.DeleteConnection" Title="Delete Connection"
+                 Message="Are you sure you want to delete this Connection?"/>
+          <Value Id="Messages.BusyMessage.Searching"
+                 Message="Searching!!..."/>
+          <Value Id="Messages.BusyMessage.Synchronization"
+                 Message="Synchronization..."/>
   
   
   

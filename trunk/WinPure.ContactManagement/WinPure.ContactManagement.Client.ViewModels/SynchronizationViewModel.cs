@@ -12,6 +12,7 @@ using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Data.Synchronization;
+using WinPure.ContactManagement.Client.Localization;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common.Helpers;
 
@@ -185,8 +186,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private void delete()
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show("Delete Connection",
-                                                            "Are you sure you want to delete this Connection?",
+            WPFMessageBoxResult result = WPFMessageBox.Show(LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteConnection", "Title"),
+                                                            LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteConnection", "Message"),
                                                             WPFMessageBoxButtons.YesNo,
                                                             WPFMessageBoxImage.Question);
             if (result == WPFMessageBoxResult.No) return;
@@ -207,14 +208,14 @@ namespace WinPure.ContactManagement.Client.ViewModels
         private void refreshPeersInfo()
         {
             IsBusy = true;
-            BusyMessage = "Searching...";
+            BusyMessage = LanguageDictionary.CurrentDictionary.Translate<string>("Messages.BusyMessage.Searching", "Message");
             _getEndpointsBackgroundWorker.RunWorkerAsync();
         }
 
         private void sqlSynchronize()
         {
             IsBusy = true;
-            BusyMessage = "Synchronization...";
+            BusyMessage = LanguageDictionary.CurrentDictionary.Translate<string>("Messages.BusyMessage.Synchronization", "Message");
             _sqlSynchronizationWorker.RunWorkerAsync();
         }
 

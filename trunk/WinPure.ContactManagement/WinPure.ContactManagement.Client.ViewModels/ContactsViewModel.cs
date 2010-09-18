@@ -6,6 +6,7 @@ using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.Localization;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common.Helpers;
 
@@ -132,8 +133,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private void delete()
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show("Delete Contact",
-                                                            "Are you sure you want to delete this Contact?",
+            WPFMessageBoxResult result = WPFMessageBox.Show(LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContact", "Title"),
+                                                            LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContact", "Message"),
                                                             WPFMessageBoxButtons.YesNo,
                                                             WPFMessageBoxImage.Question);
             if (result == WPFMessageBoxResult.No) return;

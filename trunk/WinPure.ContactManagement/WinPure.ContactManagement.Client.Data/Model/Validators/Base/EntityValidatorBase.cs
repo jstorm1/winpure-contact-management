@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Objects.DataClasses;
+using WinPure.ContactManagement.Client.Localization;
 
 #endregion
 
@@ -65,7 +66,7 @@ namespace WinPure.ContactManagement.Client.Data.Model.Validators.Base
         /// </returns>
         public string Error
         {
-            get { return _validationErrors.Count > 0 ? "Object is invalid." : null; }
+            get { return _validationErrors.Count > 0 ? LanguageDictionary.CurrentDictionary.Translate<string>("Validation.DefaultMessage", "Message") : null; }
         }
 
         #endregion

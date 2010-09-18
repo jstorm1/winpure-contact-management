@@ -1,6 +1,7 @@
 ﻿#region References
 
-using WinPure.ContactManagement.Client.Data.Model.Validators.Base; 
+using WinPure.ContactManagement.Client.Data.Model.Validators.Base;
+using WinPure.ContactManagement.Client.Localization;
 
 #endregion
 
@@ -11,7 +12,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         partial void OnNameChanged()
         {
             if (string.IsNullOrEmpty(_Name))
-                AddError("Name", "Company name can't be empty.");
+                AddError("Name", LanguageDictionary.CurrentDictionary.Translate<string>("Validation.CompanyName", "Message"));
             else
                 RemoveError("Name");
         }
@@ -19,7 +20,7 @@ namespace WinPure.ContactManagement.Client.Data.Model
         partial void OnCountryChanged()
         {
             if (string.IsNullOrEmpty(_Country))
-                AddError("Country", "Country can't be empty.");
+                AddError("Country", LanguageDictionary.CurrentDictionary.Translate<string>("Validation.Country", "Message"));
             else
                 RemoveError("Country");
         }

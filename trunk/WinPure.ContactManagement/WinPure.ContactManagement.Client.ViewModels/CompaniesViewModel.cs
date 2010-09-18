@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.Localization;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 using WinPure.ContactManagement.Common.Helpers;
 
@@ -159,8 +160,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// </summary>
         private void delete()
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show("Delete Company",
-                                                            "Are you sure you want to delete this Company?",
+            WPFMessageBoxResult result = WPFMessageBox.Show(LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompany", "Title"),
+                                                            LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompany", "Message"),
                                                             WPFMessageBoxButtons.YesNo,
                                                             WPFMessageBoxImage.Question);
             if (result == WPFMessageBoxResult.No) return;

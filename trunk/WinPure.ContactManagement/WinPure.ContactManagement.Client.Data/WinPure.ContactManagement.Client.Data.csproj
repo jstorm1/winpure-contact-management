@@ -163,6 +163,10 @@
     <None Include="Service References\SyncService\item.disco" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Localization\WinPure.ContactManagement.Client.Localization.csproj">
+      <Project>{4BDC1BBD-F360-46D4-BF0B-31EFE0AD8862}</Project>
+      <Name>WinPure.ContactManagement.Client.Localization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinPure.ContactManagement.Client.Services.Managers\WinPure.ContactManagement.Client.Services.Managers.csproj">
       <Project>{B3E17F7A-F87B-41F3-BF6A-29C17B41B150}</Project>
       <Name>WinPure.ContactManagement.Client.Services.Managers</Name>

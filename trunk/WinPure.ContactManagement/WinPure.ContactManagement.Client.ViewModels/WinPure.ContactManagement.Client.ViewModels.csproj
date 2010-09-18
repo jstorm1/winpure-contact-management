@@ -86,6 +86,10 @@
       <Project>{F768494E-E29C-4653-B058-A733D730DB1F}</Project>
       <Name>WinPure.ContactManagement.Client.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Localization\WinPure.ContactManagement.Client.Localization.csproj">
+      <Project>{4BDC1BBD-F360-46D4-BF0B-31EFE0AD8862}</Project>
+      <Name>WinPure.ContactManagement.Client.Localization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WinPure.ContactManagement.Common\WinPure.ContactManagement.Common.csproj">
       <Project>{21538910-F17E-4603-BF54-C0A5CCECC7D6}</Project>
       <Name>WinPure.ContactManagement.Common</Name>
