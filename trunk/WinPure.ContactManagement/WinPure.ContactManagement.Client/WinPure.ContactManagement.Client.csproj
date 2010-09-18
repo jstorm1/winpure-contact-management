@@ -271,6 +271,7 @@
       <DependentUpon>SecondPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Converters\BooleanToVisibilityOppositeConverter.cs" />
+    <Compile Include="Helpers\Converters\ComboBoxItemToStringConverter.cs" />
     <Compile Include="Helpers\Converters\ContentSwicherConverter.cs" />
     <Compile Include="Helpers\Converters\EmptyStringToVisibility.cs" />
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />

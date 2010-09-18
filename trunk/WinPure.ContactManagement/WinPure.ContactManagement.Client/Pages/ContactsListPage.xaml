@@ -25,6 +25,7 @@
       <ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="ContactsListViewStyles.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
+			<WinPure_ContactManagement_Client_Helpers_Converters:ComboBoxItemToStringConverter x:Key="ComboBoxItemToStringConverter"/>
 
 			<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
 			
@@ -262,9 +263,23 @@
 
                      
                      FontSize="13.333" VerticalAlignment="Center" Margin="0,0,8,0"/>
-    			<ComboBox x:Name="SortType" Background="#CCFFFFFF" BorderBrush="White" FontSize="13.333" VerticalAlignment="Center" Width="150" SelectedIndex="0" SelectedItem="{Binding SortByField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-    				<System:String>LastName</System:String>
-    				<System:String>FirstName</System:String>
+    			<ComboBox x:Name="SortType" Background="#CCFFFFFF" BorderBrush="White" FontSize="13.333" VerticalAlignment="Center" Width="150" SelectedIndex="0" SelectedItem="{Binding SortByField, Converter={StaticResource ComboBoxItemToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+    				<!--<System:String>LastName</System:String>
+    				<System:String>FirstName</System:String>-->
+            <ComboBox.Items>
+              <ComboBoxItem Tag="LastName"
+                            
+                            loc:Translate.Uid="Field.LastName"
+                            Content="{loc:Translate Last Name}" 
+                            
+                            IsSelected="True"/>
+              
+              <ComboBoxItem Tag="FirstName"
+                            
+                            loc:Translate.Uid="Field.FirstName"
+                            Content="{loc:Translate First Name}" />
+              
+            </ComboBox.Items> 
     			</ComboBox>
       
 

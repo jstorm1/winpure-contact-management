@@ -60,6 +60,16 @@
   <Value Id="Details.Country" Text="Country:"/>
   <Value Id="Details.Description" Text="Description:"/>
   
+  
+  <!--Fields for sorting-->
+  <Value Id="Field.Name" Content="Name"/>
+  <Value Id="Field.Industry" Content="Industry"/>
+  <Value Id="Field.Country" Content="Country"/>
+  <Value Id="Field.Town" Content="Town"/>
+  <Value Id="Field.LastName" Content="Last Name"/>
+  <Value Id="Field.FirstName" Content="First Name"/>
+  
+  
   <!--Shell Window-->
   <Value Id="ShellWindow"  Title="WinPure Ltd - Contact Management Application"/>
           <!--MainMenu-->
