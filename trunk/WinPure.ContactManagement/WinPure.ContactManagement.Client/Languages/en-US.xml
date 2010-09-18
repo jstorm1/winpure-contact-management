@@ -16,6 +16,11 @@
           <!--No Items Label-->
           <Value Id="NoItems" Text="No Items"/>
   
+          <!--Action Buttons-->
+          <Value Id="ActionButtons.SaveButton" Content="Save"/>
+          <Value Id="ActionButtons.CancelButton" Content="Cancel"/>
+          <Value Id="ActionButtons.BrowseButton" Content="Browse"/>
+  
   
   
   
@@ -78,5 +83,21 @@
           <!--Sync Servers Header-->
           <Value Id="SyncServers.Header" Text="Sync Servers"/>
   
+  <!--Settings Page-->
+  <Value Id="SettingsPage" Text="Settings"/>
+  <!--View Tab-->
+          <Value Id="ViewTab" Header="View" Text="View"/>
+          <Value Id="View.TransitionsHeader" Text="Transitions"/>
+          <Value Id="View.SwapButton" Content="Swap"/>
+  
+          <!--Banner Logo Tab-->
+          <Value Id="BannerLogoTab" Header="Banner Logo" Text="Banner Logo"/>
+  
+          <!--Language Tab-->
+          <Value Id="LanguageTab" Header="Language" Text="Language"/>
+          <Value Id="Language.English" Text="English"/>
+          <Value Id="Language.French" Text="French"/>
+          <Value Id="Language.Spanish" Text="Spanish"/>
+          <Value Id="Language.Italian" Text="Italian"/>
   
 </Dictionary>

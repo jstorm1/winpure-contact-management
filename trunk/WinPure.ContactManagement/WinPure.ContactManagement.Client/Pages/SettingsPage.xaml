@@ -1,17 +1,21 @@
 ﻿<CommonControls:PageControl x:Class="WinPure.ContactManagement.Client.Pages.SettingsPage" 
                             xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" 
-                            xmlns:Settings="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Settings;assembly=WinPure.ContactManagement.Client.ViewModels" 
+                            xmlns:Settings="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Settings;assembly=WinPure.ContactManagement.Client.ViewModels"
+                            xmlns:loc="clr-namespace:WinPure.ContactManagement.Client.Localization;assembly=WinPure.ContactManagement.Client.Localization"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                             xmlns:Controls="clr-namespace:Transitionals.Controls;assembly=Transitionals" 
-                            xmlns:Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters"  
+                            xmlns:Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters" 
                             d:DesignHeight="597" 
-                            mc:Ignorable="d" 
                             d:DesignWidth="1058" 
-                            BorderColor="#FF373737" 
-                            Text="Settings">
+                            BorderColor="#FF373737"
+                            
+                            loc:Translate.Uid="SettingsPage"
+                            Text="{loc:Translate Settings}"
+                            
+                            mc:Ignorable="d">
 
     <!--Page Resources-->
     <CommonControls:PageControl.Resources>
@@ -29,10 +33,6 @@
         	<GradientStop Offset="0"/>
         	<GradientStop Color="#12FFFFFF" Offset="1"/>
         </LinearGradientBrush>
-        <RadialGradientBrush x:Key="BackBlink" Center="0.501,1.004" GradientOrigin="0.501,1.004">
-        	<GradientStop Offset="1"/>
-        	<GradientStop Color="#84FFFFFF"/>
-        </RadialGradientBrush>
     </CommonControls:PageControl.Resources>
 
     <!--Page Background-->
@@ -51,7 +51,12 @@
         <TabControl x:Name="SettingsTabControl" FontSize="16" TabStripPlacement="Left" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0">
             
             <!--View Tab-->
-            <TabItem x:Name="ViewTabItem" Header="View" Style="{DynamicResource TabItemStyle}" Margin="0" 
+            <TabItem x:Name="ViewTabItem"
+                     
+                     loc:Translate.Uid="ViewTab"
+                     Header="{loc:Translate View}" 
+                     
+                     Style="{DynamicResource TabItemStyle}" Margin="0" 
                      Height="40" Width="200" FontSize="21.333" Foreground="White">
                 
                 <TabItem.DataContext>
@@ -80,7 +85,13 @@
                         <!--Caption-->
                         <Border x:Name="TransitionsCaptureLine" Margin="0,8" VerticalAlignment="Center" BorderThickness="0,0,0,1" BorderBrush="White" 
                                 Background="Transparent" HorizontalAlignment="Left" Width="350">
-                            <TextBlock x:Name="TransitionsCapture" TextWrapping="Wrap" Text="Transitions" FontSize="18.667" VerticalAlignment="Bottom" Margin="8,0,0,0"/>
+                            <TextBlock x:Name="TransitionsCapture" 
+                                       TextWrapping="Wrap"
+                                       
+                                       loc:Translate.Uid="View.TransitionsHeader"
+                                       Text="{loc:Translate Transitions}"
+                                       
+                                       FontSize="18.667" VerticalAlignment="Bottom" Margin="8,0,0,0"/>
                         </Border>
                         <Grid Grid.Row="1" Margin="0,0,0,8">
                         	<Grid.ColumnDefinitions>
@@ -107,7 +118,14 @@
 
                         		<Controls:TransitionElement x:Name="TransitionBox" Transition="{Binding SelectedTransition, Mode=OneWay}" Content="{Binding ContentSwitcher, Converter={StaticResource ContentSwicherConverter}, Mode=OneWay}" Margin="8,0,8,8"/>
                         		<Grid Grid.Row="1" Margin="0">
-                        			<Button Content="Swap" Width="100" FontSize="16" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" HorizontalAlignment="Right" Margin="8,0" VerticalAlignment="Center" Height="35" Command="{Binding SwapCellsCommand, Mode=OneWay}"/>
+                              <Button Width="100"
+                                      
+                                      loc:Translate.Uid="View.SwapButton"
+                                      Content="{loc:Translate Swap}" 
+                                      
+                                      FontSize="16" Style="{DynamicResource ButtonStyle1}" 
+                                      Foreground="White" Cursor="Hand" HorizontalAlignment="Right" Margin="8,0" 
+                                      VerticalAlignment="Center" Height="35" Command="{Binding SwapCellsCommand, Mode=OneWay}"/>
                         		</Grid>
                         	</Grid>
                         </Grid>
@@ -115,17 +133,40 @@
                         
                     </Grid>
                     <StackPanel x:Name="ViewTabDefButtons" Orientation="Horizontal" Margin="0,0,8,0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    	<Button Content="Save" Width="100" Height="35" FontSize="16" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Command="{Binding SaveCommand, Mode=OneWay}"/>
-                    	<Button Content="Cancel" Width="100" Height="35" FontSize="16" Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" Command="{Binding CancelCommand, Mode=OneWay}"/>
+                    	<Button Width="100" Height="35"
+                              
+                              loc:Translate.Uid="ActionButtons.SaveButton"
+                              Content="{loc:Translate Save}" 
+                              
+                              FontSize="16" Style="{DynamicResource ButtonStyle1}" 
+                              Foreground="White" Cursor="Hand" Command="{Binding SaveCommand, Mode=OneWay}"/>
+                    	<Button Width="100" Height="35" 
+                              
+                              loc:Translate.Uid="ActionButtons.CancelButton"
+                              Content="{loc:Translate Cancel}" 
+                              
+                              FontSize="16" Style="{DynamicResource ButtonStyle1}" 
+                              Foreground="White" Cursor="Hand" Command="{Binding CancelCommand, Mode=OneWay}"/>
                     </StackPanel>
 
                     <!--Back Text-->
-                    <TextBlock x:Name="ViewTabBackText" TextWrapping="Wrap" Text="View" FontSize="96" 
+                    <TextBlock x:Name="ViewTabBackText" TextWrapping="Wrap" 
+                               
+                               loc:Translate.Uid="ViewTab"
+                               Text="{loc:Translate View}" 
+                               
+                               FontSize="96" 
                                TextAlignment="Right" Margin="8,-53.705,0,-22" Grid.Row="1" d:LayoutOverrides="Height" HorizontalAlignment="Left" Foreground="#19FFFFFF"/>
 
                 </Grid>
             </TabItem>
-            <TabItem x:Name="BannerLogoTabItem" Header="Banner Logo" Style="{DynamicResource TabItemStyle}" Height="40" Width="200" Margin="0" FontSize="21.333" Foreground="White">
+            <TabItem x:Name="BannerLogoTabItem"
+                     
+                     loc:Translate.Uid="BannerLogoTab"
+                     Header="{loc:Translate Banner Logo}" 
+                     
+                     Style="{DynamicResource TabItemStyle}" Height="40" 
+                     Width="200" Margin="0" FontSize="21.333" Foreground="White">
             	<Grid>
             		<Grid.RowDefinitions>
             			<RowDefinition />
@@ -137,7 +178,18 @@
             				<GradientStop Color="#11FFFFFF" Offset="1"/>
             			</LinearGradientBrush>
             		</Grid.Background>
-            		<TextBlock Text="Banner Logo" FontSize="96" Margin="0,0,7,0" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Bottom" Foreground="#19FFFFFF"/>
+
+
+                
+                <TextBlock FontSize="96" 
+                           
+                           loc:Translate.Uid="BannerLogoTab"
+                           Text="{loc:Translate Banner Logo}"
+                           
+                           Margin="0,0,7,0" Grid.Row="1" d:LayoutOverrides="Height" 
+                           VerticalAlignment="Bottom" Foreground="#19FFFFFF"/>
+                
+                
             		<Grid Margin="0">
             			<Grid.Background>
             				<RadialGradientBrush Center="0.502,-0.002" GradientOrigin="0.502,-0.002">
@@ -147,7 +199,16 @@
             			</Grid.Background>
             			<Grid Margin="0,165,-54,0" Height="42.074" VerticalAlignment="Center" HorizontalAlignment="Center">
             				<TextBox Margin="0,8,100,8" TextWrapping="Wrap" FontSize="16" Background="#CCFFFFFF" BorderBrush="White" Height="26.074" VerticalAlignment="Center"/>
-            				<Button Content="Browse" Margin="354,0,0,0" Width="100" HorizontalAlignment="Left" Height="35" FontSize="16" Style="{DynamicResource ButtonStyle1}" Foreground="White" VerticalAlignment="Center" Cursor="Hand"/>
+            				
+                    <Button Margin="354,0,0,0"
+                            
+                            loc:Translate.Uid="ActionButtons.BrowseButton"
+                            Content="{loc:Translate Browse}" 
+                            
+                            Width="100" HorizontalAlignment="Left" Height="35" 
+                            FontSize="16" Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                            VerticalAlignment="Center" Cursor="Hand"/>
+                    
             			</Grid>
             		</Grid>
             		<Grid Background="White" Width="450" Height="80" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -158,7 +219,14 @@
             		</Grid>
             	</Grid>
             </TabItem>
-            <TabItem x:Name="LanguageTabItem" Header="Language" Margin="0" Width="200" Height="40" Style="{DynamicResource TabItemStyle}" FontSize="21.333" Foreground="White">
+            <TabItem x:Name="LanguageTabItem"
+                     
+                     loc:Translate.Uid="LanguageTab"
+                     Header="{loc:Translate Language}" 
+                     
+                     Margin="0" Width="200" Height="40" Style="{DynamicResource TabItemStyle}" 
+                     FontSize="21.333" Foreground="White">
+              
             	<Grid x:Name="LanguagesGrid" Background="{DynamicResource TabGridBackground}">
             		<Grid.RowDefinitions>
             			<RowDefinition Height="0.91*"/>
@@ -172,12 +240,46 @@
             				</RadialGradientBrush>
             			</Grid.Background>
             		</Grid>
-            		<TextBlock x:Name="LanguageBackText" Text="Language" FontSize="96" Margin="0,-70.704,0,0" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Bottom" Foreground="#19FFFFFF"/>
+            		<TextBlock x:Name="LanguageBackText" 
+                           
+                           loc:Translate.Uid="LanguageTab"
+                           Text="{loc:Translate Language}" 
+                           
+                           FontSize="96" Margin="0,-70.704,0,0" Grid.Row="1" d:LayoutOverrides="Height"
+                           VerticalAlignment="Bottom" Foreground="#19FFFFFF"/>
+                
             		<CommonControls:HorizontalMenu x:Name="LanguagesList" Height="165" VerticalAlignment="Center">
-            			<CommonControls:HorizontalMenuItem x:Name="LangEnglish" Content="" Text="English" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/uk_150x100.png" Height="150" Width="200" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
-            			<CommonControls:HorizontalMenuItem x:Name="LangFrench" Text="French" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/france_150x100.png" Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
-            			<CommonControls:HorizontalMenuItem x:Name="LangSpanish" Text="Spanish" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/spain_150x100.png" Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
-            			<CommonControls:HorizontalMenuItem x:Name="LangItalian" Text="Italian" Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/italy_150x100.png" Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+            			<CommonControls:HorizontalMenuItem x:Name="LangEnglish"
+                                                     
+                                                     loc:Translate.Uid="Language.English"
+                                                     Text="{loc:Translate English}" 
+                                                     
+                                                     Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/uk_150x100.png" 
+                                                     Height="150" Width="200" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+                  
+            			<CommonControls:HorizontalMenuItem x:Name="LangFrench"
+                                                     
+                                                     loc:Translate.Uid="Language.French"
+                                                     Text="{loc:Translate French}" 
+                                                     
+                                                     Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/france_150x100.png" 
+                                                     Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+                  
+            			<CommonControls:HorizontalMenuItem x:Name="LangSpanish"
+                                                     
+                                                     loc:Translate.Uid="Language.Spanish"
+                                                     Text="{loc:Translate Spanish}" 
+                                                     
+                                                     Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/spain_150x100.png" 
+                                                     Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
+                  
+            			<CommonControls:HorizontalMenuItem x:Name="LangItalian"
+                                                     
+                                                     loc:Translate.Uid="Language.Italian"
+                                                     Text="{loc:Translate Italian}" 
+                                                     
+                                                     Image="/WinPure.ContactManagement.Client;component/Resources/Images/Flags/italy_150x100.png" 
+                                                     Width="200" Height="150" ImageHeight="100" ImageWidth="150" FontSize="21.333"/>
             		</CommonControls:HorizontalMenu>
             		        	
 				</Grid>         
