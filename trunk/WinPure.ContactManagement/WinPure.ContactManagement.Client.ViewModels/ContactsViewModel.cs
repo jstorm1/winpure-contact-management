@@ -92,11 +92,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         public string SortByField
         {
-            get { return _sortByField; }
             set
             {
                 _sortByField = value;
-                RaisePropertyChanged("SortByField");
                 changeContactsOrder(value);
             }
         }
