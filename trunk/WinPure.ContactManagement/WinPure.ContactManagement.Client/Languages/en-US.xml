@@ -135,5 +135,17 @@
   <Value Id="CompaniesEditor" Text="Company"/>
           <Value Id="Validation.CompanyExists" Text="Already Exists"/>
   
+          <!--Sync Server Connection Editor-->
+          <Value Id="SyncServerConnectionEditor" Text="Sync Server Connection"/>
+          <Value Id="Details.Name" Text="Name:"/>
+          <Value Id="Details.Server" Text="Server:"/>
+          <Value Id="Details.Database" Text="Database:"/>
+  
+          <!--Authentication-->
+          <Value Id="Authentication.Header" Text="Authentication"/>
+          <Value Id="Authentication.Windows" Text="Windows Authentication"/>
+          <Value Id="Authentication.Sql" Text="Sql Authentication"/>
+          <Value Id="Authentication.Username" Text="Username:"/>
+          <Value Id="Authentication.Password" Text="Password:"/>
   
 </Dictionary>
