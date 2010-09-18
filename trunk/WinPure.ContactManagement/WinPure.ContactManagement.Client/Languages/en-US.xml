@@ -20,7 +20,25 @@
           <Value Id="ActionButtons.SaveButton" Content="Save"/>
           <Value Id="ActionButtons.CancelButton" Content="Cancel"/>
           <Value Id="ActionButtons.BrowseButton" Content="Browse"/>
-  
+
+
+
+  <!--Contact Details-->
+  <Value Id="Details.Title" Text="Title:"/>
+  <Value Id="Details.Suffix" Text="Suffix:"/>
+  <Value Id="Details.FirstName" Text="First Name:"/>
+  <Value Id="Details.MiddleName" Text="Middle Name:"/>
+  <Value Id="Details.LastName" Text="Last Name:"/>
+  <Value Id="Details.JobTitle" Text="Job Title:"/>
+  <Value Id="Details.Company" Text="Company:"/>
+  <Value Id="Details.Telephone" Text="Telephone:"/>
+  <Value Id="Details.Fax" Text="Fax:"/>
+  <Value Id="Details.Mobile" Text="Mobile:"/>
+  <Value Id="Details.HomeTelephone" Text="Home Telephone:"/>
+  <Value Id="Details.Website" Text="Website:"/>
+  <Value Id="Details.EmailAddress1" Text="Email Address 1:"/>
+  <Value Id="Details.EmailAddress2" Text="Email Address 2:"/>
+  <Value Id="Details.EmailAddress" Text="Email Address:"/>
   
   
   
@@ -44,21 +62,6 @@
           
           <!--Details Header-->
           <Value Id="Details.Header" Text="Contact Details"/>
-  
-          <!--Details-->
-          <Value Id="Details.FirstName" Text="First Name:"/>
-          <Value Id="Details.MiddleName" Text="Middle Name:"/>
-          <Value Id="Details.LastName" Text="Last Name:"/>
-          <Value Id="Details.JobTitle" Text="Job Title:"/>
-          <Value Id="Details.Company" Text="Company:"/>
-          <Value Id="Details.Telephone" Text="Telephone:"/>
-          <Value Id="Details.Fax" Text="Fax:"/>
-          <Value Id="Details.Mobile" Text="Mobile:"/>
-          <Value Id="Details.HomeTelephone" Text="Home Telephone:"/>
-          <Value Id="Details.Website" Text="Website:"/>
-          <Value Id="Details.EmailAddress1" Text="Email Address 1:"/>
-          <Value Id="Details.EmailAddress2" Text="Email Address 2:"/>
-          <Value Id="Details.EmailAddress" Text="Email Address:"/>
   
   
   
@@ -100,4 +103,19 @@
           <Value Id="Language.Spanish" Text="Spanish"/>
           <Value Id="Language.Italian" Text="Italian"/>
   
+  
+  
+  <!--Contacts Editor-->
+  <Value Id="ContactsEditor" Text="Contact"/>
+          <!--General Tab-->
+          <Value Id="GeneralTab" Header="General"/>
+          <Value Id="GeneralTab.Header" Text="General Information"/>
+  
+          <!--Company Info Tab-->
+          <Value Id="CompanyInfoTab" Header="Company Info"/>
+  
+          <!--Contacts Tab-->
+          <Value Id="ContactsTab" Header="Contacts"/>
+          <Value Id="ContactsTab.Info" Header="Contact Information"/>
+
 </Dictionary>
