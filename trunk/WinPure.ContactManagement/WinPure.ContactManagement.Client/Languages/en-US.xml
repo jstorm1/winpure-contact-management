@@ -31,7 +31,7 @@
   <Value Id="Details.LastName" Text="Last Name:"/>
   <Value Id="Details.JobTitle" Text="Job Title:"/>
   <Value Id="Details.Company" Text="Company:"/>
-  <Value Id="Details.Telephone" Text="Telephone:"/>
+  <Value Id="Details.Telephone" Text="Phone:"/>
   <Value Id="Details.Fax" Text="Fax:"/>
   <Value Id="Details.Mobile" Text="Mobile:"/>
   <Value Id="Details.HomeTelephone" Text="Home Telephone:"/>
@@ -40,8 +40,17 @@
   <Value Id="Details.EmailAddress2" Text="Email Address 2:"/>
   <Value Id="Details.EmailAddress" Text="Email Address:"/>
   
-  
-  
+  <!--Company Details-->
+  <Value Id="Details.CompanyName" Text="Company Name:"/>
+  <Value Id="Details.Industry" Text="Industry:"/>  
+  <Value Id="Details.Address1" Text="Address 1:"/>
+  <Value Id="Details.Address2" Text="Address 2:"/>
+  <Value Id="Details.Address3" Text="Address 3:"/>
+  <Value Id="Details.Town" Text="Town:"/>
+  <Value Id="Details.County" Text="County:"/>
+  <Value Id="Details.Postcode" Text="Postcode:"/>
+  <Value Id="Details.Country" Text="Country:"/>
+  <Value Id="Details.Description" Text="Description:"/>
   
   <!--Shell Window-->
   <Value Id="ShellWindow"  Title="WinPure Ltd - Contact Management Application"/>
@@ -86,6 +95,8 @@
           <!--Sync Servers Header-->
           <Value Id="SyncServers.Header" Text="Sync Servers"/>
   
+  
+  
   <!--Settings Page-->
   <Value Id="SettingsPage" Text="Settings"/>
   <!--View Tab-->
@@ -118,4 +129,11 @@
           <Value Id="ContactsTab" Header="Contacts"/>
           <Value Id="ContactsTab.Info" Header="Contact Information"/>
 
+  
+  
+  <!--Companies Editor-->
+  <Value Id="CompaniesEditor" Text="Company"/>
+          <Value Id="Validation.CompanyExists" Text="Already Exists"/>
+  
+  
 </Dictionary>
