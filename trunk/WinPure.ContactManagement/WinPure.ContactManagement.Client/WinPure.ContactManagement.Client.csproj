@@ -333,6 +333,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Images\PSDs\Cleansing_icon_source.psd" />
     <None Include="Resources\Images\PSDs\DefaultViewIcon.psd" />
     <None Include="Resources\Images\PSDs\Flags.psd" />
     <None Include="Resources\Images\PSDs\Icons.psd" />
