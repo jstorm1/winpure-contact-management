@@ -175,6 +175,11 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
             ContentSwitcher = !ContentSwitcher;
         }
 
+        public void RefreshTransitionsList()
+        {
+            RaisePropertyChanged("TransitionTypes");
+        }
+
         #endregion
     }
 }

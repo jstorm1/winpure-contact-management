@@ -3,6 +3,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Threading;
+using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Helpers;
 using WinPure.ContactManagement.Client.Localization;
 using WinPure.ContactManagement.Client.Services.Managers;
@@ -41,7 +42,7 @@ namespace WinPure.ContactManagement.Client
                 CultureInfo.GetCultureInfo("it-IT"),
                 new XmlLanguageDictionary("Languages/it-IT.xml"));
 
-            LanguageContext.Current.Culture = CultureInfo.GetCultureInfo("en-US");	
+            LanguageContext.Current.Culture = CultureInfo.GetCultureInfo(CurrentCultureManager.Current.CurrentCultureName);	
 
 
             DispatcherUnhandledException += onDispatcherUnhandledException;

@@ -69,6 +69,7 @@
     <Compile Include="ContactEditorViewModel.cs" />
     <Compile Include="ContactsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\LanguagesTabViewModel.cs" />
     <Compile Include="Settings\ViewTabViewModel.cs" />
     <Compile Include="SynchronizationViewModel.cs" />
     <Compile Include="SyncServerConnectionEditorViewModel.cs" />
