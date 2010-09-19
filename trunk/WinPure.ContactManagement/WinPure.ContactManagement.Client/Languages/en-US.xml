@@ -69,7 +69,33 @@
   <Value Id="Field.LastName" Content="Last Name"/>
   <Value Id="Field.FirstName" Content="First Name"/>
   
+  <!--Transitions-->
+  <Value Id="Transitions.DoubleRotateWipeTransition" Text="Double Rotate Wipe"/>
+  <Value Id="Transitions.HorizontalBlindsTransition" Text="Horizontal Blinds"/>
+  <Value Id="Transitions.StarTransition" Text="Star"/>
+  <Value Id="Transitions.RotateTransition" Text="Rotate"/>
+  <Value Id="Transitions.VerticalBlindsTransition" Text="Vertical Blinds"/>
+  <Value Id="Transitions.RollTransition" Text="Roll"/>
+  <Value Id="Transitions.HorizontalWipeTransition" Text="Horizontal Wipe"/>
+  <Value Id="Transitions.FadeAndGrowTransition" Text="Fade And Grow"/>
+  <Value Id="Transitions.DoorTransition" Text="Door"/>
+  <Value Id="Transitions.ExplosionTransition" Text="Explosion"/>
+  <Value Id="Transitions.VerticalWipeTransition" Text="Vertical Wipe"/>
+  <Value Id="Transitions.TranslateTransition" Text="Translate"/>
+  <Value Id="Transitions.MeltTransition" Text="Melt"/>
+  <Value Id="Transitions.FadeTransition" Text="Fade"/>
+  <Value Id="Transitions.CheckerboardTransition" Text="Checkerboard"/>
+  <Value Id="Transitions.PageTransition" Text="Page"/>
+  <Value Id="Transitions.DotsTransition" Text="Dots"/>
+  <Value Id="Transitions.DiagonalWipeTransition" Text="Diagonal Wipe"/>
+  <Value Id="Transitions.DiamondsTransition" Text="Diamonds"/>
+  <Value Id="Transitions.RotateWipeTransition" Text="Rotate Wipe"/>
+  <Value Id="Transitions.FlipTransition" Text="Flip"/>
+  <Value Id="Transitions.FadeAndBlurTransition" Text="Fade And Blur"/>
   
+
+
+
   <!--Shell Window-->
   <Value Id="ShellWindow"  Title="WinPure Ltd - Contact Management Application"/>
           <!--MainMenu-->

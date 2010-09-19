@@ -2,10 +2,12 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Dynamic;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using Transitionals;
 using WinPure.ContactManagement.Client.Data.Managers;
+using WinPure.ContactManagement.Client.Localization;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 
 #endregion
@@ -20,7 +22,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         private bool _contentSwitcher;
         private RelayCommand _saveCommand;
         private Transition _selectedTransition;
-        private Type _selectedType;
+        private dynamic _selectedType;
         private string _selectedTypeName;
         private RelayCommand _swapCellsCommand;
 
@@ -52,16 +54,38 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         /// </summary>
         /// <value>
         /// The list of known transition types.
+        /// 
+        /// Dynamic here - it's an <see cref="ExpandoObject"/> which include properties:
+        /// Text - text which will be displayed in GUI.
+        /// Type - Transition type.  
         /// </value>
-        public ObservableCollection<Type> TransitionTypes
+        public ObservableCollection<dynamic> TransitionTypes
         {
-            get { return TransitionsManager.Current.TransitionTypes; }
+            get
+            {
+                var transitions = new ObservableCollection<dynamic>();
+
+                foreach (Type transitionType in TransitionsManager.Current.TransitionTypes)
+                {
+                    dynamic transitionPresenter = new ExpandoObject();
+                    transitionPresenter.Type = transitionType;
+                    transitionPresenter.Text =
+                         LanguageDictionary.CurrentDictionary.Translate<string>("Transitions." + transitionType.Name, "Text");
+                    transitions.Add(transitionPresenter);
+                }
+
+                return transitions;
+            }
         }
 
         /// <summary>
         /// Gets or Sets Currently selected transition type.
+        /// 
+        /// Dynamic here - it's an <see cref="ExpandoObject"/> which include properties:
+        /// Text - text which will be displayed in GUI.
+        /// Type - Transition type. 
         /// </summary>
-        public Type SelectedType
+        public dynamic SelectedType
         {
             get { return _selectedType; }
             set
@@ -71,8 +95,8 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
                 RaisePropertyChanged("SelectedType");
 
-                SelectedTransition = TransitionsManager.Current.GetTransition(_selectedType);
-                SelectedTypeName = _selectedType.Name;
+                SelectedTransition = TransitionsManager.Current.GetTransition(_selectedType.Type);
+                SelectedTypeName = _selectedType.Type.Name;
                 swapCells();
             }
         }
