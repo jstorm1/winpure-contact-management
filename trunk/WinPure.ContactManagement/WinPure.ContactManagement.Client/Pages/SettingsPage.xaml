@@ -51,11 +51,6 @@
         
         <TabControl x:Name="SettingsTabControl" FontSize="16" TabStripPlacement="Left" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0">
             
-        	<i:Interaction.Triggers>
-        		<i:EventTrigger EventName="SelectionChanged">
-        			<i:InvokeCommandAction Command="{Binding Command, ElementName=button}"/>
-        		</i:EventTrigger>
-        	</i:Interaction.Triggers>
         	<TabItem x:Name="ViewTabItem"
                      
         		loc:Translate.Uid="ViewTab"
