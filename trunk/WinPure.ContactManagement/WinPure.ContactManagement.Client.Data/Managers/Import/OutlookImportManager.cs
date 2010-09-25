@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 using Microsoft.Office.Interop.Outlook;
@@ -15,11 +16,13 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
         #region Singleton Constructor
 
         private static OutlookImportManager _instance;
+        private readonly MAPIFolder _contactsFolder;
 
 
         private OutlookImportManager()
         {
             initialize();
+            _contactsFolder = _outlookApplication.ActiveExplorer().Session.GetDefaultFolder(OlDefaultFolders.olFolderContacts);
         }
 
         public static OutlookImportManager Current
@@ -87,15 +90,31 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
         #endregion
 
-        public Folders GetContactsFolders()
+        public ObservableCollection<object> GetContactsFolders()
         {
-            MAPIFolder contactsFolder = _outlookApplication.Session.GetDefaultFolder(OlDefaultFolders.olFolderContacts);
-            return contactsFolder.Folders;
+            var folders = new ObservableCollection<object>();
+
+            foreach (var folder in _contactsFolder.Folders)
+            {
+                folders.Add(folder);
+            }
+            return folders;
         }
 
-        public Items GetContactsFromFolder(Folder folder)
+        public ObservableCollection<object> GetContactsFromFolder(Folder folder = null)
         {
-            return folder.Items;
+            var contacts = folder == null ? _contactsFolder.Items : folder.Items;
+            var retContacts = new ObservableCollection<object>();
+
+            foreach (var contact in contacts)
+            {
+                retContacts.Add(contact);
+            }
+
+            //var c = new ContactItem();
+            //c.Email1Address
+
+            return retContacts;
         }
     }
 }

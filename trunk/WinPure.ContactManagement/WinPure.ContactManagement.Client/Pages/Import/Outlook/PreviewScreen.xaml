@@ -14,6 +14,23 @@
   </CommonControls:WizardScreen.DataContext>
   
     <Grid>
-    	<DataGrid ItemsSource="{Binding OutlookFolders}"/>
+    	<DataGrid ItemsSource="{Binding OutlookContacts}" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" FontFamily="Century Gothic" FontSize="16">
+    		<DataGrid.Columns>
+          <DataGridTextColumn Binding="{Binding Title}" Header="Title"/>
+          <DataGridTextColumn Binding="{Binding FirstName}" Header="First Name"/>
+          <DataGridTextColumn Binding="{Binding LastName}" Header="Last Name"/>
+          <DataGridTextColumn Binding="{Binding Suffix}" Header="Suffix"/>
+		  <DataGridTextColumn Binding="{Binding JobTitle}" Header="Job Title"/>
+          <DataGridTextColumn Binding="{Binding CompanyName}" Header="Company"/>
+		  <DataGridTextColumn Binding="{Binding BusinessTelephoneNumber}" Header="Telephone"/>
+		  <DataGridTextColumn Binding="{Binding BusinessFaxNumber}" Header="Fax"/>
+		  <DataGridTextColumn Binding="{Binding MobileTelephoneNumber}" Header="Mobile"/>
+		  <DataGridTextColumn Binding="{Binding HomeTelephoneNumber}" Header="Home Telephone"/>
+		  <DataGridTextColumn Binding="{Binding WebPage}" Header="Website"/>
+		  <DataGridTextColumn Binding="{Binding Email1Address}" Header="EmailAddress"/>
+		  <DataGridTextColumn Binding="{Binding Email2Address}" Header="EmailAddress1"/>
+		  <DataGridTextColumn Binding="{Binding Email3Address}" Header="EmailAddress2"/>
+			</DataGrid.Columns>  	
+		</DataGrid>
     </Grid>
 </CommonControls:WizardScreen>
