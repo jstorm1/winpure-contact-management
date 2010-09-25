@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
+    <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
     <Compile Include="Helpers\DependencyObjectExtensions.cs" />
     <Compile Include="Helpers\OrderByExtension.cs" />
     <Compile Include="Interfaces\SyncService\ISyncService.cs" />

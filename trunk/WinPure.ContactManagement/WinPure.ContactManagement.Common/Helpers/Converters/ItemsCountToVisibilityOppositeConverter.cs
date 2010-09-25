@@ -7,7 +7,7 @@ using System.Windows.Data;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Helpers.Converters
+namespace WinPure.ContactManagement.Common.Helpers.Converters
 {
     public class ItemsCountToVisibilityOppositeConverter : IValueConverter
     {

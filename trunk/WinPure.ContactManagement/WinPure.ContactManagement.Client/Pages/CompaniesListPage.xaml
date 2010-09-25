@@ -10,7 +10,7 @@
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                            xmlns:Converters="clr-namespace:WinPure.ContactManagement.Common.Helpers.Converters;assembly=WinPure.ContactManagement.Common"
                             x:Name="pageControl"
                             mc:Ignorable="d"
                             d:DesignHeight="430"
@@ -28,11 +28,11 @@
       </ResourceDictionary.MergedDictionaries>
     	<WinPure_ContactManagement_Client_Helpers_Converters:ComboBoxItemToStringConverter x:Key="ComboBoxItemToStringConverter"/>
 
-      <WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+    	<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
 
-      <WinPure_ContactManagement_Client_Helpers_Converters:ItemsCountToVisibilityOppositeConverter x:Key="ItemsCountToVisibilityOppositeConverter"/>
+    	<Converters:ItemsCountToVisibilityOppositeConverter x:Key="ItemsCountToVisibilityOppositeConverter"/>
 
-      <WinPure_ContactManagement_Client_Helpers_Converters:ItemsCountToVisibilityConverter x:Key="ItemsCountToVisibilityConverter"/>
+    	<Converters:ItemsCountToVisibilityConverter x:Key="ItemsCountToVisibilityConverter"/>
 
 
 

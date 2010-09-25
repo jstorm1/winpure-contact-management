@@ -4,7 +4,9 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.Pages.Import.Outlook;
 using WinPure.ContactManagement.Client.Pages.Modal;
 
 #endregion
@@ -71,6 +73,15 @@ namespace WinPure.ContactManagement.Client.Pages
             ModalDialog = dialog;
             dialog.Closed += onEditDialogClosed;
             dialog.Show();
+        }
+
+        private void onOutlookImportButtonClick(object sender, RoutedEventArgs e)
+        {
+            var wizard = new OutlookImportWizard();
+            ModalDialog = wizard;
+            wizard.Sequence.Enqueue(new PreviewScreen(wizard));
+            wizard.ShowNext(wizard.GetNextScreen());
+            wizard.Show();
         }
     }
 }

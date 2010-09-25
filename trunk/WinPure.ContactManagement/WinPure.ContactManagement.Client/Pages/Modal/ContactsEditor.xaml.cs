@@ -73,6 +73,8 @@ namespace WinPure.ContactManagement.Client.Pages.Modal
         private void onCancelButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
+            var dialog = new CompaniesEditor();
+            dialog.Show();
         }
 
         private static void onCurrentContactChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

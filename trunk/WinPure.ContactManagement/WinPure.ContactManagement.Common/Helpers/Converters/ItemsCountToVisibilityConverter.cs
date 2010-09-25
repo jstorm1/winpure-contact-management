@@ -7,7 +7,7 @@ using System.Windows.Data;
 
 #endregion
 
-namespace WinPure.ContactManagement.Client.Helpers.Converters
+namespace WinPure.ContactManagement.Common.Helpers.Converters
 {
     public class ItemsCountToVisibilityConverter : IValueConverter
     {
@@ -22,8 +22,13 @@ namespace WinPure.ContactManagement.Client.Helpers.Converters
         /// <param name="value">The value produced by the binding source.</param><param name="targetType">The type of the binding target property.</param><param name="parameter">The converter parameter to use.</param><param name="culture">The culture to use in the converter.</param>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            int parameterValue = 0;
+            if (parameter != null)
+            {
+                int.TryParse(parameter.ToString(), out parameterValue);
+            }
             int count = value is int ? (int) value : 0;
-            return count == 0 ? Visibility.Collapsed : Visibility.Visible;
+            return count <= parameterValue ? Visibility.Collapsed : Visibility.Visible;
         }
 
         /// <summary>

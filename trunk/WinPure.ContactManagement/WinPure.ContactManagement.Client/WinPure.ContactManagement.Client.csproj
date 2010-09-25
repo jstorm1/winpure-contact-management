@@ -214,6 +214,14 @@
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>ContactsListPage.xaml</DependentUpon>
     </Page>
+    <Page Include="Pages\Import\Outlook\OutlookImportWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Import\Outlook\PreviewScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Modal\CompaniesEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -274,8 +282,6 @@
     <Compile Include="Helpers\Converters\ComboBoxItemToStringConverter.cs" />
     <Compile Include="Helpers\Converters\ContentSwicherConverter.cs" />
     <Compile Include="Helpers\Converters\EmptyStringToVisibility.cs" />
-    <Compile Include="Helpers\Converters\ItemsCountToVisibilityConverter.cs" />
-    <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
     <Compile Include="Helpers\Converters\NullToBooleanConverter.cs" />
     <Compile Include="Helpers\XmlLanguageDictionary.cs" />
     <Compile Include="Pages\CompaniesListPage.xaml.cs">
@@ -283,6 +289,12 @@
     </Compile>
     <Compile Include="Pages\ContactsListPage.xaml.cs">
       <DependentUpon>ContactsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Import\Outlook\OutlookImportWizard.xaml.cs">
+      <DependentUpon>OutlookImportWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Import\Outlook\PreviewScreen.xaml.cs">
+      <DependentUpon>PreviewScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Modal\CompaniesEditor.xaml.cs">
       <DependentUpon>CompaniesEditor.xaml</DependentUpon>
@@ -407,7 +419,35 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

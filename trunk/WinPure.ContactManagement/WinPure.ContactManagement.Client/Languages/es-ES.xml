@@ -208,5 +208,12 @@
           <Value Id="Authentication.Username" Text="Username:"/>
           <Value Id="Authentication.Password" Text="Password:"/>
 
+  <!--Import-->
+  <Value Id="Messages.OutlookProblem" Title="Warning"
+       Message="To proceed current Outlook instance must be restarted.
+WARNING! If you will press 'Yes', you will lose all your unsaved data. 
+       
+Do you want to continue?"/>
+  
 
 </Dictionary>

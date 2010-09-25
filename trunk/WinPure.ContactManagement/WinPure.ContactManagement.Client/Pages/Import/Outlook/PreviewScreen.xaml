@@ -1,0 +1,19 @@
+﻿<CommonControls:WizardScreen x:Class="WinPure.ContactManagement.Client.Pages.Import.Outlook.PreviewScreen"
+                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+                             xmlns:Outlook="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Import.Outlook;assembly=WinPure.ContactManagement.Client.ViewModels"
+                             mc:Ignorable="d"
+                             d:DesignHeight="335"
+                             d:DesignWidth="365">
+  
+  <CommonControls:WizardScreen.DataContext>
+    <Outlook:OutlookPreviewScreenViewModel/>
+  </CommonControls:WizardScreen.DataContext>
+  
+    <Grid>
+    	<DataGrid ItemsSource="{Binding OutlookFolders}"/>
+    </Grid>
+</CommonControls:WizardScreen>
