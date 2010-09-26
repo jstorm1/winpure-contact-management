@@ -15,6 +15,9 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.Outlook
         /// </summary>
         public OutlookPreviewScreenViewModel()
         {
+            //Check for Design mode.
+            if (IsDesignMode) return;
+
             OutlookFolders = OutlookImportManager.Current.GetContactsFolders();
             OutlookContacts = OutlookImportManager.Current.GetContactsFromFolder();
         }

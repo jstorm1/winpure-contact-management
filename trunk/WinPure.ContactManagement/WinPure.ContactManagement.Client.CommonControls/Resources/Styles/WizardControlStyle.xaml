@@ -135,27 +135,38 @@
 									<Grid x:Name="NavigationButtons" Grid.Row="1"
 									      Background="#19FFFFFF">
 										<StackPanel HorizontalAlignment="Right" Margin="0,0,8,0" Orientation="Horizontal" VerticalAlignment="Center">
-											<Button x:Name="PART_PreviousButton" Content="Previous"
-												HorizontalAlignment="Stretch"
-												Margin="0"
-												Width="75"
-												Style="{DynamicResource ButtonStyle1}"
-												Height="35"
-												FontSize="16" Tag="{TemplateBinding History}" Visibility="{Binding Tag.Count, ConverterParameter=1, Converter={StaticResource ItemsCountToVisibilityConverter}, ElementName=PART_PreviousButton}" d:LayoutOverrides="VerticalMargin"/>
-											<Button x:Name="PART_NextButton" Content="Next"
-												HorizontalAlignment="Stretch"
-												Margin="0"
-												Width="75"
-												Style="{DynamicResource ButtonStyle1}"
-												Height="35"
-												FontSize="16" VerticalAlignment="Center" Tag="{TemplateBinding Sequence}" Visibility="{Binding Tag.Count, Converter={StaticResource ItemsCountToVisibilityConverter1}, ElementName=PART_NextButton}"/>
-											<Button x:Name="PART_FinishButton" Content="Finish"
-												HorizontalAlignment="Stretch"
-												Margin="0"
-												Width="75"
-												Style="{DynamicResource ButtonStyle1}"
-												Height="35"
-												FontSize="16" VerticalAlignment="Center" Tag="{TemplateBinding Sequence}" Visibility="{Binding Tag, Converter={StaticResource ItemsCountToVisibilityOppositeConverter}, ElementName=PART_FinishButton}"/>
+											<Button x:Name="PART_PreviousButton"
+											        Content="Previous"
+											        HorizontalAlignment="Stretch"
+											        Margin="0"
+											        Width="75"
+											        Style="{DynamicResource ButtonStyle1}"
+											        Height="35"
+											        FontSize="16"
+											        
+											        Visibility="{TemplateBinding PreviousButtonVisibility}"
+											        d:LayoutOverrides="VerticalMargin"/>
+											<Button x:Name="PART_NextButton"
+											        Content="Next"
+											        HorizontalAlignment="Stretch"
+											        Margin="0"
+											        Width="75"
+											        Style="{DynamicResource ButtonStyle1}"
+											        Height="35"
+											        FontSize="16"
+											        VerticalAlignment="Center"
+											        Visibility="{TemplateBinding NextButtonVisibility}"/>
+											<Button x:Name="PART_FinishButton"
+											        Content="Finish"
+											        HorizontalAlignment="Stretch"
+											        Margin="0"
+											        Width="75"
+											        Style="{DynamicResource ButtonStyle1}"
+											        Height="35"
+											        FontSize="16"
+											        VerticalAlignment="Center"
+											        Tag="{TemplateBinding Sequence}"
+											        Visibility="{Binding Tag, Converter={StaticResource ItemsCountToVisibilityOppositeConverter}, ElementName=PART_FinishButton}"/>
 										</StackPanel>
 									</Grid>
 								</Grid>

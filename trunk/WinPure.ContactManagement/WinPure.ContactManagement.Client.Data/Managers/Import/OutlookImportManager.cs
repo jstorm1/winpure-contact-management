@@ -1,9 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using Microsoft.Office.Interop.Outlook;
 using Microsoft.Win32;
+using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
+using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Localization;
 using Application = Microsoft.Office.Interop.Outlook.Application;
 
@@ -11,18 +17,24 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 {
     public class OutlookImportManager
     {
+        private readonly MAPIFolder _contactsFolder;
+        private readonly BackgroundWorker _importWorker;
         private _Application _outlookApplication;
 
         #region Singleton Constructor
 
         private static OutlookImportManager _instance;
-        private readonly MAPIFolder _contactsFolder;
-
 
         private OutlookImportManager()
         {
             initialize();
-            _contactsFolder = _outlookApplication.ActiveExplorer().Session.GetDefaultFolder(OlDefaultFolders.olFolderContacts);
+            _contactsFolder =
+                _outlookApplication.ActiveExplorer().Session.GetDefaultFolder(OlDefaultFolders.olFolderContacts);
+
+            _importWorker = new BackgroundWorker();
+            _importWorker.DoWork += onImportWorkerOnDoWork;
+            _importWorker.RunWorkerCompleted += onImportWorkerOnRunWorkerCompleted;
+            _importWorker.ProgressChanged += onImportWorkerOnProgressChanged;
         }
 
         public static OutlookImportManager Current
@@ -47,13 +59,15 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
             {
                 const string messsage =
                     @"HRESULT: 0x80080005";
-                
+
                 if (!e.Message.Contains(messsage))
                     throw;
 
-                var result = MessageBox.Show(LanguageDictionary.CurrentDictionary.Translate<string>("Messages.OutlookProblem", "Message"),
-                    LanguageDictionary.CurrentDictionary.Translate<string>("Messages.OutlookProblem", "Title"), 
-                    MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult result =
+                    MessageBox.Show(
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.OutlookProblem", "Message"),
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.OutlookProblem", "Title"),
+                        MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.No) return;
                 initialize(true);
@@ -90,11 +104,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
         #endregion
 
+        public event EventHandler<ProgressChangedEventArgs> ImportProgressChanged;
+        public event EventHandler<RunWorkerCompletedEventArgs> ImportProgressCompleted;
+
         public ObservableCollection<object> GetContactsFolders()
         {
             var folders = new ObservableCollection<object>();
 
-            foreach (var folder in _contactsFolder.Folders)
+            foreach (object folder in _contactsFolder.Folders)
             {
                 folders.Add(folder);
             }
@@ -103,10 +120,10 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
         public ObservableCollection<object> GetContactsFromFolder(Folder folder = null)
         {
-            var contacts = folder == null ? _contactsFolder.Items : folder.Items;
+            Items contacts = folder == null ? _contactsFolder.Items : folder.Items;
             var retContacts = new ObservableCollection<object>();
 
-            foreach (var contact in contacts)
+            foreach (object contact in contacts)
             {
                 retContacts.Add(contact);
             }
@@ -115,6 +132,53 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
             //c.Email1Address
 
             return retContacts;
+        }
+
+        public void StartImport(IEnumerable<object> contacts)
+        {
+            _importWorker.RunWorkerAsync(contacts);
+        }
+
+        private void onImportWorkerOnProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (ImportProgressChanged != null)
+                ImportProgressChanged.Invoke(this, e);
+        }
+
+        private void onImportWorkerOnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (ImportProgressCompleted != null)
+                ImportProgressCompleted.Invoke(this, e);
+        }
+
+        private void onImportWorkerOnDoWork(object sender, DoWorkEventArgs e)
+        {
+            var contacts = (ObservableCollection<ContactItem>) e.Argument;
+
+            for (int i = 0; i < contacts.Count; i++)
+            {
+                ContactItem contactItem = contacts[i];
+                var contact = new Contact();
+                contact.Title = contactItem.Title;
+                contact.FirstName = contactItem.FirstName;
+                contact.LastName = contactItem.LastName;
+                contact.Suffix = contactItem.Suffix;
+                contact.Telephone = contactItem.BusinessTelephoneNumber;
+                contact.Fax = contactItem.BusinessFaxNumber;
+                contact.Mobile = contactItem.MobileTelephoneNumber;
+                contact.HomeTelephone = contactItem.HomeTelephoneNumber;
+                contact.Website = contactItem.WebPage;
+                contact.EmailAddress = contactItem.Email1Address;
+                contact.EmailAddress1 = contactItem.Email2Address;
+                contact.EmailAddress2 = contactItem.Email3Address;
+
+                var company = CompaniesManager.Current.LoadCompanies().Where(c => c.Name == contactItem.CompanyName).FirstOrDefault();
+                contact.Company = company;
+
+                ContactsManager.Current.Save(contact);
+
+                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double) i/contacts.Count*100.0, 0)));
+            }
         }
     }
 }

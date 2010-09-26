@@ -71,6 +71,9 @@
     <Compile Include="CompanyEditorViewModel.cs" />
     <Compile Include="ContactEditorViewModel.cs" />
     <Compile Include="ContactsViewModel.cs" />
+    <Compile Include="Import\CSV\CsvImportPreviewViewModel.cs" />
+    <Compile Include="Import\CSV\CsvImportSelectFileViewModel.cs" />
+    <Compile Include="Import\Outlook\OutlookImportProgressViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookPreviewScreenViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\LanguagesTabViewModel.cs" />
@@ -100,6 +103,7 @@
       <Name>WinPure.ContactManagement.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

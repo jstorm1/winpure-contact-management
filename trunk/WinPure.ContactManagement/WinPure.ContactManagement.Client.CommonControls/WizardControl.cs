@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,7 +9,7 @@ namespace WinPure.ContactManagement.Client.CommonControls
 {
     [TemplatePart(Name = "PART_NextButton", Type = typeof (Button))]
     [TemplatePart(Name = "PART_PreviousButton", Type = typeof (Button))]
-    [TemplatePart(Name = "PART_FinishButton", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_FinishButton", Type = typeof (Button))]
     public class WizardControl : ModalDialog
     {
         #region Events
@@ -17,6 +19,18 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
         #endregion
 
+        // Using a DependencyProperty as the backing store for NextButtonVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NextButtonVisibilityProperty =
+            DependencyProperty.Register("NextButtonVisibility", typeof (Visibility), typeof (WizardControl),
+                                        new UIPropertyMetadata(Visibility.Hidden));
+
+
+        // Using a DependencyProperty as the backing store for PreviousButtonVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PreviousButtonVisibilityProperty =
+            DependencyProperty.Register("PreviousButtonVisibility", typeof (Visibility), typeof (WizardControl),
+                                        new UIPropertyMetadata(Visibility.Hidden));
+
+
         // Using a DependencyProperty as the backing store for Sequence.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SequenceProperty =
             DependencyProperty.Register("Sequence", typeof (Queue<WizardScreen>), typeof (WizardControl),
@@ -25,12 +39,13 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
         // Using a DependencyProperty as the backing store for History.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HistoryProperty =
-            DependencyProperty.Register("History", typeof (Queue<WizardScreen>), typeof (ModalDialog),
+            DependencyProperty.Register("History", typeof (Stack<WizardScreen>), typeof (ModalDialog),
                                         new UIPropertyMetadata(null));
+
+        private Button _finishButton;
 
         private Button _nextButton;
         private Button _previousButton;
-        private Button _finishButton;
 
 
         static WizardControl()
@@ -42,20 +57,35 @@ namespace WinPure.ContactManagement.Client.CommonControls
         public WizardControl()
         {
             Sequence = new Queue<WizardScreen>();
-            History = new Queue<WizardScreen>();
+            History = new Stack<WizardScreen>();
         }
 
 
-        public Queue<WizardScreen> History
+        [Category("Layout")]
+        public Visibility NextButtonVisibility
         {
-            get { return (Queue<WizardScreen>) GetValue(HistoryProperty); }
-           private set { SetValue(HistoryProperty, value); }
+            get { return (Visibility) GetValue(NextButtonVisibilityProperty); }
+            set { SetValue(NextButtonVisibilityProperty, value); }
+        }
+
+        [Category("Layout")]
+        public Visibility PreviousButtonVisibility
+        {
+            get { return (Visibility) GetValue(PreviousButtonVisibilityProperty); }
+            set { SetValue(PreviousButtonVisibilityProperty, value); }
+        }
+
+
+        public Stack<WizardScreen> History
+        {
+            get { return (Stack<WizardScreen>)GetValue(HistoryProperty); }
+            private set { SetValue(HistoryProperty, value); }
         }
 
         public Queue<WizardScreen> Sequence
         {
             get { return (Queue<WizardScreen>) GetValue(SequenceProperty); }
-           private set { SetValue(SequenceProperty, value); }
+            private set { SetValue(SequenceProperty, value); }
         }
 
 
@@ -109,7 +139,19 @@ namespace WinPure.ContactManagement.Client.CommonControls
         public void ShowNext(WizardScreen screen)
         {
             Content = screen;
-            History.Enqueue(screen);
+            Debug.WriteLine(screen.GetType().Name.ToString());
+            if (!History.Contains(screen))
+                History.Push(screen);
+        }
+
+        public void ShowPrevious()
+        {
+            //History.Pop();
+            WizardScreen screen = History.Pop();
+            Content = screen;
+            Debug.WriteLine(screen.GetType().Name.ToString());
+            if (!Sequence.Contains(screen))
+                Sequence.Enqueue(screen);
         }
     }
 }

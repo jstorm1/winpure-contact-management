@@ -218,6 +218,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Import\Outlook\OutlookProgressScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Import\Outlook\PreviewScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -292,6 +296,9 @@
     </Compile>
     <Compile Include="Pages\Import\Outlook\OutlookImportWizard.xaml.cs">
       <DependentUpon>OutlookImportWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Import\Outlook\OutlookProgressScreen.xaml.cs">
+      <DependentUpon>OutlookProgressScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Import\Outlook\PreviewScreen.xaml.cs">
       <DependentUpon>PreviewScreen.xaml</DependentUpon>
