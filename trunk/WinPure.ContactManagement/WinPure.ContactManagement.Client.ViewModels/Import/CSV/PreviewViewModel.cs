@@ -6,7 +6,7 @@ using WinPure.ContactManagement.Client.ViewModels.Base;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Import.CSV
 {
-    public class CsvImportPreviewViewModel:ViewModelBase 
+    public class PreviewViewModel:ViewModelBase 
     {
     }
 }

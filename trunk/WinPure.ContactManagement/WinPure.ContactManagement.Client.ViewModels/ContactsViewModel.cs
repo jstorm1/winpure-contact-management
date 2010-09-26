@@ -35,6 +35,8 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// </summary>
         public ContactsViewModel()
         {
+            if (IsDesignMode) return;
+
             Contacts = ContactsManager.Current.LoadContacts();
 
             SortByField = ContactsManager.Current.OrderByField;

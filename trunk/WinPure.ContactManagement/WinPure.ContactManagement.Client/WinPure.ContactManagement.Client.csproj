@@ -214,11 +214,15 @@
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>ContactsListPage.xaml</DependentUpon>
     </Page>
+    <Page Include="Pages\Import\Csv\SelectFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Import\Outlook\OutlookImportWizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Import\Outlook\OutlookProgressScreen.xaml">
+    <Page Include="Pages\Import\Outlook\ProgressScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -294,11 +298,14 @@
     <Compile Include="Pages\ContactsListPage.xaml.cs">
       <DependentUpon>ContactsListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Import\Csv\SelectFile.xaml.cs">
+      <DependentUpon>SelectFile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Import\Outlook\OutlookImportWizard.xaml.cs">
       <DependentUpon>OutlookImportWizard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Import\Outlook\OutlookProgressScreen.xaml.cs">
-      <DependentUpon>OutlookProgressScreen.xaml</DependentUpon>
+    <Compile Include="Pages\Import\Outlook\ProgressScreen.xaml.cs">
+      <DependentUpon>ProgressScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Import\Outlook\PreviewScreen.xaml.cs">
       <DependentUpon>PreviewScreen.xaml</DependentUpon>

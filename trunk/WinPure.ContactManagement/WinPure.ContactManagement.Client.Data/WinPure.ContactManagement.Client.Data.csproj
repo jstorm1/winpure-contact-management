@@ -119,6 +119,7 @@
     <Compile Include="Managers\CurrentCultureManager.cs" />
     <Compile Include="Managers\DataManagers\SettingsManager.cs" />
     <Compile Include="Managers\DataManagers\SyncServerConnectionsManager.cs" />
+    <Compile Include="Managers\Import\CsvImportManager.cs" />
     <Compile Include="Managers\Import\OutlookImportManager.cs" />
     <Compile Include="Managers\TransitionsManager.cs" />
     <Compile Include="Model\Extensions\CompanyExtension.cs" />

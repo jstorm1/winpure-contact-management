@@ -240,6 +240,7 @@
                   IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" 
                   Command="{Binding DeleteCommand, Mode=OneWay}"/>
     			<Button x:Name="OutlookImportButton" Click="onOutlookImportButtonClick" Content="Outlook" Margin="0" Width="100" VerticalAlignment="Center" FontSize="21.333"/>
+          <Button x:Name="CsvImportButton" Click="onCsvImportButtonClick" Content="CSV" Margin="0" Width="100" VerticalAlignment="Center" FontSize="21.333"/>
     		
         </StackPanel>
     		<Border x:Name="ViewButtons" HorizontalAlignment="Right" Margin="0,2,0,0" Width="115" CornerRadius="5" Background="#33FFFFFF" BorderBrush="#CCFFFFFF" BorderThickness="0.5">

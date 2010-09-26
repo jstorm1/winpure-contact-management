@@ -71,8 +71,8 @@
     <Compile Include="CompanyEditorViewModel.cs" />
     <Compile Include="ContactEditorViewModel.cs" />
     <Compile Include="ContactsViewModel.cs" />
-    <Compile Include="Import\CSV\CsvImportPreviewViewModel.cs" />
-    <Compile Include="Import\CSV\CsvImportSelectFileViewModel.cs" />
+    <Compile Include="Import\CSV\PreviewViewModel.cs" />
+    <Compile Include="Import\CSV\SelectFileViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookImportProgressViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookPreviewScreenViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
