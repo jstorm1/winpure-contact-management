@@ -80,7 +80,6 @@ namespace WinPure.ContactManagement.Client.Pages
             var wizard = new OutlookImportWizard();
             ModalDialog = wizard;
             wizard.Sequence.Enqueue(new PreviewScreen(wizard));
-            wizard.Sequence.Enqueue(new OutlookProgressScreen(wizard));
             wizard.ShowNext(wizard.GetNextScreen());
             wizard.Show();
         }

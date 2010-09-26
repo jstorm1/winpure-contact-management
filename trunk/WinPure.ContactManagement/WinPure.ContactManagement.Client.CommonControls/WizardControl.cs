@@ -19,6 +19,13 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
         #endregion
 
+
+        // Using a DependencyProperty as the backing store for FinishButtonVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FinishButtonVisibilityProperty =
+            DependencyProperty.Register("FinishButtonVisibility", typeof(Visibility), typeof(WizardControl), new UIPropertyMetadata(Visibility.Visible));
+
+
+
         // Using a DependencyProperty as the backing store for NextButtonVisibility.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NextButtonVisibilityProperty =
             DependencyProperty.Register("NextButtonVisibility", typeof (Visibility), typeof (WizardControl),
@@ -60,6 +67,13 @@ namespace WinPure.ContactManagement.Client.CommonControls
             History = new Stack<WizardScreen>();
         }
 
+
+        [Category("Layout")]
+        public Visibility FinishButtonVisibility
+        {
+            get { return (Visibility)GetValue(FinishButtonVisibilityProperty); }
+            set { SetValue(FinishButtonVisibilityProperty, value); }
+        }
 
         [Category("Layout")]
         public Visibility NextButtonVisibility

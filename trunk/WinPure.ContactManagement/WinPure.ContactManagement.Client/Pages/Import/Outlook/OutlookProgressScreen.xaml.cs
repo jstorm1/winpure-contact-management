@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using WinPure.ContactManagement.Client.CommonControls;
+using WinPure.ContactManagement.Client.Data.Managers.Import;
 
 namespace WinPure.ContactManagement.Client.Pages.Import.Outlook
 {
@@ -16,12 +17,28 @@ namespace WinPure.ContactManagement.Client.Pages.Import.Outlook
                                         typeof (OutlookProgressScreen), new UIPropertyMetadata(null));
 
 
-        public OutlookProgressScreen(WizardControl owner = null) : base(owner)
+        public OutlookProgressScreen():this(null)
+        {
+            
+        }
+
+        public OutlookProgressScreen(WizardControl owner):base(owner)
         {
             InitializeComponent();
 
+            if (owner == null) return;
 
-            //Owner.PreviousButtonClick += onOwnerOnPreviousButtonClick;
+            Owner.FinishButtonVisibility = Visibility.Hidden;
+            Owner.Text = "Import Progress";
+
+            OutlookImportManager.Current.ImportProgressCompleted += delegate
+                                                                        {
+
+                                                                            Owner.FinishButtonVisibility =
+                                                                                Visibility.Visible;
+                                                                        };
+
+           // Owner.PreviousButtonClick += onOwnerOnPreviousButtonClick;
         }
 
         public ObservableCollection<object> Contacts

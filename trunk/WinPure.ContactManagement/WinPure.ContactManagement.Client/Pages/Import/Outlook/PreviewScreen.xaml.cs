@@ -10,11 +10,18 @@ namespace WinPure.ContactManagement.Client.Pages.Import.Outlook
     public partial class PreviewScreen : WizardScreen
     {
 
-        public PreviewScreen(WizardControl owner = null) : base(owner)
+        public PreviewScreen():this(null)
+        {
+            
+        }
+
+        public PreviewScreen(WizardControl owner):base(owner) 
         {
             InitializeComponent();
 
             if (owner == null) return;
+
+            Owner.Text = "Data Preview";
 
             Owner.NextButtonClick += onOwnerOnNextButtonClick;
             Owner.NextButtonVisibility = Visibility.Visible;
@@ -25,7 +32,7 @@ namespace WinPure.ContactManagement.Client.Pages.Import.Outlook
             Owner.ShowNext(new OutlookProgressScreen(Owner));
 
             Owner.NextButtonVisibility = Visibility.Hidden;
-            Owner.PreviousButtonVisibility = Visibility.Visible;
+            Owner.PreviousButtonVisibility = Visibility.Hidden;
         }
     }
 }

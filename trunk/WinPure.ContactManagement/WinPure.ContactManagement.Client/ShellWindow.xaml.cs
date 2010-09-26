@@ -1,5 +1,6 @@
 ﻿#region References
 
+using System.ComponentModel;
 using System.Windows;
 using WinPure.ContactManagement.Client.Data.Managers;
 
@@ -18,6 +19,9 @@ namespace WinPure.ContactManagement.Client
         public ShellWindow()
         {
             InitializeComponent();
+
+            //Check for Design mode.
+            if (DesignerProperties.GetIsInDesignMode(this)) return;
 
             PagesSliderControl.Transition = TransitionsManager.Current.CurrentTransition;
 

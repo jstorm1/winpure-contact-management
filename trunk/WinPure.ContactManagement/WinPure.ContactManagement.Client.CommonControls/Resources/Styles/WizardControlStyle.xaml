@@ -165,8 +165,7 @@
 											        Height="35"
 											        FontSize="16"
 											        VerticalAlignment="Center"
-											        Tag="{TemplateBinding Sequence}"
-											        Visibility="{Binding Tag, Converter={StaticResource ItemsCountToVisibilityOppositeConverter}, ElementName=PART_FinishButton}"/>
+											        Visibility="{TemplateBinding FinishButtonVisibility}"/>
 										</StackPanel>
 									</Grid>
 								</Grid>

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.Data.Managers.Import;
@@ -9,12 +10,17 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.Outlook
     public class OutlookImportProgressViewModel : ViewModelBase
     {
         private int _completedPercent;
+        private bool _isImportCompleted;
         private ObservableCollection<object> _contacts;
         private RelayCommand _startImportCommand;
 
         public OutlookImportProgressViewModel()
         {
+            //Check for Design mode.
+            if (IsDesignMode) return;
+
             OutlookImportManager.Current.ImportProgressChanged += onOutlookManagerImportProgressChanged;
+            OutlookImportManager.Current.ImportProgressCompleted += onOutlookImportManagerImportCompleted;
         }
 
         public int CompletedPercent
@@ -42,6 +48,22 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.Outlook
                 _contacts = value;
                 RaisePropertyChanged("Contacts");
             }
+        }
+
+        public bool IsImportCompleted
+        {
+            get { return _isImportCompleted; }
+            private set
+            {
+                if (_isImportCompleted == value) return;
+                _isImportCompleted = value;
+                RaisePropertyChanged("IsImportCompleted");
+            }
+        }
+
+        private void onOutlookImportManagerImportCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IsImportCompleted = true;
         }
 
         private void onOutlookManagerImportProgressChanged(object sender, ProgressChangedEventArgs e)

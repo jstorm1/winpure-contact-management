@@ -24,6 +24,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
         #region Singleton Constructor
 
         private static OutlookImportManager _instance;
+        private ObservableCollection<object> _contactsFromFolder;
 
         private OutlookImportManager()
         {
@@ -32,6 +33,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                 _outlookApplication.ActiveExplorer().Session.GetDefaultFolder(OlDefaultFolders.olFolderContacts);
 
             _importWorker = new BackgroundWorker();
+            _importWorker.WorkerReportsProgress = true;
             _importWorker.DoWork += onImportWorkerOnDoWork;
             _importWorker.RunWorkerCompleted += onImportWorkerOnRunWorkerCompleted;
             _importWorker.ProgressChanged += onImportWorkerOnProgressChanged;
@@ -121,22 +123,22 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
         public ObservableCollection<object> GetContactsFromFolder(Folder folder = null)
         {
             Items contacts = folder == null ? _contactsFolder.Items : folder.Items;
-            var retContacts = new ObservableCollection<object>();
+            _contactsFromFolder = new ObservableCollection<object>();
 
             foreach (object contact in contacts)
             {
-                retContacts.Add(contact);
+                _contactsFromFolder.Add(contact);
             }
 
             //var c = new ContactItem();
             //c.Email1Address
 
-            return retContacts;
+            return _contactsFromFolder;
         }
 
         public void StartImport(IEnumerable<object> contacts)
         {
-            _importWorker.RunWorkerAsync(contacts);
+            _importWorker.RunWorkerAsync(_contactsFromFolder);
         }
 
         private void onImportWorkerOnProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -153,11 +155,11 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
         private void onImportWorkerOnDoWork(object sender, DoWorkEventArgs e)
         {
-            var contacts = (ObservableCollection<ContactItem>) e.Argument;
+            var contacts = (ObservableCollection<object>) e.Argument;
 
             for (int i = 0; i < contacts.Count; i++)
             {
-                ContactItem contactItem = contacts[i];
+                ContactItem contactItem = (ContactItem)contacts[i];
                 var contact = new Contact();
                 contact.Title = contactItem.Title;
                 contact.FirstName = contactItem.FirstName;
@@ -177,7 +179,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
                 ContactsManager.Current.Save(contact);
 
-                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double) i/contacts.Count*100.0, 0)));
+                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double) (i+1)/contacts.Count*100.0, 0)));
             }
         }
     }

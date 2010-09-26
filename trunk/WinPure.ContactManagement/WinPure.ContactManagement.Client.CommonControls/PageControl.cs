@@ -153,6 +153,7 @@ namespace WinPure.ContactManagement.Client.CommonControls
 
         private void onModalDialogClosed(object sender, EventArgs e)
         {
+            _modalOwner.Children.Clear();
             VisualStateManager.GoToState(this, "Normal", true);
         }
 
