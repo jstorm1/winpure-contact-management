@@ -9,6 +9,7 @@ using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Pages.Import.Csv;
 using WinPure.ContactManagement.Client.Pages.Import.Outlook;
 using WinPure.ContactManagement.Client.Pages.Modal;
+using PreviewScreen = WinPure.ContactManagement.Client.Pages.Import.Outlook.PreviewScreen;
 
 #endregion
 
@@ -89,7 +90,7 @@ namespace WinPure.ContactManagement.Client.Pages
         {
             var wizard = new WizardControl {Height = 400, Width = 600};
             ModalDialog = wizard;
-            wizard.ShowNext(new SelectFile(wizard));
+            wizard.ShowNext(new SelectFileScreen(wizard));
             wizard.Show();
         }
     }

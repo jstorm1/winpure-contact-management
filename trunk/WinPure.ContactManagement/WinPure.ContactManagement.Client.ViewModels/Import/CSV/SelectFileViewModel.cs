@@ -9,6 +9,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.CSV
     {
         private string _fileName;
         private RelayCommand _openFileCommand;
+        private bool _readyToContinue;
 
         public string FileName
         {
@@ -27,13 +28,25 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.CSV
             get { return _openFileCommand ?? (_openFileCommand = new RelayCommand(openFile)); }
         }
 
+        public bool ReadyToContinue
+        {
+            get { return _readyToContinue; }
+            set
+            {
+                if (_readyToContinue == value)  return;
+                _readyToContinue = value;
+                RaisePropertyChanged("ReadyToContinue");
+            }
+        }
+
         private void openFile()
         {
-            var dialog = new OpenFileDialog {CheckFileExists = true};
+            var dialog = new OpenFileDialog {CheckFileExists = true, Filter = "CSV Files (*.csv)|*.csv"};
             if (dialog.ShowDialog() != true) return;
 
             FileName = dialog.FileName;
             CsvImportManager.Current.SetCurrentFile(FileName);
+            ReadyToContinue = true;
         }
     }
 }

@@ -12,6 +12,11 @@ namespace WinPure.ContactManagement.Client.CommonControls
     [ContentProperty("Content")]
     public class WizardScreen : Control, IAddChild
     {
+        // Using a DependencyProperty as the backing store for IsReadyToContinue.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsReadyToContinueProperty =
+            DependencyProperty.Register("IsReadyToContinue", typeof(bool), typeof(WizardScreen),
+                                        new UIPropertyMetadata(false, onIsReadyToContinuePropertyChanged));
+
         // Using a DependencyProperty as the backing store for Content.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register("Content", typeof (object), typeof (WizardScreen), new UIPropertyMetadata(null));
@@ -44,6 +49,21 @@ namespace WinPure.ContactManagement.Client.CommonControls
         {
             get { return GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
+        }
+
+        public bool IsReadyToContinue
+        {
+            get { return (bool)GetValue(IsReadyToContinueProperty); }
+            set { SetValue(IsReadyToContinueProperty, value); }
+        }
+
+        private static void onIsReadyToContinuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var screen = d as WizardScreen;
+            if (screen == null) return;
+
+            if (screen.Owner == null) return;
+            screen.Owner.NextButtonVisibility = (bool)e.NewValue != true ? Visibility.Hidden : Visibility.Visible;
         }
 
         #region Implementation of IAddChild
