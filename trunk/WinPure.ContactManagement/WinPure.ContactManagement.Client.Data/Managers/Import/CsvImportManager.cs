@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using LumenWorks.Framework.IO.Csv;
 using WinPure.ContactManagement.Client.Data.Model;
 
@@ -13,24 +13,61 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 {
     public class CsvImportManager
     {
+        private readonly BackgroundWorker _importWorker;
         private string _currentFile;
+        private ObservableCollection<dynamic > _currentMapping;
 
         #region Singleton Construtor
-        
+
         private static CsvImportManager _instance;
-        private ObservableCollection<object> _defaultMapping;
+
 
         private CsvImportManager()
         {
-
+            _importWorker = new BackgroundWorker();
+            _importWorker.WorkerReportsProgress = true;
+            _importWorker.DoWork += onImportWorkerOnDoWork;
+            _importWorker.RunWorkerCompleted += onImportWorkerOnRunWorkerCompleted;
+            _importWorker.ProgressChanged += onImportWorkerOnProgressChanged;
         }
 
         public static CsvImportManager Current
         {
             get { return _instance ?? (_instance = new CsvImportManager()); }
-        } 
+        }
 
         #endregion
+
+        public event EventHandler<ProgressChangedEventArgs> ImportProgressChanged;
+        public event EventHandler<RunWorkerCompletedEventArgs> ImportProgressCompleted;
+
+        private void onImportWorkerOnProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (ImportProgressChanged != null)
+                ImportProgressChanged.Invoke(this, e);
+        }
+
+        private void onImportWorkerOnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (ImportProgressCompleted != null)
+                ImportProgressCompleted.Invoke(this, e);
+        }
+
+        private void onImportWorkerOnDoWork(object sender, DoWorkEventArgs e)
+        {
+            var fields = _currentMapping.Where(f => !string.IsNullOrEmpty(f.FileField));
+            var records = GetRecords();
+
+            foreach (var record in records)
+            {
+                var contact = new Contact();
+                foreach (var field in fields)
+                {
+                    contact.GetType().GetProperty((string)field.CrmField).SetValue(contact, ((IDictionary<string, object>)record)[field.FileField], null);
+                }
+            }
+            
+        }
 
         public void SetCurrentFile(string path)
         {
@@ -58,11 +95,10 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                     dynamic record = new ExpandoObject();
                     for (int i = 0; i < fieldCount; i++)
                     {
-                        ((IDictionary<string, object>)record).Add(headers[i], csv[i] ?? "");
+                        ((IDictionary<string, object>) record).Add(headers[i], csv[i] ?? "");
                     }
                     records.Add(record);
                 }
-
             }
 
             return records;
@@ -84,12 +120,12 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                                      };
 
 
-            _defaultMapping = new ObservableCollection<object>();
-            var fileFields = GetColumns();
+            _currentMapping = new ObservableCollection<object>();
+            ObservableCollection<string> fileFields = GetColumns();
 
             var emptyContact = new Contact();
-            var contactMembers = emptyContact.GetType().GetProperties();
-            foreach (var contactMember in contactMembers)
+            PropertyInfo[] contactMembers = emptyContact.GetType().GetProperties();
+            foreach (PropertyInfo contactMember in contactMembers)
             {
                 if (hideProperties.Contains(contactMember.Name)) continue;
 
@@ -98,9 +134,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                 field.FileField = "";
                 field.FileFields = fileFields;
 
-                _defaultMapping.Add(field);
+                _currentMapping.Add(field);
             }
-            return _defaultMapping;
+            return _currentMapping;
+        }
+
+        public void StartImport()
+        {
+            _importWorker.RunWorkerAsync();
         }
 
         public ObservableCollection<string> GetColumns()
@@ -117,9 +158,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
                 // to replace by "" instead, then use the following action:
                 //csv.MissingFieldAction = MissingFieldAction.ReplaceByEmpty;
-                headers = csv.GetFieldHeaders();                
+                headers = csv.GetFieldHeaders();
             }
-            
+
             return new ObservableCollection<string>(headers);
         }
     }
