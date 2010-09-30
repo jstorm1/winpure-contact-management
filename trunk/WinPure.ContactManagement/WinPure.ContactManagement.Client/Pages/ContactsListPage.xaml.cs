@@ -80,14 +80,14 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onOutlookImportButtonClick(object sender, RoutedEventArgs e)
         {
-            var wizard = new OutlookImportPage { Height = 400, Width = 400 };
+            var wizard = new OutlookImportPage { Height = 480, Width = 640 };
             ModalDialog = wizard;
             wizard.Show();
         }
 
         private void onCsvImportButtonClick(object sender, RoutedEventArgs e)
         {
-            var wizard = new CsvImportPage {Height = 400, Width = 400};
+            var wizard = new CsvImportPage {Height = 480, Width = 640};
             ModalDialog = wizard;
             wizard.Show();
         }

@@ -25,12 +25,12 @@ namespace WinPure.ContactManagement.Client.Pages.Import
             InitializeComponent();
         }
 
-        private void onWizardControlFinishButtonClick(object sender, System.Windows.RoutedEventArgs e)
+        private void onWizardControlFinishButtonClick(object sender, RoutedEventArgs e)
         {
         	Close();
         }
 
-        private void onWizardControlCancelButtonClick(object sender, System.Windows.RoutedEventArgs e)
+        private void onWizardControlCancelButtonClick(object sender, RoutedEventArgs e)
         {
         	Close();
         }
