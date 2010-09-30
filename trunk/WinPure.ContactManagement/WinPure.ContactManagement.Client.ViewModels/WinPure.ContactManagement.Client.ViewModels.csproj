@@ -73,6 +73,7 @@
     <Compile Include="ContactsViewModel.cs" />
     <Compile Include="Import\CSV\MappingScreenViewModel.cs" />
     <Compile Include="Import\CSV\PreviewScreenViewModel.cs" />
+    <Compile Include="Import\CSV\ProgressScrenViewModel.cs" />
     <Compile Include="Import\CSV\SelectFileViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookImportProgressViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookPreviewScreenViewModel.cs" />
