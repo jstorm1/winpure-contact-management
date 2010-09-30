@@ -114,6 +114,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\NavigationMultiConverter.cs" />
     <Compile Include="HorizontalMenu.cs" />
     <Compile Include="HorizontalMenuItem.cs" />
     <Compile Include="ImageRadioButton.cs" />

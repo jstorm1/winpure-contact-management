@@ -1,171 +1,222 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace WinPure.ContactManagement.Client.CommonControls
 {
-    [TemplatePart(Name = "PART_NextButton", Type = typeof (Button))]
-    [TemplatePart(Name = "PART_PreviousButton", Type = typeof (Button))]
-    [TemplatePart(Name = "PART_FinishButton", Type = typeof (Button))]
-    public class WizardControl : ModalDialog
+    /// <summary>
+    /// Represents a wizard control.
+    /// </summary>
+    [TemplatePart(Name = PART_Finish, Type = typeof (ButtonBase))]
+    [TemplatePart(Name = PART_Next, Type = typeof (ButtonBase))]
+    [TemplatePart(Name = PART_Previous, Type = typeof (ButtonBase))]
+    [TemplatePart(Name = PART_Cancel, Type = typeof (ButtonBase))]
+    [TemplatePart(Name = PART_Help, Type = typeof (ButtonBase))]
+    public class Wizard : Selector
     {
-        #region Events
+        #region Public Resource Keys
 
-        public event EventHandler NextButtonClick;
-        public event EventHandler PreviousButtonClick;
+        public static ResourceKey HeaderPanelBorderResourceKey =
+            new ComponentResourceKey(typeof (Wizard), "HeaderPanelBorderResourceKey");
+
+        public static ResourceKey SideHeaderPanelBorderResourceKey =
+            new ComponentResourceKey(typeof (Wizard), "SideHeaderPanelBorderResourceKey");
+
+        public static ResourceKey ContentPanelBorderResourceKey =
+            new ComponentResourceKey(typeof (Wizard), "ContentPanelBorderResourceKey");
+
+        public static ResourceKey NavigationPanelBorderResourceKey =
+            new ComponentResourceKey(typeof (Wizard), "NavigationPanelBorderResourceKey");
+
+        public static ResourceKey NavigationButtonResourceKey =
+            new ComponentResourceKey(typeof (Wizard), "NavigationButtonResourceKey");
 
         #endregion
 
+        #region Private Constants
 
-        // Using a DependencyProperty as the backing store for FinishButtonVisibility.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty FinishButtonVisibilityProperty =
-            DependencyProperty.Register("FinishButtonVisibility", typeof(Visibility), typeof(WizardControl), new UIPropertyMetadata(Visibility.Visible));
+        private const string PART_Finish = "PART_Finish";
+        private const string PART_Next = "PART_Next";
+        private const string PART_Previous = "PART_Previous";
+        private const string PART_Cancel = "PART_Cancel";
+        private const string PART_Help = "PART_Help";
 
+        #endregion
 
+        #region Static Constructor
 
-        // Using a DependencyProperty as the backing store for NextButtonVisibility.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty NextButtonVisibilityProperty =
-            DependencyProperty.Register("NextButtonVisibility", typeof (Visibility), typeof (WizardControl),
-                                        new UIPropertyMetadata(Visibility.Hidden));
-
-
-        // Using a DependencyProperty as the backing store for PreviousButtonVisibility.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PreviousButtonVisibilityProperty =
-            DependencyProperty.Register("PreviousButtonVisibility", typeof (Visibility), typeof (WizardControl),
-                                        new UIPropertyMetadata(Visibility.Hidden));
-
-
-        // Using a DependencyProperty as the backing store for Sequence.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SequenceProperty =
-            DependencyProperty.Register("Sequence", typeof (Queue<WizardScreen>), typeof (WizardControl),
-                                        new UIPropertyMetadata(null));
-
-
-        // Using a DependencyProperty as the backing store for History.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HistoryProperty =
-            DependencyProperty.Register("History", typeof (Stack<WizardScreen>), typeof (ModalDialog),
-                                        new UIPropertyMetadata(null));
-
-        private Button _finishButton;
-
-        private Button _nextButton;
-        private Button _previousButton;
-
-
-        static WizardControl()
+        static Wizard()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof (WizardControl),
-                                                     new FrameworkPropertyMetadata(typeof (WizardControl)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof (Wizard),
+                                                     new FrameworkPropertyMetadata(typeof (Wizard)));
         }
 
-        public WizardControl()
+        #endregion
+
+        #region Public Routed Events
+
+        public static readonly RoutedEvent HelpClickEvent = EventManager.RegisterRoutedEvent(
+            "HelpClick", RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (Wizard));
+
+        public static readonly RoutedEvent CancelClickEvent = EventManager.RegisterRoutedEvent(
+            "CancelClick", RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (Wizard));
+
+        public static readonly RoutedEvent PreviousClickEvent = EventManager.RegisterRoutedEvent(
+            "PreviousClick", RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (Wizard));
+
+        public static readonly RoutedEvent NextClickEvent = EventManager.RegisterRoutedEvent(
+            "NextClick", RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (Wizard));
+
+        public static readonly RoutedEvent FinishClickEvent = EventManager.RegisterRoutedEvent(
+            "FinishClick", RoutingStrategy.Bubble, typeof (RoutedEventHandler), typeof (Wizard));
+
+        public event RoutedEventHandler HelpClick
         {
-            Sequence = new Queue<WizardScreen>();
-            History = new Stack<WizardScreen>();
+            add { AddHandler(HelpClickEvent, value); }
+            remove { RemoveHandler(HelpClickEvent, value); }
         }
 
-
-        [Category("Layout")]
-        public Visibility FinishButtonVisibility
+        public event RoutedEventHandler CancelClick
         {
-            get { return (Visibility)GetValue(FinishButtonVisibilityProperty); }
-            set { SetValue(FinishButtonVisibilityProperty, value); }
+            add { AddHandler(CancelClickEvent, value); }
+            remove { RemoveHandler(CancelClickEvent, value); }
         }
 
-        [Category("Layout")]
-        public Visibility NextButtonVisibility
+        public event RoutedEventHandler PreviousClick
         {
-            get { return (Visibility) GetValue(NextButtonVisibilityProperty); }
-            set { SetValue(NextButtonVisibilityProperty, value); }
+            add { AddHandler(PreviousClickEvent, value); }
+            remove { RemoveHandler(PreviousClickEvent, value); }
         }
 
-        [Category("Layout")]
-        public Visibility PreviousButtonVisibility
+        public event RoutedEventHandler NextClick
         {
-            get { return (Visibility) GetValue(PreviousButtonVisibilityProperty); }
-            set { SetValue(PreviousButtonVisibilityProperty, value); }
+            add { AddHandler(NextClickEvent, value); }
+            remove { RemoveHandler(NextClickEvent, value); }
         }
 
-
-        public Stack<WizardScreen> History
+        public event RoutedEventHandler FinishClick
         {
-            get { return (Stack<WizardScreen>)GetValue(HistoryProperty); }
-            private set { SetValue(HistoryProperty, value); }
+            add { AddHandler(FinishClickEvent, value); }
+            remove { RemoveHandler(FinishClickEvent, value); }
         }
 
-        public Queue<WizardScreen> Sequence
-        {
-            get { return (Queue<WizardScreen>) GetValue(SequenceProperty); }
-            private set { SetValue(SequenceProperty, value); }
-        }
+        #endregion
 
+        #region Public/Protected Overrides
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            // If the wizard contains pages, setup defaults
+            if (Items.Count > 0)
+                SelectedIndex = 0;
+        }
 
         public override void OnApplyTemplate()
         {
-            _nextButton = GetTemplateChild("PART_NextButton") as Button;
-            if (_nextButton == null)
-                return;
-
-            _previousButton = GetTemplateChild("PART_PreviousButton") as Button;
-            if (_previousButton == null)
-                return;
-
-            _finishButton = GetTemplateChild("PART_FinishButton") as Button;
-            if (_finishButton == null)
-                return;
-
             base.OnApplyTemplate();
 
-            _nextButton.Click += onNextButtonOnClick;
+            var button = GetTemplateChild(PART_Finish) as ButtonBase;
+            if (button != null)
+                button.Click += (OnFinishedClicked);
 
-            _previousButton.Click += onPreviousButtonOnClick;
+            button = GetTemplateChild(PART_Next) as ButtonBase;
+            if (button != null)
+                button.Click += (OnNextClicked);
 
-            _finishButton.Click += onFinishButtonOnClick;
+            button = GetTemplateChild(PART_Previous) as ButtonBase;
+            if (button != null)
+                button.Click += (OnPreviousClicked);
+
+            button = GetTemplateChild(PART_Cancel) as ButtonBase;
+            if (button != null)
+                button.Click += (OnCancelClicked);
+
+            button = GetTemplateChild(PART_Help) as ButtonBase;
+            if (button != null)
+                button.Click += (OnHelpClicked);
         }
 
-        private void onFinishButtonOnClick(object sender, RoutedEventArgs e)
+        protected override DependencyObject GetContainerForItemOverride()
         {
-            Close();
+            return new WizardScreen();
         }
 
-        private void onNextButtonOnClick(object sender, RoutedEventArgs e)
+        protected override bool IsItemItsOwnContainerOverride(object item)
         {
-            if (NextButtonClick != null)
-                NextButtonClick.Invoke(this, EventArgs.Empty);
+            return item is WizardScreen;
         }
 
-        private void onPreviousButtonOnClick(object sender, RoutedEventArgs e)
+        protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
-            if (PreviousButtonClick != null)
-                PreviousButtonClick.Invoke(this, EventArgs.Empty);
+            base.OnSelectionChanged(e);
+
+            WizardScreen page = e.AddedItems.Count == 1 ? (WizardScreen) e.AddedItems[0] : null;
+            WizardScreen oldPage = e.RemovedItems.Count == 1 ? (WizardScreen) e.RemovedItems[0] : null;
+
+            if (page != null && oldPage != page)
+            {
+                // Raise event
+                if (oldPage != null)
+                    oldPage.OnPageClose();
+
+                // Set boundary values for navigation buttons
+                if (SelectedIndex == 0)
+                {
+                    page.CanNavigatePrevious = false;
+                    if (Items.Count == 1)
+                        page.CanNavigateNext = false;
+                }
+                else if (SelectedIndex == Items.Count - 1)
+                    page.CanNavigateNext = false;
+
+                // After page is up and runnig, rais event
+                page.OnPageShow();
+            }
         }
 
-        public WizardScreen GetNextScreen()
+        #endregion
+
+        #region Protected Helpers
+
+        protected virtual void OnFinishedClicked(object sender, RoutedEventArgs e)
         {
-            WizardScreen screen = Sequence.Dequeue();
-            screen.Owner = this;
-            return screen;
+            e.Handled = true;
+            RaiseEvent(new RoutedEventArgs(FinishClickEvent, this));
         }
 
-        public void ShowNext(WizardScreen screen)
+        protected virtual void OnNextClicked(object sender, RoutedEventArgs e)
         {
-            Content = screen;
-            Debug.WriteLine(screen.GetType().Name.ToString());
-            if (!History.Contains(screen))
-                History.Push(screen);
+            e.Handled = true;
+            RaiseEvent(new RoutedEventArgs(NextClickEvent, this));
+
+            int stepSize = ((WizardScreen) SelectedItem).NextStepSize;
+            SelectedIndex += stepSize;
         }
 
-        public void ShowPrevious()
+        protected virtual void OnPreviousClicked(object sender, RoutedEventArgs e)
         {
-            //History.Pop();
-            WizardScreen screen = History.Pop();
-            Content = screen;
-            Debug.WriteLine(screen.GetType().Name.ToString());
-            if (!Sequence.Contains(screen))
-                Sequence.Enqueue(screen);
+            e.Handled = true;
+            RaiseEvent(new RoutedEventArgs(PreviousClickEvent, this));
+
+            int stepSize = ((WizardScreen) SelectedItem).PreviousStepSize;
+            SelectedIndex -= stepSize;
         }
+
+        protected virtual void OnCancelClicked(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            RaiseEvent(new RoutedEventArgs(CancelClickEvent, this));
+        }
+
+        protected virtual void OnHelpClicked(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            RaiseEvent(new RoutedEventArgs(HelpClickEvent, this));
+        }
+
+        #endregion
     }
 }
