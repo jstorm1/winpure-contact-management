@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Client.Pages.Import;
 using WinPure.ContactManagement.Client.Pages.Import.Csv;
 using WinPure.ContactManagement.Client.Pages.Import.Outlook;
 using WinPure.ContactManagement.Client.Pages.Modal;
@@ -79,18 +80,15 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onOutlookImportButtonClick(object sender, RoutedEventArgs e)
         {
-            var wizard = new OutlookImportWizard();
+            var wizard = new OutlookImportPage { Height = 400, Width = 400 };
             ModalDialog = wizard;
-            wizard.Sequence.Enqueue(new PreviewScreen(wizard));
-            wizard.ShowNext(wizard.GetNextScreen());
             wizard.Show();
         }
 
         private void onCsvImportButtonClick(object sender, RoutedEventArgs e)
         {
-            var wizard = new WizardControl {Height = 400, Width = 600};
+            var wizard = new CsvImportPage {Height = 400, Width = 400};
             ModalDialog = wizard;
-            wizard.ShowNext(new SelectFileScreen(wizard));
             wizard.Show();
         }
     }
