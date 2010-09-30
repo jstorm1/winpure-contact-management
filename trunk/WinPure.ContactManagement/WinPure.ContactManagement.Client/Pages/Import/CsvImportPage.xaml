@@ -1,0 +1,82 @@
+﻿<CommonControls:ModalDialog x:Class="WinPure.ContactManagement.Client.Pages.Import.CsvImportPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+                            xmlns:Csv="clr-namespace:WinPure.ContactManagement.Client.Pages.Import.Csv"
+                            xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Import.CSV;assembly=WinPure.ContactManagement.Client.ViewModels"
+                            mc:Ignorable="d"
+                            d:DesignHeight="300"
+                            d:DesignWidth="300">
+  <Grid>
+    
+    <!--Csv import Wizard control-->
+    <CommonControls:Wizard FontSize="13.333">
+      
+      <!--SelectFile screen-->
+      <CommonControls:WizardScreen CanNext="{Binding ReadyToContinue}">
+        <CommonControls:WizardScreen.DataContext>
+            <ViewModels:SelectFileViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+        
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" Content="Select File" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+        
+        <Csv:SelectFileScreen/>
+      </CommonControls:WizardScreen>
+
+      <!--Preview screen-->
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}">
+        
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:PreviewScreenViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+        
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" FontWeight="Bold" Content="Preview" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Csv:PreviewScreen/>
+      </CommonControls:WizardScreen>
+
+      <!--Mapping screen-->
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}">
+
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:MappingScreenViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+        
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" FontWeight="Bold" Content="Mapping" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Csv:MappingScreen/>
+      </CommonControls:WizardScreen>
+
+      <!--Progress screen-->
+      <CommonControls:WizardScreen CanPrevious="False" CanNext="False" CanFinish="True">
+
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:ProgressScrenViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+        
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" FontWeight="Bold" Content="Importing" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Csv:ProgressScreen/>
+      </CommonControls:WizardScreen>
+        
+    </CommonControls:Wizard>  
+  </Grid>
+</CommonControls:ModalDialog>

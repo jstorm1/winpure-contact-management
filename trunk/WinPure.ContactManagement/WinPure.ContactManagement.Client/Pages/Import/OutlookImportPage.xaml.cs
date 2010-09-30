@@ -11,18 +11,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WinPure.ContactManagement.Client.CommonControls;
 
-namespace WinPure.ContactManagement.Client.Pages.Import.Outlook
+namespace WinPure.ContactManagement.Client.Pages.Import
 {
     /// <summary>
-    /// Interaction logic for OutlookImportWizard.xaml
+    /// Interaction logic for OutlookImportPage.xaml
     /// </summary>
-    public partial class OutlookImportWizard : WizardControl
+    public partial class OutlookImportPage 
     {
-        public OutlookImportWizard()
+        public OutlookImportPage()
         {
             InitializeComponent();
+        }
+
+        private void onWizardControlFinishButtonClick(object sender, RoutedEventArgs e)
+        {
+        	Close();
+        }
+
+        private void onWizardControlCancelButtonClick(object sender, RoutedEventArgs e)
+        {
+        	Close();
         }
     }
 }

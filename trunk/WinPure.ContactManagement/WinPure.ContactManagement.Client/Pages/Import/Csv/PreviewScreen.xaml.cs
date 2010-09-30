@@ -10,32 +10,44 @@ namespace WinPure.ContactManagement.Client.Pages.Import.Csv
     /// </summary>
     public partial class PreviewScreen 
     {
-        public PreviewScreen():this(null)
-        {
-            
-        }
-
-        public PreviewScreen(WizardControl owner):base(owner)
+        public PreviewScreen()
         {
             InitializeComponent();
-
-            owner.NextButtonVisibility = Visibility.Visible;
-            owner.PreviousButtonVisibility = Visibility.Visible;
-
-            owner.Text = "Preview";
-
-            Owner.PreviousButtonClick += onOwnerOnPreviousButtonClick;
-            Owner.NextButtonClick += onOwnerOnNextButtonClick;
         }
 
-        private void onOwnerOnNextButtonClick(object sender, EventArgs e)
-        {
-            Owner.ShowNext(new MappingScreen());
-        }
+        //public PreviewScreen(WizardControl owner):base(owner)
+        //{
+        //    InitializeComponent();
 
-        private void onOwnerOnPreviousButtonClick(object sender, EventArgs e)
-        {
-            Owner.ShowNext(new SelectFileScreen(Owner));
-        }
+        //    Initialize();
+        //}
+
+        //public void Initialize()
+        //{
+        //    Owner.NextButtonVisibility = Visibility.Visible;
+        //    Owner.PreviousButtonVisibility = Visibility.Visible;
+
+        //    Owner.Text = "Preview";
+
+        //    Owner.PreviousButtonClick += onOwnerOnPreviousButtonClick;
+        //    Owner.NextButtonClick += onOwnerOnNextButtonClick;
+        //}
+
+        //private void onOwnerOnNextButtonClick(object sender, EventArgs e)
+        //{
+        //    Owner.ShowNext(new MappingScreen());
+
+
+        //    Owner.PreviousButtonClick -= onOwnerOnPreviousButtonClick;
+        //    Owner.NextButtonClick -= onOwnerOnNextButtonClick;
+        //}
+
+        //private void onOwnerOnPreviousButtonClick(object sender, EventArgs e)
+        //{
+        //    Owner.ShowNext(new SelectFileScreen(Owner));
+
+        //    Owner.PreviousButtonClick -= onOwnerOnPreviousButtonClick;
+        //    Owner.NextButtonClick -= onOwnerOnNextButtonClick;
+        //}
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using WinPure.ContactManagement.Client.CommonControls;
+﻿using System.Windows;
 
 namespace WinPure.ContactManagement.Client.Pages.Import.Csv
 {
@@ -9,31 +7,33 @@ namespace WinPure.ContactManagement.Client.Pages.Import.Csv
     /// </summary>
     public partial class SelectFileScreen
     {
-        public SelectFileScreen() : this(null)
+        
+        public SelectFileScreen()
         {
-        }
-
-        public SelectFileScreen(WizardControl owner) : base(owner)
-        {
-            IsReadyToContinue = false;
-
             InitializeComponent();
-
-            initialize();
         }
 
+        //public SelectFileScreen(WizardControl owner) : base(owner)
+        //{
+        //    IsReadyToContinue = false;
 
-        private void initialize()
-        {
-            Owner.Text = "Select File";
-            Owner.PreviousButtonVisibility = Visibility.Hidden;
+        //    InitializeComponent();
 
-            Owner.NextButtonClick += onOwnerNextButtonClick;
-        }
+        //    initialize();
+        //}
 
-        private void onOwnerNextButtonClick(object sender, EventArgs e)
-        {
-            Owner.ShowNext(new PreviewScreen(Owner));
-        }
+
+        //private void initialize()
+        //{
+        //    Owner.Text = "Select File";
+        //    Owner.PreviousButtonVisibility = Visibility.Hidden;
+
+        //    Owner.NextButtonClick += onOwnerNextButtonClick;
+        //}
+
+        //private void onOwnerNextButtonClick(object sender, EventArgs e)
+        //{
+        //    Owner.ShowNext(new PreviewScreen(Owner));
+        //}
     }
 }

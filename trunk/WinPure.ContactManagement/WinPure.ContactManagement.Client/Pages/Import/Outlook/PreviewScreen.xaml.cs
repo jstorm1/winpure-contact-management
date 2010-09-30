@@ -7,32 +7,32 @@ namespace WinPure.ContactManagement.Client.Pages.Import.Outlook
     /// <summary>
     /// Interaction logic for PreviewScreen.xaml
     /// </summary>
-    public partial class PreviewScreen : WizardScreen
+    public partial class PreviewScreen 
     {
 
-        public PreviewScreen():this(null)
-        {
-            
-        }
-
-        public PreviewScreen(WizardControl owner):base(owner) 
+        public PreviewScreen()
         {
             InitializeComponent();
-
-            if (owner == null) return;
-
-            Owner.Text = "Data Preview";
-
-            Owner.NextButtonClick += onOwnerOnNextButtonClick;
-            Owner.NextButtonVisibility = Visibility.Visible;
         }
 
-        private void onOwnerOnNextButtonClick(object sender, EventArgs e)
-        {
-            Owner.ShowNext(new OutlookProgressScreen(Owner));
+        //public PreviewScreen(WizardControl owner):base(owner) 
+        //{
+        //    InitializeComponent();
 
-            Owner.NextButtonVisibility = Visibility.Hidden;
-            Owner.PreviousButtonVisibility = Visibility.Hidden;
-        }
+        //    if (owner == null) return;
+
+        //    Owner.Text = "Data Preview";
+
+        //    Owner.NextButtonClick += onOwnerOnNextButtonClick;
+        //    Owner.NextButtonVisibility = Visibility.Visible;
+        //}
+
+        //private void onOwnerOnNextButtonClick(object sender, EventArgs e)
+        //{
+        //    Owner.ShowNext(new OutlookProgressScreen(Owner));
+
+        //    Owner.NextButtonVisibility = Visibility.Hidden;
+        //    Owner.PreviousButtonVisibility = Visibility.Hidden;
+        //}
     }
 }

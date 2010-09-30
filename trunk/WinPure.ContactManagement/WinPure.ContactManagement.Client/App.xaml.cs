@@ -42,7 +42,9 @@ namespace WinPure.ContactManagement.Client
                 CultureInfo.GetCultureInfo("it-IT"),
                 new XmlLanguageDictionary("Languages/it-IT.xml"));
 
-            LanguageContext.Current.Culture = CultureInfo.GetCultureInfo(CurrentCultureManager.Current.CurrentCultureName);	
+            var culture = CurrentCultureManager.Current.CurrentCultureName;
+            culture = string.IsNullOrEmpty(culture) ? "en-US" : culture;
+            LanguageContext.Current.Culture = CultureInfo.GetCultureInfo(culture);	
 
 
             DispatcherUnhandledException += onDispatcherUnhandledException;

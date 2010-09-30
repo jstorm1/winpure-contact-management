@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WinPure.ContactManagement.Client.CommonControls;
 
 namespace WinPure.ContactManagement.Client.Pages.Import.Csv
 {
@@ -19,9 +8,23 @@ namespace WinPure.ContactManagement.Client.Pages.Import.Csv
     /// </summary>
     public partial class MappingScreen
     {
-        public MappingScreen()
+        public MappingScreen() 
         {
             InitializeComponent();
         }
+
+        //public MappingScreen(WizardControl owner) : base(owner)
+        //{
+        //    InitializeComponent();
+
+        //    if (owner == null) return;
+
+        //    owner.NextButtonClick += onOwnerOnNextButtonClick;
+        //}
+
+        //private void onOwnerOnNextButtonClick(object sender, EventArgs e)
+        //{
+        //    Owner.ShowNext(new ProgressScreen());
+        //}
     }
 }

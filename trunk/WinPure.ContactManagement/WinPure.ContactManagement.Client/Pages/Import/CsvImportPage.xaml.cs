@@ -13,23 +13,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinPure.ContactManagement.Client.CommonControls;
 
-namespace WinPure.ContactManagement.Client.Pages.Import.Csv
+namespace WinPure.ContactManagement.Client.Pages.Import
 {
     /// <summary>
-    /// Interaction logic for ProgressScreen.xaml
+    /// Interaction logic for CsvImportPage.xaml
     /// </summary>
-    public partial class ProgressScreen 
+    public partial class CsvImportPage 
     {
-        public ProgressScreen()
+        public CsvImportPage()
         {
             InitializeComponent();
         }
-
-        //public ProgressScreen(WizardControl owner): base(owner)
-        //{
-        //    InitializeComponent();
-
-        //    if (owner==null) return; 
-        //}
     }
 }

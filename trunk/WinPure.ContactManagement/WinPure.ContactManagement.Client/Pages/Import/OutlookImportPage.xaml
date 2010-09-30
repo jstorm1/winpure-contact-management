@@ -1,0 +1,50 @@
+﻿<CommonControls:ModalDialog x:Class="WinPure.ContactManagement.Client.Pages.Import.OutlookImportPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+                            xmlns:Outlook="clr-namespace:WinPure.ContactManagement.Client.Pages.Import.Outlook"
+                            xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Import.Outlook;assembly=WinPure.ContactManagement.Client.ViewModels"
+                            mc:Ignorable="d"
+                            d:DesignHeight="300"
+                            d:DesignWidth="300">
+  <Grid>
+
+    <CommonControls:Wizard  FontSize="13.333" FinishClick="onWizardControlFinishButtonClick" CancelClick="onWizardControlCancelButtonClick">
+
+      <!--Preview Screen-->
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected, Mode=OneWayToSource}">
+
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:OutlookPreviewScreenViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" Content="Preview" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Outlook:PreviewScreen/>
+      </CommonControls:WizardScreen>
+
+      <!--Progress Screen-->
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}" CanNext="False" CanPrevious="False" CanCancel="False" CanFinish="{Binding IsImportCompleted, Mode=OneWay}">
+
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:OutlookImportProgressViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" Content="Importing..." />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Outlook:OutlookProgressScreen/>
+      </CommonControls:WizardScreen>
+
+    </CommonControls:Wizard>
+  </Grid>
+</CommonControls:ModalDialog>

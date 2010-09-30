@@ -1,19 +1,15 @@
-﻿<CommonControls:WizardScreen x:Class="WinPure.ContactManagement.Client.Pages.Import.Csv.SelectFileScreen"
+﻿<UserControl x:Class="WinPure.ContactManagement.Client.Pages.Import.Csv.SelectFileScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:CSV="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Import.CSV;assembly=WinPure.ContactManagement.Client.ViewModels"
-                  xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
-                  mc:Ignorable="d"
+             mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="300" IsReadyToContinue="{Binding ReadyToContinue}">
+             d:DesignWidth="300">
+  
+  <!--IsReadyToContinue="{Binding ReadyToContinue}"-->
 
-  <CommonControls:WizardScreen.DataContext>
-		<CSV:SelectFileViewModel/>
-	</CommonControls:WizardScreen.DataContext>
-
-	<Grid>
+	<Grid Background="#FFBA5454">
 		<Grid Margin="0"
 		      VerticalAlignment="Center">
 			<Grid.ColumnDefinitions>
@@ -58,4 +54,4 @@
 		</Grid>
 
 	</Grid>
-</CommonControls:WizardScreen>
+</UserControl>

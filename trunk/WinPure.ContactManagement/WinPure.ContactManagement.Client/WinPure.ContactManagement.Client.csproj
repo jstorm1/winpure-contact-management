@@ -214,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>ContactsListPage.xaml</DependentUpon>
     </Page>
+    <Page Include="Pages\Import\CsvImportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Import\Csv\MappingScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,7 +234,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Import\Outlook\OutlookImportWizard.xaml">
+    <Page Include="Pages\Import\OutlookImportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,6 +315,9 @@
     <Compile Include="Pages\ContactsListPage.xaml.cs">
       <DependentUpon>ContactsListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Import\CsvImportPage.xaml.cs">
+      <DependentUpon>CsvImportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Import\Csv\MappingScreen.xaml.cs">
       <DependentUpon>MappingScreen.xaml</DependentUpon>
     </Compile>
@@ -323,8 +330,8 @@
     <Compile Include="Pages\Import\Csv\SelectFileScreen.xaml.cs">
       <DependentUpon>SelectFileScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Import\Outlook\OutlookImportWizard.xaml.cs">
-      <DependentUpon>OutlookImportWizard.xaml</DependentUpon>
+    <Compile Include="Pages\Import\OutlookImportPage.xaml.cs">
+      <DependentUpon>OutlookImportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Import\Outlook\ProgressScreen.xaml.cs">
       <DependentUpon>ProgressScreen.xaml</DependentUpon>
