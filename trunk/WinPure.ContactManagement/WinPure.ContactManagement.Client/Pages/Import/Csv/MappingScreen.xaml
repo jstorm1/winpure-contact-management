@@ -16,7 +16,7 @@
 				<DataGridTemplateColumn Header="Your file field">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
-							<ComboBox ItemsSource="{Binding FileFields}" SelectedItem="{Binding FileField}"/>
+							<ComboBox ItemsSource="{Binding FileFields}" SelectedItem="{Binding FileField, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>

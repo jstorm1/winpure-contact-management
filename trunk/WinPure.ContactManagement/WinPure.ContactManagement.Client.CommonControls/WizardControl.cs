@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -152,6 +153,8 @@ namespace WinPure.ContactManagement.Client.CommonControls
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
             base.OnSelectionChanged(e);
+
+            if (DesignerProperties.GetIsInDesignMode(this)) return;
 
             WizardScreen page = e.AddedItems.Count == 1 ? (WizardScreen) e.AddedItems[0] : null;
             WizardScreen oldPage = e.RemovedItems.Count == 1 ? (WizardScreen) e.RemovedItems[0] : null;

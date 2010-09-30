@@ -24,5 +24,15 @@ namespace WinPure.ContactManagement.Client.Pages.Import
         {
             InitializeComponent();
         }
+
+        private void onWizardControlFinishButtonClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	Close();
+        }
+
+        private void onWizardControlCancelButtonClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	Close();
+        }
     }
 }

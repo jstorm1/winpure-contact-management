@@ -30,7 +30,10 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.CSV
                 _isSelected = value;
                 RaisePropertyChanged("IsSelected");
                 
-                if(IsSelected) initialize();
+                if(IsSelected) 
+                    initialize(); 
+                else 
+                    CsvImportManager.Current.SetMapping(Mapping);
             }
         }
 

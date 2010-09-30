@@ -5,7 +5,7 @@
              x:Class="WinPure.ContactManagement.Client.Pages.Import.Outlook.OutlookProgressScreen"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="300">
+             d:DesignWidth="300" Background="#FF31A582">
 
   <Grid>
     <Grid Height="30" Margin="8,0,8,0" HorizontalAlignment="Stretch">
@@ -16,8 +16,8 @@
 
       <ProgressBar HorizontalAlignment="Stretch" Margin="0,0,8,0"  Value="{Binding CompletedPercent}"/>
       <StackPanel Grid.Column="1" Orientation="Horizontal">
-        <TextBlock  Text="{Binding CompletedPercent}"/>
-        <TextBlock  Text="%"/>
+        <TextBlock  Text="{Binding CompletedPercent}" Foreground="Black" Background="Black"/>
+        <TextBlock  Text="%" Foreground="Black"/>
       </StackPanel>
       
     </Grid>

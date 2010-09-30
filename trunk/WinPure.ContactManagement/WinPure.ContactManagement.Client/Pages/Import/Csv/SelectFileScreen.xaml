@@ -9,7 +9,7 @@
   
   <!--IsReadyToContinue="{Binding ReadyToContinue}"-->
 
-	<Grid Background="#FFBA5454">
+	<Grid Background="#FF31A582">
 		<Grid Margin="0"
 		      VerticalAlignment="Center">
 			<Grid.ColumnDefinitions>

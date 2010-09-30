@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using GalaSoft.MvvmLight.Command;
@@ -12,6 +13,8 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.CSV
     {
         private bool _isSelected;
         private RelayCommand _startImportCommand;
+        private int _completedPercent;
+        private bool _isImportCompleted;
 
         public RelayCommand StartImportCommand
         {
@@ -31,9 +34,44 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.CSV
             }
         }
 
+        public int CompletedPercent
+        {
+            get { return _completedPercent; }
+            set
+            {
+                if(_completedPercent == value) return;
+                _completedPercent = value;
+                RaisePropertyChanged("CompletedPercent");
+            }
+        }
+
+        public bool IsImportCompleted
+        {
+            get { return _isImportCompleted; }
+            set
+            {
+                if(_isImportCompleted == value) return;
+                _isImportCompleted = value;
+                RaisePropertyChanged("IsImportCompleted");
+            }
+        }
+
         private void initialize()
         {
+            CsvImportManager.Current.ImportProgressChanged += onCsvImportManagerImportProgressChanged;
+            CsvImportManager.Current.ImportProgressCompleted += onCsvImportManagerImportProgressCompleted;
+
             startImport();
+        }
+
+        void onCsvImportManagerImportProgressCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            IsImportCompleted = true;
+        }
+
+        void onCsvImportManagerImportProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            CompletedPercent = e.ProgressPercentage;
         }
 
         private static void startImport()

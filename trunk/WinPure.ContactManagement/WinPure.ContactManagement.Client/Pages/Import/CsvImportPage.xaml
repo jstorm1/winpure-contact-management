@@ -8,14 +8,14 @@
                             xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Import.CSV;assembly=WinPure.ContactManagement.Client.ViewModels"
                             mc:Ignorable="d"
                             d:DesignHeight="300"
-                            d:DesignWidth="300">
+                            d:DesignWidth="300" Text="CSV Import">
   <Grid>
     
     <!--Csv import Wizard control-->
-    <CommonControls:Wizard FontSize="13.333">
+    <CommonControls:Wizard FontSize="13.333" Background="#FF31A582" FinishClick="onWizardControlFinishButtonClick" CancelClick="onWizardControlCancelButtonClick">
       
       <!--SelectFile screen-->
-      <CommonControls:WizardScreen CanNext="{Binding ReadyToContinue}">
+      <CommonControls:WizardScreen CanNext="{Binding ReadyToContinue}" Background="{x:Null}">
         <CommonControls:WizardScreen.DataContext>
             <ViewModels:SelectFileViewModel/>
         </CommonControls:WizardScreen.DataContext>
@@ -30,7 +30,7 @@
       </CommonControls:WizardScreen>
 
       <!--Preview screen-->
-      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}">
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}" Background="{x:Null}">
         
         <CommonControls:WizardScreen.DataContext>
           <ViewModels:PreviewScreenViewModel/>
@@ -46,7 +46,7 @@
       </CommonControls:WizardScreen>
 
       <!--Mapping screen-->
-      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}">
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}" Background="{x:Null}">
 
         <CommonControls:WizardScreen.DataContext>
           <ViewModels:MappingScreenViewModel/>
@@ -62,7 +62,7 @@
       </CommonControls:WizardScreen>
 
       <!--Progress screen-->
-      <CommonControls:WizardScreen CanPrevious="False" CanNext="False" CanFinish="True">
+      <CommonControls:WizardScreen CanPrevious="False" CanNext="False" CanFinish="{Binding IsImportCompleted}" IsSelected="{Binding IsSelected}" Background="{x:Null}" CanCancel="False">
 
         <CommonControls:WizardScreen.DataContext>
           <ViewModels:ProgressScrenViewModel/>
@@ -70,7 +70,7 @@
         
         <CommonControls:WizardScreen.Header>
           <StackPanel>
-            <Label FontSize="18" FontWeight="Bold" Content="Importing" />
+            <Label FontSize="18" FontWeight="Bold" Content="Importing..." />
           </StackPanel>
         </CommonControls:WizardScreen.Header>
 

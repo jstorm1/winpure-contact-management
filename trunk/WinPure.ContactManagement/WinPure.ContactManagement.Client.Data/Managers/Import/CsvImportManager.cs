@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using LumenWorks.Framework.IO.Csv;
+using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
 
 namespace WinPure.ContactManagement.Client.Data.Managers.Import
@@ -58,15 +59,22 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
             var fields = _currentMapping.Where(f => !string.IsNullOrEmpty(f.FileField));
             var records = GetRecords();
 
-            foreach (var record in records)
+            for (int i = 0; i < records.Count; i++)
             {
+                var record = records[i];
                 var contact = new Contact();
                 foreach (var field in fields)
                 {
-                    contact.GetType().GetProperty((string)field.CrmField).SetValue(contact, ((IDictionary<string, object>)record)[field.FileField], null);
+                    contact.GetType().GetProperty((string) field.CrmField).SetValue(contact,
+                                                                                    (object)
+                                                                                    ((IDictionary<string, object>)
+                                                                                     record)[field.FileField], null);
                 }
+
+                ContactsManager.Current.Save(contact);
+
+                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double)(i + 1) / records.Count * 100.0, 0)));
             }
-            
         }
 
         public void SetCurrentFile(string path)
@@ -102,6 +110,11 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
             }
 
             return records;
+        }
+
+        public void SetMapping(ObservableCollection<dynamic> mapping)
+        {
+            _currentMapping = mapping;
         }
 
         public ObservableCollection<dynamic> GetDefaultMapping()

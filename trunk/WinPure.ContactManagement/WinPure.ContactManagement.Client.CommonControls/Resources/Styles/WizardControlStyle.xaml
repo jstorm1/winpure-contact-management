@@ -58,17 +58,17 @@
                                 Margin="{TemplateBinding Padding}" />
 
               <!--WIZARD NAVIGATION-->
-              <Border Grid.Row="1" Style="{DynamicResource {ComponentResourceKey ResourceId=NavigationPanelBorderResourceKey, TypeInTargetAssembly={x:Type CommonControls:Wizard}}}">
+              <Border Grid.Row="1" Style="{DynamicResource {ComponentResourceKey ResourceId=NavigationPanelBorderResourceKey, TypeInTargetAssembly={x:Type CommonControls:Wizard}}}" Background="#33FFFFFF" BorderBrush="White" BorderThickness="1">
                 <Grid>
                   <Button x:Name="PART_Help" Visibility="Hidden" HorizontalAlignment="Left" Content="Help"
                       Style="{DynamicResource {ComponentResourceKey ResourceId=NavigationButtonResourceKey, TypeInTargetAssembly={x:Type CommonControls:Wizard}}}"
                       IsEnabled="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=SelectedItem.CanHelp}"></Button>
 
-                  <StackPanel Height="26" Orientation="Horizontal" HorizontalAlignment="Right">
+                  <StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="PART_Cancel" Content="Cancel" Margin="0,0,7,0"
-                        Style="{DynamicResource {ComponentResourceKey ResourceId=NavigationButtonResourceKey, TypeInTargetAssembly={x:Type CommonControls:Wizard}}}"
-                        IsEnabled="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=SelectedItem.CanCancel}"></Button>
-                    <Button x:Name="PART_Previous" Content="Previous" Style="{DynamicResource {ComponentResourceKey ResourceId=NavigationButtonResourceKey, TypeInTargetAssembly={x:Type CommonControls:Wizard}}}">
+                        Style="{DynamicResource ButtonStyle1}"
+                        IsEnabled="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=SelectedItem.CanCancel}" Width="75"></Button>
+                    <Button x:Name="PART_Previous" Content="Previous" Style="{DynamicResource ButtonStyle1}" Width="75">
                       <Button.IsEnabled>
                         <MultiBinding Converter="{StaticResource navigationMultiConverter}">
                           <Binding RelativeSource="{x:Static RelativeSource.TemplatedParent}" Path="SelectedItem.CanNavigatePrevious" />
@@ -76,7 +76,7 @@
                         </MultiBinding>
                       </Button.IsEnabled>
                     </Button>
-                    <Button x:Name="PART_Next" Content="Next" Style="{DynamicResource {ComponentResourceKey ResourceId=NavigationButtonResourceKey, TypeInTargetAssembly={x:Type CommonControls:Wizard}}}">
+                    <Button x:Name="PART_Next" Content="Next" Style="{DynamicResource ButtonStyle1}" Width="75">
                       <Button.IsEnabled>
                         <MultiBinding Converter="{StaticResource navigationMultiConverter}">
                           <Binding RelativeSource="{x:Static RelativeSource.TemplatedParent}" Path="SelectedItem.CanNavigateNext" />
@@ -85,8 +85,8 @@
                       </Button.IsEnabled>
                     </Button>
                     <Button x:Name="PART_Finish" Content="Finish" Margin="7,0,0,0"
-                        Style="{DynamicResource {ComponentResourceKey ResourceId=NavigationButtonResourceKey, TypeInTargetAssembly={x:Type CommonControls:Wizard}}}"
-                        IsEnabled="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=SelectedItem.CanFinish}"></Button>
+                        Style="{DynamicResource ButtonStyle1}"
+                        IsEnabled="{Binding RelativeSource={x:Static RelativeSource.TemplatedParent}, Path=SelectedItem.CanFinish}" Width="75"></Button>
                   </StackPanel>
                 </Grid>
               </Border>

@@ -36,6 +36,8 @@
 								<VisualStateGroup.Transitions>
 									<VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
 									<VisualTransition From="MouseOver" GeneratedDuration="0:0:0.4"/>
+									<VisualTransition GeneratedDuration="0:0:1" To="Disabled"/>
+									<VisualTransition From="Disabled" GeneratedDuration="0:0:0.2"/>
 								</VisualStateGroup.Transitions>
 								<VisualState x:Name="Normal"/>
 								<VisualState x:Name="MouseOver">
@@ -46,7 +48,13 @@
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="Pressed"/>
-								<VisualState x:Name="Disabled"/>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+											<EasingColorKeyFrame KeyTime="0" Value="#4CA1A1A1"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 						<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -55,7 +63,7 @@
 						<Trigger Property="IsKeyboardFocused" Value="true"/>
 						<Trigger Property="ToggleButton.IsChecked" Value="true"/>
 						<Trigger Property="IsEnabled" Value="false">
-							<Setter Property="Foreground" Value="#ADADAD"/>
+							<Setter Property="Foreground" Value="#000000"/>
 							<Setter Property="Opacity" TargetName="contentPresenter" Value="0.3"/>
 						</Trigger>
 					</ControlTemplate.Triggers>
