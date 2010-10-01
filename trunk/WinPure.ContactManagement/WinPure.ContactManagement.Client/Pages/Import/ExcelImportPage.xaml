@@ -1,0 +1,50 @@
+﻿<CommonControls:ModalDialog x:Class="WinPure.ContactManagement.Client.Pages.Import.ExcelImportPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+                            xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Import.Excel;assembly=WinPure.ContactManagement.Client.ViewModels"
+                            xmlns:Excel="clr-namespace:WinPure.ContactManagement.Client.Pages.Import.Excel"
+                            mc:Ignorable="d"
+                            d:DesignHeight="300"
+                            d:DesignWidth="300"
+                            Text="Excel Import">
+  <Grid>
+    <CommonControls:Wizard FontSize="13.333" Background="#FF31A582" FinishClick="onWizardControlFinishButtonClick" CancelClick="onWizardControlCancelButtonClick">
+
+      <!--SelectFile screen-->
+      <CommonControls:WizardScreen CanNext="{Binding ReadyToContinue}" IsSelected="true" Background="{x:Null}">
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:SelectFileViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" Content="Select File" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Excel:SelectFileScreen/>
+      </CommonControls:WizardScreen>
+
+    </CommonControls:Wizard>
+
+    <!--Preview screen-->
+    <!--<CommonControls:WizardScreen  Background="{x:Null}">
+
+      <CommonControls:WizardScreen.DataContext>
+        <ViewModels:PreviewScreenViewModel/>
+      </CommonControls:WizardScreen.DataContext>
+
+      <CommonControls:WizardScreen.Header>
+        <StackPanel>
+          <Label FontSize="18" FontWeight="Bold" Content="Preview" />
+        </StackPanel>
+      </CommonControls:WizardScreen.Header>
+
+      <Excel:PreviewScreen/>
+    </CommonControls:WizardScreen>-->
+    
+  </Grid>
+</CommonControls:ModalDialog>

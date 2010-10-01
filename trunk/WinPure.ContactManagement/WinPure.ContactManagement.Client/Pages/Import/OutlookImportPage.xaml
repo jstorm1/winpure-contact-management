@@ -8,10 +8,10 @@
                             xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels.Import.Outlook;assembly=WinPure.ContactManagement.Client.ViewModels"
                             mc:Ignorable="d"
                             d:DesignHeight="300"
-                            d:DesignWidth="300">
+                            d:DesignWidth="300" Text="Outlook Import">
   <Grid>
 
-    <CommonControls:Wizard  FontSize="13.333" FinishClick="onWizardControlFinishButtonClick" CancelClick="onWizardControlCancelButtonClick">
+    <CommonControls:Wizard  FontSize="13.333" FinishClick="onWizardControlFinishButtonClick" CancelClick="onWizardControlCancelButtonClick" Background="#FF31A582">
 
       <!--Preview Screen-->
       <CommonControls:WizardScreen IsSelected="{Binding IsSelected, Mode=OneWayToSource}">

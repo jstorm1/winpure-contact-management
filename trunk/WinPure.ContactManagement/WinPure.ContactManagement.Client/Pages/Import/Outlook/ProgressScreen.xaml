@@ -16,7 +16,7 @@
 
       <ProgressBar HorizontalAlignment="Stretch" Margin="0,0,8,0"  Value="{Binding CompletedPercent}"/>
       <StackPanel Grid.Column="1" Orientation="Horizontal">
-        <TextBlock  Text="{Binding CompletedPercent}" Foreground="Black" Background="Black"/>
+        <TextBlock  Text="{Binding CompletedPercent}" Foreground="Black"/>
         <TextBlock  Text="%" Foreground="Black"/>
       </StackPanel>
       

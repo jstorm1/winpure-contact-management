@@ -91,5 +91,12 @@ namespace WinPure.ContactManagement.Client.Pages
             ModalDialog = wizard;
             wizard.Show();
         }
+
+        private void onExcelImportButtonClick(object sender, RoutedEventArgs e)
+        {
+            var wizard = new ExcelImportPage{ Height = 480, Width = 640 };
+            ModalDialog = wizard;
+            wizard.Show();
+        }
     }
 }

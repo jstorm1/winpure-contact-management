@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPure.ContactManagement.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferencedAssemblies", "ReferencedAssemblies", "{C320334C-0B1F-4022-9EAE-59504902555A}"
 	ProjectSection(SolutionItems) = preProject
+		ReferencedAssemblies\Excel.dll = ReferencedAssemblies\Excel.dll
 		ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll = ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll
+		ReferencedAssemblies\ICSharpCode.SharpZipLib.dll = ReferencedAssemblies\ICSharpCode.SharpZipLib.dll
 		ReferencedAssemblies\LumenWorks.Framework.IO.dll = ReferencedAssemblies\LumenWorks.Framework.IO.dll
 		ReferencedAssemblies\Microsoft.Expression.Interactions.dll = ReferencedAssemblies\Microsoft.Expression.Interactions.dll
 		ReferencedAssemblies\Microsoft.SqlServer.ConnectionInfo.dll = ReferencedAssemblies\Microsoft.SqlServer.ConnectionInfo.dll

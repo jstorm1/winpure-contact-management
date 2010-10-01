@@ -55,6 +55,12 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>..\ReferencedAssemblies\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\ReferencedAssemblies\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="LumenWorks.Framework.IO">
       <HintPath>..\ReferencedAssemblies\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
@@ -123,6 +129,7 @@
     <Compile Include="Managers\DataManagers\SettingsManager.cs" />
     <Compile Include="Managers\DataManagers\SyncServerConnectionsManager.cs" />
     <Compile Include="Managers\Import\CsvImportManager.cs" />
+    <Compile Include="Managers\Import\ExcelImportManager.cs" />
     <Compile Include="Managers\Import\OutlookImportManager.cs" />
     <Compile Include="Managers\TransitionsManager.cs" />
     <Compile Include="Model\Extensions\CompanyExtension.cs" />

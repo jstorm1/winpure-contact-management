@@ -234,6 +234,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Import\ExcelImportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Import\Excel\PreviewScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Import\Excel\SelectFileScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Import\OutlookImportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,6 +340,15 @@
       <DependentUpon>ProgressScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Import\Csv\SelectFileScreen.xaml.cs">
+      <DependentUpon>SelectFileScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Import\ExcelImportPage.xaml.cs">
+      <DependentUpon>ExcelImportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Import\Excel\PreviewScreen.xaml.cs">
+      <DependentUpon>PreviewScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Import\Excel\SelectFileScreen.xaml.cs">
       <DependentUpon>SelectFileScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Import\OutlookImportPage.xaml.cs">
@@ -491,6 +512,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
