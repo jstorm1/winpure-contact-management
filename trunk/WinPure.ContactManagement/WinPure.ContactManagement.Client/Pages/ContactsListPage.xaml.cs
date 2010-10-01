@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using WinPure.ContactManagement.Client.CommonControls;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Pages.Import;
@@ -54,18 +55,20 @@ namespace WinPure.ContactManagement.Client.Pages
         private void onDefaultViewButtonChecked(object sender, RoutedEventArgs e)
         {
             ContactsListView.View = ContactsListView.FindResource("DefaultView") as ViewBase;
+            ContactsListView.Background = null;
         }
 
         private void onListViewButtonChecked(object sender, RoutedEventArgs e)
         {
 
             ContactsListView.View = ContactsListView.FindResource("PlainView") as ViewBase;
-
+            ContactsListView.Background = null;
         }
 
         private void onGridViewButtonChecked(object sender, RoutedEventArgs e)
         {
             ContactsListView.View = ContactsListView.FindResource("GridView") as ViewBase;
+            ContactsListView.Background = new SolidColorBrush(Colors.White);
         }
 
         private void onContactsListViewMouseDoubleClick(object sender, MouseButtonEventArgs e)

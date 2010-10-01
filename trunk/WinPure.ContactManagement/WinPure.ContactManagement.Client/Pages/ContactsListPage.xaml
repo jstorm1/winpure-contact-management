@@ -201,6 +201,12 @@
 				</Border>
 
 			</StackPanel>
+			<StackPanel HorizontalAlignment="Right" Margin="0,0,8,0" Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock TextWrapping="Wrap" Text="Import from:" FontSize="16" VerticalAlignment="Center" Margin="0,0,8,0"/>
+				<Button x:Name="OutlookImportButton" Click="onOutlookImportButtonClick" Content="Outlook" Width="100" FontSize="21.333" d:LayoutOverrides="Height" Style="{DynamicResource ButtonStyle1}"/>
+				<Button x:Name="CsvImportButton" Click="onCsvImportButtonClick" Content="CSV" Width="100" FontSize="21.333" d:LayoutOverrides="Height" Style="{DynamicResource ButtonStyle1}"/>
+				<Button x:Name="ExcelImportButton" Click="onExcelImportButtonClick" Content="Excel" FontSize="21.333" Width="100" d:LayoutOverrides="Height" Style="{DynamicResource ButtonStyle1}"/>
+			</StackPanel>
 		</Grid>
     	<Grid x:Name="MainGrid" Margin="0,-2.845,0,0" Grid.Row="1">
     		<Grid.RowDefinitions>
@@ -208,7 +214,7 @@
     			<RowDefinition/>
     			<RowDefinition Height="Auto" />
     		</Grid.RowDefinitions>
-    		<ListView x:Name="ContactsListView" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="#7FFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ItemsSource="{Binding Contacts}" BorderBrush="White" FontSize="13.333" Grid.Row="1" MouseDoubleClick="onContactsListViewMouseDoubleClick" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    		<ListView x:Name="ContactsListView" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto" View="{DynamicResource PlainView}" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ItemsSource="{Binding Contacts}" BorderBrush="White" FontSize="13.333" Grid.Row="1" MouseDoubleClick="onContactsListViewMouseDoubleClick" SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" />
     		<StackPanel x:Name="EditButtons" Grid.Row="2" Margin="8" Orientation="Horizontal">
     			
           <Button x:Name="AddButton"
@@ -238,9 +244,6 @@
                   Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
                   IsEnabled="{Binding SelectedContact, Converter={StaticResource NullToBooleanConverter}, Mode=OneWay}" 
                   Command="{Binding DeleteCommand, Mode=OneWay}"/>
-    			<Button x:Name="OutlookImportButton" Click="onOutlookImportButtonClick" Content="Outlook" Margin="0" Width="100" VerticalAlignment="Center" FontSize="21.333"/>
-          <Button x:Name="CsvImportButton" Click="onCsvImportButtonClick" Content="CSV" Margin="0" Width="100" VerticalAlignment="Center" FontSize="21.333"/>
-          <Button x:Name="ExcelImportButton" Click="onExcelImportButtonClick" Content="Excel" Margin="0" Width="100" VerticalAlignment="Center" FontSize="21.333"/>
     		
         </StackPanel>
     		<Border x:Name="ViewButtons" HorizontalAlignment="Right" Margin="0,2,0,0" Width="115" CornerRadius="5" Background="#33FFFFFF" BorderBrush="#CCFFFFFF" BorderThickness="0.5">

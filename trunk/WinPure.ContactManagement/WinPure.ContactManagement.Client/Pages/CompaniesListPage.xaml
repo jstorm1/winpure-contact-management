@@ -317,7 +317,7 @@
                 Command="{Binding DeleteCommand, Mode=OneWay}"/>
 
       </StackPanel>
-      <ListView x:Name="CompaniesListView" Grid.Row="1" BorderBrush="White" Foreground="Black" Background="#7FFFFFFF" ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="13.333"/>
+      <ListView x:Name="CompaniesListView" Grid.Row="1" BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}" ItemsSource="{Binding Companies}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="13.333" BorderThickness="0"/>
     </Grid>
     <Grid x:Name="CompanyContactsGrid" Grid.Column="1" Background="#0DFFFFFF" Grid.Row="1">
       <Grid Margin="8">
