@@ -75,7 +75,9 @@
     <Compile Include="Import\CSV\PreviewScreenViewModel.cs" />
     <Compile Include="Import\CSV\ProgressScrenViewModel.cs" />
     <Compile Include="Import\CSV\SelectFileViewModel.cs" />
+    <Compile Include="Import\Excel\MappingScreenViewModel.cs" />
     <Compile Include="Import\Excel\PreviewScreenViewModel.cs" />
+    <Compile Include="Import\Excel\ProgressScrenViewModel.cs" />
     <Compile Include="Import\Excel\SelectFileViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookImportProgressViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookPreviewScreenViewModel.cs" />

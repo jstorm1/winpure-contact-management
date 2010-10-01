@@ -238,7 +238,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Import\Excel\MappingScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Import\Excel\PreviewScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Import\Excel\ProgressScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -345,8 +353,14 @@
     <Compile Include="Pages\Import\ExcelImportPage.xaml.cs">
       <DependentUpon>ExcelImportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Import\Excel\MappingScreen.xaml.cs">
+      <DependentUpon>MappingScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Import\Excel\PreviewScreen.xaml.cs">
       <DependentUpon>PreviewScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Import\Excel\ProgressScreen.xaml.cs">
+      <DependentUpon>ProgressScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Import\Excel\SelectFileScreen.xaml.cs">
       <DependentUpon>SelectFileScreen.xaml</DependentUpon>

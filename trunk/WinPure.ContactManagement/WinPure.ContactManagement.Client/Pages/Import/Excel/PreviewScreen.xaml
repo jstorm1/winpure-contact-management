@@ -8,10 +8,24 @@
              d:DesignHeight="300"
              d:DesignWidth="300">
   <Grid>
+  	<Grid.RowDefinitions>
+  		<RowDefinition Height="Auto" />
+  		<RowDefinition/>
+  	</Grid.RowDefinitions>
     <DataGrid Helpers:DataGridAssistant.BoundColumns="{Binding Columns}"
-              ItemsSource="{Binding Records}">
+              ItemsSource="{Binding Records}" Margin="0" Grid.Row="1">
 
     </DataGrid>
+    <Grid d:LayoutOverrides="Height">
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition Width="Auto" />
+    		<ColumnDefinition/>
+    	</Grid.ColumnDefinitions>
+    	<TextBlock HorizontalAlignment="Left" Margin="8,0" TextWrapping="Wrap" Text="Sheet:" VerticalAlignment="Center" Foreground="Black"/>
+
+    	<ComboBox Grid.Column="1" Margin="0,8" ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+    </Grid>
 
   </Grid>
 </UserControl>

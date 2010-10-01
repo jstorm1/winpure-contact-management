@@ -14,7 +14,7 @@
     <CommonControls:Wizard FontSize="13.333" Background="#FF31A582" FinishClick="onWizardControlFinishButtonClick" CancelClick="onWizardControlCancelButtonClick">
 
       <!--SelectFile screen-->
-      <CommonControls:WizardScreen CanNext="{Binding ReadyToContinue}" IsSelected="true" Background="{x:Null}">
+      <CommonControls:WizardScreen CanNext="{Binding ReadyToContinue}" Background="{x:Null}">
         <CommonControls:WizardScreen.DataContext>
           <ViewModels:SelectFileViewModel/>
         </CommonControls:WizardScreen.DataContext>
@@ -28,23 +28,54 @@
         <Excel:SelectFileScreen/>
       </CommonControls:WizardScreen>
 
+      <!--Preview screen-->
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected, Mode=OneWayToSource}" Background="{x:Null}">
+
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:PreviewScreenViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" FontWeight="Bold" Content="Preview" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Excel:PreviewScreen/>
+      </CommonControls:WizardScreen>
+
+      <!--Mapping screen-->
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected}" Background="{x:Null}">
+
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:MappingScreenViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" FontWeight="Bold" Content="Mapping" />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Excel:MappingScreen/>
+      </CommonControls:WizardScreen>
+
+      <!--Progress screen-->
+      <CommonControls:WizardScreen CanPrevious="False" CanNext="False" CanFinish="{Binding IsImportCompleted}" IsSelected="{Binding IsSelected}" Background="{x:Null}" CanCancel="False">
+
+        <CommonControls:WizardScreen.DataContext>
+          <ViewModels:ProgressScrenViewModel/>
+        </CommonControls:WizardScreen.DataContext>
+
+        <CommonControls:WizardScreen.Header>
+          <StackPanel>
+            <Label FontSize="18" FontWeight="Bold" Content="Importing..." />
+          </StackPanel>
+        </CommonControls:WizardScreen.Header>
+
+        <Excel:ProgressScreen/>
+      </CommonControls:WizardScreen>
+      
     </CommonControls:Wizard>
-
-    <!--Preview screen-->
-    <!--<CommonControls:WizardScreen  Background="{x:Null}">
-
-      <CommonControls:WizardScreen.DataContext>
-        <ViewModels:PreviewScreenViewModel/>
-      </CommonControls:WizardScreen.DataContext>
-
-      <CommonControls:WizardScreen.Header>
-        <StackPanel>
-          <Label FontSize="18" FontWeight="Bold" Content="Preview" />
-        </StackPanel>
-      </CommonControls:WizardScreen.Header>
-
-      <Excel:PreviewScreen/>
-    </CommonControls:WizardScreen>-->
-    
   </Grid>
 </CommonControls:ModalDialog>

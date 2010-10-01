@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
+using WinPure.ContactManagement.Client.Data.Managers.Import;
 using WinPure.ContactManagement.Client.ViewModels.Base;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Import.Excel
 {
     public class PreviewScreenViewModel : ViewModelBase
     {
+        private ObservableCollection<string> _tables;
+        private string _selectedTable;
         private ObservableCollection<string> _columns;
         private bool _isSelected;
         private ObservableCollection<dynamic> _records;
@@ -44,10 +47,37 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.Excel
             }
         }
 
+        public ObservableCollection<string> Tables
+        {
+            get { return _tables; }
+            set
+            {
+                if (_tables == value) return;
+                _tables = value;
+                RaisePropertyChanged("Tables");
+            }
+        }
+
+        public string SelectedTable
+        {
+            get { return _selectedTable; }
+            set
+            {
+                if (_selectedTable == value) return;
+                _selectedTable = value;
+
+                Columns = ExcelImportManager.Current.GetColumns(value);
+                Records = ExcelImportManager.Current.GetRecords(value);
+
+                RaisePropertyChanged("SelectedTable");
+            }
+        }
+
         private void initialize()
         {
             if (IsDesignMode) return;
 
+            Tables = ExcelImportManager.Current.GetTables();
             //Columns = ExcelImportManager.Current.GetColumns();
             //Records = ExcelImportManager.Current.GetRecords();
         }
