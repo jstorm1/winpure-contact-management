@@ -8,7 +8,7 @@
              d:DesignWidth="365">
 
   <Grid>
-    <DataGrid ItemsSource="{Binding OutlookContacts}" Background="#FF31A582" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" FontFamily="Century Gothic" FontSize="16">
+    <DataGrid ItemsSource="{Binding OutlookContacts}" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" FontFamily="Century Gothic" FontSize="16" VerticalAlignment="Top">
       <DataGrid.Columns>
         <DataGridTextColumn Binding="{Binding Title}"
                             Header="Title"/>

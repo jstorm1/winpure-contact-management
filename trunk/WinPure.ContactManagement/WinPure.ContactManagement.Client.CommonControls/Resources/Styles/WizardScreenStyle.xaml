@@ -6,7 +6,7 @@
                     mc:Ignorable="d">
 
   <Style TargetType="{x:Type CommonControls:WizardScreen}">
-    <Setter Property="Background" Value="#F0F0F0" />
+    <Setter Property="Background" Value="{x:Null}" />
     <Setter Property="BorderBrush" Value="#A0A0A0" />
     <Setter Property="BorderThickness" Value="0" />
     <Setter Property="Template">

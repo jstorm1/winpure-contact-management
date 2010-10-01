@@ -150,6 +150,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Resource Include="Resources\Images\Import\excel-egitimi.gif.png" />
+    <Resource Include="Resources\Images\Import\ms-office-2007-beta-2-outlook.png" />
+    <Resource Include="Resources\Images\Import\Office-excel-csv-icon.png" />
     <Resource Include="Resources\Images\36x36\GridViewIcon_Checked_36x36.png" />
     <Resource Include="Resources\Images\36x36\GridViewIcon_MouseOver_36x36.png" />
     <Resource Include="Resources\Images\36x36\GridViewIcon_Unchecked_36x36.png" />

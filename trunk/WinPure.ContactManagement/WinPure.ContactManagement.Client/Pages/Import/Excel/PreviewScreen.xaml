@@ -13,15 +13,13 @@
   		<RowDefinition/>
   	</Grid.RowDefinitions>
     <DataGrid Helpers:DataGridAssistant.BoundColumns="{Binding Columns}"
-              ItemsSource="{Binding Records}" Margin="0" Grid.Row="1">
-
-    </DataGrid>
+              ItemsSource="{Binding Records}" Margin="0" Grid.Row="1"/>
     <Grid d:LayoutOverrides="Height">
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="Auto" />
     		<ColumnDefinition/>
     	</Grid.ColumnDefinitions>
-    	<TextBlock HorizontalAlignment="Left" Margin="8,0" TextWrapping="Wrap" Text="Sheet:" VerticalAlignment="Center" Foreground="Black"/>
+    	<TextBlock HorizontalAlignment="Left" Margin="8,0" TextWrapping="Wrap" Text="Sheet:" VerticalAlignment="Center" Foreground="White"/>
 
     	<ComboBox Grid.Column="1" Margin="0,8" ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
