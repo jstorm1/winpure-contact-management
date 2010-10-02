@@ -1,7 +1,10 @@
 ﻿#region References
 
+using System;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using WinPure.ContactManagement.Client.Data.Managers;
 
 #endregion
@@ -31,6 +34,14 @@ namespace WinPure.ContactManagement.Client
                                                                                TransitionsManager.Current.
                                                                                    CurrentTransition;
                                                                        };
+            Logo.Source = BannerLogoManager.Current.GetImageSource();
+
+            BannerLogoManager.Current.LogoChanged += onLogoChanged;
+        }
+
+        private void onLogoChanged(object sender, EventArgs e)
+        {
+            Logo.Source = BannerLogoManager.Current.GetImageSource();
         }
     }
 }

@@ -82,6 +82,7 @@
     <Compile Include="Import\Outlook\OutlookImportProgressViewModel.cs" />
     <Compile Include="Import\Outlook\OutlookPreviewScreenViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\BannerLogoViewModel.cs" />
     <Compile Include="Settings\LanguagesTabViewModel.cs" />
     <Compile Include="Settings\ViewTabViewModel.cs" />
     <Compile Include="SynchronizationViewModel.cs" />

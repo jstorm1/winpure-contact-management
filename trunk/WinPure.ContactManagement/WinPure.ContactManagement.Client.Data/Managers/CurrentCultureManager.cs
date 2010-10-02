@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Common;
@@ -7,8 +8,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 {
     public class CurrentCultureManager
     {
-        private Setting _cultureSetting;
-        private string _currentCultureName;
+        private readonly Setting _cultureSetting;
 
         #region Sigleton Constructor
 
@@ -27,17 +27,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers
 
         #endregion
 
-        public string CurrentCultureName
-        {
-            get { return _currentCultureName; }
-            set { _currentCultureName = value; }
-        }
+        public string CurrentCultureName { get; set; }
 
-        Setting loadCultureSettings()
+        private Setting loadCultureSettings()
         {
-            var settingsCache = SettingsManager.Current.LoadSettings();
+            ObservableCollection<Setting> settingsCache = SettingsManager.Current.LoadSettings();
 
-            var cultureName = settingsCache.Where(s => s.Name == SettingsConstants.CURRENT_CULTURE_NAME).FirstOrDefault();
+            Setting cultureName =
+                settingsCache.Where(s => s.Name == SettingsConstants.CURRENT_CULTURE_NAME).FirstOrDefault();
             if (cultureName == null)
             {
                 SettingsManager.Current.AddSetting(SettingsConstants.CURRENT_CULTURE_NAME, "");
@@ -51,7 +48,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers
         {
             if (_cultureSetting == null)
             {
-                SettingsManager.Current.AddSetting(SettingsConstants.CURRENT_CULTURE_NAME,CurrentCultureName);
+                SettingsManager.Current.AddSetting(SettingsConstants.CURRENT_CULTURE_NAME, CurrentCultureName);
                 return;
             }
 

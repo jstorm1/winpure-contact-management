@@ -125,6 +125,7 @@
     <Compile Include="Domains\PeerInfo.cs" />
     <Compile Include="Domains\SmoTasks.cs" />
     <Compile Include="Domains\SqlConnectionString.cs" />
+    <Compile Include="Managers\BannerLogoManager.cs" />
     <Compile Include="Managers\CurrentCultureManager.cs" />
     <Compile Include="Managers\DataManagers\SettingsManager.cs" />
     <Compile Include="Managers\DataManagers\SyncServerConnectionsManager.cs" />

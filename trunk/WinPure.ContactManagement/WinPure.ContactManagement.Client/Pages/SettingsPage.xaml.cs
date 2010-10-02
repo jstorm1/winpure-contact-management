@@ -14,9 +14,9 @@ namespace WinPure.ContactManagement.Client.Pages
         {
             InitializeComponent();
 
-            SettingsTabControl.SelectionChanged += delegate
+            SettingsTabControl.SelectionChanged += (s,e) =>
                                                        {
-                                                           if (SettingsTabControl.SelectedItem == ViewTabItem)
+                                                           if (e.AddedItems.Count > 0 && e.AddedItems[0] == ViewTabItem)
                                                            {
                                                                ((ViewTabViewModel)ViewTabItem.DataContext).RefreshTransitionsList();
                                                            }

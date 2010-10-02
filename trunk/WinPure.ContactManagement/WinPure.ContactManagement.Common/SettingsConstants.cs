@@ -10,5 +10,6 @@ namespace WinPure.ContactManagement.Common
         public const string TRANSITION_ASSEMBLY_NAME = "TransitionAssemblyName";
         public const string TRANSITION_TYPE_NAME = "TransitionTypeName";
         public const string CURRENT_CULTURE_NAME = "CurrentCultureName";
+        public const string CURRENT_LOGO_PATH = "LogoPath";
     }
 }

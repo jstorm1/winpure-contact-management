@@ -53,8 +53,7 @@
              Margin="0"
              Source="Resources/Images/Logo_Header_450x80.png"
              VerticalAlignment="Center" Width="450" Height="80"
-             HorizontalAlignment="Center" Stretch="None">
-      </Image>
+             HorizontalAlignment="Center"/>
 
     </Border>
 

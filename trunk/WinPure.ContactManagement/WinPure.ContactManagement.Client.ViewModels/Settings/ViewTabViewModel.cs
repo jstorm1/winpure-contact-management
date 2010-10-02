@@ -3,6 +3,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Dynamic;
+using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using Transitionals;
@@ -34,15 +35,20 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         {
             if (TransitionsManager.Current.CurrentTransition != null)
             {
-                SelectedType = TransitionsManager.Current.CurrentTransition.GetType();
+                SelectedType = TransitionTypes.Where(
+                                    t => t.Type == TransitionsManager.Current.CurrentTransition.GetType()).FirstOrDefault();
             }
 
-            TransitionsManager.Current.CurrentTransitionChanged +=
-                delegate
-                    {
-                        if (TransitionsManager.Current.CurrentTransition != null)
-                            SelectedType = TransitionsManager.Current.CurrentTransition.GetType();
-                    };
+            //TransitionsManager.Current.CurrentTransitionChanged +=
+            //    delegate
+            //        {
+            //            if (TransitionsManager.Current.CurrentTransition != null)
+            //            {
+            //                SelectedType = TransitionTypes.Where(
+            //                        t => t.Type == TransitionsManager.Current.CurrentTransition.GetType()).FirstOrDefault();
+            //            }
+            //            //SelectedType = ;
+            //        };
         }
 
         #endregion
@@ -98,6 +104,9 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
                 SelectedTransition = TransitionsManager.Current.GetTransition(_selectedType.Type);
                 SelectedTypeName = _selectedType.Type.Name;
                 swapCells();
+
+                TransitionsManager.Current.ActivateTransition(SelectedType.Type);
+                TransitionsManager.Current.SaveSettings();
             }
         }
 
@@ -161,7 +170,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
         private void Save()
         {
-            TransitionsManager.Current.ActivateTransition(SelectedType);
+            TransitionsManager.Current.ActivateTransition(SelectedType.Type);
             TransitionsManager.Current.SaveSettings();
         }
 
@@ -178,6 +187,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         public void RefreshTransitionsList()
         {
             RaisePropertyChanged("TransitionTypes");
+            RaisePropertyChanged("SelectedType");
         }
 
         #endregion
