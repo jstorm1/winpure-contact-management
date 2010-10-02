@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Pages.Modal;
 
@@ -60,16 +61,19 @@ namespace WinPure.ContactManagement.Client.Pages
         private void onDefaultViewButtonChecked(object sender, RoutedEventArgs e)
         {
             CompaniesListView.View = CompaniesListView.FindResource("DefaultView") as ViewBase;
+            CompaniesListView.Background = null;
         }
 
         private void onListViewButtonChecked(object sender, RoutedEventArgs e)
         {
             CompaniesListView.View = CompaniesListView.FindResource("PlainView") as ViewBase;
+            CompaniesListView.Background = null;
         }
 
         private void onGridViewButtonChecked(object sender, RoutedEventArgs e)
         {
             CompaniesListView.View = CompaniesListView.FindResource("GridView") as ViewBase;
+            CompaniesListView.Background = new SolidColorBrush(Colors.White);
         }
     }
 }

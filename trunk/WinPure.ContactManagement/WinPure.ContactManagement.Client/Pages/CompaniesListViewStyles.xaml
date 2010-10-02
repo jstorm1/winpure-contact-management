@@ -44,6 +44,18 @@
   <!--Grid View-->
   <GridView x:Key="GridView">
     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+    <GridViewColumn Header="Industry" DisplayMemberBinding="{Binding Industry}" />
+    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" />
+    <GridViewColumn Header="Fax" DisplayMemberBinding="{Binding Fax}" />
+    <GridViewColumn Header="Website" DisplayMemberBinding="{Binding Website}" />
+    <GridViewColumn Header="Address1" DisplayMemberBinding="{Binding Address1}" />
+    <GridViewColumn Header="Address2" DisplayMemberBinding="{Binding Address2}" />
+    <GridViewColumn Header="Address3" DisplayMemberBinding="{Binding Address3}" />
+    <GridViewColumn Header="Town" DisplayMemberBinding="{Binding Town}" />
+    <GridViewColumn Header="County" DisplayMemberBinding="{Binding County}" />
+    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Country}" />
+    <GridViewColumn Header="Postcode" DisplayMemberBinding="{Binding Postcode}" />
+    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
   </GridView>
   
 </ResourceDictionary>

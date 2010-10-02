@@ -38,17 +38,6 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
                 SelectedType = TransitionTypes.Where(
                                     t => t.Type == TransitionsManager.Current.CurrentTransition.GetType()).FirstOrDefault();
             }
-
-            //TransitionsManager.Current.CurrentTransitionChanged +=
-            //    delegate
-            //        {
-            //            if (TransitionsManager.Current.CurrentTransition != null)
-            //            {
-            //                SelectedType = TransitionTypes.Where(
-            //                        t => t.Type == TransitionsManager.Current.CurrentTransition.GetType()).FirstOrDefault();
-            //            }
-            //            //SelectedType = ;
-            //        };
         }
 
         #endregion
