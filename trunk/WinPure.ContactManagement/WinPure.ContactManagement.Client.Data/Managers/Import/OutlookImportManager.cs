@@ -29,6 +29,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
         private OutlookImportManager()
         {
             initialize();
+
+            if (_outlookApplication == null) return;
+
             _contactsFolder =
                 _outlookApplication.ActiveExplorer().Session.GetDefaultFolder(OlDefaultFolders.olFolderContacts);
 
@@ -99,7 +102,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                                                  false);
             if (key != null)
             {
-                path = (string) key.GetValue("Path");
+                path = (string)key.GetValue("Path");
             }
             return path + "OUTLOOK.EXE";
         }
@@ -155,7 +158,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
         private void onImportWorkerOnDoWork(object sender, DoWorkEventArgs e)
         {
-            var contacts = (ObservableCollection<object>) e.Argument;
+            var contacts = (ObservableCollection<object>)e.Argument;
 
             for (int i = 0; i < contacts.Count; i++)
             {
@@ -179,7 +182,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
                 ContactsManager.Current.Save(contact);
 
-                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double) (i+1)/contacts.Count*100.0, 0)));
+                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double)(i + 1) / contacts.Count * 100.0, 0)));
             }
         }
     }

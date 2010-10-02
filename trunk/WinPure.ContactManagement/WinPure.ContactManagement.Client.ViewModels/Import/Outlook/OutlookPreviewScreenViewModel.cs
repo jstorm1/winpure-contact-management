@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Microsoft.Office.Interop.Outlook;
 using WinPure.ContactManagement.Client.Data.Managers.Import;
 using WinPure.ContactManagement.Client.ViewModels.Base;
+using Exception = System.Exception;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Import.Outlook
 {
@@ -11,6 +12,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.Outlook
         private bool _isSelected;
         private ObservableCollection<object> _outlookFolders;
         private ObservableCollection<object> _outlookContacts;
+        private bool _allowNext;
 
         public ObservableCollection<object> OutlookFolders
         {
@@ -47,13 +49,34 @@ namespace WinPure.ContactManagement.Client.ViewModels.Import.Outlook
             }
         }
 
+        public bool AllowNext
+        {
+            get { return _allowNext; }
+            set
+            {
+                if (_allowNext == value) return;
+                _allowNext = value;
+                RaisePropertyChanged("AllowNext");
+            }
+        }
+
         private void initialize()
         {
             //Check for Design mode.
             if (IsDesignMode) return;
 
-            OutlookFolders = OutlookImportManager.Current.GetContactsFolders();
-            OutlookContacts = OutlookImportManager.Current.GetContactsFromFolder();
+            try
+            {
+                OutlookFolders = OutlookImportManager.Current.GetContactsFolders();
+                OutlookContacts = OutlookImportManager.Current.GetContactsFromFolder();
+            }
+            catch (Exception)
+            {
+                AllowNext = false;
+                return;
+            }
+
+            AllowNext = true;
         }
     }
 }

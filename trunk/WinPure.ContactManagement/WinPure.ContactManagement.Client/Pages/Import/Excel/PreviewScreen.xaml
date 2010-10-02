@@ -13,7 +13,7 @@
   		<RowDefinition/>
   	</Grid.RowDefinitions>
     <DataGrid Helpers:DataGridAssistant.BoundColumns="{Binding Columns}"
-              ItemsSource="{Binding Records}" Margin="0" Grid.Row="1"/>
+              ItemsSource="{Binding Records}" Margin="0" Grid.Row="1" IsReadOnly="True"/>
     <Grid d:LayoutOverrides="Height">
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="Auto" />

@@ -31,7 +31,7 @@
     <CommonControls:Wizard  FontSize="13.333" FinishClick="onWizardControlFinishButtonClick" CancelClick="onWizardControlCancelButtonClick" Background="{x:Null}" BorderBrush="{x:Null}">
 
       <!--Preview Screen-->
-      <CommonControls:WizardScreen IsSelected="{Binding IsSelected, Mode=OneWayToSource}" Background="{x:Null}" Margin="0,8,0,0">
+      <CommonControls:WizardScreen IsSelected="{Binding IsSelected, Mode=OneWayToSource}" Background="{x:Null}" Margin="0,8,0,0" CanNext="{Binding AllowNext}">
 
         <CommonControls:WizardScreen.DataContext>
           <ViewModels:OutlookPreviewScreenViewModel/>

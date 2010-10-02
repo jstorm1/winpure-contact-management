@@ -9,7 +9,7 @@
              d:DesignWidth="300">
     <Grid>
     	<DataGrid Helpers:DataGridAssistant.BoundColumns="{Binding Columns}"
-    	          ItemsSource="{Binding Records}">
+    	          ItemsSource="{Binding Records}" IsReadOnly="True">
         
       </DataGrid>
             

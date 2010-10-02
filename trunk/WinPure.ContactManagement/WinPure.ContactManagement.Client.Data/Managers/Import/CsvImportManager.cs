@@ -57,6 +57,13 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
         private void onImportWorkerOnDoWork(object sender, DoWorkEventArgs e)
         {
             var fields = _currentMapping.Where(f => !string.IsNullOrEmpty(f.FileField));
+
+            if(fields.Count() == 0)
+            {
+                _importWorker.ReportProgress(100);
+                return;
+            }
+
             var records = GetRecords();
 
             for (int i = 0; i < records.Count; i++)
