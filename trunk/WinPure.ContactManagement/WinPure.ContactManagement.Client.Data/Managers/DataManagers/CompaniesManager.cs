@@ -110,6 +110,29 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         }
 
         /// <summary>
+        /// Method for deleting companies list from database.
+        /// </summary>
+        /// <param name="companies">Companies List which wil be deleted.</param>
+        public void Delete (IList<Company> companies)
+        {
+            if (companies == null) throw new ArgumentNullException("companies");
+
+            foreach (Company company in companies)
+            {
+                if (company == null) continue;
+                
+                Company companyToDelete = company;
+                if (company.CompanyId == Guid.Empty ||
+                    Context.Companies.Where(c => c.CompanyId == companyToDelete.CompanyId).FirstOrDefault() == null) return;
+
+                Context.DeleteObject(company);
+            }
+
+            Context.SaveChanges();
+            RefreshCache(OrderByField);
+        }
+
+        /// <summary>
         /// Method for deleting company from database.
         /// </summary>
         /// <param name="company">Company which will be deleted.</param>

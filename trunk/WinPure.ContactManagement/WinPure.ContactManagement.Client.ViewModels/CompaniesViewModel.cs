@@ -1,9 +1,9 @@
 ﻿#region References
 
-using System;
-using System.Collections.ObjectModel;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Dynamic;
+using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
@@ -24,14 +24,14 @@ namespace WinPure.ContactManagement.Client.ViewModels
     {
         #region Fields
 
-        private string _sortByField;
         private SynchronizedObservableCollection<Company> _companies;
         private int _contactsCount;
-        private RelayCommand _deleteCommand;
+        private RelayCommand<IList> _deleteCommand;
         private SynchronizedObservableCollection<Company> _originalCompaniesCollection;
         private RelayCommand _searchCommand;
         private string _searchText;
         private Company _selectedCompany;
+        private string _sortByField;
 
         #endregion
 
@@ -122,7 +122,6 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
-
         #region Commands
 
         /// <summary>
@@ -136,9 +135,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// <summary>
         /// Delete Company Command.
         /// </summary>
-        public RelayCommand DeleteCommand
+        public RelayCommand<IList> DeleteCommand
         {
-            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand<IList>(delete)); }
         }
 
         #endregion
@@ -147,24 +146,47 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         #region Methods
 
-
         private void changeCompaniesOrder(string fieldName)
         {
-             CompaniesManager.Current.RefreshCache(fieldName);
+            CompaniesManager.Current.RefreshCache(fieldName);
         }
 
         /// <summary>
         /// Delete Selected Company.
         /// </summary>
-        private void delete()
+        private void delete(IList items)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompany", "Title"),
-                                                            LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompany", "Message"),
-                                                            WPFMessageBoxButtons.YesNo,
-                                                            WPFMessageBoxImage.Question);
+            WPFMessageBoxResult result;
+            if (items == null || items.Count == 0)
+            {
+                result =
+                    WPFMessageBox.Show(
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompany", "Title"),
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompany", "Message"),
+                        WPFMessageBoxButtons.YesNo,
+                        WPFMessageBoxImage.Question);
+            }
+            else
+            {
+                result =
+                    WPFMessageBox.Show(
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompanies", "Title"),
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteCompanies", "Message"),
+                        WPFMessageBoxButtons.YesNo,
+                        WPFMessageBoxImage.Question);
+            }
+
             if (result == WPFMessageBoxResult.No) return;
 
-            CompaniesManager.Current.Delete(_selectedCompany);
+            if (items == null)
+            {
+                CompaniesManager.Current.Delete(_selectedCompany);
+                return;
+            }
+
+
+            var list = items.Cast<object>().Where(item => item != null).Cast<Company>().ToList();
+            CompaniesManager.Current.Delete(list);
         }
 
         private void search()

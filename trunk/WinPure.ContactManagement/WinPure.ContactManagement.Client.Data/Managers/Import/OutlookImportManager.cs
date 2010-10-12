@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region References
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,7 +13,9 @@ using Microsoft.Win32;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Localization;
-using Application = Microsoft.Office.Interop.Outlook.Application;
+using Application = Microsoft.Office.Interop.Outlook.Application; 
+
+#endregion
 
 namespace WinPure.ContactManagement.Client.Data.Managers.Import
 {

@@ -26,6 +26,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
         private dynamic _selectedType;
         private string _selectedTypeName;
         private RelayCommand _swapCellsCommand;
+        private dynamic _currentType;
 
         #endregion
 
@@ -37,6 +38,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
             {
                 SelectedType = TransitionTypes.Where(
                                     t => t.Type == TransitionsManager.Current.CurrentTransition.GetType()).FirstOrDefault();
+                _currentType = SelectedType;
             }
         }
 
@@ -93,9 +95,6 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
                 SelectedTransition = TransitionsManager.Current.GetTransition(_selectedType.Type);
                 SelectedTypeName = _selectedType.Type.Name;
                 swapCells();
-
-                TransitionsManager.Current.ActivateTransition(SelectedType.Type);
-                TransitionsManager.Current.SaveSettings();
             }
         }
 
@@ -145,7 +144,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
         public RelayCommand SaveCommand
         {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(Save)); }
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(Save, CanSave)); }
         }
 
         public RelayCommand CancelCommand
@@ -157,10 +156,22 @@ namespace WinPure.ContactManagement.Client.ViewModels.Settings
 
         #region Methods
 
+        private bool CanSave()
+        {
+            return _currentType != SelectedType;
+        }
+
         private void Save()
         {
             TransitionsManager.Current.ActivateTransition(SelectedType.Type);
             TransitionsManager.Current.SaveSettings();
+            
+            _currentType = SelectedType;
+
+            MessageBox.Show(LanguageDictionary.CurrentDictionary.Translate<string>("Messages.TransitionSaved", "Message"),
+                            LanguageDictionary.CurrentDictionary.Translate<string>("Messages.TransitionSaved", "Title"),
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
         }
 
         private void Cancel()

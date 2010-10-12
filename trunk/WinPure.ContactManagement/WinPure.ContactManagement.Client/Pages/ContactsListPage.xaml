@@ -272,17 +272,17 @@
     				<!--<System:String>LastName</System:String>
     				<System:String>FirstName</System:String>-->
             <ComboBox.Items>
-              <ComboBoxItem Tag="LastName"
+              	<ComboBoxItem Tag="FirstName"
+                            
+                            loc:Translate.Uid="Field.FirstName"
+                            Content="{loc:Translate First Name}" />
+							
+				<ComboBoxItem Tag="LastName"
                             
                             loc:Translate.Uid="Field.LastName"
                             Content="{loc:Translate Last Name}" 
                             
                             IsSelected="True"/>
-              
-              <ComboBoxItem Tag="FirstName"
-                            
-                            loc:Translate.Uid="Field.FirstName"
-                            Content="{loc:Translate First Name}" />
               
             </ComboBox.Items> 
     			</ComboBox>

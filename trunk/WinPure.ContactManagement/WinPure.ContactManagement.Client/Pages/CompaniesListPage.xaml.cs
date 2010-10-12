@@ -1,6 +1,7 @@
 ﻿#region References
 
 using System;
+using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,6 +18,11 @@ namespace WinPure.ContactManagement.Client.Pages
     /// </summary>
     public partial class CompaniesListPage
     {
+        /// <summary>
+        /// Fires when user delete contacts by pressing Delete key.
+        /// </summary>
+        public event EventHandler DeleteEvent;
+
         public CompaniesListPage()
         {
             InitializeComponent();
@@ -74,6 +80,15 @@ namespace WinPure.ContactManagement.Client.Pages
         {
             CompaniesListView.View = CompaniesListView.FindResource("GridView") as ViewBase;
             CompaniesListView.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void onCompaniesListViewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                IList s = CompaniesListView.SelectedItems;
+                DeleteButton.Command.Execute(s);
+            }
         }
     }
 }

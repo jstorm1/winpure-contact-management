@@ -8,8 +8,8 @@
              d:DesignWidth="300">
 
 	<Grid>
-		<Grid Margin="0"
-		      VerticalAlignment="Center">
+		<Grid Margin="0,8,0,0"
+		      VerticalAlignment="Top">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 				<ColumnDefinition Width="Auto"/>
@@ -48,7 +48,7 @@
 			        Style="{DynamicResource ButtonStyle1}"
 			        FontSize="16"
 			        FontFamily="Century Gothic"
-			        Command="{Binding OpenFileCommand, Mode=OneWay}"/>
+			        Command="{Binding OpenFileCommand, Mode=OneWay}" Foreground="White"/>
 		</Grid>
 
 	</Grid>

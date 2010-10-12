@@ -119,11 +119,19 @@
                   <Button Width="100"
                                       
                     loc:Translate.Uid="View.SwapButton"
-                    Content="{loc:Translate Swap}"
+                    Content="{loc:Translate Test}"
                                       
                     FontSize="16" Style="{DynamicResource ButtonStyle1}"
                     Foreground="White" Cursor="Hand" HorizontalAlignment="Right" Margin="8,0"
                     VerticalAlignment="Center" Height="35" Command="{Binding SwapCellsCommand, Mode=OneWay}"/>
+                  <Button Width="100"
+                                      
+                  	loc:Translate.Uid="ActionButtons.SaveButton"
+                  	Content="{loc:Translate Save}"
+                                      
+                  	FontSize="16" Style="{DynamicResource ButtonStyle1}"
+                  	Foreground="White" Cursor="Hand" HorizontalAlignment="Right" Margin="0,0,116,0"
+                  	VerticalAlignment="Center" Height="35" Command="{Binding SaveCommand, Mode=OneWay}"/>
                 </Grid>
               </Grid>
             </Grid>

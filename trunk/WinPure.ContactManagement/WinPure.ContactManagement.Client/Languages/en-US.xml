@@ -134,9 +134,11 @@
 
           <!--Messages-->
           <Value Id="Messages.DeleteCompany" Title="Delete Company"
-                 Message="Are you sure you want to delete this Company?"/>
+                 Message="Are you sure you want to delete seleted Company?"/>
   
-  
+          <Value Id="Messages.DeleteCompanies" Title="Delete Companies"
+                 Message="Are you sure you want to delete seleted Companies?"/>
+   
   
   <!--Synchronization Page-->
   <Value Id="SynchronizationPage" Text="Synchronization"/>
@@ -162,7 +164,11 @@
   <!--View Tab-->
           <Value Id="ViewTab" Header="View" Text="View"/>
           <Value Id="View.TransitionsHeader" Text="Transitions"/>
-          <Value Id="View.SwapButton" Content="Swap"/>
+          <Value Id="View.SwapButton" Content="Test"/>
+
+          <!--Messages-->
+          <Value Id="Messages.TransitionSaved" Title="Result"
+                 Message="Transition now saved."/>
   
           <!--Banner Logo Tab-->
           <Value Id="BannerLogoTab" Header="Banner Logo" Text="Banner Logo"/>

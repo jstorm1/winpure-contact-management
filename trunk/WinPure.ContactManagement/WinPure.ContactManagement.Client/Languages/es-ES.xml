@@ -164,6 +164,10 @@
           <Value Id="View.TransitionsHeader" Text="Transitions"/>
           <Value Id="View.SwapButton" Content="Swap"/>
   
+          <!--Messages-->
+          <Value Id="Messages.TransitionSaved" Title="Result"
+                 Message="Transition now saved."/>
+  
           <!--Banner Logo Tab-->
           <Value Id="BannerLogoTab" Header="Banner Logo" Text="Banner Logo"/>
   
