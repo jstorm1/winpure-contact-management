@@ -112,13 +112,36 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         /// Method which discards changes in Contact, and loads Contact state from database.
         /// </summary>
         /// <param name="contact">Contact which will be reverted.</param>
-        public void Revert(Contact contact)
+        public static void Revert(Contact contact)
         {
             if (contact == null) throw new ArgumentNullException("contact");
             if (contact.CompanyId == Guid.Empty ||
                 Context.Contacts.Where(c => c.ContactID == contact.ContactID).FirstOrDefault() == null) return;
 
             Context.Refresh(RefreshMode.StoreWins, contact);
+        }
+
+        /// <summary>
+        /// Removes contacts from database.
+        /// </summary>
+        /// <param name="contacts">Contacts collection which will be removed.</param>
+        public void Delete(IEnumerable<Contact> contacts)
+        {
+            if (contacts == null) throw new ArgumentNullException("contacts");
+
+            foreach (var contact in contacts)
+            {
+                if (contact == null) continue;
+
+                Contact contactToDelete = contact;
+                if (contact.ContactID == Guid.Empty ||
+                Context.Contacts.Where(c => c.ContactID == contactToDelete.ContactID).FirstOrDefault() == null) return;
+
+                Context.DeleteObject(contact);
+            }
+
+            Context.SaveChanges();
+            RefreshCache(OrderByField);
         }
 
         /// <summary>

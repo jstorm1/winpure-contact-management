@@ -1,6 +1,7 @@
 ﻿#region References
 
 using System;
+using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -100,6 +101,20 @@ namespace WinPure.ContactManagement.Client.Pages
             var wizard = new ExcelImportPage{ Height = 480, Width = 640 };
             ModalDialog = wizard;
             wizard.Show();
+        }
+
+        private void onContactsListViewOnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                IList s = ContactsListView.SelectedItems;
+                DeleteButton.Command.Execute(s);
+            }
+        }
+
+        private void onDeleteButtonClick(object sender, RoutedEventArgs e)
+        {
+            DeleteButton.CommandParameter = ContactsListView.SelectedItems;
         }
     }
 }

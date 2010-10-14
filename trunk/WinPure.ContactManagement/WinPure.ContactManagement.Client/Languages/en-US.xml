@@ -118,7 +118,10 @@
   
           <!--Messages-->
           <Value Id="Messages.DeleteContact" Title="Delete Contact"
-                 Message="Are you sure you want to delete this Contact?"/>
+                 Message="Are you sure you want to delete seleted Contact?"/>
+            
+          <Value Id="Messages.DeleteContacts" Title="Delete Contacts"
+                 Message="Are you sure you want to delete seleted Contacts?"/>
   
   
   

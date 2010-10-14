@@ -26,7 +26,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private SynchronizedObservableCollection<Company> _companies;
         private int _contactsCount;
-        private RelayCommand<IList> _deleteCommand;
+        private RelayCommand<object> _deleteCommand;
         private SynchronizedObservableCollection<Company> _originalCompaniesCollection;
         private RelayCommand _searchCommand;
         private string _searchText;
@@ -135,9 +135,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// <summary>
         /// Delete Company Command.
         /// </summary>
-        public RelayCommand<IList> DeleteCommand
+        public RelayCommand<object > DeleteCommand
         {
-            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand<IList>(delete)); }
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand<object>(delete)); }
         }
 
         #endregion
@@ -154,10 +154,11 @@ namespace WinPure.ContactManagement.Client.ViewModels
         /// <summary>
         /// Delete Selected Company.
         /// </summary>
-        private void delete(IList items)
+        private void delete(object items)
         {
+            var itemsToDelte = items as IList;
             WPFMessageBoxResult result;
-            if (items == null || items.Count == 0)
+            if (itemsToDelte == null || itemsToDelte.Count == 0)
             {
                 result =
                     WPFMessageBox.Show(
@@ -178,14 +179,14 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
             if (result == WPFMessageBoxResult.No) return;
 
-            if (items == null)
+            if (itemsToDelte == null)
             {
                 CompaniesManager.Current.Delete(_selectedCompany);
                 return;
             }
 
 
-            var list = items.Cast<object>().Where(item => item != null).Cast<Company>().ToList();
+            var list = itemsToDelte.Cast<object>().Where(item => item != null).Cast<Company>().ToList();
             CompaniesManager.Current.Delete(list);
         }
 

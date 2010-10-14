@@ -1,9 +1,9 @@
 ﻿#region References
 
-using System;
+using System.Collections;
+using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
-using WinPure.ContactManagement.Client.Data.Managers;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.ContactManagement.Client.Localization;
@@ -19,11 +19,11 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #region Fields
 
         private SynchronizedObservableCollection<Contact> _contacts;
-        private RelayCommand _deleteCommand;
-        private Contact _selectedContact;
-        private string _searchText;
+        private RelayCommand<IList> _deleteCommand;
         private SynchronizedObservableCollection<Contact> _originalContactsCollection;
         private RelayCommand _searchCommand;
+        private string _searchText;
+        private Contact _selectedContact;
         private string _sortByField;
 
         #endregion
@@ -71,9 +71,9 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
-        public RelayCommand DeleteCommand
+        public RelayCommand<IList> DeleteCommand
         {
-            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(delete)); }
+            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand<IList>(delete)); }
         }
 
         public string SearchText
@@ -131,15 +131,39 @@ namespace WinPure.ContactManagement.Client.ViewModels
             }
         }
 
-        private void delete()
+        private void delete(IList items)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContact", "Title"),
-                                                            LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContact", "Message"),
-                                                            WPFMessageBoxButtons.YesNo,
-                                                            WPFMessageBoxImage.Question);
+            WPFMessageBoxResult result;
+
+            if (items == null || items.Count == 0)
+            {
+                result =
+                    WPFMessageBox.Show(
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContact", "Title"),
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContact", "Message"),
+                        WPFMessageBoxButtons.YesNo,
+                        WPFMessageBoxImage.Question);
+            }
+            else
+            {
+                result =
+                    WPFMessageBox.Show(
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContacts", "Title"),
+                        LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteContacts", "Message"),
+                        WPFMessageBoxButtons.YesNo,
+                        WPFMessageBoxImage.Question);
+            }
+
             if (result == WPFMessageBoxResult.No) return;
 
-            ContactsManager.Current.Delete(_selectedContact);
+            if (items == null || items.Count == 0)
+            {
+                ContactsManager.Current.Delete(_selectedContact);
+                return;
+            }
+
+            var list = items.Cast<object>().Where(item => item != null).Cast<Contact>().ToList();
+            ContactsManager.Current.Delete(list);
         }
 
         #endregion

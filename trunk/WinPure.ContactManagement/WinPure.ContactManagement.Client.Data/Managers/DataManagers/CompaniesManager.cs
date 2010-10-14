@@ -113,7 +113,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         /// Method for deleting companies list from database.
         /// </summary>
         /// <param name="companies">Companies List which wil be deleted.</param>
-        public void Delete (IList<Company> companies)
+        public void Delete (IEnumerable<Company> companies)
         {
             if (companies == null) throw new ArgumentNullException("companies");
 

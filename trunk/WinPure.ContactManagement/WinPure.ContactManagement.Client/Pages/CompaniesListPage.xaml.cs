@@ -90,5 +90,10 @@ namespace WinPure.ContactManagement.Client.Pages
                 DeleteButton.Command.Execute(s);
             }
         }
+
+        private void onDeleteButtonClick(object sender, RoutedEventArgs e)
+        {
+            DeleteButton.CommandParameter = CompaniesListView.SelectedItems;
+        }
     }
 }

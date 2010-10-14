@@ -54,7 +54,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
 
         private void cancel()
         {
-            ContactsManager.Current.Revert(_contact);
+            ContactsManager.Revert(_contact);
         }
 
         private bool canSave()
