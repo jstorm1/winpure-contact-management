@@ -17,20 +17,20 @@ namespace WinPure.ContactManagement.Client.Data.Model
                 RemoveError("Name");
         }
 
-        partial void OnCountryChanged()
-        {
-            if (string.IsNullOrEmpty(_Country))
-                AddError("Country", LanguageDictionary.CurrentDictionary.Translate<string>("Validation.Country", "Message"));
-            else
-                RemoveError("Country");
-        }
+        //partial void OnCountryChanged()
+        //{
+        //    if (string.IsNullOrEmpty(_Country))
+        //        AddError("Country", LanguageDictionary.CurrentDictionary.Translate<string>("Validation.Country", "Message"));
+        //    else
+        //        RemoveError("Country");
+        //}
 
         #region Overrides of ValidatorBase
 
         public override void Validate()
         {
             OnNameChanged();
-            OnCountryChanged();
+            //OnCountryChanged();
         }
 
         #endregion

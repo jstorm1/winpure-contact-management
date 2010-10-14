@@ -17,20 +17,20 @@ namespace WinPure.ContactManagement.Client.Data.Model
                 RemoveError("FirstName");
         }
 
-        partial void OnLastNameChanged()
-        {
-            if (string.IsNullOrEmpty(_LastName))
-                AddError("LastName", LanguageDictionary.CurrentDictionary.Translate<string>("Validation.LastName", "Message"));
-            else
-                RemoveError("LastName");
-        }
+        //partial void OnLastNameChanged()
+        //{
+        //    if (string.IsNullOrEmpty(_LastName))
+        //        AddError("LastName", LanguageDictionary.CurrentDictionary.Translate<string>("Validation.LastName", "Message"));
+        //    else
+        //        RemoveError("LastName");
+        //}
 
         #region Overrides of EntityValidatorBase
 
         public override void Validate()
         {
             OnFirstNameChanged();
-            OnLastNameChanged();
+            //OnLastNameChanged();
         }
 
         #endregion
