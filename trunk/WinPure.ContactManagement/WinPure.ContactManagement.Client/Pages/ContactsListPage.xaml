@@ -201,12 +201,20 @@
         </Border>
 
       </StackPanel>
-      <StackPanel HorizontalAlignment="Right" Margin="0,0,8,0" Orientation="Horizontal" VerticalAlignment="Center">
+      <StackPanel HorizontalAlignment="Right" Margin="0,0,8,0" Orientation="Horizontal" VerticalAlignment="Center" Visibility="Hidden">
         <TextBlock TextWrapping="Wrap" Text="Import from:" FontSize="16" VerticalAlignment="Center" Margin="0,0,8,0"/>
         <Button x:Name="OutlookImportButton" Click="onOutlookImportButtonClick" Content="Outlook" Width="100" FontSize="21.333" d:LayoutOverrides="Height" Style="{DynamicResource ButtonStyle1}"/>
         <Button x:Name="CsvImportButton" Click="onCsvImportButtonClick" Content="CSV" Width="100" FontSize="21.333" d:LayoutOverrides="Height" Style="{DynamicResource ButtonStyle1}"/>
         <Button x:Name="ExcelImportButton" Click="onExcelImportButtonClick" Content="Excel" FontSize="21.333" Width="100" d:LayoutOverrides="Height" Style="{DynamicResource ButtonStyle1}"/>
       </StackPanel>
+      <Menu Margin="0,0,8,0" Style="{DynamicResource SimpleMenu}" Background="#CCFFFFFF" BorderBrush="{x:Null}" FontFamily="Century Gothic" FontSize="21.333" HorizontalAlignment="Right">
+      	<MenuItem Header="Import" Margin="0,3,0,0" Style="{DynamicResource SimpleMenuItem}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120"/>
+      	<MenuItem Header="Export" Margin="0,3,0,0" Style="{DynamicResource SimpleMenuItem}" Width="120">
+      		<MenuItem Header="Outlook..." Style="{DynamicResource SimpleMenuItem}" Background="#00252222" Foreground="White" Width="130.477"/>
+      		<MenuItem  Header="CSV..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477"/>
+      		<MenuItem  Header="Excel..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477"/>
+      	</MenuItem>
+      </Menu>
     </Grid>
     <Grid x:Name="MainGrid" Margin="0,-2.845,0,0" Grid.Row="1">
       <Grid.RowDefinitions>

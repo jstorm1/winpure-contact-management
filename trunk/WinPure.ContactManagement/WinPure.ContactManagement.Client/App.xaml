@@ -12,6 +12,7 @@
     			<ResourceDictionary Source="Resources/Styles/VerticalScrollBarStyle.xaml"/>
     			<ResourceDictionary Source="Resources/Styles/PageEditButtonsStyle.xaml"/>
     			<ResourceDictionary Source="Resources/Styles/TabItemStyle.xaml"/>
+    			<ResourceDictionary Source="Simple Styles.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
 
     		<Style TargetType="{x:Type TextBox}">

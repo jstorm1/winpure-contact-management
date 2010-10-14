@@ -150,6 +150,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Page Include="Simple Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Resource Include="Resources\Images\Import\excel-egitimi.gif.png" />
     <Resource Include="Resources\Images\Import\ms-office-2007-beta-2-outlook.png" />
     <Resource Include="Resources\Images\Import\Office-excel-csv-icon.png" />
