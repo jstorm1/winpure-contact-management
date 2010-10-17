@@ -19,7 +19,7 @@
   </DataTemplate>
 
   <DataTemplate x:Key="ContactSmallDataTemplate">
-    <Grid>
+    <Grid Width="200">
       <Grid.RowDefinitions>
         <RowDefinition />
       </Grid.RowDefinitions>
@@ -52,7 +52,7 @@
                             Header="Suffix"/>
         <GridViewColumn DisplayMemberBinding="{Binding JobTitle}"
                             Header="Job Title"/>
-        <GridViewColumn DisplayMemberBinding="{Binding CompanyName}"
+        <GridViewColumn DisplayMemberBinding="{Binding Company.CompanyName}"
                             Header="Company"/>
         <GridViewColumn DisplayMemberBinding="{Binding Telephone}"
                             Header="Telephone"/>
@@ -72,4 +72,16 @@
                             Header="EmailAddress2"/>
   </GridView>
   <ListView:DefaultView x:Key="DefaultView" ItemTemplate="{StaticResource ContactDataTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
+  <Style x:Key="ListViewStyle" TargetType="{x:Type ListView}">
+    <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+    <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling"/>
+    <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="True"/>
+    <Setter Property="ListView.ItemsSource" Value="{Binding}"/>
+    <Style.Triggers>
+      <DataTrigger Binding="{Binding IsLoading}" Value="True">
+        <Setter Property="ListView.Cursor" Value="Wait"/>
+        <Setter Property="ListView.Background" Value="LightGray"/>
+      </DataTrigger>
+    </Style.Triggers>
+  </Style>
 </ResourceDictionary>

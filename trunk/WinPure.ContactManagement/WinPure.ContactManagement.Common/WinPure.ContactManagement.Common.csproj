@@ -84,6 +84,10 @@
     <Compile Include="Helpers\Converters\ItemsCountToVisibilityOppositeConverter.cs" />
     <Compile Include="Helpers\DependencyObjectExtensions.cs" />
     <Compile Include="Helpers\OrderByExtension.cs" />
+    <Compile Include="Helpers\Virtualization\AsyncVirtualizingCollection.cs" />
+    <Compile Include="Helpers\Virtualization\DataProvider.cs" />
+    <Compile Include="Interfaces\Virtualization\IItemsProvider.cs" />
+    <Compile Include="Helpers\Virtualization\VirtualizingCollection.cs" />
     <Compile Include="Interfaces\SyncService\ISyncService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\PropertyChangedBase.cs" />

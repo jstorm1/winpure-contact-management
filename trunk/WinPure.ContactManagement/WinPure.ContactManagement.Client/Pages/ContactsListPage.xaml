@@ -208,7 +208,11 @@
         <Button x:Name="ExcelImportButton" Click="onExcelImportButtonClick" Content="Excel" FontSize="21.333" Width="100" d:LayoutOverrides="Height" Style="{DynamicResource ButtonStyle1}"/>
       </StackPanel>
       <Menu Margin="0,0,8,0" Style="{DynamicResource SimpleMenu}" Background="#CCFFFFFF" BorderBrush="{x:Null}" FontFamily="Century Gothic" FontSize="21.333" HorizontalAlignment="Right">
-      	<MenuItem Header="Import" Margin="0,3,0,0" Style="{DynamicResource SimpleMenuItem}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120"/>
+      	<MenuItem Header="Import" Margin="0,3,0,0" Style="{DynamicResource SimpleMenuItem}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120">
+      		<MenuItem Click="onOutlookImportButtonClick" Header="Outlook..." Style="{DynamicResource SimpleMenuItem}" Background="#00252222" Foreground="White" Width="130.477" d:LayoutOverrides="Width"/>
+      		<MenuItem Click="onCsvImportButtonClick" Header="CSV..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477" d:LayoutOverrides="Width"/>
+      		<MenuItem Click="onExcelImportButtonClick" Header="Excel..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477" d:LayoutOverrides="Width"/>
+      	</MenuItem>
       	<MenuItem Header="Export" Margin="0,3,0,0" Style="{DynamicResource SimpleMenuItem}" Width="120">
       		<MenuItem Header="Outlook..." Style="{DynamicResource SimpleMenuItem}" Background="#00252222" Foreground="White" Width="130.477"/>
       		<MenuItem  Header="CSV..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477"/>
@@ -229,7 +233,6 @@
     	          HorizontalContentAlignment="Stretch"
     	          ScrollViewer.VerticalScrollBarVisibility="Auto"
     	          View="{DynamicResource PlainView}"
-    	          Background="{x:Null}"
     	          ScrollViewer.HorizontalScrollBarVisibility="Auto"
     	          UseLayoutRounding="False"
     	          ItemsSource="{Binding Contacts}"
@@ -239,7 +242,7 @@
     	          MouseDoubleClick="onContactsListViewMouseDoubleClick"
     	          SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     	          BorderThickness="0"
-                KeyDown="onContactsListViewOnKeyDown"/>
+                KeyDown="onContactsListViewOnKeyDown" Style="{DynamicResource ListViewStyle}" Background="{x:Null}"/>
       
       <StackPanel x:Name="EditButtons" Grid.Row="2" Margin="8" Orientation="Horizontal">
 

@@ -15,18 +15,18 @@
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
-         
-          <WrapPanel Height="{Binding (FrameworkElement.ActualHeight),
+
+          <CommonControls:VirtualizingWrapPanel Height="{Binding (FrameworkElement.ActualHeight),
                      RelativeSource={RelativeSource 
                                      AncestorType=ScrollContentPresenter}}"
-                       ItemWidth="{Binding (ListView.View).ItemWidth,
-                     RelativeSource={RelativeSource AncestorType=ListView}}"
+                      
                        MinWidth="{Binding ItemWidth,
                      RelativeSource={RelativeSource Self}}"
-                       ItemHeight="{Binding (ListView.View).ItemHeight,
-                     RelativeSource={RelativeSource AncestorType=ListView}}"
+                     
                      Orientation="Vertical" Background="{x:Null}">
-          </WrapPanel>
+          </CommonControls:VirtualizingWrapPanel>
+
+          <!--<CommonControls:VirtualizingWrapPanel Orientation="Horizontal"/>-->
           
         </ItemsPanelTemplate>
       </Setter.Value>

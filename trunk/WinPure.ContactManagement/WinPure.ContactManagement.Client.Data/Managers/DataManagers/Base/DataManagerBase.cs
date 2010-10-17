@@ -1,6 +1,7 @@
 ﻿#region References
 
 using WinPure.ContactManagement.Client.Data.Model;
+using WinPure.ContactManagement.Common.Helpers;
 
 #endregion
 
@@ -9,7 +10,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers.Base
     /// <summary>
     /// Base class for the DataManagers.
     /// </summary>
-    public class DataManagerBase
+    public class DataManagerBase:PropertyChangedBase 
     {
         #region Constructor
 

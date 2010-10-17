@@ -87,6 +87,8 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
             var records = GetRecords(_currentTable);
 
+            var contactsToSave = new List<Contact>();
+
             for (int i = 0; i < records.Count; i++)
             {
                 var record = records[i];
@@ -98,11 +100,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
 
                     contact.GetType().GetProperty((string) field.CrmField).SetValue(contact,value, null);
                 }
+                //ContactsManager.Current.Save(contact);
+                contactsToSave.Add(contact);
 
-                ContactsManager.Current.Save(contact);
-
-                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double) (i + 1)/records.Count*100.0, 0)));
+                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double) (i + 1)/records.Count*80.0, 0)));
             }
+
+            ContactsManager.Current.Save(contactsToSave);
+            _importWorker.ReportProgress(100);
         }
 
         public ObservableCollection<dynamic> GetDefaultMapping()

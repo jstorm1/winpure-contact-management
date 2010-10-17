@@ -20,6 +20,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
     /// </summary>
     public class ContactsManager : DataManagerBase
     {
+        public event EventHandler CacheChanged;
         private SynchronizedObservableCollection<Contact> _contactsCache;
 
         #region Singleton constructor
@@ -88,6 +89,32 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
         {
             RefreshCache(OrderByField);
             return _contactsCache;
+        }
+
+        public SynchronizedObservableCollection<Contact> ContactsCache
+        {
+            get
+            {
+                return _contactsCache;
+            }
+        }
+
+        public void Save(IEnumerable<Contact> contacts)
+        {
+            foreach (var contact in contacts)
+            {
+                var contactId = contact.ContactID;
+                if (contact.ContactID == Guid.Empty ||
+                   Context.Contacts.Where(c => c.ContactID == contactId).FirstOrDefault() == null)
+                {
+                    if (contact.ContactID == Guid.Empty) contact.ContactID = Guid.NewGuid();
+                    Context.Contacts.AddObject(contact);
+                }
+            }
+
+            Context.SaveChanges();
+
+            RefreshCache(OrderByField);
         }
 
         /// <summary>
@@ -175,12 +202,16 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             if (_contactsCache == null)
                 _contactsCache = new SynchronizedObservableCollection<Contact>(new ObservableCollection<Contact>());
 
-            _contactsCache.Clear();
+           // _contactsCache.Clear();
+            _contactsCache = new SynchronizedObservableCollection<Contact>(new ObservableCollection<Contact>(orderContactsByField(fieldName)));
 
-            foreach (Contact contact in orderContactsByField(fieldName))
-            {
-                _contactsCache.Add(contact);
-            }
+            if (CacheChanged != null)
+                CacheChanged.Invoke(this, EventArgs.Empty);
+
+            //foreach (Contact contact in orderContactsByField(fieldName))
+            //{
+            //    _contactsCache.Add(contact);
+            //}
         }
     }
 }

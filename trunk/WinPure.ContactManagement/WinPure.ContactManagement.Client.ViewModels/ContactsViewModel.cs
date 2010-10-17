@@ -1,6 +1,7 @@
 ﻿#region References
 
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using WinPure.ContactManagement.Client.CustomMessageBox;
@@ -38,6 +39,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             if (IsDesignMode) return;
 
             Contacts = ContactsManager.Current.LoadContacts();
+            ContactsManager.Current.CacheChanged += delegate { Contacts = ContactsManager.Current.ContactsCache; };
 
             SortByField = ContactsManager.Current.OrderByField;
         }
@@ -162,7 +164,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
                 return;
             }
 
-            var list = items.Cast<object>().Where(item => item != null).Cast<Contact>().ToList();
+            List<Contact> list = items.Cast<object>().Where(item => item != null).Cast<Contact>().ToList();
             ContactsManager.Current.Delete(list);
         }
 

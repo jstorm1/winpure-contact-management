@@ -2,6 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ListView="clr-namespace:WinPure.ContactManagement.Client.CommonControls.ListView">
   <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type ListView:DefaultView}, ResourceId=DefaultViewStyle}"
        TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
+  	    <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+    <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling"/>
+	
     <Setter Property="HorizontalContentAlignment"
           Value="Center"/>
     <Setter Property="ItemContainerStyle"
@@ -14,13 +17,12 @@
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
-
-          <StackPanel Width="{Binding (FrameworkElement.ActualWidth),
+          <VirtualizingStackPanel Width="{Binding (FrameworkElement.ActualWidth),
                      RelativeSource={RelativeSource 
                                      AncestorType=ScrollContentPresenter}}"
                      MinWidth="{Binding ItemWidth,
                      RelativeSource={RelativeSource Self}}">
-          </StackPanel>
+          </VirtualizingStackPanel>
 
         </ItemsPanelTemplate>
       </Setter.Value>

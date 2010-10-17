@@ -137,6 +137,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="VirtualizingWrapPanel.cs" />
     <Compile Include="WizardControl.cs" />
     <Compile Include="WizardScreen.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
