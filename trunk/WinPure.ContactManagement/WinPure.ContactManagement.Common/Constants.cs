@@ -54,7 +54,7 @@ namespace WinPure.ContactManagement.Common
             get
             {
                 string machineName = System.Net.Dns.GetHostName();
-                return string.Format("http://{0}:9000/WinPure/SyncService/", machineName);
+                return string.Format("http://{0}:8000/WinPure/SyncService/", machineName);
             }
         }
 
