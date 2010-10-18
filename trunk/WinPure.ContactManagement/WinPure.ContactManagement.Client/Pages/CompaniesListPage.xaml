@@ -26,13 +26,13 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="CompaniesListViewStyles.xaml"/>
       </ResourceDictionary.MergedDictionaries>
-    	<WinPure_ContactManagement_Client_Helpers_Converters:ComboBoxItemToStringConverter x:Key="ComboBoxItemToStringConverter"/>
+      <WinPure_ContactManagement_Client_Helpers_Converters:ComboBoxItemToStringConverter x:Key="ComboBoxItemToStringConverter"/>
 
-    	<WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+      <WinPure_ContactManagement_Client_Helpers_Converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
 
-    	<Converters:ItemsCountToVisibilityOppositeConverter x:Key="ItemsCountToVisibilityOppositeConverter"/>
+      <Converters:ItemsCountToVisibilityOppositeConverter x:Key="ItemsCountToVisibilityOppositeConverter"/>
 
-    	<Converters:ItemsCountToVisibilityConverter x:Key="ItemsCountToVisibilityConverter"/>
+      <Converters:ItemsCountToVisibilityConverter x:Key="ItemsCountToVisibilityConverter"/>
 
 
 
@@ -234,25 +234,25 @@
             <ComboBoxItem Tag="Name"
                           
                           loc:Translate.Uid="Field.Name"
-                          Content="{loc:Translate Name}"  
+                          Content="{loc:Translate Name}"
                           
                           IsSelected="True"/>
-            
+
             <ComboBoxItem Tag="Industry"
                           
                           loc:Translate.Uid="Field.Industry"
                           Content="{loc:Translate Industry}" />
-            
+
             <ComboBoxItem Tag="Country"
                           
                           loc:Translate.Uid="Field.Country"
                           Content="{loc:Translate Country}" />
-            
+
             <ComboBoxItem Tag="Town"
                           
                           loc:Translate.Uid="Field.Town"
                           Content="{loc:Translate Town}"/>
-            
+
           </ComboBox.Items>
         </ComboBox>
 
@@ -275,8 +275,6 @@
 
       </Border>
 
-
-      <ListBox x:Name="CompaniesList" BorderThickness="0" ItemTemplate="{DynamicResource CompanyDataTemplate}" ItemsSource="{Binding Companies}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource ListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle}" SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0" MouseDoubleClick="onCompaniesListMouseDoubleClick" Background="{x:Null}" Grid.Row="1" Visibility="Collapsed"  />
       <StackPanel x:Name="EditButtons" Margin="8" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height">
 
         <Button x:Name="AddButton"
@@ -318,7 +316,7 @@
                 Click="onDeleteButtonClick"/>
 
       </StackPanel>
-    	<ListView x:Name="CompaniesListView"
+      <ListView x:Name="CompaniesListView"
     	          Grid.Row="1"
     	          BorderBrush="{x:Null}"
     	          Foreground="Black"
@@ -329,7 +327,30 @@
     	          BorderThickness="0"
                 MouseDoubleClick="onCompaniesListMouseDoubleClick"
                 KeyDown="onCompaniesListViewKeyDown"/>
-      
+    	<DataGrid x:Name="DataGridView"
+    	          Grid.Row="1"
+    	          ItemsSource="{Binding Companies}"
+    	          SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+    	          FontSize="13.333"
+                MouseDoubleClick="onDataGridViewMouseDoubleClick"
+                PreviewKeyDown="onDataGridViewKeyDown" HorizontalGridLinesBrush="#FFB2B2B2" VerticalGridLinesBrush="#FFB2B2B2">
+        <DataGrid.Columns>
+        	<DataGridTextColumn Header="Name" Binding="{Binding Name}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
+        	<DataGridTextColumn Header="Industry" Binding="{Binding Industry}" />
+        	<DataGridTextColumn Header="Phone" Binding="{Binding Phone}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
+        	<DataGridTextColumn Header="Fax" Binding="{Binding Fax}" />
+        	<DataGridTextColumn Header="Website" Binding="{Binding Website}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
+        	<DataGridTextColumn Header="Address1" Binding="{Binding Address1}" />
+        	<DataGridTextColumn Header="Address2" Binding="{Binding Address2}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
+        	<DataGridTextColumn Header="Address3" Binding="{Binding Address3}" />
+        	<DataGridTextColumn Header="Town" Binding="{Binding Town}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
+        	<DataGridTextColumn Header="County" Binding="{Binding County}" />
+        	<DataGridTextColumn Header="Country" Binding="{Binding Country}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
+        	<DataGridTextColumn Header="Postcode" Binding="{Binding Postcode}" />
+        	<DataGridTextColumn Header="Description" Binding="{Binding Description}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
+        </DataGrid.Columns>
+      </DataGrid>
+
     </Grid>
     <Grid x:Name="CompanyContactsGrid" Grid.Column="1" Background="#0DFFFFFF" Grid.Row="1">
       <Grid Margin="8">

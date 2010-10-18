@@ -101,6 +101,10 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                     contact.GetType().GetProperty((string) field.CrmField).SetValue(contact,value, null);
                 }
                 //ContactsManager.Current.Save(contact);
+                
+                if (contact.FirstName == null) contact.FirstName = string.Empty;
+                if (contact.LastName == null) contact.LastName = string.Empty;
+
                 contactsToSave.Add(contact);
 
                 _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double) (i + 1)/records.Count*80.0, 0)));

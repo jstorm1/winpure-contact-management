@@ -227,9 +227,7 @@
         <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
       
-      <!--Contacts List-->
-      
-      <!--Contacts List-->
+    	<!--Contacts List-->
       <ListView x:Name="ContactsListView"
     	          VerticalContentAlignment="Stretch"
     	          HorizontalContentAlignment="Stretch"
@@ -244,39 +242,50 @@
     	          MouseDoubleClick="onContactsListViewMouseDoubleClick"
     	          SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     	          BorderThickness="0"
-                KeyDown="onContactsListViewOnKeyDown" Style="{DynamicResource ListViewStyle}" Background="{x:Null}"/>
-      <DataGrid x:Name="DataGridView" Grid.Row="1" ItemsSource="{Binding Contacts}" FontSize="13.333" Background="White" BeginningEdit="onDataGridViewBeginEdit" IsReadOnly="True">
-        
+    	          KeyDown="onContactsListViewOnKeyDown"
+    	          Style="{DynamicResource ListViewStyle}"
+    	          Background="{x:Null}">
+      </ListView>
+
+      <!--Contacts List Grid View-->
+    	<DataGrid x:Name="DataGridView"
+    	          Grid.Row="1"
+    	          ItemsSource="{Binding Contacts}"
+    	          FontSize="13.333"
+    	          Background="#FFF0F0F0"
+    	          IsReadOnly="True"
+                SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                MouseDoubleClick="onDataGridViewMouseDoubleClick"
+                PreviewKeyDown="onDataGridViewKeyDown" VerticalGridLinesBrush="#FFB2B2B2" HorizontalGridLinesBrush="#FFB2B2B2">
       	<DataGrid.Columns>
       		<DataGridTextColumn Binding="{Binding Title}"
-      		                    Header="Title"/>
+      		                    Header="Title" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
       		<DataGridTextColumn Binding="{Binding FirstName}"
       		                    Header="First Name"/>
       		<DataGridTextColumn Binding="{Binding LastName}"
-      		                    Header="Last Name"/>
+      		                    Header="Last Name" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
       		<DataGridTextColumn Binding="{Binding Suffix}"
       		                    Header="Suffix"/>
       		<DataGridTextColumn Binding="{Binding JobTitle}"
-      		                    Header="Job Title"/>
+      		                    Header="Job Title" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
       		<DataGridTextColumn Binding="{Binding Company.CompanyName}"
       		                    Header="Company"/>
       		<DataGridTextColumn Binding="{Binding Telephone}"
-      		                    Header="Telephone"/>
+      		                    Header="Telephone" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
       		<DataGridTextColumn Binding="{Binding Fax}"
       		                    Header="Fax"/>
       		<DataGridTextColumn Binding="{Binding Mobile}"
-      		                    Header="Mobile"/>
+      		                    Header="Mobile" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
       		<DataGridTextColumn Binding="{Binding HomeTelephone}"
       		                    Header="Home Telephone"/>
       		<DataGridTextColumn Binding="{Binding Website}"
-      		                    Header="Website"/>
+      		                    Header="Website" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
       		<DataGridTextColumn Binding="{Binding EmailAddress}"
       		                    Header="EmailAddress"/>
       		<DataGridTextColumn Binding="{Binding EmailAddress1}"
-      		                    Header="EmailAddress1"/>
+      		                    Header="EmailAddress1" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
       		<DataGridTextColumn Binding="{Binding EmailAddress2}"
       		                    Header="EmailAddress2"/>
-          
 		</DataGrid.Columns>   
 	  </DataGrid>
       

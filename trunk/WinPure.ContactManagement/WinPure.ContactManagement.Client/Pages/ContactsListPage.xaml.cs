@@ -116,15 +116,28 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onDeleteButtonClick(object sender, RoutedEventArgs e)
         {
+            if (DataGridView.Visibility == Visibility.Visible)
+            {
+                DeleteButton.CommandParameter = DataGridView.SelectedItems;
+            }
             DeleteButton.CommandParameter = ContactsListView.SelectedItems;
         }
 
-        private void onDataGridViewBeginEdit(object sender, DataGridBeginningEditEventArgs e)
+        private void onDataGridViewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var dialog = new ContactsEditor((Contact)DataGridView.SelectedItem);
             ModalDialog = dialog;
             dialog.Closed += onEditDialogClosed;
             dialog.Show();
+        }
+
+        private void onDataGridViewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                IList s = DataGridView.SelectedItems;
+                DeleteButton.Command.Execute(s);
+            }
         }
     }
 }

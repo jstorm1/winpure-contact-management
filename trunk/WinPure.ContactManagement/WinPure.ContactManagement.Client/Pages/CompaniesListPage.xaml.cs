@@ -42,8 +42,8 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onEditButtonClick(object sender, RoutedEventArgs e)
         {
-            if (CompaniesList.SelectedItem == null) return;
-            var dialog = new CompaniesEditor((Company) CompaniesList.SelectedItem);
+            if (CompaniesListView.SelectedItem == null) return;
+            var dialog = new CompaniesEditor((Company) CompaniesListView.SelectedItem);
             ModalDialog = dialog;
             dialog.Closed += onEditDialogClosed;
             dialog.Show();
@@ -51,9 +51,9 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onCompaniesListMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (CompaniesList.SelectedItem == null || e.ChangedButton != MouseButton.Left) return;
+            if (CompaniesListView.SelectedItem == null || e.ChangedButton != MouseButton.Left) return;
 
-            var dialog = new CompaniesEditor((Company) CompaniesList.SelectedItem);
+            var dialog = new CompaniesEditor((Company) CompaniesListView.SelectedItem);
             ModalDialog = dialog;
             dialog.Closed += onEditDialogClosed;
             dialog.Show();
@@ -68,18 +68,22 @@ namespace WinPure.ContactManagement.Client.Pages
         {
             CompaniesListView.View = CompaniesListView.FindResource("DefaultView") as ViewBase;
             CompaniesListView.Background = null;
+            DataGridView.Visibility = Visibility.Collapsed;
+            Sort.Visibility = Visibility.Visible;
         }
 
         private void onListViewButtonChecked(object sender, RoutedEventArgs e)
         {
             CompaniesListView.View = CompaniesListView.FindResource("PlainView") as ViewBase;
             CompaniesListView.Background = null;
+            DataGridView.Visibility = Visibility.Collapsed;
+            Sort.Visibility = Visibility.Visible;
         }
 
         private void onGridViewButtonChecked(object sender, RoutedEventArgs e)
         {
-            CompaniesListView.View = CompaniesListView.FindResource("GridView") as ViewBase;
-            CompaniesListView.Background = new SolidColorBrush(Colors.White);
+            DataGridView.Visibility = Visibility.Visible;
+            Sort.Visibility = Visibility.Collapsed;
         }
 
         private void onCompaniesListViewKeyDown(object sender, KeyEventArgs e)
@@ -93,7 +97,31 @@ namespace WinPure.ContactManagement.Client.Pages
 
         private void onDeleteButtonClick(object sender, RoutedEventArgs e)
         {
+            if (DataGridView.Visibility == Visibility.Visible)
+            {
+                DeleteButton.CommandParameter = DataGridView.SelectedItems;
+            }
+
             DeleteButton.CommandParameter = CompaniesListView.SelectedItems;
+        }
+
+        private void onDataGridViewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (DataGridView.SelectedItem == null || e.ChangedButton != MouseButton.Left) return;
+
+            var dialog = new CompaniesEditor((Company)DataGridView.SelectedItem);
+            ModalDialog = dialog;
+            dialog.Closed += onEditDialogClosed;
+            dialog.Show();
+        }
+
+        private void onDataGridViewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                IList s = DataGridView.SelectedItems;
+                DeleteButton.Command.Execute(s);
+            }
         }
     }
 }

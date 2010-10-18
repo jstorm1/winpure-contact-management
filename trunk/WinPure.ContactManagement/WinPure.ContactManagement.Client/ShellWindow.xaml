@@ -176,6 +176,15 @@
         </i:Interaction.Triggers>
       </CommonControls:HorizontalMenuItem>
 
+   <CommonControls:HorizontalMenuItem x:Name="CleansingButton"
+                                         
+    		loc:Translate.Uid="MainMenu.CleansingButton"
+    		Text="{loc:Translate Cleansing}"
+    		Width="{loc:Translate 100}"
+           
+    		Image="Resources/Images/48x48/Cleansing_48x48.png"
+    		IconGlowColor="#FFA034D1"/>
+
     </CommonControls:HorizontalMenu>
 
   </Grid>

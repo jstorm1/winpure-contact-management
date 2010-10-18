@@ -103,6 +103,7 @@
           <Value Id="MainMenu.CompaniesButton" Text="Companies" />
           <Value Id="MainMenu.SynchronizeButton" Text="Synchronize" />
           <Value Id="MainMenu.SettingsButton" Text="Settings" />
+          <Value Id="MainMenu.CleansingButton" Text="Cleansing" />
   
   
   
