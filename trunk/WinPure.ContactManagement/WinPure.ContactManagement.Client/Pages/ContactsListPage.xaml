@@ -256,7 +256,7 @@
     	          IsReadOnly="True"
                 SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 MouseDoubleClick="onDataGridViewMouseDoubleClick"
-                PreviewKeyDown="onDataGridViewKeyDown" VerticalGridLinesBrush="#FFB2B2B2" HorizontalGridLinesBrush="#FFB2B2B2">
+                PreviewKeyDown="onDataGridViewKeyDown" VerticalGridLinesBrush="#FFB2B2B2" HorizontalGridLinesBrush="#FFB2B2B2" RowHeaderWidth="0">
       	<DataGrid.Columns>
       		<DataGridTextColumn Binding="{Binding Title}"
       		                    Header="Title" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>

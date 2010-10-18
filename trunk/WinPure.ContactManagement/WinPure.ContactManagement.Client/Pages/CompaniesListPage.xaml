@@ -333,7 +333,7 @@
     	          SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     	          FontSize="13.333"
                 MouseDoubleClick="onDataGridViewMouseDoubleClick"
-                PreviewKeyDown="onDataGridViewKeyDown" HorizontalGridLinesBrush="#FFB2B2B2" VerticalGridLinesBrush="#FFB2B2B2">
+                PreviewKeyDown="onDataGridViewKeyDown" HorizontalGridLinesBrush="#FFB2B2B2" VerticalGridLinesBrush="#FFB2B2B2" RowHeaderWidth="0">
         <DataGrid.Columns>
         	<DataGridTextColumn Header="Name" Binding="{Binding Name}" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}" />
         	<DataGridTextColumn Header="Industry" Binding="{Binding Industry}" />
