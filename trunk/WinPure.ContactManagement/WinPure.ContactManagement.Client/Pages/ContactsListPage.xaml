@@ -228,6 +228,8 @@
       </Grid.RowDefinitions>
       
       <!--Contacts List-->
+      
+      <!--Contacts List-->
       <ListView x:Name="ContactsListView"
     	          VerticalContentAlignment="Stretch"
     	          HorizontalContentAlignment="Stretch"
@@ -243,6 +245,40 @@
     	          SelectedItem="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     	          BorderThickness="0"
                 KeyDown="onContactsListViewOnKeyDown" Style="{DynamicResource ListViewStyle}" Background="{x:Null}"/>
+      <DataGrid x:Name="DataGridView" Grid.Row="1" ItemsSource="{Binding Contacts}" FontSize="13.333" Background="White" BeginningEdit="onDataGridViewBeginEdit" IsReadOnly="True">
+        
+      	<DataGrid.Columns>
+      		<DataGridTextColumn Binding="{Binding Title}"
+      		                    Header="Title"/>
+      		<DataGridTextColumn Binding="{Binding FirstName}"
+      		                    Header="First Name"/>
+      		<DataGridTextColumn Binding="{Binding LastName}"
+      		                    Header="Last Name"/>
+      		<DataGridTextColumn Binding="{Binding Suffix}"
+      		                    Header="Suffix"/>
+      		<DataGridTextColumn Binding="{Binding JobTitle}"
+      		                    Header="Job Title"/>
+      		<DataGridTextColumn Binding="{Binding Company.CompanyName}"
+      		                    Header="Company"/>
+      		<DataGridTextColumn Binding="{Binding Telephone}"
+      		                    Header="Telephone"/>
+      		<DataGridTextColumn Binding="{Binding Fax}"
+      		                    Header="Fax"/>
+      		<DataGridTextColumn Binding="{Binding Mobile}"
+      		                    Header="Mobile"/>
+      		<DataGridTextColumn Binding="{Binding HomeTelephone}"
+      		                    Header="Home Telephone"/>
+      		<DataGridTextColumn Binding="{Binding Website}"
+      		                    Header="Website"/>
+      		<DataGridTextColumn Binding="{Binding EmailAddress}"
+      		                    Header="EmailAddress"/>
+      		<DataGridTextColumn Binding="{Binding EmailAddress1}"
+      		                    Header="EmailAddress1"/>
+      		<DataGridTextColumn Binding="{Binding EmailAddress2}"
+      		                    Header="EmailAddress2"/>
+          
+		</DataGrid.Columns>   
+	  </DataGrid>
       
       <StackPanel x:Name="EditButtons" Grid.Row="2" Margin="8" Orientation="Horizontal">
 
@@ -301,20 +337,18 @@
         <ComboBox x:Name="SortType" Background="#CCFFFFFF" BorderBrush="White" FontSize="13.333" VerticalAlignment="Center" Width="150" SelectedIndex="0" SelectedItem="{Binding SortByField, Converter={StaticResource ComboBoxItemToStringConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
           <!--<System:String>LastName</System:String>
     				<System:String>FirstName</System:String>-->
-          <ComboBox.Items>
-            <ComboBoxItem Tag="FirstName"
+        	<ComboBoxItem Tag="FirstName"
                             
-                        loc:Translate.Uid="Field.FirstName"
-                        Content="{loc:Translate First Name}" />
+        		loc:Translate.Uid="Field.FirstName"
+        		Content="{loc:Translate First Name}" />
             
-          	<ComboBoxItem Tag="LastName"
+        	<ComboBoxItem Tag="LastName"
           	              
-                          loc:Translate.Uid="Field.LastName"
-          	              Content="{loc:Translate Last Name}"
+        		loc:Translate.Uid="Field.LastName"
+        		Content="{loc:Translate Last Name}"
           	              
-                          IsSelected="True"/>
+        		IsSelected="True"/>
 
-          </ComboBox.Items>
         </ComboBox>
 
 

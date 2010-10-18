@@ -56,20 +56,22 @@ namespace WinPure.ContactManagement.Client.Pages
         private void onDefaultViewButtonChecked(object sender, RoutedEventArgs e)
         {
             ContactsListView.View = ContactsListView.FindResource("DefaultView") as ViewBase;
-            ContactsListView.Background = null;
+            DataGridView.Visibility = Visibility.Collapsed;
+            Sort.Visibility = Visibility.Visible;
         }
 
         private void onListViewButtonChecked(object sender, RoutedEventArgs e)
         {
 
             ContactsListView.View = ContactsListView.FindResource("PlainView") as ViewBase;
-            ContactsListView.Background = null;
+            DataGridView.Visibility = Visibility.Collapsed;
+            Sort.Visibility = Visibility.Visible;
         }
 
         private void onGridViewButtonChecked(object sender, RoutedEventArgs e)
         {
-            ContactsListView.View = ContactsListView.FindResource("GridView") as ViewBase;
-            ContactsListView.Background = new SolidColorBrush(Colors.White);
+            DataGridView.Visibility = Visibility.Visible;
+            Sort.Visibility = Visibility.Collapsed;
         }
 
         private void onContactsListViewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -115,6 +117,14 @@ namespace WinPure.ContactManagement.Client.Pages
         private void onDeleteButtonClick(object sender, RoutedEventArgs e)
         {
             DeleteButton.CommandParameter = ContactsListView.SelectedItems;
+        }
+
+        private void onDataGridViewBeginEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            var dialog = new ContactsEditor((Contact)DataGridView.SelectedItem);
+            ModalDialog = dialog;
+            dialog.Closed += onEditDialogClosed;
+            dialog.Show();
         }
     }
 }

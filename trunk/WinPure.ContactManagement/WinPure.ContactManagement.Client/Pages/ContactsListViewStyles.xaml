@@ -39,38 +39,8 @@
   	<Setter Property="FontSize" Value="13.333"/>
   </Style>-->
 
-
   <ListView:PlainView x:Key="PlainView" ItemTemplate="{StaticResource ContactSmallDataTemplate}" ItemWidth="300" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
-  <GridView x:Key="GridView" >
-     <GridViewColumn DisplayMemberBinding="{Binding Title}"
-                            Header="Title"/>
-        <GridViewColumn DisplayMemberBinding="{Binding FirstName}"
-                            Header="First Name"/>
-        <GridViewColumn DisplayMemberBinding="{Binding LastName}"
-                            Header="Last Name"/>
-        <GridViewColumn DisplayMemberBinding="{Binding Suffix}"
-                            Header="Suffix"/>
-        <GridViewColumn DisplayMemberBinding="{Binding JobTitle}"
-                            Header="Job Title"/>
-        <GridViewColumn DisplayMemberBinding="{Binding Company.CompanyName}"
-                            Header="Company"/>
-        <GridViewColumn DisplayMemberBinding="{Binding Telephone}"
-                            Header="Telephone"/>
-        <GridViewColumn DisplayMemberBinding="{Binding Fax}"
-                            Header="Fax"/>
-        <GridViewColumn DisplayMemberBinding="{Binding Mobile}"
-                            Header="Mobile"/>
-        <GridViewColumn DisplayMemberBinding="{Binding HomeTelephone}"
-                            Header="Home Telephone"/>
-        <GridViewColumn DisplayMemberBinding="{Binding Website}"
-                            Header="Website"/>
-        <GridViewColumn DisplayMemberBinding="{Binding EmailAddress}"
-                            Header="EmailAddress"/>
-        <GridViewColumn DisplayMemberBinding="{Binding EmailAddress1}"
-                            Header="EmailAddress1"/>
-        <GridViewColumn DisplayMemberBinding="{Binding EmailAddress2}"
-                            Header="EmailAddress2"/>
-  </GridView>
+  
   <ListView:DefaultView x:Key="DefaultView" ItemTemplate="{StaticResource ContactDataTemplate}" ItemContainerStyle="{DynamicResource ListBoxItemStyle}"/>
   <Style x:Key="ListViewStyle" TargetType="{x:Type ListView}">
     <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
