@@ -182,7 +182,7 @@
     <Resource Include="Resources\Images\Logo.png" />
     <Content Include="..\WinPure.ContactManagement.Client.Data\Data.sdf">
       <Link>Data.sdf</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>

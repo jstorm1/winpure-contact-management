@@ -132,7 +132,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
             }
             Context.SaveChanges();
 
-            RefreshCache(OrderByField);
+           // RefreshCache(OrderByField);
         }
 
         /// <summary>

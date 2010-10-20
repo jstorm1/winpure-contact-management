@@ -65,6 +65,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
             }
 
             var records = GetRecords();
+            var contacts = new List<Contact>();
 
             for (int i = 0; i < records.Count; i++)
             {
@@ -77,11 +78,14 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                                                                                     ((IDictionary<string, object>)
                                                                                      record)[field.FileField], null);
                 }
+                //ContactsManager.Current.Save(contact);
+                contacts.Add(contact);
 
-                ContactsManager.Current.Save(contact);
-
-                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double)(i + 1) / records.Count * 100.0, 0)));
+                _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double)(i + 1) / records.Count * 80.0, 0)));
             }
+
+            ContactsManager.Current.Save(contacts);
+            _importWorker.ReportProgress(100);
         }
 
         public void SetCurrentFile(string path)
