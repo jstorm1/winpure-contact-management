@@ -213,7 +213,7 @@
       		<MenuItem Click="onCsvImportButtonClick" Header="CSV..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477" d:LayoutOverrides="Width"/>
       		<MenuItem Click="onExcelImportButtonClick" Header="Excel..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477" d:LayoutOverrides="Width"/>
       	</MenuItem>
-      	<MenuItem Header="Export" Margin="0,3,0,0" Style="{DynamicResource SimpleMenuItem}" Width="120">
+      	<MenuItem Header="Export" Margin="0,3,0,0" Style="{DynamicResource SimpleMenuItem}" Width="120" Visibility="Collapsed">
       		<MenuItem Header="Outlook..." Style="{DynamicResource SimpleMenuItem}" Background="#00252222" Foreground="White" Width="130.477"/>
       		<MenuItem  Header="CSV..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477"/>
       		<MenuItem  Header="Excel..." Style="{DynamicResource SimpleMenuItem}" Foreground="White" Width="130.477"/>
