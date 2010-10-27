@@ -332,6 +332,7 @@
     	          ItemsSource="{Binding Companies}"
     	          SelectedItem="{Binding SelectedCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
     	          FontSize="13.333"
+				  IsReadOnly="True"
                 MouseDoubleClick="onDataGridViewMouseDoubleClick"
                 PreviewKeyDown="onDataGridViewKeyDown" HorizontalGridLinesBrush="#FFB2B2B2" VerticalGridLinesBrush="#FFB2B2B2" RowHeaderWidth="0">
         <DataGrid.Columns>

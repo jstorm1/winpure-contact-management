@@ -379,7 +379,7 @@
                    FontSize="18.667" VerticalAlignment="Bottom"/>
       </Border>
       <Grid x:Name="ContactDetailsGrid" Margin="0" VerticalAlignment="Top" Grid.Row="1">
-        <StackPanel Margin="0,8,8,8" DataContext="{Binding SelectedContact}" VerticalAlignment="Center">
+        <StackPanel Margin="0,8,8,8" DataContext="{Binding SelectedContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center">
           <Grid Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="{DynamicResource DetailInfoLabelsColumnLength}"/>
@@ -470,7 +470,7 @@
                        FontSize="16" VerticalAlignment="Center" Foreground="#99FFFFFF"/>
 
             <Grid Grid.Column="1" Background="#0EFFFFFF">
-              <TextBlock TextWrapping="Wrap" Text="{Binding Company.Name}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000"/>
+              <TextBlock TextWrapping="Wrap" Text="{Binding Company.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#CC000000"/>
             </Grid>
           </Grid>
           <Grid Margin="0,10,0,0">
