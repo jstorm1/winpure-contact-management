@@ -1,5 +1,6 @@
 ﻿#region References
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             if (IsDesignMode) return;
 
             Contacts = ContactsManager.Current.LoadContacts();
-            ContactsManager.Current.CacheChanged += delegate { Contacts = ContactsManager.Current.ContactsCache; };
+            ContactsManager.Current.CacheChanged += onCacheChanged;
 
             SortByField = ContactsManager.Current.OrderByField;
         }
@@ -67,7 +68,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
             get { return _selectedContact; }
             set
             {
-                if (_selectedContact == value) return;
+                //if (_selectedContact == value) return;
                 _selectedContact = value;
                 RaisePropertyChanged("SelectedContact");
             }
@@ -106,6 +107,18 @@ namespace WinPure.ContactManagement.Client.ViewModels
         #endregion
 
         #region Methods
+
+        private void onCacheChanged(object sender, EventArgs e)
+        {
+            Contacts = ContactsManager.Current.ContactsCache;
+            if (SelectedContact != null)
+            {
+                var contactId = SelectedContact.ContactID;
+                SelectedContact = null;
+                SelectedContact = Contacts.Where(c => c.ContactID == contactId).FirstOrDefault();
+            }
+                
+        }
 
         private void changeContactsOrder(string fieldname)
         {
@@ -156,7 +169,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
                         WPFMessageBoxImage.Question);
             }
 
-            if (result == WPFMessageBoxResult.No) return;
+            if (result != WPFMessageBoxResult.Yes) return;
 
             if (items == null || items.Count == 0)
             {

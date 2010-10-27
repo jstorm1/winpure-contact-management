@@ -2,10 +2,10 @@
 {
     public enum WPFMessageBoxResult
     {
+        Cancel,
         Yes,
         No,
         Ok,
-        Cancel,
         Close
     }
 }

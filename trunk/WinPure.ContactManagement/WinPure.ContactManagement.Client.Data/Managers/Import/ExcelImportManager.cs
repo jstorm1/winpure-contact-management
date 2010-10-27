@@ -101,7 +101,9 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                     contact.GetType().GetProperty((string) field.CrmField).SetValue(contact,value, null);
                 }
                 //ContactsManager.Current.Save(contact);
-                
+
+                if (contact.Title == null) contact.Title = string.Empty;
+                if (contact.Suffix == null) contact.Suffix = string.Empty;
                 if (contact.FirstName == null) contact.FirstName = string.Empty;
                 if (contact.LastName == null) contact.LastName = string.Empty;
 

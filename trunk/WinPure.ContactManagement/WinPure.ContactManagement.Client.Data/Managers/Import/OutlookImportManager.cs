@@ -184,6 +184,11 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                 var company = CompaniesManager.Current.LoadCompanies().Where(c => c.Name == contactItem.CompanyName).FirstOrDefault();
                 contact.Company = company;
 
+                if (contact.Title == null) contact.Title = string.Empty;
+                if (contact.Suffix == null) contact.Suffix = string.Empty;
+                if (contact.FirstName == null) contact.FirstName = string.Empty;
+                if (contact.LastName == null) contact.LastName = string.Empty;
+
                 ContactsManager.Current.Save(contact);
 
                 _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double)(i + 1) / contacts.Count * 100.0, 0)));

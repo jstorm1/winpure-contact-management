@@ -177,7 +177,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
                         WPFMessageBoxImage.Question);
             }
 
-            if (result == WPFMessageBoxResult.No) return;
+            if (result != WPFMessageBoxResult.Yes) return;
 
             if (itemsToDelte == null)
             {

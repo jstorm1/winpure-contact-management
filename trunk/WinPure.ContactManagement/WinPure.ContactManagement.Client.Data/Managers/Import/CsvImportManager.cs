@@ -81,6 +81,11 @@ namespace WinPure.ContactManagement.Client.Data.Managers.Import
                 //ContactsManager.Current.Save(contact);
                 contacts.Add(contact);
 
+                if (contact.Title == null) contact.Title = string.Empty;
+                if (contact.Suffix == null) contact.Suffix = string.Empty;
+                if (contact.FirstName == null) contact.FirstName = string.Empty;
+                if (contact.LastName == null) contact.LastName = string.Empty;
+
                 _importWorker.ReportProgress(Convert.ToInt32(Math.Round((double)(i + 1) / records.Count * 80.0, 0)));
             }
 

@@ -131,8 +131,7 @@ namespace WinPure.ContactManagement.Client.Data.Managers.DataManagers
                 Context.Contacts.AddObject(contact);
             }
             Context.SaveChanges();
-
-           // RefreshCache(OrderByField);
+            RefreshCache(OrderByField);
         }
 
         /// <summary>

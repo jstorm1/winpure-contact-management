@@ -190,7 +190,7 @@ namespace WinPure.ContactManagement.Client.ViewModels
                                                             LanguageDictionary.CurrentDictionary.Translate<string>("Messages.DeleteConnection", "Message"),
                                                             WPFMessageBoxButtons.YesNo,
                                                             WPFMessageBoxImage.Question);
-            if (result == WPFMessageBoxResult.No) return;
+            if (result != WPFMessageBoxResult.Yes) return;
 
             SyncServerConnectionsManager.Current.Delete(_selectedSyncServerConnection);
         }
