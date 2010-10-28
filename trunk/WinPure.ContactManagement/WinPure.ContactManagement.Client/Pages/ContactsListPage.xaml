@@ -268,7 +268,7 @@
       		                    Header="Suffix"/>
       		<DataGridTextColumn Binding="{Binding JobTitle}"
       		                    Header="Job Title" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>
-      		<DataGridTextColumn Binding="{Binding Company.CompanyName}"
+      		<DataGridTextColumn Binding="{Binding Company.Name}"
       		                    Header="Company"/>
       		<DataGridTextColumn Binding="{Binding Telephone}"
       		                    Header="Telephone" HeaderStyle="{DynamicResource DataGridViewColumnHeaderStyle}" CellStyle="{DynamicResource DataGridColumnCellStyle}"/>

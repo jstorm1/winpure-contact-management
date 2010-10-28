@@ -153,6 +153,7 @@
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\DataSources\WinPure.ContactManagement.Client.Data.Model.EntitiesDataContext.datasource" />
     <None Include="Service References\SyncService\item.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -20,40 +20,40 @@
             <PropertyRef Name="CompanyId" />
           </Key>
           <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Industry" Type="nvarchar" MaxLength="100" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
-          <Property Name="Website" Type="nvarchar" MaxLength="100" />
-          <Property Name="Address1" Type="nvarchar" MaxLength="100" />
-          <Property Name="Address2" Type="nvarchar" MaxLength="100" />
-          <Property Name="Address3" Type="nvarchar" MaxLength="100" />
-          <Property Name="Town" Type="nvarchar" MaxLength="100" />
-          <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Postcode" Type="nvarchar" MaxLength="100" />
-          <Property Name="Description" Type="nvarchar" MaxLength="200" />
-          <Property Name="County" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+          <Property Name="Industry" Type="nvarchar" />
+          <Property Name="Phone" Type="nvarchar" />
+          <Property Name="Fax" Type="nvarchar" />
+          <Property Name="Website" Type="nvarchar" />
+          <Property Name="Address1" Type="nvarchar" />
+          <Property Name="Address2" Type="nvarchar" />
+          <Property Name="Address3" Type="nvarchar" />
+          <Property Name="Town" Type="nvarchar" />
+          <Property Name="Country" Type="nvarchar" Nullable="false" />
+          <Property Name="Postcode" Type="nvarchar" />
+          <Property Name="Description" Type="nvarchar" />
+          <Property Name="County" Type="nvarchar" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="ContactID" />
           </Key>
           <Property Name="ContactID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="5" />
-          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
-          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Suffix" Type="nvarchar" MaxLength="5" />
-          <Property Name="JobTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Title" Type="nvarchar" />
+          <Property Name="FirstName" Type="nvarchar" />
+          <Property Name="MiddleName" Type="nvarchar" />
+          <Property Name="LastName" Type="nvarchar" />
+          <Property Name="Suffix" Type="nvarchar" />
+          <Property Name="JobTitle" Type="nvarchar" />
           <Property Name="CompanyId" Type="uniqueidentifier" />
-          <Property Name="Telephone" Type="nvarchar" MaxLength="100" />
-          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
-          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
-          <Property Name="HomeTelephone" Type="nvarchar" MaxLength="100" />
-          <Property Name="Website" Type="nvarchar" MaxLength="100" />
-          <Property Name="EmailAddress1" Type="nvarchar" MaxLength="100" />
-          <Property Name="EmailAddress2" Type="nvarchar" MaxLength="100" />
-          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telephone" Type="nvarchar" />
+          <Property Name="Fax" Type="nvarchar" />
+          <Property Name="Mobile" Type="nvarchar" />
+          <Property Name="HomeTelephone" Type="nvarchar" />
+          <Property Name="Website" Type="nvarchar" />
+          <Property Name="EmailAddress1" Type="nvarchar" />
+          <Property Name="EmailAddress2" Type="nvarchar" />
+          <Property Name="EmailAddress" Type="nvarchar" />
         </EntityType>
         <EntityType Name="Settings">
           <Key>
@@ -125,7 +125,7 @@
           </Key>
           <Property Name="ContactID" Type="Guid" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="5" Unicode="true" FixedLength="false" DefaultValue="" />
-          <Property Name="FirstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="MiddleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="false" />
           <Property Name="Suffix" Type="String" MaxLength="5" Unicode="true" FixedLength="false" DefaultValue="" />
