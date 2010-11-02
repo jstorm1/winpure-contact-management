@@ -183,8 +183,20 @@
           <Value Id="Language.French" Text="French"/>
           <Value Id="Language.Spanish" Text="Spanish"/>
           <Value Id="Language.Italian" Text="Italian"/>
+
+  <!-- Cleansing Page -->
+  <Value Id="CleansingPage" Text="Cleansing" />
+      <!-- Statistics Tab -->
+      <Value Id="StatisticsTab" Header="Statistics" Text="Statistics" />
   
+      <!-- Case Conversion Tab -->
+      <Value Id="CaseConversionTab" Header="Case Conversion" Text="Case Conversion" />
   
+      <!-- Deduplication Tab -->
+      <Value Id="DeduplicationTab" Header="Deduplication" Text="Deduplication" />
+
+      <!-- Data Tab -->
+      <Value Id="DataTab" Header="Data" Text="Data" />
   
   <!--Contacts Editor-->
   <Value Id="ContactsEditor" Text="Contact"/>

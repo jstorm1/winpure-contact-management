@@ -176,14 +176,29 @@
         </i:Interaction.Triggers>
       </CommonControls:HorizontalMenuItem>
 
+   <!--Cleansing Button-->     
    <CommonControls:HorizontalMenuItem x:Name="CleansingButton"
                                          
-    		loc:Translate.Uid="MainMenu.CleansingButton"
-    		Text="{loc:Translate Cleansing}"
-    		Width="{loc:Translate 100}"
+    	loc:Translate.Uid="MainMenu.CleansingButton"
+    	Text="{loc:Translate Cleansing}"
+    	Width="{loc:Translate 100}"
            
-    		Image="Resources/Images/48x48/Cleansing_48x48.png"
-    		IconGlowColor="#FFA034D1"/>
+    	Image="Resources/Images/48x48/Cleansing_48x48.png"
+    	IconGlowColor="#FFA034D1">
+       
+       <i:Interaction.Triggers>
+          <i:EventTrigger EventName="Click">
+            <i:InvokeCommandAction x:Name="ShowCleansingPageAction"
+    					Command="{Binding NavigateCommand, ElementName=PagesSliderControl, Mode=OneWay}">
+
+              <i:InvokeCommandAction.CommandParameter>
+                <Pages:CleansingPage />
+              </i:InvokeCommandAction.CommandParameter>
+
+            </i:InvokeCommandAction>
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </CommonControls:HorizontalMenuItem>
 
     </CommonControls:HorizontalMenu>
 

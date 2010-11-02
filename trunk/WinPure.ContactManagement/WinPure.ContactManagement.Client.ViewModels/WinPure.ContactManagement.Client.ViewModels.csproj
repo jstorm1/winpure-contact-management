@@ -64,9 +64,19 @@
       <HintPath>..\ReferencedAssemblies\Transitionals.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferencedAssemblies\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFVisifire.Charts">
+      <HintPath>..\ReferencedAssemblies\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="Cleansing\CaseConversionViewModel.cs" />
+    <Compile Include="Cleansing\DeduplicationViewModel.cs" />
+    <Compile Include="Cleansing\StatisticsViewModel.cs" />
     <Compile Include="CompaniesViewModel.cs" />
     <Compile Include="CompanyEditorViewModel.cs" />
     <Compile Include="ContactEditorViewModel.cs" />
