@@ -52,6 +52,66 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
 #region Commands
 
+        private RelayCommand _moveAllFromSelectedColumnsToColumns;
+        /// <summary>
+        /// Move all values from 'Selected Columns' list box to 'Columns' list box
+        /// </summary>
+        public RelayCommand MoveAllFromSelectedColumnsToColumns
+        {
+            get
+            {
+                if (_moveAllFromSelectedColumnsToColumns == null)
+                    _moveAllFromSelectedColumnsToColumns = new RelayCommand(MoveAllFromSelectedColumnsToColumnsAction);
+
+                return _moveAllFromSelectedColumnsToColumns;
+            }
+        }
+
+        private RelayCommand _moveAllFromColumnsToSelectedColumns;
+        /// <summary>
+        /// Move all values from 'Columns' list box to 'Selected Columns' list box
+        /// </summary>
+        public RelayCommand MoveAllFromColumnsToSelectedColumns
+        {
+            get
+            {
+                if (_moveAllFromColumnsToSelectedColumns == null)
+                    _moveAllFromColumnsToSelectedColumns = new RelayCommand(MoveAllFromColumnsToSelectedColumnsAction);
+
+                return _moveAllFromColumnsToSelectedColumns;
+            }
+        }
+
+        private RelayCommand _moveFromSelectedColumnsToColumns;
+        /// <summary>
+        /// Move selected values form 'Selected Columns' list box to 'Columns' list box
+        /// </summary>
+        public RelayCommand MoveFromSelectedColumnsToColumns
+        {
+            get
+            {
+                if (_moveFromSelectedColumnsToColumns == null)
+                    _moveFromSelectedColumnsToColumns = new RelayCommand(MoveFromSelectedColumnsToColumnsAction);
+
+                return _moveFromSelectedColumnsToColumns;
+            }
+        }
+
+        private RelayCommand _moveFromColumnsToSelectedColumns;
+        /// <summary>
+        /// Move selected values form 'Columns' list box to 'Selected Columns' list box
+        /// </summary>
+        public RelayCommand MoveFromColumnsToSelectedColumns
+        {
+            get
+            {
+                if (_moveFromColumnsToSelectedColumns == null)
+                    _moveFromColumnsToSelectedColumns = new RelayCommand(MoveFromColumnsToSelectedColumnsAction);
+
+                return _moveFromColumnsToSelectedColumns;
+            }
+        }
+
         private RelayCommand<SelectionChangedEventArgs> _columnsSelectionChanged;
         /// <summary>
         /// Selection changed in 'Columns' list box
@@ -87,6 +147,54 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 #endregion
 
 #region Command Actions
+
+        /// <summary>
+        /// Move all values from 'Selected Columns' list box to 'Columns' list box
+        /// </summary>
+        private void MoveAllFromSelectedColumnsToColumnsAction()
+        {
+            for (int i = 0; i < SelectedColumns.Count; )
+            {
+                Columns.Add(SelectedColumns.ElementAt(i));
+                SelectedColumns.RemoveAt(i);
+            }
+        }
+
+        /// <summary>
+        /// Move all values from 'Columns' list box to 'Selected Columns' list box
+        /// </summary>
+        private void MoveAllFromColumnsToSelectedColumnsAction()
+        {
+            for (int i = 0; i < Columns.Count; )
+            {
+                SelectedColumns.Add(Columns.ElementAt(i));
+                Columns.RemoveAt(i);
+            }
+        }
+
+        /// <summary>
+        /// Move selected values form 'Selected Columns' list box to 'Columns' list box
+        /// </summary>
+        private void MoveFromSelectedColumnsToColumnsAction()
+        {
+            for (int i = 0; i < _selectedInSelectedColumns.Count; )
+            {
+                Columns.Add(_selectedInSelectedColumns.ElementAt(i));
+                SelectedColumns.Remove(_selectedInSelectedColumns.ElementAt(i));
+            }
+        }
+
+        /// <summary>
+        /// Move selected values form 'Columns' list box to 'Selected Columns' list box
+        /// </summary>
+        private void MoveFromColumnsToSelectedColumnsAction()
+        {
+            for (int i = 0; i < _selectedInColumns.Count; )
+            {
+                SelectedColumns.Add(_selectedInColumns.ElementAt(i));
+                Columns.Remove(_selectedInColumns.ElementAt(i));
+            }
+        }
 
         /// <summary>
         /// Selection changed in 'Columns' list box
