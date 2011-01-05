@@ -1,0 +1,17 @@
+﻿<CommonControls:PageControl x:Class="WinPure.ContactManagement.Client.Controls.TransitionsSamples.SecondPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Text="">
+	<CommonControls:PageControl.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FF409B3B" Offset="0"/>
+			<GradientStop Color="#FF275C24" Offset="1"/>
+		</LinearGradientBrush>
+	</CommonControls:PageControl.Background>
+    <Grid>
+    	<TextBlock TextWrapping="Wrap" Text="B" FontSize="96" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            
+    </Grid>
+</CommonControls:PageControl>

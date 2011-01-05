@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BA6463B2-BA1D-42AA-8754-DF9AFFD1754E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinPure.ContactManagement.Client.ViewModels</RootNamespace>
+    <AssemblyName>WinPure.ContactManagement.Client.ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.29166, Culture=neutral, PublicKeyToken=30359002188bf5b0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Transitionals, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4747a3d6bcb35c80, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferencedAssemblies\Transitionals.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="CompaniesViewModel.cs" />
+    <Compile Include="CompanyEditorViewModel.cs" />
+    <Compile Include="ContactEditorViewModel.cs" />
+    <Compile Include="ContactsViewModel.cs" />
+    <Compile Include="Import\CSV\MappingScreenViewModel.cs" />
+    <Compile Include="Import\CSV\PreviewScreenViewModel.cs" />
+    <Compile Include="Import\CSV\ProgressScrenViewModel.cs" />
+    <Compile Include="Import\CSV\SelectFileViewModel.cs" />
+    <Compile Include="Import\Excel\MappingScreenViewModel.cs" />
+    <Compile Include="Import\Excel\PreviewScreenViewModel.cs" />
+    <Compile Include="Import\Excel\ProgressScrenViewModel.cs" />
+    <Compile Include="Import\Excel\SelectFileViewModel.cs" />
+    <Compile Include="Import\Outlook\OutlookImportProgressViewModel.cs" />
+    <Compile Include="Import\Outlook\OutlookPreviewScreenViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\BannerLogoViewModel.cs" />
+    <Compile Include="Settings\LanguagesTabViewModel.cs" />
+    <Compile Include="Settings\ViewTabViewModel.cs" />
+    <Compile Include="SynchronizationViewModel.cs" />
+    <Compile Include="SyncServerConnectionEditorViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.CommonControls\WinPure.ContactManagement.Client.CommonControls.csproj">
+      <Project>{1E399B48-BEDA-4D4E-BF89-F741DF1911E9}</Project>
+      <Name>WinPure.ContactManagement.Client.CommonControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.CustomMessageBox\WinPure.ContactManagement.Client.CustomMessageBox.csproj">
+      <Project>{FB5058F4-D8F2-4396-8703-C0F0DA8974B9}</Project>
+      <Name>WinPure.ContactManagement.Client.CustomMessageBox</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Data\WinPure.ContactManagement.Client.Data.csproj">
+      <Project>{F768494E-E29C-4653-B058-A733D730DB1F}</Project>
+      <Name>WinPure.ContactManagement.Client.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Client.Localization\WinPure.ContactManagement.Client.Localization.csproj">
+      <Project>{4BDC1BBD-F360-46D4-BF0B-31EFE0AD8862}</Project>
+      <Name>WinPure.ContactManagement.Client.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinPure.ContactManagement.Common\WinPure.ContactManagement.Common.csproj">
+      <Project>{21538910-F17E-4603-BF54-C0A5CCECC7D6}</Project>
+      <Name>WinPure.ContactManagement.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cleansing\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
