@@ -1,0 +1,50 @@
+﻿#region Reference
+
+using System;
+using System.Globalization;
+using System.Windows.Data;
+using WinPure.ContactManagement.Client.Controls.TransitionsSamples; 
+
+#endregion
+
+namespace WinPure.ContactManagement.Client.Helpers.Converters
+{
+    public class ContentSwicherConverter : IValueConverter
+    {
+        #region Fields
+        
+        private static readonly FirstPage FirstPage = new FirstPage();
+        private static readonly SecondPage SecondPage = new SecondPage(); 
+
+        #endregion
+
+        #region IValueConverter Members
+
+        /// <summary>
+        /// Converts a value. 
+        /// </summary>
+        /// <returns>
+        /// A converted value. If the method returns null, the valid null value is used.
+        /// </returns>
+        /// <param name="value">The value produced by the binding source.</param><param name="targetType">The type of the binding target property.</param><param name="parameter">The converter parameter to use.</param><param name="culture">The culture to use in the converter.</param>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool val = value is bool ? (bool) value : false;
+            return val ? (object) SecondPage : FirstPage;
+        }
+
+        /// <summary>
+        /// Converts a value. 
+        /// </summary>
+        /// <returns>
+        /// A converted value. If the method returns null, the valid null value is used.
+        /// </returns>
+        /// <param name="value">The value that is produced by the binding target.</param><param name="targetType">The type to convert to.</param><param name="parameter">The converter parameter to use.</param><param name="culture">The culture to use in the converter.</param>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
+}

@@ -1,0 +1,206 @@
+﻿<Window x:Class="WinPure.ContactManagement.Client.ShellWindow"
+        xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+        xmlns:loc="clr-namespace:WinPure.ContactManagement.Client.Localization;assembly=WinPure.ContactManagement.Client.Localization"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Pages="clr-namespace:WinPure.ContactManagement.Client.Pages"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        mc:Ignorable="d"
+        
+        loc:Translate.Uid="ShellWindow"
+        
+        Title="{loc:Translate WinPure Ltd - Contact Management Application}"
+        Height="480"
+        Width="640"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource OldWindowBackground}">
+
+  <!--Resources-->
+  <Window.Resources>
+
+    <LinearGradientBrush x:Key="OldWindowBackground" EndPoint="0.5,1"
+                         StartPoint="0.5,0">
+      <GradientStop Color="#FF7B7B7B" Offset="1" />
+      <GradientStop Color="#FFFEFEFA" />
+    </LinearGradientBrush>
+
+  </Window.Resources>
+
+  <!--LayoutRoot-->
+  <Grid x:Name="LayoutRoot" Background="{x:Null}">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="75" />
+      <RowDefinition />
+      <RowDefinition Height="100" />
+    </Grid.RowDefinitions>
+
+
+
+
+    <!--Header-->
+    <Border x:Name="Header"
+            Background="#72FFFFFF"
+            BorderBrush="#FF7B7B7B"
+            BorderThickness="0,0,0,1">
+
+      <!--Logo-->
+      <Image x:Name="Logo"
+             Margin="0"
+             Source="Resources/Images/Logo_Header_450x80.png"
+             VerticalAlignment="Center" Width="450" Height="80"
+             HorizontalAlignment="Center"/>
+
+    </Border>
+
+
+
+    <!--Body-->
+    <Grid x:Name="Body" Grid.Row="1" >
+
+      <Grid.Background>
+        <RadialGradientBrush Center="0.499,0.008" GradientOrigin="0.499,0.008" RadiusY="0.935">
+          <GradientStop Offset="1"/>
+          <GradientStop Color="White"/>
+        </RadialGradientBrush>
+      </Grid.Background>
+
+      <!--Pages Presenter-->
+      <CommonControls:PagesSliderControl x:Name="PagesSliderControl" Margin="20,8,20,14"/>
+
+    </Grid>
+
+
+
+
+
+    <!--Main Menu-->
+    <CommonControls:HorizontalMenu x:Name="MainMenu" Margin="0" Grid.Row="2">
+
+      <!--Contacts Button-->
+      <CommonControls:HorizontalMenuItem x:Name="ContactsButton"
+                                         
+    		loc:Translate.Uid="MainMenu.ContactsButton"
+    		Text="{loc:Translate Contacts}"                                         
+    		Width="{loc:Translate 100}"
+                                         
+    		Image="Resources/Images/48x48/Contacts_48x48.png"
+    		IconGlowColor="#FFCA8229">
+
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="Click">
+            <i:InvokeCommandAction x:Name="ShowContactsPageAction"
+    					Command="{Binding NavigateCommand, ElementName=PagesSliderControl, Mode=OneWay}">
+
+              <i:InvokeCommandAction.CommandParameter>
+                <Pages:ContactsListPage />
+              </i:InvokeCommandAction.CommandParameter>
+
+            </i:InvokeCommandAction>
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </CommonControls:HorizontalMenuItem>
+
+      <!--Companies Button-->
+      <CommonControls:HorizontalMenuItem x:Name="CompaniesButton"
+                                         
+    		loc:Translate.Uid="MainMenu.CompaniesButton"
+    		Text="{loc:Translate Companies}"
+    		Width="{loc:Translate 100}"
+           
+    		Image="Resources/Images/48x48/Companies_48x48.png"
+    		IconGlowColor="#FF427EB2">
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="Click">
+            <i:InvokeCommandAction x:Name="ShowCompaniesPageAction"
+    					Command="{Binding NavigateCommand, ElementName=PagesSliderControl, Mode=OneWay}">
+
+              <i:InvokeCommandAction.CommandParameter>
+                <Pages:CompaniesListPage />
+              </i:InvokeCommandAction.CommandParameter>
+
+            </i:InvokeCommandAction>
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </CommonControls:HorizontalMenuItem>
+
+      <!--Synchronize Button-->
+      <CommonControls:HorizontalMenuItem x:Name="SynchrinizeButton"
+                                         
+    		loc:Translate.Uid="MainMenu.SynchronizeButton"
+    		Text="{loc:Translate Synchronize}"
+    		Width="{loc:Translate 100}"
+           
+    		Image="Resources/Images/48x48/Sync_48x48.png"
+    		IconGlowColor="#FF4FD647">
+
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="Click">
+            <i:InvokeCommandAction x:Name="ShowSynchronizationPageAction"
+    					Command="{Binding NavigateCommand, ElementName=PagesSliderControl, Mode=OneWay}">
+
+              <i:InvokeCommandAction.CommandParameter>
+                <Pages:SynchronizationPage />
+              </i:InvokeCommandAction.CommandParameter>
+
+            </i:InvokeCommandAction>
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </CommonControls:HorizontalMenuItem>
+
+      <!--Settings Button-->
+      <CommonControls:HorizontalMenuItem x:Name="SettingsButton"
+                                         
+    		loc:Translate.Uid="MainMenu.SettingsButton"
+    		Text="{loc:Translate Settings}"
+    		Width="{loc:Translate 100}"
+           
+    		Image="Resources/Images/48x48/Settings_48x48.png"
+    		IconGlowColor="Red">
+
+        <i:Interaction.Triggers>
+          <i:EventTrigger EventName="Click">
+            <i:InvokeCommandAction x:Name="ShowSettingsPageAction"
+    					Command="{Binding NavigateCommand, ElementName=PagesSliderControl, Mode=OneWay}">
+
+              <i:InvokeCommandAction.CommandParameter>
+                <Pages:SettingsPage />
+              </i:InvokeCommandAction.CommandParameter>
+
+            </i:InvokeCommandAction>
+          </i:EventTrigger>
+        </i:Interaction.Triggers>
+      </CommonControls:HorizontalMenuItem>
+
+            <!--Cleansing Button-->
+            <CommonControls:HorizontalMenuItem x:Name="CleansingButton"
+                                         
+    	loc:Translate.Uid="MainMenu.CleansingButton"
+    	Text="{loc:Translate Cleansing}"
+    	Width="{loc:Translate 100}"
+           
+    	Image="Resources/Images/48x48/Cleansing_48x48.png"
+    	IconGlowColor="#FFA034D1">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction x:Name="ShowCleansingPageAction"
+    					Command="{Binding NavigateCommand, ElementName=PagesSliderControl, Mode=OneWay}">
+
+                            <i:InvokeCommandAction.CommandParameter>
+                                <Pages:CleansingPage />
+                            </i:InvokeCommandAction.CommandParameter>
+
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </CommonControls:HorizontalMenuItem>
+
+        </CommonControls:HorizontalMenu>
+
+    </Grid>
+</Window>

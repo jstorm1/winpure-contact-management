@@ -1,0 +1,282 @@
+﻿<CommonControls:ModalDialog x:Class="WinPure.ContactManagement.Client.Pages.Modal.CompaniesEditor"
+                            xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+                            xmlns:ViewModels="clr-namespace:WinPure.ContactManagement.Client.ViewModels;assembly=WinPure.ContactManagement.Client.ViewModels"
+                            xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters"
+                            xmlns:loc="clr-namespace:WinPure.ContactManagement.Client.Localization;assembly=WinPure.ContactManagement.Client.Localization"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                            
+                            x:Name="modalDialog" 
+                            mc:Ignorable="d" 
+                            Height="620" Width="507" 
+                            Background="#FF4881AE"
+                            
+                            loc:Translate.Uid="CompaniesEditor"
+                            Text="{loc:Translate Company}" 
+                            
+                            BorderColor="#FF3D3D3D">
+
+	<CommonControls:ModalDialog.Resources>
+		<WinPure_ContactManagement_Client_Helpers_Converters:BooleanToVisibilityOppositeConverter x:Key="BooleanToVisibilityOppositeConverter"/>
+	</CommonControls:ModalDialog.Resources>
+
+    <CommonControls:ModalDialog.DataContext>
+        <ViewModels:CompanyEditorViewModel />
+    </CommonControls:ModalDialog.DataContext>
+    
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="Auto" MinHeight="489.639"/>
+    		<RowDefinition/>
+    	</Grid.RowDefinitions>
+    	<StackPanel Margin="0">
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="188.853"/>
+    				<ColumnDefinition/>
+    				<ColumnDefinition Width="Auto"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.CompanyName"
+                     Text="{loc:Translate Company Name:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" 
+                     Foreground="#99FFFFFF" HorizontalAlignment="Right"
+                     Margin="0,0,10,0"/>
+          
+    			<TextBox x:Name="textBox" Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="0"/>
+    			
+          <TextBlock Grid.Column="2" TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Validation.CompanyExists"
+                     Text="{loc:Translate Already Exists}" 
+                     
+                     FontSize="12" VerticalAlignment="Center" Foreground="#FFFFF13A" 
+                     Margin="5,0,0,0" 
+                     Visibility="{Binding IsCompanyNameUnique, Converter={StaticResource BooleanToVisibilityOppositeConverter}, Mode=OneWay}"/>
+          
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.Industry"
+                     Text="{loc:Translate Industry:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Industry, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.Telephone"
+                     Text="{loc:Translate Phone:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" 
+                     Foreground="#99FFFFFF" HorizontalAlignment="Right" 
+                     Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Phone, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.Fax"
+                     Text="{loc:Translate Fax:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" 
+                     Foreground="#99FFFFFF" HorizontalAlignment="Right" 
+                     Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Fax, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap" 
+                     
+                     loc:Translate.Uid="Details.Website"
+                     Text="{loc:Translate WebSite:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Website, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap" 
+                     
+                     loc:Translate.Uid="Details.Address1"
+                     Text="{loc:Translate Address 1:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" 
+                     Foreground="#99FFFFFF" HorizontalAlignment="Right" 
+                     Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Address1, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap" 
+                     
+                     loc:Translate.Uid="Details.Address2"
+                     Text="{loc:Translate Address 2:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Address2, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap" 
+                     
+                     loc:Translate.Uid="Details.Address3"
+                     Text="{loc:Translate Address 3:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" 
+                     Foreground="#99FFFFFF" HorizontalAlignment="Right" 
+                     Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Address3, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.Town"
+                     Text="{loc:Translate Town:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" 
+                     Foreground="#99FFFFFF" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Town, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.County"
+                     Text="{loc:Translate County:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.County, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.Postcode"
+                     Text="{loc:Translate Postcode:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Postcode, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.Country"
+                     Text="{loc:Translate Country:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+    		</Grid>
+    		<Grid Height="32" Margin="5,5,5,0">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.391*"/>
+    				<ColumnDefinition Width="0.609*"/>
+    			</Grid.ColumnDefinitions>
+    			
+          <TextBlock TextWrapping="Wrap"
+                     
+                     loc:Translate.Uid="Details.Description"
+                     Text="{loc:Translate Description:}" 
+                     
+                     VerticalAlignment="Center" FontSize="16" Foreground="#99FFFFFF"
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+          
+    			<TextBox Grid.Column="1" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" Background="#CCFFFFFF" BorderBrush="White" Text="{Binding Company.Description, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+    		</Grid>
+    	</StackPanel>
+    	
+      <Button x:Name="SaveButton"
+              
+              loc:Translate.Uid="ActionButtons.SaveButton"
+              Content="{loc:Translate Save}" 
+              
+              HorizontalAlignment="Right" Margin="0,0,112,0" Width="100" 
+              FontSize="16" Click="onSaveButtonClick" Command="{Binding SaveCommand, Mode=OneWay}" 
+              Style="{DynamicResource ButtonStyle1}" Foreground="White" Cursor="Hand" 
+              Grid.Row="1" VerticalAlignment="Center" Height="35" IsDefault="True"/>
+      
+    	<Button x:Name="CancelButton"
+              
+              loc:Translate.Uid="ActionButtons.CancelButton"
+              Content="{loc:Translate Cancel}" 
+              
+              HorizontalAlignment="Right" Margin="0,0,8,0" Width="100" FontSize="16" 
+              Click="onCancelButtonClick" Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+              Cursor="Hand" Grid.Row="1" VerticalAlignment="Center" Height="35" Command="{Binding CancelCommand, Mode=OneWay}" 
+              IsCancel="True"/>
+      
+    </Grid>
+</CommonControls:ModalDialog>

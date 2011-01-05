@@ -1,0 +1,181 @@
+﻿#region References
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Xml;
+using WinPure.ContactManagement.Client.Localization; 
+
+#endregion
+
+namespace WinPure.ContactManagement.Client.Helpers
+{
+    public class XmlLanguageDictionary : LanguageDictionary
+    {
+        #region Fields
+
+        private readonly Dictionary<string, Dictionary<string, string>> _data =
+            new Dictionary<string, Dictionary<string, string>>();
+
+        private string _cultureName;
+        private string _englishName;
+        private string _path;
+
+        #endregion
+
+        #region Constructor
+
+        public XmlLanguageDictionary(string path)
+        {
+            if (!File.Exists(path))
+            {
+                throw new ArgumentException(string.Format("File {0} doesn't exist", path));
+            }
+            _path = path;
+        }
+
+        #endregion
+
+        #region Fields
+
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; }
+        }
+
+        public override string CultureName
+        {
+            get { return _cultureName; }
+        }
+
+        public override string EnglishName
+        {
+            get { return _englishName; }
+        }
+
+        #endregion
+
+        #region Methods
+
+        protected override void OnLoad()
+        {
+            var xmlDocument = new XmlDocument();
+            xmlDocument.Load(_path);
+            if (xmlDocument.DocumentElement.Name != "Dictionary")
+            {
+                throw new XmlException("Invalid root element. Must be Dictionary");
+            }
+            XmlAttribute englishNameAttribute = xmlDocument.DocumentElement.Attributes["EnglishName"];
+            if (englishNameAttribute != null)
+            {
+                _englishName = englishNameAttribute.Value;
+            }
+            XmlAttribute cultureNameAttribute = xmlDocument.DocumentElement.Attributes["CultureName"];
+            if (cultureNameAttribute != null)
+            {
+                _cultureName = cultureNameAttribute.Value;
+            }
+            foreach (XmlNode node in xmlDocument.DocumentElement.ChildNodes)
+            {
+                if (node.Name == "Value")
+                {
+                    var innerData = new Dictionary<string, string>();
+                    foreach (XmlAttribute attribute in node.Attributes)
+                    {
+                        if (attribute.Name == "Id")
+                        {
+                            if (!_data.ContainsKey(attribute.Value))
+                            {
+                                _data[attribute.Value] = innerData;
+                            }
+                        }
+                        else
+                        {
+                            innerData[attribute.Name] = attribute.Value;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected override void OnUnload()
+        {
+            _data.Clear();
+        }
+
+        protected override object OnTranslate(string uid, string vid, object defaultValue, Type type)
+        {
+            if (string.IsNullOrEmpty(uid))
+            {
+                #region Trace
+
+                Debug.WriteLine(string.Format("Uid must not be null or empty"));
+
+                #endregion
+
+                return defaultValue;
+            }
+            if (string.IsNullOrEmpty(vid))
+            {
+                #region Trace
+
+                Debug.WriteLine(string.Format("Vid must not be null or empty"));
+
+                #endregion
+
+                return defaultValue;
+            }
+            if (!_data.ContainsKey(uid))
+            {
+                #region Trace
+
+                Debug.WriteLine(string.Format("Uid {0} was not found in the {1} dictionary", uid, EnglishName));
+
+                #endregion
+
+                return defaultValue;
+            }
+            Dictionary<string, string> innerData = _data[uid];
+
+            if (!innerData.ContainsKey(vid))
+            {
+                #region Trace
+
+                Debug.WriteLine(string.Format("Vid {0} was not found for Uid {1}, in the {2} dictionary", vid, uid,
+                                              EnglishName));
+
+                #endregion
+
+                return defaultValue;
+            }
+            string textValue = innerData[vid];
+            try
+            {
+                if (type == typeof (object))
+                {
+                    return textValue;
+                }
+                
+                TypeConverter typeConverter = TypeDescriptor.GetConverter(type);
+                object translation = typeConverter.ConvertFromString(textValue);
+                return translation;
+            }
+            catch (Exception ex)
+            {
+                #region Trace
+
+                Debug.WriteLine(string.Format("Failed to translate text {0} in dictionary {1}:\n{2}", textValue,
+                                              EnglishName, ex.Message));
+
+                #endregion
+
+                return null;
+            }
+        }
+
+        #endregion
+    }
+}

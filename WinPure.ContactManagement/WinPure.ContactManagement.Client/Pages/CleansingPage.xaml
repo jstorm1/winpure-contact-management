@@ -1,0 +1,89 @@
+﻿<CommonControls:PageControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                            xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+                            xmlns:loc="clr-namespace:WinPure.ContactManagement.Client.Localization;assembly=WinPure.ContactManagement.Client.Localization" 
+                            x:Class="WinPure.ContactManagement.Client.Pages.CleansingPage"
+                            d:DesignHeight="598" d:DesignWidth="1048"
+							BorderColor="#FF373737"
+                            
+                            loc:Translate.Uid="CleansingPage"
+                            Text="{loc:Translate Cleansing}"
+                            
+                            mc:Ignorable="d">
+	
+<!-- Page Resources -->
+<CommonControls:PageControl.Resources>
+	<LinearGradientBrush x:Key="TabGridBackground" EndPoint="0.5,1" StartPoint="0.5,0">
+      <GradientStop Offset="0"/>
+      <GradientStop Color="#12FFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+</CommonControls:PageControl.Resources>
+	
+<!--Page Background-->
+<CommonControls:PageControl.Background>
+    <LinearGradientBrush EndPoint="0.5,1"
+                         StartPoint="0.5,0">
+      <GradientStop Color="#FFA436D6"
+                    Offset="0" />
+      <GradientStop Color="#FF691685"
+                    Offset="1" />
+    </LinearGradientBrush>
+  </CommonControls:PageControl.Background>
+  
+    <Grid x:Name="LayoutRoot" Background="{DynamicResource PageBackgroundGradient}">
+    	
+    	<TabControl x:Name="CleansingTabControl"
+		            FontSize="16"
+					TabStripPlacement="Left"
+					Background="{x:Null}"
+					BorderBrush="{x:Null}"
+					Padding="0">
+    		
+            <!-- Statistics Tab Item -->
+			<TabItem x:Name="StatisticsTabItem"
+			         
+					 loc:Translate.Uid="StatisticsTab"
+					 Header="{loc:Translate Statistics}"
+					 
+					 Style="{DynamicResource TabItemStyle}" Margin="0"
+                     Height="40" Width="200" FontSize="21.333" Foreground="White">
+
+                <Grid x:Name="StatisticsTabGrid" Background="{DynamicResource TabGridBackground}">
+                </Grid>
+
+            </TabItem>
+
+            <!-- Case Conversion Tab Item -->
+            <TabItem x:Name="CaseConversionTabItem"
+			         
+					 loc:Translate.Uid="CaseConversionTab"
+					 Header="{loc:Translate Case Conversion}"
+					 
+					 Style="{DynamicResource TabItemStyle}" Margin="0"
+                     Height="40" Width="200" FontSize="21.333" Foreground="White">
+
+                <Grid x:Name="CaseConversionTabGrid" Background="{DynamicResource TabGridBackground}">
+                </Grid>
+                
+            </TabItem>
+			
+			<TabItem x:Name="DeduplicationTabItem"
+			         
+					 loc:Translate.Uid="DeduplicationTab"
+					 Header="{loc:Translate Deduplication}"
+					 
+					 Style="{DynamicResource TabItemStyle}" Margin="0"
+                     Height="40" Width="200" FontSize="21.333" Foreground="White">
+
+                <Grid x:Name="DeduplicationTabGrid" Background="{DynamicResource TabGridBackground}">
+                </Grid>
+
+            </TabItem>
+			
+    	</TabControl>
+            
+    </Grid>
+</CommonControls:PageControl>
