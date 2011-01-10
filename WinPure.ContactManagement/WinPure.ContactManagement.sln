@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferencedAssemblies", "ReferencedAssemblies", "{C320334C-0B1F-4022-9EAE-59504902555A}"
 	ProjectSection(SolutionItems) = preProject
 		ReferencedAssemblies\Excel.dll = ReferencedAssemblies\Excel.dll
+		ReferencedAssemblies\GalaSoft.MvvmLight.Extras.WPF4.dll = ReferencedAssemblies\GalaSoft.MvvmLight.Extras.WPF4.dll
 		ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll = ReferencedAssemblies\GalaSoft.MvvmLight.WPF4.dll
 		ReferencedAssemblies\ICSharpCode.SharpZipLib.dll = ReferencedAssemblies\ICSharpCode.SharpZipLib.dll
 		ReferencedAssemblies\LumenWorks.Framework.IO.dll = ReferencedAssemblies\LumenWorks.Framework.IO.dll
@@ -65,10 +66,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPure.ContactManagement.Client.Localization", "WinPure.ContactManagement.Client.Localization\WinPure.ContactManagement.Client.Localization.csproj", "{4BDC1BBD-F360-46D4-BF0B-31EFE0AD8862}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -183,5 +180,9 @@ Global
 		{2CEE052C-7AB8-49FF-9234-4460DCFC81D4} = {C320334C-0B1F-4022-9EAE-59504902555A}
 		{B3E17F7A-F87B-41F3-BF6A-29C17B41B150} = {1A2E20DD-A6E5-405B-93BB-1DBE63754022}
 		{C6367F24-6D84-4581-A0E3-864F58BC5C36} = {1A2E20DD-A6E5-405B-93BB-1DBE63754022}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
