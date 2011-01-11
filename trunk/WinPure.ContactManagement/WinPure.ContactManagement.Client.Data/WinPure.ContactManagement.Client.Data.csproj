@@ -131,6 +131,7 @@
     <Compile Include="Managers\Import\OutlookImportManager.cs" />
     <Compile Include="Managers\TransitionsManager.cs" />
     <Compile Include="Model\Extensions\CompanyExtension.cs" />
+    <Compile Include="Model\Extensions\ContactExtension.cs" />
     <Compile Include="Model\Validators\Company.cs" />
     <Compile Include="Model\Validators\Contact.cs" />
     <Compile Include="Service References\SyncService\Reference.cs">
