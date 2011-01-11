@@ -72,6 +72,20 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// </summary>        
         public int CellsOption { get; set; }
 
+        private Chart _chartControl;
+        public Chart ChartControl
+        {
+            get
+            {
+                return _chartControl;
+            }
+            set
+            {
+                _chartControl = value;
+                RaisePropertyChanged("ChartControl");
+            }
+        }
+
         /// <summary>
         /// Data for 'Columns' list box
         /// </summary>
@@ -95,6 +109,20 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             {
                 _dataTabItemVisibility = value;
                 RaisePropertyChanged("DataTabItemVisibility");
+            }
+        }
+
+        private int _dataTabControlSelectedTab;
+        public int DataTabControlSelectedTab
+        {
+            get
+            {
+                return _dataTabControlSelectedTab;
+            }
+            set
+            {
+                _dataTabControlSelectedTab = value;
+                RaisePropertyChanged("DataTabControlSelectedTab");
             }
         }
 
@@ -289,6 +317,9 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                 ColumnsScore.Add(new ColumnScore(column,
                     GetScoreOfAColumn(column, (ColumnScoreOption)CellsOption)));
             }
+
+            CreateChart();
+            DataTabControlSelectedTab = 0;
         }
 
         #endregion
@@ -340,6 +371,69 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             {
                 return 0;
             }
+        }
+
+        private void CreateChart()
+        {
+            // Create a Chart element
+            Chart chart = new Chart();
+
+            chart.AnimatedUpdate = true;
+            chart.BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Gray);
+            chart.BorderThickness = new System.Windows.Thickness(0.5);
+            chart.Padding = new System.Windows.Thickness(5, 5, 10, 5);
+            chart.ShadowEnabled = true;
+            chart.View3D = ChartType == 0 ? true : false;
+
+            // Axis Y
+            Axis newAxisY = new Axis();
+
+            newAxisY.Suffix = "%";
+            newAxisY.AxisMaximum = 100;
+
+            ChartGrid chartGrid = new ChartGrid();
+            chartGrid.Interval = 1000;
+            chartGrid.InterlacedColor = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
+            newAxisY.Grids.Add(chartGrid);
+
+            chart.AxesY.Add(newAxisY);
+
+            // Axis X
+            Axis newAxisX = new Axis();
+
+            newAxisX.LineThickness = 0;
+
+            ChartGrid chartGridX = new ChartGrid();
+            chartGridX.Interval = 1;
+            newAxisX.Grids.Add(chartGridX);
+
+            chart.AxesX.Add(newAxisX);
+
+            // Create new DataSeries
+            DataSeries dataSeries = new DataSeries();
+            dataSeries.RenderAs = ChartType == 0 || ChartType == 1 ? RenderAs.Column : RenderAs.Line;
+
+            foreach (ColumnScore columnScore in ColumnsScore)
+            {
+
+                // Create a DataPoint
+                DataPoint dataPoint = new DataPoint();
+
+                dataPoint.AxisXLabel = columnScore.Name;
+
+                // Set the YValue using random number
+                dataPoint.YValue = columnScore.Score;
+
+                // Add DataPoint to DataSeries
+                dataSeries.DataPoints.Add(dataPoint);
+
+            }
+
+            // Add DataSeries to Chart
+            chart.Series.Add(dataSeries);
+
+            // Add chart for display
+            ChartControl = chart;
         }
 
         #endregion
