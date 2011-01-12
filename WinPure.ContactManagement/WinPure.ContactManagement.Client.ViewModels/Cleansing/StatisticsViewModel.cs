@@ -56,6 +56,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             Columns = new ObservableCollection<string>();
             SelectedColumns = new ObservableCollection<string>(ContactExtension.GetContactsColumnNames(new Contact()));
             ColumnsScore = new ObservableCollection<ColumnScore>();
+            FilteredContacts = new ObservableCollection<Contact>();
         }
 
         #endregion
@@ -125,6 +126,8 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                 RaisePropertyChanged("DataTabControlSelectedTab");
             }
         }
+
+        public ObservableCollection<Contact> FilteredContacts { get; set; }
 
         #endregion
 
@@ -234,6 +237,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
         }
 
+        private RelayCommand<MouseButtonEventArgs> _dataGridDoubleClick;
+        public RelayCommand<MouseButtonEventArgs> DataGridDoubleClick
+        {
+            get
+            {
+                if (_dataGridDoubleClick == null)
+                    _dataGridDoubleClick = new RelayCommand<MouseButtonEventArgs>(DataGridDoubleClickAction);
+
+                return _dataGridDoubleClick;
+            }
+        }
+
         #endregion
 
         #region Command Actions
@@ -322,6 +337,36 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             DataTabControlSelectedTab = 0;
         }
 
+        private void DataGridDoubleClickAction(MouseButtonEventArgs e)
+        {
+            string column = (e.OriginalSource as TextBlock).Text;
+            SynchronizedObservableCollection<Contact> contacts = ContactsManager.Current.ContactsCache;
+
+            FilteredContacts.Clear();
+
+            for (int i = 0; i < contacts.Count; i++)
+            {
+                Contact contact = contacts.ElementAt(i);
+
+                // Get value of specified column
+                string fieldValue = contact.GetType().GetProperty(column).GetValue(contact, null) as string;
+
+                if (CellsOption == 0)
+                {
+                    if (!string.IsNullOrEmpty(fieldValue))
+                        FilteredContacts.Add(contact);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(fieldValue))
+                        FilteredContacts.Add(contact);
+                }
+            }
+
+            DataTabItemVisibility = Visibility.Visible;
+            DataTabControlSelectedTab = 1;
+        }
+
         #endregion
 
         #region Helpers
@@ -375,6 +420,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
         private void CreateChart()
         {
+
             // Create a Chart element
             Chart chart = new Chart();
 
