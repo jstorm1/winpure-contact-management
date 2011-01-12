@@ -252,12 +252,56 @@
 					 Style="{DynamicResource TabItemStyle}" Margin="0"
                      Height="40" Width="200" FontSize="21.333" Foreground="White">
 
+                <TabItem.DataContext>
+                    <Cleansing:CaseConversionViewModel />
+                </TabItem.DataContext>
+
                 <Grid x:Name="CaseConversionTabGrid" Background="{DynamicResource TabGridBackground}">
+
+                    <StackPanel Orientation="Horizontal"
+					            HorizontalAlignment="Center"
+								VerticalAlignment="Center">
+
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Columns:"
+							FontSize="18" />
+                            <ListBox ItemsSource="{Binding Columns}"
+                                 Height="180"
+								 Margin="0,0,10,0" SelectionMode="Multiple"
+								 FontSize="16"
+								 Style="{DynamicResource ListBoxStyle}">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <cmd:EventToCommand PassEventArgsToCommand="True"
+                                                    Command="{Binding ColumnsSelectionChangedCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </ListBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical"
+                                    VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <GroupBox Header="Case" d:LayoutOverrides="Width">
+                                <StackPanel Orientation="Vertical">
+                                    <RadioButton Content="lower case" IsChecked="{Binding IsLowerCaseChecked, Mode=TwoWay}" />
+                                    <RadioButton Content="UPPER CASE" IsChecked="{Binding IsUpperCaseChecked, Mode=TwoWay}"/>
+                                    <RadioButton Content="Proper Case" IsChecked="{Binding IsProperCaseChecked, Mode=TwoWay}" />
+                                </StackPanel>
+                            </GroupBox>
+                            <Button Content="Convert" Command="{Binding ConvertCaseCommand}" Margin="0, 10, 0, 0"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
+									Height="42.616" />
+                        </StackPanel>
+
+                    </StackPanel>
+
                 </Grid>
-                
+
             </TabItem>
-			
-			<TabItem x:Name="DeduplicationTabItem"
+
+            <TabItem x:Name="DeduplicationTabItem"
 			         
 					 loc:Translate.Uid="DeduplicationTab"
 					 Header="{loc:Translate Deduplication}"
