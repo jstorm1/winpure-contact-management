@@ -17,30 +17,30 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
     public class CaseConversionViewModel : Base.ViewModelBase
     {
-#region Fields
+        #region Fields
 
         /// <summary>
         /// Selected values in 'Columns' list box
         /// </summary>
         private IList<string> _selectedInColumns = new List<string>();
 
-#endregion
+        #endregion
 
-#region Constructor
+        #region Constructor
 
         public CaseConversionViewModel()
         {
             Columns = new ObservableCollection<string>(
                 ContactExtension.GetContactsColumnNames(new Contact()));
 
-            IsLowerCaseChecked  = false;
-            IsUpperCaseChecked  = false;
+            IsLowerCaseChecked = false;
+            IsUpperCaseChecked = false;
             IsProperCaseChecked = false;
         }
 
-#endregion
+        #endregion
 
-#region Properties
+        #region Properties
 
         public bool? IsLowerCaseChecked { get; set; }
         public bool? IsUpperCaseChecked { get; set; }
@@ -48,21 +48,116 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
         public ObservableCollection<string> Columns { get; set; }
 
-#endregion
+        #endregion
 
-#region Commands
+        #region Commands
 
+        private RelayCommand _convertCaseCommand;
+        public RelayCommand ConvertCaseCommand
+        {
+            get
+            {
+                if (_convertCaseCommand == null)
+                    _convertCaseCommand = new RelayCommand(ConvertCaseAction);
 
-#endregion
+                return _convertCaseCommand;
+            }
+        }
 
-#region Commands Actions
+        private RelayCommand<SelectionChangedEventArgs> _columnsSelectionChangedCommand;
+        public RelayCommand<SelectionChangedEventArgs> ColumnsSelectionChangedCommand
+        {
+            get
+            {
+                if (_columnsSelectionChangedCommand == null)
+                    _columnsSelectionChangedCommand =
+                        new RelayCommand<SelectionChangedEventArgs>(ColumnsSelectionChangedAction);
 
+                return _columnsSelectionChangedCommand;
+            }
+        }
 
-#endregion
+        #endregion
 
-#region Helpers
+        #region Commands Actions
 
+        private void ConvertCaseAction()
+        {
+            if (IsLowerCaseChecked == true)
+                ConvertCellsToCase(Case.Lower);
 
-#endregion
+            if (IsUpperCaseChecked == true)
+                ConvertCellsToCase(Case.Upper);
+
+            if (IsProperCaseChecked == true)
+                ConvertCellsToCase(Case.Proper);
+        }
+
+        private void ColumnsSelectionChangedAction(SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0)
+                _selectedInColumns.Add(e.AddedItems[0] as string);
+            else
+                _selectedInColumns.Remove(e.RemovedItems[0] as string);
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private void ConvertCellsToCase(Case conversionCase)
+        {
+            SynchronizedObservableCollection<Contact> contacts = ContactsManager.Current.ContactsCache;
+
+            // If contacts is not empty
+            if (contacts.Count > 0)
+            {
+                foreach (string column in _selectedInColumns)
+                {
+                    // In every contact
+                    foreach (Contact contact in contacts)
+                    {
+                        PropertyInfo propertyInfo = contact.GetType().GetProperty(column);
+
+                        // Get value of specified column
+                        string fieldValue = propertyInfo.GetValue(contact, null) as string;
+
+                        if (!string.IsNullOrEmpty(fieldValue))
+                        {
+                            string newValue = string.Empty;
+
+                            switch (conversionCase)
+                            {
+                                case Case.Lower:
+
+                                    newValue = fieldValue.ToLower();
+
+                                    break;
+
+                                case Case.Upper:
+
+                                    newValue = fieldValue.ToUpper();
+
+                                    break;
+
+                                case Case.Proper:
+
+                                    fieldValue = fieldValue.ToLower();
+                                    newValue = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(fieldValue);
+
+                                    break;
+                            }
+
+                            // Set new value
+                            propertyInfo.SetValue(contact, newValue, null);
+                        }
+                    }
+                }
+            }
+
+            ContactsManager.Current.Save(contacts);
+        }
+
+        #endregion
     }
 }
