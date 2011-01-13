@@ -309,12 +309,99 @@
 					 Style="{DynamicResource TabItemStyle}" Margin="0"
                      Height="40" Width="200" FontSize="21.333" Foreground="White">
 
+                <TabItem.DataContext>
+                    <Cleansing:DeduplicationViewModel />
+                </TabItem.DataContext>
+
                 <Grid x:Name="DeduplicationTabGrid" Background="{DynamicResource TabGridBackground}">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <TextBlock Text="All Columns:" FontSize="18" />
+                            <ListBox 
+					         ItemsSource="{Binding Columns}" 
+							 FontSize="14" 
+							 SelectionMode="Multiple"
+							 Style="{DynamicResource ListBoxStyle}"
+							 Height="170">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <cmd:EventToCommand PassEventArgsToCommand="True"
+                                                    Command="{Binding ColumnsSelectionChanged}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </ListBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="1">
+
+                            <Button Content="&lt;" Height="26" Width="56" 
+					        Command="{Binding MoveFromSelectedColumnsToColumns}"
+							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Margin="0,20,0,0"/>
+
+                            <Button Content="&gt;" Height="26" Width="56" 
+					        Command="{Binding MoveFromColumnsToSelectedColumns}"
+							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand"/>
+
+                            <Button Content="&lt;&lt;" Width="56" Height="26" 
+							Command="{Binding MoveAllFromSelectedColumnsToColumns}"
+							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Margin="0,60,0,0"/>
+                            <Button Content="&gt;&gt;" Width="56"  Height="26"
+					        Command="{Binding MoveAllFromColumnsToSelectedColumns}"
+							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Grid.Column="2">
+                            <TextBlock Text="Search Columns:" FontSize="18" />
+                            <ListBox 
+					         ItemsSource="{Binding SelectedColumns}" 
+							 FontSize="14"
+							 SelectionMode="Multiple"
+							 Style="{DynamicResource ListBoxStyle}"
+							 Height="170">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <cmd:EventToCommand PassEventArgsToCommand="True"
+                                                    Command="{Binding SelectedColumnsSelectionChanged}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </ListBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="3"
+					            Orientation="Vertical">
+                            <TextBlock Text="Fuzzy Threshold Level"
+						           FontSize="16" />
+                            <Slider Orientation="Horizontal" />
+                            <Button Content="Find Duplications" Style="{DynamicResource ButtonStyle1}" Foreground="White" Width="190" Height="40" FontSize="16" Cursor="Hand"/>
+                        </StackPanel>
+
+                    </Grid>
+
+                    <DataGrid Grid.Row="1"></DataGrid>
+
                 </Grid>
 
             </TabItem>
-			
-    	</TabControl>
+
+        </TabControl>
             
     </Grid>
 </CommonControls:PageControl>

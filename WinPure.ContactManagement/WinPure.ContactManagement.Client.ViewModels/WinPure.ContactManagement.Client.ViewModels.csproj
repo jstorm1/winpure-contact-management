@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Cleansing\CaseConversionViewModel.cs" />
+    <Compile Include="Cleansing\DeduplicationViewModel.cs" />
     <Compile Include="Cleansing\StatisticsViewModel.cs" />
     <Compile Include="CompaniesViewModel.cs" />
     <Compile Include="CompanyEditorViewModel.cs" />
