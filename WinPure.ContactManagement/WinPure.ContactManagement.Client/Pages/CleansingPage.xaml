@@ -405,7 +405,7 @@
                             <DataGridTemplateColumn Header="Hide">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Hide" />
+                                        <Button Content="Hide" Command="{Binding DataContext.HideBtnClick, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -433,7 +433,7 @@
                             <DataGridTextColumn Header="Fax" Binding="{Binding Fax}"/>
                             <DataGridTextColumn Header="Mobile" Binding="{Binding Mobile}"/>
                             <DataGridTextColumn Header="HomeTelephone" Binding="{Binding HomeTelephone}"/>
-                            <DataGridTextColumn Header="WebSite" Binding="{Binding WebSite}"/>
+                            <DataGridTextColumn Header="WebSite" Binding="{Binding Website}"/>
                             <DataGridTextColumn Header="EmailAddress1" Binding="{Binding EmailAddress1}"/>
                             <DataGridTextColumn Header="EmailAddress2" Binding="{Binding EmailAddress2}"/>
                             <DataGridTextColumn Header="EmailAddress" Binding="{Binding EmailAddress}"/>

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Windows.Media;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using WinPure.ContactManagement.Client.Data.Model.Extensions;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.DeduplicationModule;
-using System.Data;
-using System.Windows.Media;
+using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 {
@@ -231,6 +232,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
         }
 
+        private RelayCommand _hideBtnClick;
+        public RelayCommand HideBtnClick
+        {
+            get
+            {
+                if (_hideBtnClick == null)
+                    _hideBtnClick = new RelayCommand(HideButtonClickAction);
+
+                return _hideBtnClick;
+            }
+        }
+
         #endregion
 
         #region Command Actions
@@ -361,7 +374,14 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// </summary>
         private void DeleteButtonClickAction()
         {
+            Guid contactId = Guid.Parse(_dedupTable.Rows[DataSelectedIndex]["_ContactID"].ToString());
+            ContactsManager.Current.Delete(ContactsManager.Current.ContactsCache.Single(c => c.ContactID == contactId));
+            DedupTable.Rows.RemoveAt(DataSelectedIndex);            
+        }
 
+        private void HideButtonClickAction()
+        {
+            DedupTable.Rows.RemoveAt(DataSelectedIndex);
         }
 
         #endregion

@@ -49,20 +49,23 @@ namespace WinPure.ContactManagement.Client.Data.Model.Extensions
             {
                 table.Columns.Add(column);
             }
+            table.Columns.Add("_ContactID");
 
             SynchronizedObservableCollection<Contact> contacts = ContactsManager.Current.ContactsCache;
 
+            int i;
             DataRow row;
             string fieldValue;
             foreach (Contact contact in contacts)
             {
                 row = table.NewRow();
-                for (int i = 0; i < columns.Count; i++)
+                for (i = 0; i < columns.Count; i++)
                 {
                     // Get value of specified column
                     fieldValue = contact.GetType().GetProperty(columns[i]).GetValue(contact, null) as string;
                     row[i] = fieldValue;
                 }
+                row[i] = contact.ContactID;
                 table.Rows.Add(row);
             }
 
