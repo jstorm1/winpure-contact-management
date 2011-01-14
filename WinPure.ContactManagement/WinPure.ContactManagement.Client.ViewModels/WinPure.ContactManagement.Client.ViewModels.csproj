@@ -64,6 +64,9 @@
       <HintPath>..\ReferencedAssemblies\Transitionals.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="WinPure.DeduplicationModule">
+      <HintPath>..\ReferencedAssemblies\WinPure.DeduplicationModule.dll</HintPath>
+    </Reference>
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferencedAssemblies\WPFToolkit.dll</HintPath>

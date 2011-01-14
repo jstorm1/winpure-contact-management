@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferencedAssemblies", "Ref
 		ReferencedAssemblies\System.Data.SqlServerCe.dll = ReferencedAssemblies\System.Data.SqlServerCe.dll
 		ReferencedAssemblies\System.Windows.Interactivity.dll = ReferencedAssemblies\System.Windows.Interactivity.dll
 		ReferencedAssemblies\Transitionals.dll = ReferencedAssemblies\Transitionals.dll
+		ReferencedAssemblies\WinPure.DeduplicationModule.dll = ReferencedAssemblies\WinPure.DeduplicationModule.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinPure.ContactManagement.Client.CommonControls", "WinPure.ContactManagement.Client.CommonControls\WinPure.ContactManagement.Client.CommonControls.csproj", "{1E399B48-BEDA-4D4E-BF89-F741DF1911E9}"

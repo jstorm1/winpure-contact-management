@@ -185,22 +185,6 @@
 								 Foreground="White" Visibility="{Binding DataTabItemVisibility}"
 								 Content="{Binding ChartControl}">
 
-                            <!--<vc:Chart
-
-
-                        <vc:Chart.PlotArea>
-                            <vc:PlotArea ShadowEnabled="true" CornerRadius="0,7,5,0" BorderThickness="0.2,0.2,2,0.2" >
-                                <vc:PlotArea.Background>
-                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                                        <GradientStop Color="#FFD8D8D8"/>
-                                        <GradientStop Color="#9FFEFCFC" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </vc:PlotArea.Background>
-                            </vc:PlotArea>
-                        </vc:Chart.PlotArea>
-												
-                    </vc:Chart>-->
-
                         </TabItem>
 
                         <TabItem loc:Translate.Uid="DataTab"
@@ -301,6 +285,7 @@
 
             </TabItem>
 
+            <!-- Deduplication tab item -->
             <TabItem x:Name="DeduplicationTabItem"
 			         
 					 loc:Translate.Uid="DeduplicationTab"
@@ -386,11 +371,17 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="3"
-					            Orientation="Vertical">
+					            Orientation="Vertical"
+                                 Margin="15,0,0,0">
                             <TextBlock Text="Fuzzy Threshold Level"
 						           FontSize="16" />
-                            <Slider Orientation="Horizontal" />
-                            <Button Content="Find Duplications" Style="{DynamicResource ButtonStyle1}" Foreground="White" Width="190" Height="40" FontSize="16" Cursor="Hand"/>
+                            <Slider Orientation="Horizontal"
+                                    Minimum="1" Maximum="100"
+                                    Width="350"
+                                    Value="{Binding ThresholdLevel, Mode=TwoWay}" />
+                            <Button Content="Find Duplications" Style="{DynamicResource ButtonStyle1}" 
+                                    Foreground="White" Width="190" Height="40" FontSize="16" Cursor="Hand"
+                                    Command="{Binding FindDuplicatesBtnClick}" />
                         </StackPanel>
 
                     </Grid>
