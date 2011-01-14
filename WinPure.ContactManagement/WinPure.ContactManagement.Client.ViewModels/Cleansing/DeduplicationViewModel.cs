@@ -32,10 +32,10 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// </summary>
         private int _thresholdLevel = 90;
 
+        private Color     _lastColor = Colors.LightBlue;        
+        private string    _lastId;        
+        private string    _totalDuplicates;
         private DataTable _dedupTable;
-
-        private string _lastId;
-        private Color _lastColor = Colors.LightBlue;
 
         #endregion
 
@@ -67,7 +67,11 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         public int ThresholdLevel
         {
             get { return _thresholdLevel; }
-            set { _thresholdLevel = value; }
+            set 
+            { 
+                _thresholdLevel = value;
+                RaisePropertyChanged("ThresholdLevel");
+            }
         }
 
         public DataTable DedupTable
@@ -79,6 +83,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                 RaisePropertyChanged("DedupTable");
             }
         }
+
+        public string TotalDuplicates
+        {
+            get { return _totalDuplicates; }
+            set
+            {
+                _totalDuplicates = value;
+                RaisePropertyChanged("TotalDuplicates");
+            }
+        }
+
+        public int DataSelectedIndex { get; set; }
 
         #endregion
 
@@ -203,6 +219,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
         }
 
+        private RelayCommand _deleteBtnClick;
+        public RelayCommand DeleteBtnClick
+        {
+            get
+            {
+                if (_deleteBtnClick == null)
+                    _deleteBtnClick = new RelayCommand(DeleteButtonClickAction);
+
+                return _deleteBtnClick;
+            }
+        }
+
         #endregion
 
         #region Command Actions
@@ -300,6 +328,8 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             // Search duplicates
             DedupTable = dedup.SearchDuplicates(table, columns, null, SeacrhQuality.Normal,
                 _thresholdLevel, ReturnResults.DuplicatesOnly);
+
+            TotalDuplicates = "Total Duplicates: " + _dedupTable.Rows.Count;
         }
 
         private void OnLoadingRowAction(DataGridRowEventArgs e)
@@ -324,6 +354,14 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                 e.Row.Background = new SolidColorBrush(_lastColor);
                 _lastId = row["_ID"] as string;
             }
+        }
+
+        /// <summary>
+        /// On "Delete" button click
+        /// </summary>
+        private void DeleteButtonClickAction()
+        {
+
         }
 
         #endregion

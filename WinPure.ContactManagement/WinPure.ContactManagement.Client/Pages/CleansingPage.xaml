@@ -301,7 +301,8 @@
                 <Grid x:Name="DeduplicationTabGrid" Background="{DynamicResource TabGridBackground}">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <RowDefinition Height="175" />
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
@@ -371,14 +372,18 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="3"
-					            Orientation="Vertical"
-                                 Margin="15,0,0,0">
+					                Orientation="Vertical"
+                                    Margin="15,0,0,0">
                             <TextBlock Text="Fuzzy Threshold Level"
-						           FontSize="16" />
+						               FontSize="16"
+                                     HorizontalAlignment="Center" />
                             <Slider Orientation="Horizontal"
                                     Minimum="1" Maximum="100"
                                     Width="350"
                                     Value="{Binding ThresholdLevel, Mode=TwoWay}" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       FontSize="16"
+                                       Text="{Binding ThresholdLevel}" />
                             <Button Content="Find Duplications" Style="{DynamicResource ButtonStyle1}" 
                                     Foreground="White" Width="190" Height="40" FontSize="16" Cursor="Hand"
                                     Command="{Binding FindDuplicatesBtnClick}" />
@@ -386,12 +391,38 @@
 
                     </Grid>
 
-                    <DataGrid Grid.Row="1"
-                              ItemsSource="{Binding DedupTable}"
+                    <TextBlock Text="{Binding TotalDuplicates}"
+						       FontSize="16"
+                               Grid.Row="1" />
+
+                    <DataGrid ItemsSource="{Binding DedupTable}"
                               FontSize="12"
-                              AutoGenerateColumns="False">
+                              AutoGenerateColumns="False"
+                              Grid.Row="2" 
+                              SelectedIndex="{Binding DataSelectedIndex, Mode=TwoWay}">
 
                         <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Hide">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Hide" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Merge">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Merge" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Delete">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Delete" Command="{Binding DataContext.DeleteBtnClick, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
                             <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}" />
                             <DataGridTextColumn Header="MiddleName" Binding="{Binding MiddleName}" />
@@ -414,7 +445,7 @@
                                                     Command="{Binding OnLoadingRow}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        
+
                     </DataGrid>
 
                 </Grid>
