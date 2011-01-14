@@ -386,7 +386,36 @@
 
                     </Grid>
 
-                    <DataGrid Grid.Row="1"></DataGrid>
+                    <DataGrid Grid.Row="1"
+                              ItemsSource="{Binding DedupTable}"
+                              FontSize="12"
+                              AutoGenerateColumns="False">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                            <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}" />
+                            <DataGridTextColumn Header="MiddleName" Binding="{Binding MiddleName}" />
+                            <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Suffix" Binding="{Binding Suffix}"/>
+                            <DataGridTextColumn Header="JobTitle" Binding="{Binding JobTitle}"/>
+                            <DataGridTextColumn Header="Telephone" Binding="{Binding Telephone}"/>
+                            <DataGridTextColumn Header="Fax" Binding="{Binding Fax}"/>
+                            <DataGridTextColumn Header="Mobile" Binding="{Binding Mobile}"/>
+                            <DataGridTextColumn Header="HomeTelephone" Binding="{Binding HomeTelephone}"/>
+                            <DataGridTextColumn Header="WebSite" Binding="{Binding WebSite}"/>
+                            <DataGridTextColumn Header="EmailAddress1" Binding="{Binding EmailAddress1}"/>
+                            <DataGridTextColumn Header="EmailAddress2" Binding="{Binding EmailAddress2}"/>
+                            <DataGridTextColumn Header="EmailAddress" Binding="{Binding EmailAddress}"/>
+                        </DataGrid.Columns>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="LoadingRow">
+                                <cmd:EventToCommand PassEventArgsToCommand="True"
+                                                    Command="{Binding OnLoadingRow}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        
+                    </DataGrid>
 
                 </Grid>
 
