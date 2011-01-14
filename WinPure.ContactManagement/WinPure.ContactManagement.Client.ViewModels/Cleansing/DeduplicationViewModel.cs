@@ -9,6 +9,7 @@ using WinPure.ContactManagement.Client.Data.Model.Extensions;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.DeduplicationModule;
 using System.Data;
+using System.Windows.Media;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 {
@@ -30,6 +31,11 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// Fuzzy threshold level
         /// </summary>
         private int _thresholdLevel = 90;
+
+        private DataTable _dedupTable;
+
+        private string _lastId;
+        private Color _lastColor = Colors.LightBlue;
 
         #endregion
 
@@ -62,6 +68,16 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         {
             get { return _thresholdLevel; }
             set { _thresholdLevel = value; }
+        }
+
+        public DataTable DedupTable
+        {
+            get { return _dedupTable; }
+            set
+            {
+                _dedupTable = value;
+                RaisePropertyChanged("DedupTable");
+            }
         }
 
         #endregion
@@ -175,6 +191,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
         }
 
+        private RelayCommand<DataGridRowEventArgs> _onLoadingRow;
+        public RelayCommand<DataGridRowEventArgs> OnLoadingRow
+        {
+            get
+            {
+                if (_onLoadingRow == null)
+                    _onLoadingRow = new RelayCommand<DataGridRowEventArgs>(OnLoadingRowAction);
+
+                return _onLoadingRow;
+            }
+        }
+
         #endregion
 
         #region Command Actions
@@ -254,7 +282,48 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// </summary>
         private void FindDuplicatesBtnClickAction()
         {
+            // Get DataTable from cache of contacts
             DataTable table = ContactExtension.GetDataTableFromContacts();
+
+            Deduplication dedup = new Deduplication();
+            // Build columns list for deduplication
+            List<Column> columns = new List<Column>(table.Columns.Count);
+
+            Column column;
+            for (int i = 0; i < table.Columns.Count; i++)
+            {
+                column = new Column(table.Columns[i].ColumnName);
+                column.SearchIn = SelectedColumns.Contains(column.Name);
+                columns.Add(column);
+            }
+
+            // Search duplicates
+            DedupTable = dedup.SearchDuplicates(table, columns, null, SeacrhQuality.Normal,
+                _thresholdLevel, ReturnResults.DuplicatesOnly);
+        }
+
+        private void OnLoadingRowAction(DataGridRowEventArgs e)
+        {
+            // Get the DataRow corresponding to the DataGridRow that is loading.
+            DataRowView item = e.Row.Item as DataRowView;
+            if (item != null)
+            {
+                DataRow row = item.Row;
+
+                if (_lastId == null)
+                    _lastId = row["_ID"] as string;
+
+                if (row["_ID"] as string != _lastId)
+                {
+                    if (_lastColor == Colors.LightBlue)
+                        _lastColor = Colors.White;
+                    else
+                        _lastColor = Colors.LightBlue;
+                }
+
+                e.Row.Background = new SolidColorBrush(_lastColor);
+                _lastId = row["_ID"] as string;
+            }
         }
 
         #endregion
