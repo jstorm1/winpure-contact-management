@@ -244,6 +244,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
         }
 
+        private RelayCommand _mergeBtnClick;
+        public RelayCommand MergeBtnClick
+        {
+            get
+            {
+                if (_mergeBtnClick == null)
+                    _mergeBtnClick = new RelayCommand(MergeButtonClickAction);
+
+                return _mergeBtnClick;
+            }
+        }
+
         #endregion
 
         #region Command Actions
@@ -382,6 +394,32 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         private void HideButtonClickAction()
         {
             DedupTable.Rows.RemoveAt(DataSelectedIndex);
+        }
+
+        private void MergeButtonClickAction()
+        {
+            Guid   contactId = Guid.Parse(_dedupTable.Rows[DataSelectedIndex]["_ContactID"].ToString());
+            string groupdID  = _dedupTable.Rows[DataSelectedIndex]["_ID"].ToString();
+            List<Contact> contacts = new List<Contact>();
+            
+            // Finding rows from group
+            DataRow[] findedRows = _dedupTable.Select("_ID = '" + groupdID + "'");
+
+            foreach (DataRow row in findedRows)
+            {
+                // If clicked row
+                if (row["_ContactID"].ToString().Equals(contactId.ToString()))
+                    continue;
+
+                // Add contact to list of deleted contacts
+                contacts.Add(ContactsManager.Current.ContactsCache.Single(c => c.ContactID.ToString() == row["_ContactID"].ToString()));
+
+                // Remove contacts
+                _dedupTable.Rows.Remove(row);
+            }
+
+            // Remove contacts from database
+            ContactsManager.Current.Delete(contacts);
         }
 
         #endregion
