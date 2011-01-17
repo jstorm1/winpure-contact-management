@@ -47,6 +47,8 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// </summary>
         private IList<string> _selectedInSelectedColumns = new List<string>();
 
+        private string _totalScore;
+
         #endregion
 
         #region Constructor
@@ -128,6 +130,16 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         }
 
         public ObservableCollection<Contact> FilteredContacts { get; set; }
+
+        public string TotalScore
+        {
+            get { return _totalScore; }
+            set
+            {
+                _totalScore = value;
+                RaisePropertyChanged("TotalScore");
+            }
+        }
 
         #endregion
 
@@ -327,14 +339,17 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         {
             ColumnsScore.Clear();
 
+            float totalScore = 0F;
             foreach (string column in SelectedColumns)
             {
-                ColumnsScore.Add(new ColumnScore(column,
-                    GetScoreOfAColumn(column, (ColumnScoreOption)CellsOption)));
+                float score = GetScoreOfAColumn(column, (ColumnScoreOption)CellsOption);
+                ColumnsScore.Add(new ColumnScore(column, score));
+                totalScore += score;
             }
 
             CreateChart();
             DataTabControlSelectedTab = 0;
+            TotalScore = String.Format("Total Score = {0:0.##}%", 100 - ((SelectedColumns.Count * 100 - totalScore) / ((SelectedColumns.Count * 100) / 100)));
         }
 
         private void DataGridDoubleClickAction(MouseButtonEventArgs e)
@@ -423,6 +438,11 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
             // Create a Chart element
             Chart chart = new Chart();
+
+            Title chartTitle = new Title();
+            chartTitle.Margin = new Thickness(0, 0, 0, 5.0);
+            chartTitle.Text = "Columns with " + ((ColumnScoreOption)CellsOption).ToString() + " cells";
+            chart.Titles.Add(chartTitle);
 
             chart.AnimatedUpdate = true;
             chart.BorderBrush = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Gray);
