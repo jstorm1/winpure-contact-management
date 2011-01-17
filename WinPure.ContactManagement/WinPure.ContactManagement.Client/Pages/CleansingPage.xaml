@@ -412,7 +412,7 @@
                             <DataGridTemplateColumn Header="Merge">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button Content="Merge" />
+                                        <Button Content="Merge" Command="{Binding DataContext.MergeBtnClick, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
