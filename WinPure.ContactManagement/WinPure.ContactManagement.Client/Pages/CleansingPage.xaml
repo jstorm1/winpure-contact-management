@@ -249,34 +249,21 @@
 								VerticalAlignment="Center">
 
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Columns:"
+                            <TextBlock Text="Column:"
 							FontSize="18" />
-                            <ListBox ItemsSource="{Binding Columns}"
-                                 Height="180"
-								 Margin="0,0,10,0" SelectionMode="Multiple"
-								 FontSize="16"
-								 Style="{DynamicResource ListBoxStyle}">
-
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectionChanged">
-                                        <cmd:EventToCommand PassEventArgsToCommand="True"
-                                                    Command="{Binding ColumnsSelectionChangedCommand}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-
-                            </ListBox>
+                            <ComboBox ItemsSource="{Binding Columns}"
+                                      SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical"
                                     VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <GroupBox Header="Case" d:LayoutOverrides="Width">
-                                <StackPanel Orientation="Vertical">
-                                    <RadioButton Content="lower case" IsChecked="{Binding IsLowerCaseChecked, Mode=TwoWay}" />
-                                    <RadioButton Content="UPPER CASE" IsChecked="{Binding IsUpperCaseChecked, Mode=TwoWay}"/>
-                                    <RadioButton Content="Proper Case" IsChecked="{Binding IsProperCaseChecked, Mode=TwoWay}" />
-                                </StackPanel>
-                            </GroupBox>
-                            <Button Content="Convert" Command="{Binding ConvertCaseCommand}" Margin="0, 10, 0, 0"
+                            <Button Content="to lower case" Command="{Binding ConvertToLowerCase}" Margin="5, 7, 0, 0"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
+									Height="42.616" />
+                            <Button Content="TO UPPER CASE" Command="{Binding ConvertToUpperCase}" Margin="5, 7, 0, 0"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
+									Height="42.616" />
+                            <Button Content="To Proper Case" Command="{Binding ConvertToProperCase}" Margin="5, 7, 0, 0"
 							        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
 									Height="42.616" />
                         </StackPanel>
