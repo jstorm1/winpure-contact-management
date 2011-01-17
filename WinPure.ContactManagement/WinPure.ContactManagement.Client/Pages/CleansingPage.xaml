@@ -152,9 +152,9 @@
                             </ListBox>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="3">
+                        <StackPanel Grid.Column="3" Orientation="Vertical">
                             <DataGrid AutoGenerateColumns="False" FontSize="16" ItemsSource="{Binding ColumnsScore}" 
-					          SelectionMode="Single" GridLinesVisibility="None"  Margin="7,0,0,0" Height="190" IsReadOnly="True">
+					          SelectionMode="Single" GridLinesVisibility="None" Margin="7,0,0,0" Height="190" IsReadOnly="True">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseDoubleClick">
@@ -168,6 +168,8 @@
                                     <DataGridTextColumn Header="Score" Binding="{Binding PercentedScore}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
+                            <TextBlock Text="{Binding TotalScore}" FontSize="15"
+                                       Margin="7,0,0,0"/>
                         </StackPanel>
                     </Grid>
 
