@@ -304,6 +304,7 @@
                         <RowDefinition Height="175" />
                         <RowDefinition Height="Auto"/>
                         <RowDefinition />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
@@ -447,6 +448,9 @@
                         </i:Interaction.Triggers>
 
                     </DataGrid>
+
+                    <ProgressBar Grid.Row="3" Height="25" Visibility="{Binding ProgressBarVisibility}"
+                                 Value="{Binding PercentsDone}"/>
 
                 </Grid>
 

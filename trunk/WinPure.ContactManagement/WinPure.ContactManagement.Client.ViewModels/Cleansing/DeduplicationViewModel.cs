@@ -11,6 +11,7 @@ using WinPure.ContactManagement.Client.Data.Model.Extensions;
 using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.DeduplicationModule;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
+using System.Windows;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 {
@@ -33,10 +34,12 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// </summary>
         private int _thresholdLevel = 90;
 
-        private Color     _lastColor = Colors.LightBlue;        
-        private string    _lastId;        
-        private string    _totalDuplicates;
-        private DataTable _dedupTable;
+        private Color      _lastColor = Colors.LightBlue;        
+        private string     _lastId;        
+        private string     _totalDuplicates;
+        private DataTable  _dedupTable;
+        private Visibility _progressBarVisibility = Visibility.Collapsed;
+        private int        _percentsDone;
 
         #endregion
 
@@ -96,6 +99,26 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         }
 
         public int DataSelectedIndex { get; set; }
+
+        public Visibility ProgressBarVisibility
+        {
+            get { return _progressBarVisibility; }
+            set
+            {
+                _progressBarVisibility = value;
+                RaisePropertyChanged("ProgressBarVisibility");
+            }
+        }
+
+        public int PercentsDone
+        {
+            get { return _percentsDone; }
+            set
+            {
+                _percentsDone = value;
+                RaisePropertyChanged("PercentsDone");
+            }
+        }
 
         #endregion
 
@@ -335,10 +358,12 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         /// </summary>
         private void FindDuplicatesBtnClickAction()
         {
+            ProgressBarVisibility = Visibility.Visible;
+
             // Get DataTable from cache of contacts
             DataTable table = ContactExtension.GetDataTableFromContacts();
 
-            Deduplication dedup = new Deduplication();
+            Deduplication dedup = new Deduplication(new ProgressNotifyDelegate(OnProgress));
             // Build columns list for deduplication
             List<Column> columns = new List<Column>(table.Columns.Count);
 
@@ -420,6 +445,11 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
             // Remove contacts from database
             ContactsManager.Current.Delete(contacts);
+        }
+
+        private void OnProgress(int progress)
+        {
+            PercentsDone = progress;
         }
 
         #endregion
