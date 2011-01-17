@@ -12,6 +12,7 @@ using WinPure.ContactManagement.Client.Data.Model;
 using WinPure.DeduplicationModule;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using System.Windows;
+using System.Threading;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 {
@@ -360,6 +361,13 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         {
             ProgressBarVisibility = Visibility.Visible;
 
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void ThreadProc()
+        {
             // Get DataTable from cache of contacts
             DataTable table = ContactExtension.GetDataTableFromContacts();
 
