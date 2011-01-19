@@ -6,6 +6,7 @@
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
                             xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
+                            xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters"                            
                             xmlns:loc="clr-namespace:WinPure.ContactManagement.Client.Localization;assembly=WinPure.ContactManagement.Client.Localization"
                             x:Class="WinPure.ContactManagement.Client.Pages.CleansingPage"
                             d:DesignHeight="598" d:DesignWidth="1048"
@@ -22,6 +23,7 @@
       <GradientStop Offset="0"/>
       <GradientStop Color="#12FFFFFF" Offset="1"/>
     </LinearGradientBrush>
+    <WinPure_ContactManagement_Client_Helpers_Converters:BooleanToVisibilityOppositeConverter x:Key="BooleanToVisibilityOppositeConverter"/>
 </CommonControls:PageControl.Resources>
 	
 <!--Page Background-->
@@ -244,30 +246,58 @@
 
                 <Grid x:Name="CaseConversionTabGrid" Background="{DynamicResource TabGridBackground}">
 
-                    <StackPanel Orientation="Horizontal"
-					            HorizontalAlignment="Center"
-								VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Column:"
-							FontSize="18" />
-                            <ComboBox ItemsSource="{Binding Columns}"
-                                      SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" />
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="0"
+                                Margin="7,0,0,0">
+                        <TextBlock Text="Column:"
+						FontSize="18" />
+                        <ComboBox ItemsSource="{Binding Columns}"
+                                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                  Width="350"
+                                  FontSize="15">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <cmd:EventToCommand PassEventArgsToCommand="False"
+                                                    Command="{Binding ColumnSelectionChanged}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </ComboBox>
+                        <DataGrid ItemsSource="{Binding AllValuesDataTable}"  Width="350" Height="400"
+                                  FontSize="15"/>
+                        <TextBlock FontSize="15" Text="{Binding DistinctValues}" HorizontalAlignment="Right" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                VerticalAlignment="Center" HorizontalAlignment="Center"
+                                Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,0,0,10">
+                            <Button Content="to lower case" Command="{Binding ConvertToLowerCase}" Margin="15, 0, 0, 0"
+							    Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
+								Height="42.616"
+                                IsEnabled="{Binding IsLowerCaseButtonEnabled}" />
+                            <Button Content="TO UPPER CASE" Command="{Binding ConvertToUpperCase}" Margin="15, 0, 0, 0"
+							    Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
+								Height="42.616"
+                                IsEnabled="{Binding IsUpperCaseButtonEnabled}" />
+                            <Button Content="To Proper Case" Command="{Binding ConvertToProperCase}" Margin="15, 0, 0, 0"
+							    Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
+								Height="42.616"
+                                IsEnabled="{Binding IsProperCaseButtonEnabled}" />
                         </StackPanel>
-
-                        <StackPanel Orientation="Vertical"
-                                    VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Button Content="to lower case" Command="{Binding ConvertToLowerCase}" Margin="5, 7, 0, 0"
-							        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
-									Height="42.616" />
-                            <Button Content="TO UPPER CASE" Command="{Binding ConvertToUpperCase}" Margin="5, 7, 0, 0"
-							        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
-									Height="42.616" />
-                            <Button Content="To Proper Case" Command="{Binding ConvertToProperCase}" Margin="5, 7, 0, 0"
-							        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" 
-									Height="42.616" />
-                        </StackPanel>
-
+                        <Grid x:Name="LoadingPanel"
+                              Background="Transparent"
+                              Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityOppositeConverter}, Mode=OneWay}" 
+                              d:IsHidden="True">
+                            <CommonControls:ProgressControl Text="{Binding BusyMessage}" IsSystemModal="True"/>
+                        </Grid>
                     </StackPanel>
 
                 </Grid>

@@ -10,6 +10,9 @@ using System.Windows.Controls;
 using WinPure.ContactManagement.Common.Helpers;
 using WinPure.ContactManagement.Client.Data.Managers.DataManagers;
 using System.Reflection;
+using System.Data;
+using WinPure.ContactManagement.Client.Localization;
+using System.Threading;
 
 namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 {
@@ -18,6 +21,14 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
     public class CaseConversionViewModel : Base.ViewModelBase
     {
         #region Fields
+
+        private string _distinctValues;
+        private bool _isBusy;
+        private string _busyMessage;
+        private bool _isLowerCaseButtonEnabled = true;
+        private bool _isUpperCaseButtonEnabled = true;
+        private bool _isProperCaseButtonEnabled = true;
+        private int _selectedIndex = -1;
 
         #endregion
 
@@ -33,8 +44,80 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
         #region Properties
 
-        public int SelectedIndex { get; set; }
+        public int SelectedIndex 
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                _selectedIndex = value;
+            }
+        }
+
         public ObservableCollection<string> Columns { get; set; }
+
+        public DataTable AllValuesDataTable { get; set; }
+
+        public string DistinctValues
+        {
+            get { return _distinctValues; }
+            set
+            {
+                _distinctValues = value;
+                RaisePropertyChanged("DistinctValues");
+            }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                if (_isBusy == value) return;
+                _isBusy = value;
+                RaisePropertyChanged("IsBusy");
+            }
+        }
+
+        public string BusyMessage
+        {
+            get { return _busyMessage; }
+            set
+            {
+                if (_busyMessage == value) return;
+                _busyMessage = value;
+                RaisePropertyChanged("BusyMessage");
+            }
+        }
+
+        public bool IsLowerCaseButtonEnabled
+        {
+            get { return _isLowerCaseButtonEnabled; }
+            set
+            {
+                _isLowerCaseButtonEnabled = value;
+                RaisePropertyChanged("IsLowerCaseButtonEnabled");
+            }
+        }
+
+        public bool IsUpperCaseButtonEnabled
+        {
+            get { return _isUpperCaseButtonEnabled; }
+            set
+            {
+                _isUpperCaseButtonEnabled = value;
+                RaisePropertyChanged("IsUpperCaseButtonEnabled");
+            }
+        }
+
+        public bool IsProperCaseButtonEnabled
+        {
+            get { return _isProperCaseButtonEnabled; }
+            set
+            {
+                _isProperCaseButtonEnabled = value;
+                RaisePropertyChanged("IsProperCaseButtonEnabled");
+            }
+        }
 
         #endregion
 
@@ -76,6 +159,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
         }
 
+        private RelayCommand _columnSelectionChanged;
+        public RelayCommand ColumnSelectionChanged
+        {
+            get
+            {
+                if (_columnSelectionChanged == null)
+                    _columnSelectionChanged = new RelayCommand(ColumnSelectionChangedAction);
+
+                return _columnSelectionChanged;
+            }
+        }
+
         #endregion
 
         #region Commands Actions
@@ -95,21 +190,71 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             ConvertCellsToCase(Case.Proper);
         }
 
+        private void ColumnSelectionChangedAction()
+        {
+            AllValuesDataTable = new DataTable();
+
+            AllValuesDataTable.Columns.Add(Columns[SelectedIndex]);
+            AllValuesDataTable.Columns.Add("Count");
+
+            SynchronizedObservableCollection<Contact> contacts = ContactsManager.Current.ContactsCache;
+            List<string> values = new List<string>(contacts.Count);
+
+            // In every contact
+            foreach (Contact contact in contacts)
+            {
+                PropertyInfo propertyInfo = contact.GetType().GetProperty(Columns[SelectedIndex]);
+
+                // Get value of specified column
+                string fieldValue = propertyInfo.GetValue(contact, null) as string;
+
+                values.Add(fieldValue);
+            }
+
+            IEnumerable<string> distinctValues = values.Distinct();
+            int distinctCount = 0;
+
+            foreach (string value in distinctValues)
+            {
+                AllValuesDataTable.Rows.Add(new string[] { value, values.Count((v) => v == value).ToString() });
+                distinctCount++;
+            }
+
+            RaisePropertyChanged("AllValuesDataTable");
+
+            DistinctValues = "DistinctValues:  " + distinctCount;
+        }
+
         #endregion
 
         #region Helpers
 
         private void ConvertCellsToCase(Case conversionCase)
         {
+            Thread thread = new Thread(new ParameterizedThreadStart(CaseConvertionThreadProc));
+            thread.IsBackground = true;
+            thread.Start(conversionCase);
+        }
+
+        #endregion
+
+        private void CaseConvertionThreadProc(object conversionCase)
+        {
+            int selectedIndex = SelectedIndex;
+            IsBusy = true;
+            BusyMessage = LanguageDictionary.CurrentDictionary.Translate<string>("Messages.BusyMessage.Working", "Message");
+            IsLowerCaseButtonEnabled = false;
+            IsUpperCaseButtonEnabled = false;
+            IsProperCaseButtonEnabled = false;
             SynchronizedObservableCollection<Contact> contacts = ContactsManager.Current.ContactsCache;
 
             // If contacts is not empty
-            if (SelectedIndex >= 0)
+            if (selectedIndex >= 0)
             {
                 // In every contact
                 foreach (Contact contact in contacts)
                 {
-                    PropertyInfo propertyInfo = contact.GetType().GetProperty(Columns[SelectedIndex]);
+                    PropertyInfo propertyInfo = contact.GetType().GetProperty(Columns[selectedIndex]);
 
                     // Get value of specified column
                     string fieldValue = propertyInfo.GetValue(contact, null) as string;
@@ -118,7 +263,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                     {
                         string newValue = string.Empty;
 
-                        switch (conversionCase)
+                        switch ((Case)conversionCase)
                         {
                             case Case.Lower:
 
@@ -147,8 +292,10 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
 
             ContactsManager.Current.Save(contacts);
+            IsBusy = false;
+            IsLowerCaseButtonEnabled = true;
+            IsUpperCaseButtonEnabled = true;
+            IsProperCaseButtonEnabled = true;
         }
-
-        #endregion
     }
 }
