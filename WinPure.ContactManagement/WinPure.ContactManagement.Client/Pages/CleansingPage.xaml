@@ -3,7 +3,7 @@
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
                             xmlns:CommonControls="clr-namespace:WinPure.ContactManagement.Client.CommonControls;assembly=WinPure.ContactManagement.Client.CommonControls"
                             xmlns:WinPure_ContactManagement_Client_Helpers_Converters="clr-namespace:WinPure.ContactManagement.Client.Helpers.Converters"                            
@@ -63,49 +63,59 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
+                    <GridSplitter Grid.Row="2" Height="7" Width="200" Background="Black" Opacity="0.3"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                  Margin="8,0,8,0" />
+                    
+                    <!-- First row --> 
                     <StackPanel Orientation="Horizontal"
-					            Grid.Row="0" Margin="8,0,8,8">
+					            Grid.Row="0" Margin="8,8,0,8">
 
                         <TextBlock Text="Chart Type: "
-						           Foreground="White" FontSize="18" Margin="0,0,7,0" />
+						           Foreground="White" FontSize="18" />
 
-                        <ComboBox SelectedIndex="{Binding ChartType}" FontSize="16">
+                        <ComboBox SelectedIndex="{Binding ChartType}" FontSize="15">
                             <TextBlock Text="3D Bar Chart" />
                             <TextBlock Text="2D Bar Chart" />
                             <TextBlock Text="2D Line Chart" />
                         </ComboBox>
 
-                        <ComboBox FontSize="16" SelectedIndex="{Binding CellsOption}" Margin="7,0,0,0">
+                        <ComboBox FontSize="15" SelectedIndex="{Binding CellsOption}" Margin="7,0,0,0">
                             <TextBlock Text="Populated Cells" />
                             <TextBlock Text="Empty Cells" />
                         </ComboBox>
 
                         <Button Content="Refresh" Command="{Binding RefreshButtonClick}"
-						        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Margin="10,0,0,0"/>
+						        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" 
+                                Cursor="Hand" Margin="10,0,0,0" Width="70" />
 
                     </StackPanel>
-
-                    <Grid Grid.Row="1">
+                    
+                    <!-- Second row -->
+                    <Grid Grid.Row="1" Margin="8,0,8,0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
+                        <GridSplitter Grid.Column="3" Width="7" Height="70" HorizontalAlignment="Center" 
+                                      VerticalAlignment="Stretch" Background="Black" Opacity="0.3" />
+
                         <StackPanel Orientation="Vertical" Grid.Column="0">
-                            <TextBlock Text="Columns:" FontSize="18" />
-                            <ListBox x:Name="columns" 
-					         ItemsSource="{Binding Columns}" 
-							 FontSize="14" 
-							 SelectionMode="Multiple"
-							 Style="{DynamicResource ListBoxStyle}"
-							 Height="170">
+                            <TextBlock Text="Columns:" FontSize="17" />
+                            <ListBox ItemsSource="{Binding Columns}" 
+							         FontSize="15" 
+							         SelectionMode="Multiple"
+							         Style="{DynamicResource ListBoxStyle}">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -120,29 +130,32 @@
                         <StackPanel Orientation="Vertical" Grid.Column="1">
 
                             <Button Content="&lt;" Height="26" Width="56" 
-					        Command="{Binding MoveFromSelectedColumnsToColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Margin="0,20,0,0"/>
+					                Command="{Binding MoveFromSelectedColumnsToColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand" Margin="0,20,0,0"/>
 
                             <Button Content="&gt;" Height="26" Width="56" 
-					        Command="{Binding MoveFromColumnsToSelectedColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand"/>
+					                Command="{Binding MoveFromColumnsToSelectedColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand"/>
 
                             <Button Content="&lt;&lt;" Width="56" Height="26" 
-							Command="{Binding MoveAllFromSelectedColumnsToColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Margin="0,60,0,0"/>
+							        Command="{Binding MoveAllFromSelectedColumnsToColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand" Margin="0,60,0,0" />
+                            
                             <Button Content="&gt;&gt;" Width="56"  Height="26"
-					        Command="{Binding MoveAllFromColumnsToSelectedColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand"/>
+					                Command="{Binding MoveAllFromColumnsToSelectedColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand" />
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical" Grid.Column="2">
-                            <TextBlock Text="Selected Columns:" FontSize="18" />
-                            <ListBox x:Name="selectedColumns" 
-					         ItemsSource="{Binding SelectedColumns}" 
-							 FontSize="14"
-							 SelectionMode="Multiple"
-							 Style="{DynamicResource ListBoxStyle}"
-							 Height="170">
+                            <TextBlock Text="Selected Columns:" FontSize="17" />
+                            <ListBox ItemsSource="{Binding SelectedColumns}" 
+							         FontSize="15"
+							         SelectionMode="Multiple"
+							         Style="{DynamicResource ListBoxStyle}">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -154,9 +167,9 @@
                             </ListBox>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="3" Orientation="Vertical">
+                        <StackPanel Grid.Column="4" Orientation="Vertical">
                             <DataGrid AutoGenerateColumns="False" FontSize="16" ItemsSource="{Binding ColumnsScore}" 
-					          SelectionMode="Single" GridLinesVisibility="None" Margin="7,0,0,0" Height="190" IsReadOnly="True">
+					                  SelectionMode="Single" GridLinesVisibility="None" IsReadOnly="True">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseDoubleClick">
@@ -170,15 +183,15 @@
                                     <DataGridTextColumn Header="Score" Binding="{Binding PercentedScore}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <TextBlock Text="{Binding TotalScore}" FontSize="15"
-                                       Margin="7,0,0,0"/>
+                            <TextBlock Text="{Binding TotalScore}" FontSize="15" />
                         </StackPanel>
                     </Grid>
 
-                    <TabControl Grid.Row="2"
+                    <!-- Third row -->
+                    <TabControl Grid.Row="3"
 					            Background="{x:Null}"
 					            BorderBrush="{x:Null}"
-					            Padding="0" Margin="0,5,0,0"
+					            Padding="0" Margin="8,0,8,0"
 								SelectedIndex="{Binding DataTabControlSelectedTab}">
 
                         <TabItem loc:Translate.Uid="StatisticsTab"
@@ -198,7 +211,8 @@
 								 FontSize="15"
 								 Foreground="White" Visibility="{Binding DataTabItemVisibility}">
 
-                            <DataGrid AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" ItemsSource="{Binding FilteredContacts}">
+                            <DataGrid AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" 
+                                      ItemsSource="{Binding FilteredContacts}">
                                 <DataGrid.RowBackground>
                                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                         <GradientStop Color="#FFE2D00A" Offset="0.745"/>
