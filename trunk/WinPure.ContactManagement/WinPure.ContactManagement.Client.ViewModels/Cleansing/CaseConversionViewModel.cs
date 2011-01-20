@@ -214,10 +214,17 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             IEnumerable<string> distinctValues = values.Distinct();
             int distinctCount = 0;
 
+            int nullCount = values.Count((v) => string.IsNullOrEmpty(v));
+            if (nullCount > 0)
+                AllValuesDataTable.Rows.Add(new string[] { "(null)", nullCount.ToString() });
+
             foreach (string value in distinctValues)
             {
-                AllValuesDataTable.Rows.Add(new string[] { value, values.Count((v) => v == value).ToString() });
-                distinctCount++;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    AllValuesDataTable.Rows.Add(new string[] { value, values.Count((v) => v == value).ToString() });
+                    distinctCount++;
+                }
             }
 
             RaisePropertyChanged("AllValuesDataTable");
@@ -292,6 +299,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             }
 
             ContactsManager.Current.Save(contacts);
+            ColumnSelectionChangedAction();
             IsBusy = false;
             IsLowerCaseButtonEnabled = true;
             IsUpperCaseButtonEnabled = true;
