@@ -62,7 +62,7 @@
                 <Grid x:Name="StatisticsTabGrid" Background="{DynamicResource TabGridBackground}">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="0.8*" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
@@ -76,14 +76,20 @@
                             <ColumnDefinition Width="2*" />
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
+						
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition />
+						</Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="0">
-                            <TextBlock Text="Columns:" FontSize="18.667" />
-                            <ListBox ItemsSource="{Binding Columns}" 
-							         FontSize="18.667" 
-							         SelectionMode="Multiple"
-							         Style="{DynamicResource ListBoxStyle}"
-									 Height="250">
+                        <TextBlock Text="Columns:" FontSize="18.667" Grid.Column="0"
+							       Grid.Row="0" />
+                         <ListBox ItemsSource="{Binding Columns}" 
+							      FontSize="18.667" 
+							      SelectionMode="Multiple"
+							      Style="{DynamicResource ListBoxStyle}"
+								  Grid.Column="0"
+								  Grid.Row="1">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -92,10 +98,9 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
-                            </ListBox>
-                        </StackPanel>
+                         </ListBox>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
 
                             <Button Content="&lt;" Height="26" Width="56" 
 					                Command="{Binding MoveFromSelectedColumnsToColumns}"
@@ -118,12 +123,12 @@
                                     FontSize="16" Cursor="Hand" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="2">
-                            <TextBlock Text="Selected Columns:" FontSize="18.667" />
-                            <ListBox ItemsSource="{Binding SelectedColumns}" 
-							         FontSize="18.667"
-							         SelectionMode="Multiple"
-							         Style="{DynamicResource ListBoxStyle}">
+                        <TextBlock Text="Selected Columns:" FontSize="18.667" Grid.Column="2" Grid.Row="0" />
+                        <ListBox ItemsSource="{Binding SelectedColumns}" 
+							     FontSize="18.667"
+							     SelectionMode="Multiple"
+							     Style="{DynamicResource ListBoxStyle}"
+								 Grid.Column="2" Grid.Row="1">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -132,13 +137,18 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
-                            </ListBox>
-                        </StackPanel>
+                        </ListBox>
 
-                        <StackPanel Grid.Column="3" Orientation="Vertical">
+                        <Grid Grid.Column="3" Grid.Row="1">
+                        	
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							
                             <DataGrid AutoGenerateColumns="False" FontSize="16" ItemsSource="{Binding ColumnsScore}" 
-					                  SelectionMode="Single" GridLinesVisibility="None" IsReadOnly="True"
-									  Height="250" Margin="5,0,0,0">
+					                  SelectionMode="Single" GridLinesVisibility="None" IsReadOnly="True" 
+									  Margin="5,0,0,0" Grid.Row="0">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseDoubleClick">
@@ -152,17 +162,18 @@
                                     <DataGridTextColumn Header="Score" Binding="{Binding PercentedScore}" Width="80"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <TextBlock Text="{Binding TotalScore}" FontSize="18.667" Height="22"  Margin="5,0,0,0" />
-                        </StackPanel>
+                            <TextBlock Text="{Binding TotalScore}" FontSize="18.667" Margin="5,0,0,0"
+							           Grid.Row="1" Height="{Binding TotalScoreHeight}" />
+                        </Grid>
                     </Grid>
                     
                     <!-- Second row -->
                     <GridSplitter Grid.Row="1" Height="7" Width="200" Background="Black" Opacity="0.3"
                                   HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                                  Margin="8,0,8,0" />
+                                  Margin="8,5,8,0" />
 
                     <!-- Third row -->
-					<Grid Grid.Row="2" Margin="8,8,5,8">
+					<Grid Grid.Row="2" Margin="8,5,5,8">
 						
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
