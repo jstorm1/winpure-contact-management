@@ -70,7 +70,7 @@
       </Grid.Background>
 
       <!--Pages Presenter-->
-      <CommonControls:PagesSliderControl x:Name="PagesSliderControl" Margin="20,8,20,14"/>
+      <CommonControls:PagesSliderControl x:Name="PagesSliderControl" Margin="20,8,20,0"/>
 
     </Grid>
 
