@@ -48,6 +48,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         private IList<string> _selectedInSelectedColumns = new List<string>();
 
         private string _totalScore;
+		private int _totalScoreHeight;
 
         #endregion
 
@@ -140,6 +141,16 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                 RaisePropertyChanged("TotalScore");
             }
         }
+		
+		public int TotalScoreHeight
+		{
+			get { return _totalScoreHeight; }
+			set
+			{
+				_totalScoreHeight = value;
+				RaisePropertyChanged("TotalScoreHeight");
+			}
+		}
 
         #endregion
 
@@ -350,6 +361,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             CreateChart();
             DataTabControlSelectedTab = 0;
             TotalScore = String.Format("Total Score = {0:0.##}%", 100 - ((SelectedColumns.Count * 100 - totalScore) / ((SelectedColumns.Count * 100) / 100)));
+			TotalScoreHeight = 22;
         }
 
         private void DataGridDoubleClickAction(MouseButtonEventArgs e)
