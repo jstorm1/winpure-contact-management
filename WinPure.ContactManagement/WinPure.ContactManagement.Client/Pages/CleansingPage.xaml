@@ -277,21 +277,29 @@
                 </TabItem.DataContext>
 
                 <Grid x:Name="CaseConversionTabGrid" Background="{DynamicResource TabGridBackground}">
+					
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					
+					<TextBlock Text="Columns:" FontSize="18.667" Grid.Row="0" Padding="8,5,0,0" />
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Orientation="Vertical"
-                                Grid.Column="0"
-                                Margin="7,0,0,0">
-                        <TextBlock Text="Column:"
-						FontSize="18" />
-                        <ComboBox ItemsSource="{Binding Columns}"
-                                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
-                                  Width="350"
-                                  FontSize="15">
+                    <Grid Grid.Row="1"
+                          Margin="7,0,0,0">
+                    	
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>						
+                        
+                        <ListBox ItemsSource="{Binding Columns}"
+                                 SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                 FontSize="18.667"
+								 Grid.Column="0"
+								 Style="{DynamicResource ListBoxStyle}"
+								 Margin="0,0,3,0">
 
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
@@ -300,13 +308,24 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
 
-                        </ComboBox>
-                        <DataGrid ItemsSource="{Binding AllValuesDataTable}"  Width="350" Height="400"
-                                  FontSize="15"/>
-                        <TextBlock FontSize="15" Text="{Binding DistinctValues}" HorizontalAlignment="Right" />
-                    </StackPanel>
+                        </ListBox>     
+						
+						<Grid Grid.Column="1">
+						
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						
+						<DataGrid ItemsSource="{Binding AllValuesDataTable}" FontSize="18.667"
+						          Grid.Row="0" Margin="3,0,8,0" />
+                        <TextBlock FontSize="18.667" Text="{Binding DistinctValues}" HorizontalAlignment="Center"
+						           Grid.Row="1" Height="{Binding DistinctValuesHeight}" />
+						
+					    </Grid>                  
+                    </Grid>
 
-                    <StackPanel Grid.Column="1"
+                    <StackPanel Grid.Row="2"
                                 VerticalAlignment="Center" HorizontalAlignment="Center"
                                 Orientation="Vertical">
                         <StackPanel Orientation="Horizontal"
@@ -324,14 +343,15 @@
 								Height="42.616"
                                 IsEnabled="{Binding IsProperCaseButtonEnabled}" />
                         </StackPanel>
-                        <Grid x:Name="LoadingPanel"
+                        
+                    </StackPanel>
+					<Grid x:Name="LoadingPanel"
                               Background="Transparent"
                               Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityOppositeConverter}, Mode=OneWay}" 
-                              d:IsHidden="True">
+                              d:IsHidden="True"
+							  Grid.RowSpan="3">
                             <CommonControls:ProgressControl Text="{Binding BusyMessage}" IsSystemModal="True"/>
-                        </Grid>
-                    </StackPanel>
-
+                    </Grid>
                 </Grid>
 
             </TabItem>

@@ -29,6 +29,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         private bool _isUpperCaseButtonEnabled = true;
         private bool _isProperCaseButtonEnabled = true;
         private int _selectedIndex = -1;
+		private int _distinctValuesHeight;
 
         #endregion
 
@@ -118,6 +119,16 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                 RaisePropertyChanged("IsProperCaseButtonEnabled");
             }
         }
+		
+		public int DistinctValuesHeight
+		{
+			get { return _distinctValuesHeight; }
+			set
+			{
+				_distinctValuesHeight = value;
+				RaisePropertyChanged("DistinctValuesHeight");
+			}
+		}
 
         #endregion
 
@@ -230,6 +241,7 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
             RaisePropertyChanged("AllValuesDataTable");
 
             DistinctValues = "DistinctValues:  " + distinctCount;
+			DistinctValuesHeight = 22;
         }
 
         #endregion
