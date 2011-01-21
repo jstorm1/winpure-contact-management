@@ -62,60 +62,28 @@
                 <Grid x:Name="StatisticsTabGrid" Background="{DynamicResource TabGridBackground}">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
+                        <RowDefinition Height="1*" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-
-                    <GridSplitter Grid.Row="2" Height="7" Width="200" Background="Black" Opacity="0.3"
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                                  Margin="8,0,8,0" />
                     
                     <!-- First row --> 
-                    <StackPanel Orientation="Horizontal"
-					            Grid.Row="0" Margin="8,8,0,8">
-
-                        <TextBlock Text="Chart Type: "
-						           Foreground="White" FontSize="18" />
-
-                        <ComboBox SelectedIndex="{Binding ChartType}" FontSize="15">
-                            <TextBlock Text="3D Bar Chart" />
-                            <TextBlock Text="2D Bar Chart" />
-                            <TextBlock Text="2D Line Chart" />
-                        </ComboBox>
-
-                        <ComboBox FontSize="15" SelectedIndex="{Binding CellsOption}" Margin="7,0,0,0">
-                            <TextBlock Text="Populated Cells" />
-                            <TextBlock Text="Empty Cells" />
-                        </ComboBox>
-
-                        <Button Content="Refresh" Command="{Binding RefreshButtonClick}"
-						        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" 
-                                Cursor="Hand" Margin="10,0,0,0" Width="70" />
-
-                    </StackPanel>
-                    
-                    <!-- Second row -->
-                    <Grid Grid.Row="1" Margin="8,0,8,0">
+                    <Grid Margin="8,5,8,0">
 
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
 
-                        <GridSplitter Grid.Column="3" Width="7" Height="70" HorizontalAlignment="Center" 
-                                      VerticalAlignment="Stretch" Background="Black" Opacity="0.3" />
-
                         <StackPanel Orientation="Vertical" Grid.Column="0">
-                            <TextBlock Text="Columns:" FontSize="17" />
+                            <TextBlock Text="Columns:" FontSize="18.667" />
                             <ListBox ItemsSource="{Binding Columns}" 
-							         FontSize="15" 
+							         FontSize="18.667" 
 							         SelectionMode="Multiple"
-							         Style="{DynamicResource ListBoxStyle}">
+							         Style="{DynamicResource ListBoxStyle}"
+									 Height="250">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -127,12 +95,12 @@
                             </ListBox>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center">
 
                             <Button Content="&lt;" Height="26" Width="56" 
 					                Command="{Binding MoveFromSelectedColumnsToColumns}"
 							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
-                                    FontSize="16" Cursor="Hand" Margin="0,20,0,0"/>
+                                    FontSize="16" Cursor="Hand" />
 
                             <Button Content="&gt;" Height="26" Width="56" 
 					                Command="{Binding MoveFromColumnsToSelectedColumns}"
@@ -151,9 +119,9 @@
                         </StackPanel>
 
                         <StackPanel Orientation="Vertical" Grid.Column="2">
-                            <TextBlock Text="Selected Columns:" FontSize="17" />
+                            <TextBlock Text="Selected Columns:" FontSize="18.667" />
                             <ListBox ItemsSource="{Binding SelectedColumns}" 
-							         FontSize="15"
+							         FontSize="18.667"
 							         SelectionMode="Multiple"
 							         Style="{DynamicResource ListBoxStyle}">
 
@@ -167,9 +135,10 @@
                             </ListBox>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="4" Orientation="Vertical">
+                        <StackPanel Grid.Column="3" Orientation="Vertical">
                             <DataGrid AutoGenerateColumns="False" FontSize="16" ItemsSource="{Binding ColumnsScore}" 
-					                  SelectionMode="Single" GridLinesVisibility="None" IsReadOnly="True">
+					                  SelectionMode="Single" GridLinesVisibility="None" IsReadOnly="True"
+									  Height="250" Margin="5,0,0,0">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseDoubleClick">
@@ -179,20 +148,56 @@
                                 </i:Interaction.Triggers>
 
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Column Name" Binding="{Binding Name}"/>
-                                    <DataGridTextColumn Header="Score" Binding="{Binding PercentedScore}"/>
+                                    <DataGridTextColumn Header="Column Name" Binding="{Binding Name}" Width="160"/>
+                                    <DataGridTextColumn Header="Score" Binding="{Binding PercentedScore}" Width="80"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <TextBlock Text="{Binding TotalScore}" FontSize="15" />
+                            <TextBlock Text="{Binding TotalScore}" FontSize="18.667" Height="22"  Margin="5,0,0,0" />
                         </StackPanel>
                     </Grid>
+                    
+                    <!-- Second row -->
+                    <GridSplitter Grid.Row="1" Height="7" Width="200" Background="Black" Opacity="0.3"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                  Margin="8,0,8,0" />
 
                     <!-- Third row -->
-                    <TabControl Grid.Row="3"
-					            Background="{x:Null}"
+					<Grid Grid.Row="2" Margin="8,8,5,8">
+						
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+						
+						<StackPanel Orientation="Horizontal"					            
+								    HorizontalAlignment="Center"
+									Grid.Row="0">
+
+                        <TextBlock Text="Chart Type: "
+						           Foreground="White" FontSize="18.667" />
+
+                        <ComboBox SelectedIndex="{Binding ChartType}" FontSize="18.667">
+                            <TextBlock Text="3D Bar Chart" />
+                            <TextBlock Text="2D Bar Chart" />
+                            <TextBlock Text="2D Line Chart" />
+                        </ComboBox>
+
+                        <ComboBox FontSize="18.667" SelectedIndex="{Binding CellsOption}" Margin="7,0,0,0">
+                            <TextBlock Text="Populated Cells" />
+                            <TextBlock Text="Empty Cells" />
+                        </ComboBox>
+
+                        <Button Content="Refresh" Command="{Binding RefreshButtonClick}"
+						        Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="18.667" 
+                                Cursor="Hand" Margin="10,0,0,0" Width="80" />
+
+                    </StackPanel>
+					
+                    <TabControl Background="{x:Null}"
 					            BorderBrush="{x:Null}"
-					            Padding="0" Margin="8,0,8,0"
-								SelectedIndex="{Binding DataTabControlSelectedTab}">
+					            Padding="0"
+								SelectedIndex="{Binding DataTabControlSelectedTab}"
+								Grid.Row="1">
 
                         <TabItem loc:Translate.Uid="StatisticsTab"
 					             Header="{loc:Translate Statistics}"
@@ -240,6 +245,8 @@
                         </TabItem>
 
                     </TabControl>
+						
+					</Grid>
 
                 </Grid>
 
