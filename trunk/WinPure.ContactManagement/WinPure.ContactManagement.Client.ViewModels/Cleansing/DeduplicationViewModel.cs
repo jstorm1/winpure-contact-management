@@ -388,6 +388,8 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
                 _thresholdLevel, ReturnResults.DuplicatesOnly);
 
             TotalDuplicates = "Total Duplicates: " + _dedupTable.Rows.Count;
+			
+			ProgressBarVisibility = Visibility.Collapsed;
         }
 
         private void OnLoadingRowAction(DataGridRowEventArgs e)
@@ -461,5 +463,18 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
         }
 
         #endregion
+    }
+
+    public class ThresholdLevelConvertor : System.Windows.Data.IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value.ToString() + "%";
+        }
+ 
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return null;
+        }
     }
 }

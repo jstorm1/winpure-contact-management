@@ -24,6 +24,7 @@
       <GradientStop Color="#12FFFFFF" Offset="1"/>
     </LinearGradientBrush>
     <WinPure_ContactManagement_Client_Helpers_Converters:BooleanToVisibilityOppositeConverter x:Key="BooleanToVisibilityOppositeConverter"/>
+    <Cleansing:ThresholdLevelConvertor x:Key="ThresholdLevelConvertor" />
 </CommonControls:PageControl.Resources>
 	
 <!--Page Background-->
@@ -168,7 +169,7 @@
                     </Grid>
                     
                     <!-- Second row -->
-                    <GridSplitter Grid.Row="1" Height="7" Width="200" Background="Black" Opacity="0.3"
+                    <GridSplitter Grid.Row="1" Height="7" Width="300" Background="White" Opacity="0.3"
                                   HorizontalAlignment="Stretch" VerticalAlignment="Center"
                                   Margin="8,5,8,0" />
 
@@ -318,7 +319,7 @@
 						</Grid.RowDefinitions>
 						
 						<DataGrid ItemsSource="{Binding AllValuesDataTable}" FontSize="18.667"
-						          Grid.Row="0" Margin="3,0,8,0" />
+						          Grid.Row="0" Margin="3,0,8,0" IsReadOnly="True" />
                         <TextBlock FontSize="18.667" Text="{Binding DistinctValues}" HorizontalAlignment="Center"
 						           Grid.Row="1" Height="{Binding DistinctValuesHeight}" />
 						
@@ -372,29 +373,35 @@
                 <Grid x:Name="DeduplicationTabGrid" Background="{DynamicResource TabGridBackground}">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="175" />
+                        <RowDefinition Height="0.8*" />
                         <RowDefinition Height="Auto"/>
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
+                    <!-- First row -->
+                    <Grid Margin="8,5,8,0" Grid.Row="0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="1.5*" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="1.5*" />
+                            <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
+						
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition />
+						</Grid.RowDefinitions>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="0">
-                            <TextBlock Text="All Columns:" FontSize="18" />
-                            <ListBox 
-					         ItemsSource="{Binding Columns}" 
-							 FontSize="14" 
-							 SelectionMode="Multiple"
-							 Style="{DynamicResource ListBoxStyle}"
-							 Height="170">
+                        <TextBlock Text="Columns:" FontSize="18.667" Grid.Column="0"
+							       Grid.Row="0" />
+                         <ListBox ItemsSource="{Binding Columns}" 
+							      FontSize="18.667" 
+							      SelectionMode="Multiple"
+							      Style="{DynamicResource ListBoxStyle}"
+								  Grid.Column="0"
+								  Grid.Row="1">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -403,35 +410,37 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
-                            </ListBox>
-                        </StackPanel>
+                         </ListBox>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
 
                             <Button Content="&lt;" Height="26" Width="56" 
-					        Command="{Binding MoveFromSelectedColumnsToColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Margin="0,20,0,0"/>
+					                Command="{Binding MoveFromSelectedColumnsToColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand" />
 
                             <Button Content="&gt;" Height="26" Width="56" 
-					        Command="{Binding MoveFromColumnsToSelectedColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand"/>
+					                Command="{Binding MoveFromColumnsToSelectedColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand"/>
 
                             <Button Content="&lt;&lt;" Width="56" Height="26" 
-							Command="{Binding MoveAllFromSelectedColumnsToColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand" Margin="0,60,0,0"/>
+							        Command="{Binding MoveAllFromSelectedColumnsToColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand" Margin="0,60,0,0" />
+                            
                             <Button Content="&gt;&gt;" Width="56"  Height="26"
-					        Command="{Binding MoveAllFromColumnsToSelectedColumns}"
-							Style="{DynamicResource ButtonStyle1}" Foreground="White" FontSize="16" Cursor="Hand"/>
+					                Command="{Binding MoveAllFromColumnsToSelectedColumns}"
+							        Style="{DynamicResource ButtonStyle1}" Foreground="White" 
+                                    FontSize="16" Cursor="Hand" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" Grid.Column="2">
-                            <TextBlock Text="Search Columns:" FontSize="18" />
-                            <ListBox 
-					         ItemsSource="{Binding SelectedColumns}" 
-							 FontSize="14"
-							 SelectionMode="Multiple"
-							 Style="{DynamicResource ListBoxStyle}"
-							 Height="170">
+                        <TextBlock Text="Selected Columns:" FontSize="18.667" Grid.Column="2" Grid.Row="0" />
+                        <ListBox ItemsSource="{Binding SelectedColumns}" 
+							     FontSize="18.667"
+							     SelectionMode="Multiple"
+							     Style="{DynamicResource ListBoxStyle}"
+								 Grid.Column="2" Grid.Row="1">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">
@@ -440,38 +449,41 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
-                            </ListBox>
-                        </StackPanel>
+                        </ListBox>
 
                         <StackPanel Grid.Column="3"
 					                Orientation="Vertical"
-                                    Margin="15,0,0,0">
+                                    Margin="15,0,0,0"
+									Grid.Row="1">
                             <TextBlock Text="Fuzzy Threshold Level"
-						               FontSize="16"
-                                     HorizontalAlignment="Center" />
+						               FontSize="18.667"
+                                       HorizontalAlignment="Center" />
                             <Slider Orientation="Horizontal"
                                     Minimum="1" Maximum="100"
-                                    Width="350"
                                     Value="{Binding ThresholdLevel, Mode=TwoWay}" />
                             <TextBlock HorizontalAlignment="Center"
-                                       FontSize="16"
-                                       Text="{Binding ThresholdLevel}" />
+                                       FontSize="18.667"
+                                       Text="{Binding ThresholdLevel, Converter={StaticResource ThresholdLevelConvertor}}" />
                             <Button Content="Find Duplications" Style="{DynamicResource ButtonStyle1}" 
-                                    Foreground="White" Width="190" Height="40" FontSize="16" Cursor="Hand"
+                                    Foreground="White" Width="190" Height="40" FontSize="18.667" Cursor="Hand"
                                     Command="{Binding FindDuplicatesBtnClick}" />
+						    <TextBlock Text="{Binding TotalDuplicates}"
+						       FontSize="18.667" HorizontalAlignment="Center" Margin="0,10,0,0" />
                         </StackPanel>
 
                     </Grid>
-
-                    <TextBlock Text="{Binding TotalDuplicates}"
-						       FontSize="16"
-                               Grid.Row="1" />
+					
+					<!-- Second row -->
+                    <GridSplitter Grid.Row="1" Height="7" Width="300" Background="White" Opacity="0.3"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                  Margin="8,5" />
 
                     <DataGrid ItemsSource="{Binding DedupTable}"
-                              FontSize="12"
+                              FontSize="16"
                               AutoGenerateColumns="False"
                               Grid.Row="2" 
-                              SelectedIndex="{Binding DataSelectedIndex, Mode=TwoWay}">
+                              SelectedIndex="{Binding DataSelectedIndex, Mode=TwoWay}" Margin="8,0,8,8"
+                              IsReadOnly="True">
 
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Hide">
@@ -521,7 +533,7 @@
                     </DataGrid>
 
                     <ProgressBar Grid.Row="3" Height="25" Visibility="{Binding ProgressBarVisibility}"
-                                 Value="{Binding PercentsDone}"/>
+                                 Value="{Binding PercentsDone}" Margin="8,0,8,8"/>
 
                 </Grid>
 
