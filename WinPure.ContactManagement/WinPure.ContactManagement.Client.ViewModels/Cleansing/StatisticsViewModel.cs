@@ -366,7 +366,15 @@ namespace WinPure.ContactManagement.Client.ViewModels.Cleansing
 
         private void DataGridDoubleClickAction(MouseButtonEventArgs e)
         {
-            string column = (e.OriginalSource as TextBlock).Text;
+            TextBlock source = e.OriginalSource as TextBlock;
+            if (source == null) 
+                return;
+
+            string column = source.Text;
+
+            if (column == "Column Name" || column == "Score")
+                return;
+
             SynchronizedObservableCollection<Contact> contacts = ContactsManager.Current.ContactsCache;
 
             FilteredContacts.Clear();
